@@ -30,3 +30,5 @@ app/: Contains all routes and pages.
 
 Use Atomic Design principles for large-scale projects.
 For single-page components, place them in a \_components/ folder within that page's directory (e.g., app/(protected)/dashboard/\_components/).
+
+Hello!
