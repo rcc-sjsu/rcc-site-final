@@ -1,16 +1,14 @@
-import styles from './page.module.css';
-import Header from '../components/header/Header'; // Import the new Header component
+// app/page.tsx
+// Remove the import for Header and any div with styles.container or styles.pageContent
+// from this file, as the layout will handle it.
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      {/* Render the Header component */}
-      <Header />
-      <main className={styles.pageContent}>
-        {/* Put proper Router handling here*/}
-        <h1>Welcome to the Home Page</h1>
-        <p>This content will always take up the remaining vertical space on the page, thanks to flexbox!</p>
-      </main>
-    </div>
+    <>
+      {/* Your unique home page content goes here */}
+      <h1>Welcome to the Home Page</h1>
+      <p>This content is now rendered within the shared layout!</p>
+      <p>You can add more content, components, or even nested layouts here.</p>
+    </>
   );
 }
