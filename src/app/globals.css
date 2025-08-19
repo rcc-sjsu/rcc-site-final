@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 
-:root {
+html,
+body {
+  height: 100%; /* Ensure html and body take full viewport height */
   margin: 0;
   padding: 0;
-}
-
-body {
+  font-family: sans-serif; /* Example font */
+  box-sizing: border-box;
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/header/Header';
+import styles from './page.module.css';
 
 // UPDATE FOR RCC SITE
 const geistSans = Geist({
@@ -25,7 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${styles.container}`}>
+        {/* The Header component will appear on all pages */}
+        <Header />
+        {/* All your page content will be rendered inside this main tag */}
+        <main className={styles.pageContent}>{children}</main>
+      </body>
     </html>
   );
 }
