@@ -1,28 +1,29 @@
-import { type NextRequest } from 'next/server';
-import { updateSession } from '../../utils/supabase/middleware';
+import { type NextRequest, NextResponse } from 'next/server';
+import { createClient } from '../../utils/supabase/server';
 
+// On every request (going to a new page), this middleware activates
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  // Directly create the Supabase client instance here.
+  const supabase = await createClient();
+
+  // Get the user's session.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // Define the protected route path.
+  const protectedPath = '/protected';
+
+  // Check if the user is not authenticated and the requested path is a protected one.
+  if (!user && request.nextUrl.pathname.startsWith(protectedPath)) {
+    // Redirect to the login page or an auth-error page.
+    return NextResponse.redirect(new URL('/auth-error', request.url));
+  }
+
+  // If the user is authenticated or the page is not protected, continue to the next step.
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  matcher: ['/protected/:path*'],
 };
-
-// TODO:
-// - use matcher config to target protected pages for auth (users need to be logged in to access protected pages)
-// - middleware runs before requests so before user accesses a page, middleware runs (auth check for example)
-
-// The matcher option allows you to target specific paths for the Middleware to run on.
-// export const config = {
-//   matcher: ['/about/:path*', '/dashboard/:path*'],
-// }

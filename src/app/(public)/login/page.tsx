@@ -1,4 +1,4 @@
-import { login, signup } from '../../appUtils/actions';
+import { login, signup } from '../../appUtils/authActions';
 export default function LoginPage() {
   return (
     <form>
