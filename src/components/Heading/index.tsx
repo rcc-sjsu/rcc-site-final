@@ -1,8 +1,11 @@
 import { headingProps } from "./type";
 import styles from "./Heading.module.css"
+import { JSX } from "react";
 
-export default function Heading({children, customStyle, align, logoPath, logoAlign, logoSize}: headingProps) {
+export default function Heading({headingTag, children, customStyle, align, logoPath, logoAlign, logoSize}: headingProps) {
   
+  const HeadingTag = headingTag as keyof JSX.IntrinsicElements
+
   const h1Style: React.CSSProperties = {
     fontFamily: "var(--font-zilla-slab)",
     fontSize: "4.5rem",
@@ -20,7 +23,7 @@ export default function Heading({children, customStyle, align, logoPath, logoAli
   }
   
   return (
-    <h1 
+    <HeadingTag 
       style={combinedStyle}
     >
 
@@ -52,6 +55,6 @@ export default function Heading({children, customStyle, align, logoPath, logoAli
         />
       }
     
-    </h1>
+    </HeadingTag>
   );
 }
