@@ -1,0 +1,11 @@
+.gradientContainer {
+  display: flex;
+  z-index: -1;
+}
+
+.gradient {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  filter: blur(6rem);
+}
