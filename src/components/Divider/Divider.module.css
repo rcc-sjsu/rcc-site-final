@@ -1,0 +1,9 @@
+.dividerContainer {
+  padding: 1.25rem 0 1.25rem 0;
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+
+.divider {
+  background-color: #1A143A;
+}
