@@ -1,0 +1,104 @@
+.header {
+  font-family: var(--font-nunito-sans);
+  z-index: 10;
+  background-color: white;
+  margin-top: 0.75rem;
+}
+
+.desktopContainer {
+  display: none;
+  font-size: 1.5rem
+}
+
+.desktopMainMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: white;
+  gap: 3.75rem;
+  height: 4.25rem;
+
+  /* Main Menu Links */
+  > a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+/* Main Menu Ambassadorship tab*/
+.desktopAmbassadorship {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  height: 100%;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  /* arrow image */
+  div {
+    height: 1.25rem;
+    width: 1.25rem;
+    transform: scale(0.75);
+    background-position: center;
+    background-image: url('/header/keyboard_arrow_down.png');
+  }
+}
+
+/* Sub Menu Ambassadorship tab */
+.desktopSubMenu {
+  z-index: 10;
+  position: absolute;
+  font-size: 1.3rem;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100vw;
+  padding: 0.5px 0 1rem 0;
+
+  /* submenu links */
+  a {
+    display: flex;
+    align-items: center;
+    width: 10rem;
+    margin: -0.5rem auto 0 auto;
+
+    /* arrow image */
+    div {
+      height: 1.25rem;
+      width: 1.25rem;
+      transform: scale(0.75) rotate(-90deg);
+      background-position: center;
+      background-image: url('/header/keyboard_arrow_down.png');
+    }
+
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+/* Background blur when Ambassadorship tab is open */
+.backgroundBlur {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+}
+
+@media (width >= 40rem) {
+
+  .header {
+    margin-top: 0;
+  }
+  .desktopContainer {
+    display: block;
+  }
+
+}
