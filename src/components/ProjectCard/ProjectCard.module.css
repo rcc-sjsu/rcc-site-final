@@ -1,0 +1,53 @@
+.projectName:hover {
+  text-decoration: underline;
+}
+
+.teammate:hover {
+  text-decoration: underline;
+  text-shadow: 0.5px 0 0 #000000C7;
+}
+
+.container {
+  font-family: var(--font-nunito-sans);
+  width: 25rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.photoContainer {
+  height: 16rem;
+  display: flex;
+}
+
+.photo {
+  margin: auto;
+  width: 11.25rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.projectDetails {
+  margin: 1.75rem 1.25rem 1.25rem 1.25rem;
+  color: #000000C7
+}
+
+.projectName {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.description {
+  font-size: 1.25rem;
+  margin: 0 1.25rem 0 1.25rem;
+} 
+
+.teamContainer {
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.teammateContainer {
+  margin: 0.25rem 1.25rem 0 1.25rem;
+}
