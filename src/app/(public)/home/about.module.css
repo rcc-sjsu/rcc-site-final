@@ -1,0 +1,157 @@
+.RCCSection {
+  display: flex;
+  width: fit-content;
+  gap: 3.75rem;
+  font-size: 1.62rem;
+  margin: 0 auto 0 auto;
+  align-items: center;
+}
+
+.RCCText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  gap: 3rem;
+}
+
+.mozillaLogo {
+  width: 27.5rem;
+  background-image: url(/home_images/mozilla_logo.png);
+  background-position: center;
+  background-size: cover;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.lightbulbIcon {
+  width: 9rem;
+  margin-bottom: -10rem;
+}
+
+.smileyIcon {
+  width: 12rem;
+  margin-left: auto;
+  margin-top: -7.75rem;
+}
+
+.socialContainer {
+  display: flex;
+  gap: 6.75rem;
+  align-items: center;
+
+  a {
+    width: 2.5rem;
+  }
+}
+
+.RCCGradientContainer {
+  margin-top: -31rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.RCCGradient {
+  width: 65rem;
+  height: 30rem;
+}
+
+@media (width <= 1280px) {
+
+  .RCCSection {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .RCCText {
+    margin-top: -10rem;
+    max-width: unset;
+    width: 80%;
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .RCCHeading h1 div {
+    font-size: 2.5rem;
+  }
+
+  .RCCParagraph {
+    font-size: 1.25rem;
+  }
+
+  .socialContainer {
+    gap: 2.25rem;
+    
+    a {
+      width: 2rem;
+    }
+  }
+
+  .RCCImageContainer {
+    scale: 0.55;
+  }
+
+  .RCCGradientContainer {
+    position: absolute;
+    top: 51rem;
+  }
+  
+  .RCCGradient {
+    transform: scale(0.7);
+  }
+
+}
+
+@media (width <= 640px) {
+
+  .RCCSection {
+    display: flex;
+    width: 100vw;
+  }
+
+  .RCCText {
+    width: 90%;
+    margin: auto;
+    gap: 0rem;
+  }
+
+  .RCCImageContainer {
+    visibility: collapse;
+  }
+  
+  .RCCHeading {
+    margin-bottom: -0.5rem;
+
+    h1 div {
+      font-size: 2rem;
+      line-height: 2.75rem;
+    }
+  }
+
+  .RCCParagraph {
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+
+  .socialContainer {
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+
+    a {
+      width: 1.35rem;   
+    }
+  }
+
+  .RCCGradientContainer {
+    position: absolute;
+    top: 32rem;
+  }
+  
+  .RCCGradient {
+    transform: scale(0.7);
+  }
+
+}

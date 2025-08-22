@@ -23,6 +23,7 @@ const zillaSlab = Zilla_Slab({
 });
 
 export const metadata: Metadata = {
+  
   title: 'RCC Site',
   description: "Member Portal for SJSU's Responsible Computing Club",
 };

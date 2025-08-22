@@ -1,0 +1,119 @@
+.missionSection {
+  display: flex;
+  width: fit-content;
+  gap: 3.75rem;
+  font-size: 1.62rem;
+  margin: 12.5rem auto 0 auto;
+  align-items: center;
+}
+
+.missionText {
+  text-align: center;
+}
+
+.missionParagraph {
+  margin: 0 auto 0 auto;
+  margin-top: 2rem;
+  max-width: 42.5rem;
+}
+
+.groupPhoto {
+  width: 26.25rem;
+  background-image: url(/home_images/group_photo.jpg);
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.missionGradientContainer {
+  display: flex;
+  width: 100%;
+  margin-top: -33rem;
+  justify-content: center;
+}
+
+.missionGradient {
+  width: 43rem;
+  height: 40rem;
+  margin-right: 50rem;
+}
+
+@media (width <= 1280px) {
+  .missionSection {
+    margin-top: 2rem;
+    width: 100vw;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .groupPhoto {
+    scale: 0.6;
+  }
+
+  .missionText {
+    margin-top: -6rem;
+    width: 80%;
+  }
+
+  .missionHeading h2 div {
+    font-size: 2.5rem;
+  }
+
+  .missionParagraph {
+    max-width: unset;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .missionGradientContainer {
+    position: absolute;
+    bottom: -20rem;
+    height: fit-content;
+  }
+
+  .missionGradient {
+    margin: 0;
+    width: 25rem;
+    height: 25rem;
+  }
+
+}
+
+
+@media (width <= 640px) {
+  .missionSection {
+    margin-top: 7.5rem;
+  }
+
+  .groupPhoto {
+    visibility: collapse;
+  }
+
+  .missionText {
+    width: 90%;
+  }
+
+  .missionHeading {
+    margin-bottom: -0.5rem;
+
+    h2 div {
+      font-size: 2rem;
+      line-height: 2.75rem;
+    }
+  }
+
+  .missionParagraph {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+
+  .missionGradientContainer {
+    position: absolute;
+    top: 67rem;
+  }
+
+  .missionGradient {
+    transform: scale(0.7);
+  }
+}

@@ -1,12 +1,13 @@
 import BackgroundGradient from "@/components/BackgroundGradient";
 import Heading from "@/components/Heading";
-import aboutStyles from "./(public)/home/about.module.css"
-import missionStyles from "./(public)/home/mission.module.css"
+import aboutStyles from "./about.module.css"
+import missionStyles from "./mission.module.css"
 
 export default function HomePage() {
+  
 
   return (
-    <main>
+    <main style={{overflow: "clip"}}>
 
       {/* About */}
       <section className={aboutStyles.RCCSection}>
@@ -55,7 +56,7 @@ export default function HomePage() {
       </div>
 
       {/* Mission Statement */}
-      <section className={missionStyles.missionSection}>
+      {/* <section className={missionStyles.missionSection}>
         
         <div className={missionStyles.groupPhoto}/>
         
@@ -79,7 +80,7 @@ export default function HomePage() {
           
         </div>
 
-      </section>
+      </section> */}
 
       <div className={missionStyles.missionGradientContainer}>
         <BackgroundGradient className={missionStyles.missionGradient} color="purple"/>
