@@ -8,6 +8,5 @@
   flex-grow: 1; /* Allows this content area to expand and fill available space */
   /* display: flex; Use flexbox for inner content if you want to align things vertically/horizontally */
   /* flex-direction: column; Optional: if you want content within pageContent to stack */
-  padding: 20px; /*TODO CHANGE TO VARIABLE*/
   overflow-y: auto; /* Allow scrolling if content exceeds height */
 }
