@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './page.module.css';
-import InstaCarousel from '@/components/instapost';
+import InstaCarousel from '@/components/instagram/instapost';
 
 export default function Events() {
   return (
@@ -59,12 +59,13 @@ export default function Events() {
         <InstaCarousel />
       </div>
 
-      <div className="w-full overflow-hidden rounded-lg">
+      <div className="w-full overflow-hidden rounded-lg aspect-[16/9]">
         <iframe
           src="https://embed.styledcalendar.com/#DBbT3ywMoEOIzrCaOy4E"
           title="Styled Calendar"
-          className="w-full border-none h-[400px] sm:h-[600px]"
+          className="w-full h-full border-none"
           data-cy="calendar-embed-iframe"
+          style={{ minHeight: '500px' }}
         />
       </div>
     </div>

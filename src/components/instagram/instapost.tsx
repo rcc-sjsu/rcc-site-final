@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
 import Image from 'next/image';
+import styles from './instapost.module.css';
 
 interface InstagramPost {
   id: string;
@@ -45,7 +46,7 @@ export default function InstaCarousel() {
       if (window.innerWidth < 1024) return 2; // Tablet
       return 4; // Desktop
     }
-    return 4; 
+    return 4;
   };
 
   const [postsPerSet, setPostsPerSet] = useState(getPostsPerSet());
@@ -95,89 +96,68 @@ export default function InstaCarousel() {
   const MediaContent = ({ post }: { post: InstagramPost }) => {
     if (post.media_type === 'VIDEO') {
       return (
-        <div className="relative" style={{ aspectRatio: '3/4' }}>
+        <div className={styles.mediaContainer}>
           <Image
             src={post.thumbnail_url || post.media_url}
             alt="Instagram video thumbnail"
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             priority={currentSetIndex === 0}
-            className="object-cover rounded-lg"
+            className={styles.image}
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-            <FaPlay className="text-white text-3xl z-10" />
+          <div className={styles.videoOverlay}>
+            <div className={styles.videoOverlayBg}></div>
+            <FaPlay className={styles.playIcon} />
           </div>
         </div>
       );
     }
 
     return (
-      <div className="relative" style={{ aspectRatio: '3/4' }}>
+      <div className={styles.mediaContainer}>
         <Image
           src={post.media_url}
           alt="Instagram post"
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           priority={currentSetIndex === 0}
-          className="object-cover rounded-lg"
+          className={styles.image}
         />
       </div>
     );
   };
 
   return (
-    <div className="relative w-full px-4 sm:px-6 lg:px-8">
-      {/*navigation arrows; hidden on mobile for now*/}
-      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 -ml-4 lg:-ml-16 z-10">
-        <button
-          onClick={prevSlide}
-          className="bg-purple-100 hover:bg-purple-200 rounded-full p-3 transition-colors"
-          aria-label="Previous posts"
-        >
-          <FaChevronLeft className="text-purple-800" />
+    <div className={styles.carouselContainer}>
+      <div className={`hidden md:block ${styles.leftArrow}`}>
+        <button onClick={prevSlide} className={styles.navigationButton} aria-label="Previous posts">
+          <FaChevronLeft />
         </button>
       </div>
 
-      {/*grids for post */}
-      <div
-        className={`grid gap-4 py-12 ${
-          postsPerSet === 1
-            ? 'grid-cols-1'
-            : postsPerSet === 2
-              ? 'grid-cols-1 sm:grid-cols-2'
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-        }`}
-      >
+      <div className={styles.postGrid}>
         {currentPosts.map((post) => (
-          <div key={post.id} className="overflow-hidden flex flex-col">
+          <div key={post.id} className={styles.postItem}>
             <MediaContent post={post} />
-            <div className="py-2 flex-grow flex items-center justify-center">
-              <span className="text-sm sm:text-base font-medium">{formatDate(post.timestamp)}</span>
+            <div className={styles.dateContainer}>
+              <span className={styles.date}>{formatDate(post.timestamp)}</span>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 -mr-4 lg:-mr-16 z-10">
-        <button
-          onClick={nextSlide}
-          className="bg-purple-100 hover:bg-purple-200 rounded-full p-3 transition-colors"
-          aria-label="Next posts"
-        >
-          <FaChevronRight className="text-purple-800" />
+      <div className={`hidden md:block ${styles.rightArrow}`}>
+        <button onClick={nextSlide} className={styles.navigationButton} aria-label="Next posts">
+          <FaChevronRight />
         </button>
       </div>
 
-      {/* post dots */}
-      <div className="flex justify-center mt-4 gap-2">
+      <div className={styles.dotsContainer}>
         {Array.from({ length: totalSets }).map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSetIndex(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-colors ${
-              currentSetIndex === index ? 'bg-purple-800' : 'bg-purple-200'
-            }`}
+            className={`${styles.dot} ${currentSetIndex === index ? styles.dotActive : styles.dotInactive}`}
             aria-label={`Go to set ${index + 1}`}
           />
         ))}
