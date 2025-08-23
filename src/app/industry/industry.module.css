@@ -1,0 +1,271 @@
+.industryAndPastEventsContainer {
+    padding-top: 1.25rem; 
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.sectionContainer {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.industryTextAndImageContainer {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 1rem;
+}
+
+.industryText {
+    font-size: 1rem;
+    line-height: calc(1.5 / 1);
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    margin: 0;
+}
+
+.hiddenBR {
+    display: none;
+}
+
+.indigoText {
+    color: var(--color-brand-indigo);
+}
+
+.interestFormLink:hover {
+    text-decoration: underline;
+}
+
+.industryImage {
+    width: 150px;
+    height: 150px;
+}
+
+.pastEventsContainer {
+    display:grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    justify-content: center;
+    font-size:  0.875rem;
+    line-height: calc(1.25 / 0.875);
+    text-align: center;
+}
+
+.pastEvent {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.pastEventImage {
+    margin-bottom: 0.5rem;
+    width: 200px;
+    height: 200px;
+}
+
+.pastEventText {
+    margin-bottom: 0.5rem;
+}
+
+.thirdPastEvent {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-bottom: 0rem;
+}
+
+.interestFormSectionContainer {
+    display: flex;
+    flex-direction: column; 
+}
+
+.interestFormHeading {
+    text-align: center;
+}
+
+.heading {
+    padding-bottom: 0.5rem;
+    font-size: 1.875rem;
+    line-height: calc(2.25 / 1.875);
+    text-align: center;
+    font-weight: 700;
+}
+
+.industryAndPastEventDivider {
+    margin-top: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.pastEventsAndInterestFormDivider {
+    margin-block: 1rem;
+}
+
+.googleFormsBackground {
+    background-color: #F0EBF8;
+}
+
+
+/* sm */
+@media (min-width: 640px) { 
+    .industryAndPastEventsContainer {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem; 
+    }
+
+    .heading {
+        padding-bottom: 1rem; 
+        font-size: 2.25rem;
+        line-height: calc(2.5 / 2.25);
+    }
+
+    .industryImage {
+        width: 200px;
+        height: 200px;
+    }
+
+    .pastEventsContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .thirdPastEvent {
+        grid-column: span 2 / span 2;
+    }
+    
+    
+}
+
+/* md */
+@media (min-width: 768px) { 
+    .industryAndPastEventsContainer {
+        padding-top: 2.5rem;
+        padding-left: 5rem;
+        padding-right: 5rem; 
+   }
+
+   .industryTextAndImageContainer {
+        flex-direction: row; 
+    }
+
+    .industryText {
+        font-size: 1.125rem;
+        line-height: calc(1.75 / 1.125);
+        text-align: left;
+    }
+
+    .hiddenBR {
+        display: flex;
+    }
+
+    .industryImage {
+        width: 250px;
+        height: 250px;
+    }
+
+    .industryAndPastEventDivider {
+        margin-top: 3.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .pastEventsContainer {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 3rem;
+        align-items: center;
+        font-size: 1.125rem;
+        line-height: calc(1.75 / 1.125);
+    }
+
+    .pastEventImage {
+        margin-bottom: 1rem;
+    }
+
+    .dataFeminismPastEventImage {
+        margin-bottom: 0rem;
+    }
+
+    .pastEventText {
+        margin-bottom: 0rem;
+    }
+
+    .thirdPastEvent {
+        align-items: stretch;
+        grid-column: span 1 / span 1;
+    }
+
+    .interestFormHeading {
+        text-align: left;
+        padding-inline: 5rem;
+    }
+
+   .heading {
+        padding-bottom: 1.75rem; 
+        font-size: 3rem;
+        line-height: 1; 
+    }
+
+    .pastEventsAndInterestFormDivider {
+        margin-block: 2rem;
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) { 
+    .industryImage {
+        width: 300px;
+        height: 300px;
+    }
+
+    .pastEventsContainer {
+        align-items: stretch;
+    }
+
+    .pastEventImage {
+        width: 300px;
+        height: 300px;
+    }
+
+    .dataFeminismPastEventImage {
+        margin-bottom: 1rem;
+    }
+    
+}
+
+/* xl */
+@media (min-width: 1280px) { 
+    .industryTextAndImageContainer {
+        gap: 0.75rem;
+    }
+
+    .industryText {
+        font-size: 1.5rem;
+        line-height: calc(2 / 1.5);
+    }
+
+    .industryImage {
+        width: 250px;
+        height: 250px;
+    }
+
+    .industryAndPastEventDivider {
+        margin-top: 5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .pastEventsContainer {
+        gap:3.75rem;
+    }
+
+    .pastEventImage {
+        width: 350px;
+        height: 350px;
+    }
+
+    .heading {
+        font-size: 50pt;
+    }
+
+    .pastEventsAndInterestFormDivider {
+        margin-block: 2.5rem;
+    }
+}
