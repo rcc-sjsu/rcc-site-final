@@ -39,7 +39,7 @@ export default function AmbassadorsPage() {
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/executive-board/shannon-lo.jpg"
+          photoURL="../../../../headshots/executive-board/shannon-lo.png"
           name="Shannon Lo"
           role="External Vice President"
         />
@@ -148,7 +148,7 @@ export default function AmbassadorsPage() {
 
       <br />
       <br />
-      <h1 className={styles.teamName}>Case</h1>
+      <h1 className={styles.teamName}>Consulting</h1>
       <div className={styles.teamDescription}>
         The Consulting Committee finds mission-aligned clients—such as nonprofits
         and socially responsible organizations—and works on real-world tech projects
@@ -196,14 +196,14 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/industry/madison-ammirati.jpeg"
+          photoURL="../../../../headshots/industry/madison-ammirati.png"
           name="Madison Ammirati"
           role="Lead Ambassador"
         />
 
         <AmbassadorCard
           color="red"
-          photoURL="../../../../headshots/industry/sumaiyah-alamgir.jpeg"
+          photoURL="../../../../headshots/industry/sumaiyah-alamgir.png"
           name="Sumaiyah Alamgir"
           role="Industry Ambassador"
         />
@@ -360,7 +360,7 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/marketing/ryan-nikopour.jpeg"
+          photoURL="../../../../headshots/marketing/ryan-nikopour.png"
           name="Ryan Nikopour"
           role="Graphic Design Ambassador"
         />
@@ -389,7 +389,7 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="red"
-          photoURL="../../../../headshots/journalism/harika-chandrasekhar.jpeg"
+          photoURL="../../../../headshots/journalism/harika-chandrasekhar.png"
           name="Harika Chandrasekhar"
           role="Journalism Ambassador"
         />
