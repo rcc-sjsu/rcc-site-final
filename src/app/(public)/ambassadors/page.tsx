@@ -7,6 +7,19 @@ export default function AmbassadorsPage() {
   return (
     <main className={styles.container}>
       <h1 style={{ textAlign: 'center' }}>Mozilla Student Ambassadors</h1>
+      <div style={{ fontSize: '1.075rem', textAlign: 'center' }}>
+        The Mozilla Student Ambassadorship Program at RCC empowers students to take the
+        lead in shaping the future of ethical technology. Ambassadors work closely with
+        Mozilla and RCC to spark campus-wide conversations on responsible computing!
+        <br/>
+        <br/>
+          Want to get involved? Reach out to us
+          at <a href="mailto:rcc.sjsu@gmail.com">rcc.sjsu@gmail.com</a> or follow
+          us <a href="https://www.instagram.com/rcc.sjsu/">@rcc.sjsu</a> on Instagram to learn more!
+        <br/>
+        <br/>
+        Our Committees:
+      </div>
       <br />
       <br />
       <h1 className={styles.teamName}>Executive Board</h1>
