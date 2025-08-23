@@ -17,10 +17,10 @@ const nunitoSans = Nunito_Sans({
 });
 
 const zillaSlab = Zilla_Slab({
-  subsets: ['latin'],
   variable: '--font-zilla-slab',
-  weight: '500',
-});
+  subsets: ['latin'],
+  weight: ['500','600','700']
+})
 
 export const metadata: Metadata = {
   
