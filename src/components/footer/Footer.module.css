@@ -1,0 +1,123 @@
+/* Scoped reset kill global p margins only inside the footer */
+:where(.footer) p { 
+  margin-block: 0; /* removes top & bottom margins from globals */
+}
+
+:where(.footer) :where(.footerColumn) :where(p:last-child) {
+  margin-block-end: 0;
+}
+
+.footer {
+  background-color: #411a63;
+  color: white;
+  margin-block-start: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.875rem;
+}
+
+/* Keep box-sizing local */
+.footer, .footer * { box-sizing: border-box; }
+
+.footerContainer {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-block: 2rem;      /* top/bottom padding for footer only */
+  padding-inline: 0.75rem;  /* footer-specific gutters */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footerContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.footerColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+}
+
+.footerMain { flex: 2; min-width: 300px; }
+
+.footerTitle {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.footerDescription {
+  color: white;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+.footerHeading {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem 0;
+}
+
+/* Precise control of link spacing */
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 0;
+  display: grid;
+  gap: 0.25rem; /* reduce gap between links here */
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  font-size: 0.85rem;
+  line-height: 1.35; /* tighter than default */
+}
+.footer a:hover { 
+    opacity: 0.75; 
+}
+
+.contactDescription {
+  color: white;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0.15rem 0;
+}
+
+.footerLogo {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.95;
+}
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.socialIcon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+/* Hide Shortcut and Contact Us under 768px */
+@media (max-width: 767px) {
+  .footer :where(nav[aria-label="Shortcut"]),
+  .footer :where(.contactUs) {
+    display: none !important;
+  }
+}
