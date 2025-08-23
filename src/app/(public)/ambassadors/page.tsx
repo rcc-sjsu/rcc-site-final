@@ -412,7 +412,7 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="red"
-          photoURL="../../../../headshots/growth-analytics/asmita-dulla.jpeg"
+          photoURL="../../../../headshots/growth-analytics/asmita-dulla.png"
           name="Asmita Dulla"
           role="Lead Ambassador"
         />
