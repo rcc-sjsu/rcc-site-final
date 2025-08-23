@@ -86,6 +86,17 @@
 .mediaContainer {
   position: relative;
   aspect-ratio: 3/4;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.mediaContainer:hover {
+  transform: scale(1.02);
+}
+
+.mediaContainer:hover .videoOverlayBg {
+  opacity: 0.3;
 }
 
 .image {

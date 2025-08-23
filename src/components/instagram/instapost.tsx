@@ -11,6 +11,7 @@ interface InstagramPost {
   media_type: string;
   thumbnail_url?: string;
   timestamp: string;
+  permalink: string;
 }
 
 export default function InstaCarousel() {
@@ -96,7 +97,7 @@ export default function InstaCarousel() {
   const MediaContent = ({ post }: { post: InstagramPost }) => {
     if (post.media_type === 'VIDEO') {
       return (
-        <div className={styles.mediaContainer}>
+        <a href={post.permalink} target="_blank" rel="noopener noreferrer" className={styles.mediaContainer}>
           <Image
             src={post.thumbnail_url || post.media_url}
             alt="Instagram video thumbnail"
@@ -109,12 +110,12 @@ export default function InstaCarousel() {
             <div className={styles.videoOverlayBg}></div>
             <FaPlay className={styles.playIcon} />
           </div>
-        </div>
+        </a>
       );
     }
 
     return (
-      <div className={styles.mediaContainer}>
+      <a href={post.permalink} target="_blank" rel="noopener noreferrer" className={styles.mediaContainer}>
         <Image
           src={post.media_url}
           alt="Instagram post"
@@ -123,7 +124,7 @@ export default function InstaCarousel() {
           priority={currentSetIndex === 0}
           className={styles.image}
         />
-      </div>
+      </a>
     );
   };
 
