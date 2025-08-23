@@ -1,10 +1,110 @@
 @import 'tailwindcss';
 
-html,
-body {
-  height: 100%; /* Ensure html and body take full viewport height */
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif; /* Example font */
-  box-sizing: border-box;
+@theme inline {
+  /* some colors from Figma prototypes */
+  --color-brand-dark-grey: #383838;
+  --color-brand-dark-purple: #411A63;
+  --color-brand-indigo: #470085;
+  --color-brand-pale-purple: #DEB8FE;
+  --color-brand-cobalt-blue: #2F419B;
+  --color-brand-pale-blue: #E2E8FD;
+  --color-brand-dark-pastel-purple: #9580D7;
+  --color-brand-light-steel-blue: #7289DA;
+  --color-brand-lilac: #CDA8F9;
+
+  /* some Mozilla colors */
+  --color-brand-ironside-grey: #666666;
+  --color-brand-dark-dune-grey: #333333;
+
+  /* primary RCC brand colors */
+  --color-brand-dark-lavender: #7972a8;
+  --color-brand-lavender: #c4baea;
+  --color-brand-dull-periwinkle: #93a2e2;
+  --color-brand-baby-pink: #f6badf;
+  --color-brand-baby-blue: #9bd6f5;
+
+  /* supporting RCC brand colors */
+  --color-brand-dark-violet: #280b63;
+  --color-brand-pale-violet: #caaaf3;
+  --color-brand-dark-periwinkle: #576dd2;
+}
+
+:root {
+  /* some colors from Figma prototypes */
+  --color-brand-dark-grey: #383838;
+  --color-brand-dark-purple: #411A63;
+  --color-brand-indigo: #470085;
+  --color-brand-pale-purple: #DEB8FE;
+  --color-brand-cobalt-blue: #2F419B;
+  --color-brand-pale-blue: #E2E8FD;
+  --color-brand-dark-pastel-purple: #9580D7;
+  --color-brand-light-steel-blue: #7289DA;
+  --color-brand-lilac: #CDA8F9;
+
+  /* some Mozilla colors */
+  --color-brand-ironside-grey: #666666;
+  --color-brand-dark-dune-grey: #333333;
+
+  /* primary RCC brand colors */
+  --color-brand-dark-lavender: #7972a8;
+  --color-brand-lavender: #c4baea;
+  --color-brand-dull-periwinkle: #93a2e2;
+  --color-brand-baby-pink: #f6badf;
+  --color-brand-baby-blue: #9bd6f5;
+
+  /* supporting RCC brand colors */
+  --color-brand-dark-violet: #280b63;
+  --color-brand-pale-violet: #caaaf3;
+  --color-brand-dark-periwinkle: #576dd2;
+}
+
+@layer base {
+  body {
+    color: var(--color-brand-dark-grey);
+    font-family: var(--font-nunito-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-zilla-slab);
+  }
+
+  h1 {
+    color: var(--color-brand-indigo);
+    font-size: 50pt;
+  }
+
+  p {
+    max-width: 70ch;
+    line-height: 1.5;
+    font-size: 19;
+    margin-bottom: 2.25em;
+  }
+
+  a {
+    color: var(--color-brand-indigo);
+  }
+
+  hr {
+    outline: black;
+    width: 100%;
+  }
+}
+
+/* class for future accessibility feature (a skip link) */
+.skip-to-content-link {
+  @apply bg-[var(--color-brand-dark-violet)] p-2 lg:p-3 top-2 left-2 absolute;
+  /* background: var(--color-brand-blue-peacock);
+  padding: 10px;
+  top: 1%;
+  left: 1%;
+  position: absolute;
+  transform: translateY(-100%); */
+  transition: transform 0.3s;
+  color: white;
+  outline-color: var(--color-brand-dark-periwinkle);
+  outline-offset: 3px;
+}
+
+.skip-to-content-link:focus {
+  transform: translateY(0%);
 }
