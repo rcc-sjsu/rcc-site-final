@@ -13,7 +13,21 @@
 
 .ambassadorCards {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  padding-top: 3rem;
+}
+
+.teamName {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  padding-bottom: 0.75rem;
+}
+
+.teamDescription {
+  text-align: center;
+  font-size: 1.4rem;
 }

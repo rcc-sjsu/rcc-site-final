@@ -1,7 +1,6 @@
 export type ambassadorCardProps = {
   color: "red" | "blue"
-  title: string;
   photoURL: string;
-  author: string;
-  tag?: string;
+  name: string;
+  role: string;
 }

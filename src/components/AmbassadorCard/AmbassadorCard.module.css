@@ -1,5 +1,5 @@
 .container {
-  width: 20rem;
+  width: 16rem;
   font-family: var(--font-nunito-sans);
   display: flex;
   flex-direction: column;
@@ -12,15 +12,18 @@
 }
 
 .ambassadorDetails {
-  margin: 2.3rem 1.25rem 2rem 1.25rem;
+  margin: 1.25rem;
 }
 
 .ambassadorName {
   font-weight: bold;
   font-size: 1.25rem;
   margin: 0 0 0.5rem 0;
+  text-align: center;
 }
 
 .ambassadorRole {
   font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
 }

@@ -1,12 +1,12 @@
 import { ambassadorCardProps } from "./type";
 import styles from "./AmbassadorCard.module.css"
 
-export default function AmbassadorCard({ color, photoURL, name, role, date, summary, tag }:ambassadorCardProps) {
+export default function AmbassadorCard({ color, photoURL, name, role }:ambassadorCardProps) {
   return  (
     <section
       style={{
-        boxShadow: color == "red" ? "0px 4px 8px #9A0146" : color == "blue" ? "0px 4px 8px #3852AD" : "",
-        border: color == "red" ? "2px solid #9A0146" : color == "blue" ? "2px solid #3852AD" : "",
+        boxShadow: color == "red" ? "0px 4px 8px #9A014600" : color == "blue" ? "0px 4px 8px #3852AD00" : "",
+        border: color == "red" ? "2px solid #9A014600" : color == "blue" ? "2px solid #3852AD00" : "",
       }} 
       className={styles.container}
     >
