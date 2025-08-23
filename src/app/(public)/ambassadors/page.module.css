@@ -8,4 +8,12 @@
 .h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-align: center;
+}
+
+.ambassadorCards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 4rem;
 }
