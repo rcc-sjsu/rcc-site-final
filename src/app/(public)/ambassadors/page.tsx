@@ -174,7 +174,7 @@ export default function AmbassadorsPage() {
 
       <br />
       <br />
-      <h1 className={styles.teamName}>Case</h1>
+      <h1 className={styles.teamName}>Industry</h1>
       <div className={styles.teamDescription}>
         The Industry Committee connects with professionals and companies to
         organize panels, speaker events, and networking opportunities that give
@@ -200,6 +200,236 @@ export default function AmbassadorsPage() {
           photoURL="../../../../headshots/industry/yamini-karthik.jpeg"
           name="Yamini Karthik"
           role="Industry Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Web Development</h1>
+      <div className={styles.teamDescription}>
+        The Web Development committee designs and maintains ethical, accessible,
+        and user-friendly websites that support the club's mission and initiatives.
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/web-dev/ashley-roman.jpeg"
+          name="Ashley Roman"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/anton-clayton.jpeg"
+          name="Anton Clayton"
+          role="Web Dev Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/connie-ly.jpeg"
+          name="Connie Ly"
+          role="Web Dev Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/preethi-mohan.jpeg"
+          name="Preethi Mohan"
+          role="Web Dev Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/marl-jonson.jpeg"
+          name="Marl Jonson"
+          role="Web Dev Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/matthew-bernard.png"
+          name="Matthew Bernard"
+          role="Web Dev Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Membership Outreach</h1>
+      <div className={styles.teamDescription}>
+        The Membership Outreach committee promotes community engagement by recruiting
+        new members, organizing social events, and fostering an inclusive community
+        aligned with RCC's values.
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/membership-outreach/zara-rahim.png"
+          name="Zara Rahim"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/membership-outreach/izabella-doser.jpg"
+          name="Izabella Doser"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/membership-outreach/shravya-vinjamuri.jpeg"
+          name="Shravya Vinjamuri"
+          role="Membership Outreach Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/membership-outreach/updesh-sachdeva.jpeg"
+          name="Updesh Sachdeva"
+          role="Membership Outreach Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Marketing</h1>
+      <div className={styles.teamDescription}>
+        The Marketing Committee promotes the Responsible Computing Club through
+        two sub-teams: Digital Marketing, which manages online content and outreach,
+        and Graphic Design, which creates visual materials to support the club's initiatives!
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/marketing/melanie-regalado-hernandez.jpg"
+          name="Melanie Regalado Hernandez"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/marketing/bhoomika-gupta.jpg"
+          name="Bhoomika Gupta"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/jennifer-lucero.jpeg"
+          name="Jennifer Lucero"
+          role="Digital Marketing Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/zara-raza.jpeg"
+          name="Zara Raza"
+          role="Digital Marketing Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/saahi-madras-sivakumar.jpeg"
+          name="Saahi Madras Sivakumar"
+          role="Digital Marketing Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/marc-mcdaniel.jpeg"
+          name="Marc McDaniel"
+          role="Digital Marketing Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/ryan-nikopour.jpeg"
+          name="Ryan Nikopour"
+          role="Graphic Design Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/chris-le.png"
+          name="Chris Le"
+          role="Graphic Design Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Journalism</h1>
+      <div className={styles.teamDescription}>
+        The Journalism Committee highlights RCC's initiatives by promoting awareness
+        of responsible computing through event recaps and regularly published blogs
+        on the Mozilla Foundation platform.
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/journalism/jan-abigail-acosta.jpeg"
+          name="Jan Abigail Acosta"
+          role="Journalism Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/journalism/harika-chandrasekhar.jpeg"
+          name="Harika Chandrasekhar"
+          role="Journalism Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/journalism/jupjeet-rai.jpeg"
+          name="Jupjeet Rai"
+          role="Journalism Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Growth Analytics</h1>
+      <div className={styles.teamDescription}>
+        The Growth Analytics Committee tracks and analyzes RCC's engagement data,
+        designs surveys for feedback, and creates visual summaries to inform and
+        improve club outreach and events.
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/growth-analytics/asmita-dulla.jpeg"
+          name="Asmita Dulla"
+          role="Lead Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/growth-analytics/sonya-sorkin.jpeg"
+          name="Sonya Sorkin"
+          role="Growth Analytics Ambassador"
+        />
+      </div>
+
+      <br />
+      <br />
+      <h1 className={styles.teamName}>Finance</h1>
+      <div className={styles.teamDescription}>
+        The Finance Committee supports RCC by organizing fundraisers, applying for grants,
+        and assisting the treasurer with reimbursements and expense tracking.
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/finance/anusha-damle.jpeg"
+          name="Anusha Damle"
+          role="Lead Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/finance/dhwanil-ranpura.jpeg"
+          name="Dhwanil Ranpura"
+          role="Finance Ambassador"
         />
       </div>
 
