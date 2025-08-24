@@ -17,12 +17,6 @@ const nunitoSans = Nunito_Sans({
 });
 
 const zillaSlab = Zilla_Slab({
-  subsets: ['latin'],
-  variable: '--font-zilla-slab',
-  weight: '500',
-});
-
-const zillaSlab = Zilla_Slab({
   variable: '--font-zilla-slab',
   subsets: ['latin'],
   weight: ['500','600','700']

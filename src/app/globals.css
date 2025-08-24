@@ -103,10 +103,6 @@
   color: white;
   outline-color: var(--color-brand-dark-periwinkle);
   outline-offset: 3px;
-
-
-.skip-to-content-link:focus {
-  transform: translateY(0%);
 }
 
 .skip-to-content-link:focus {
