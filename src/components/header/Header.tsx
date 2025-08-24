@@ -15,12 +15,6 @@ export default function Header() {
     // Desktop Click and Hover listeners
     const [isDesktopHovered, setIsDesktopHovered] = useState(false)
     const [isDesktopAmbassadorshipClicked, setIsDesktopAmbassadorshipClicked] = useState(false)
-      
-      // submenu listeners 
-      const [isDesktopAmbassadorsHovered, setIsDesktopAmbassdorsHovered] = useState(false)
-      const [isDesktopProjectsHovered, setIsDesktopProjectsHovered] = useState(false)
-      const [isDesktopIndustryHovered, setIsDesktopIndustryHovered] = useState(false)
-      const [isDesktopJournalismHovered, setIsDesktopJournalismHovered] = useState(false)
 
     return (
       <>        
@@ -34,16 +28,16 @@ export default function Header() {
               <img src="/header/Hamburger_icon.svg"/>
             </button>
 
-            <div style={{display: !isHamburgerClicked ? "none" : "flex"}}>
+            <div style={{display: isHamburgerClicked ? "flex" : "none"}}>
 
               {/* About Us, Ambassadorship, Events Menu */}
               <div 
               className={mobileStyles.mobileMainMenu}
-              style={{display: isHamburgerClicked ? "flex" : "none"}}
+              style={{display: "flex"}}
               >
-                <Link href="/about">about us</Link>
+                <Link href="/">home</Link>
 
-                <Link href="/" 
+                <p 
                   onMouseEnter={()=> setIsMobileHovered(true)}
                   onMouseLeave={()=> setIsMobileHovered(false)}
                   onClick={() => {
@@ -60,7 +54,7 @@ export default function Header() {
                 >
                   ambassadorship
                   <div/>
-                </Link>
+                </p>
 
                 <Link href="/events">events</Link>
               </div>
@@ -72,10 +66,10 @@ export default function Header() {
                 onMouseLeave={()=> setIsMobileHovered(false)}
                 style={{display: isMobileAmbassClicked || isMobileHovered ? "flex" : "none"}}
               >
-                <Link href="/">ambassadors</Link>
-                <Link href="/">projects</Link>
-                <Link href="/">industry</Link>
-                <Link href="/">journalism</Link>
+                <Link href="/ambassadors">ambassadors</Link>
+                <Link href="/projects">projects</Link>
+                <Link href="/industry">industry</Link>
+                {/* <Link href="/industry">journalism</Link> */}
               </div>
 
             </div>
@@ -89,7 +83,7 @@ export default function Header() {
             {/* About Us, Ambassadorship, Events Menu */}
             <div className={desktopStyles.desktopMainMenu}>
 
-              <Link href="/about">about us</Link>
+              <Link href="/">home</Link>
 
               <div className={desktopStyles.desktopAmbassadorship}
                 onClick={() => {
@@ -105,7 +99,7 @@ export default function Header() {
                 onMouseLeave={()=> setIsDesktopHovered(false)}
               >
 
-                <Link style={{textDecoration: isDesktopAmbassadorshipClicked || isDesktopHovered ? "underline" : ""}} href="/">ambassadorship</Link>
+                <p style={{textDecoration: isDesktopAmbassadorshipClicked || isDesktopHovered ? "underline" : ""}}>ambassadorship</p>
                 <div/>
               
               </div>
@@ -123,40 +117,31 @@ export default function Header() {
               >
                 
                 {/* Ambassadors tab */}
-                <Link href="/" 
-                  onMouseEnter={()=> setIsDesktopAmbassdorsHovered(true)}
-                  onMouseLeave={()=> setIsDesktopAmbassdorsHovered(false)}
-                >
-                  <div style={{visibility: isDesktopAmbassadorsHovered ? "visible" : "hidden"}}/>
+                <Link href="/ambassadors">
+                  <div/>
                   ambassadors
                 </Link>
                 
                 {/* Projects tab */}
-                <Link href="/" 
-                  onMouseEnter={()=> setIsDesktopProjectsHovered(true)}
-                  onMouseLeave={()=> setIsDesktopProjectsHovered(false)}
-                >
-                  <div style={{visibility: isDesktopProjectsHovered ? "visible" : "hidden"}}/>                  
+                <Link href="/projects">
+                  <div/>                  
                   projects
                 </Link>
 
                 {/* Industry tab */}
-                <Link href="/" 
-                  onMouseEnter={()=> setIsDesktopIndustryHovered(true)}
-                  onMouseLeave={()=> setIsDesktopIndustryHovered(false)}
-                >
-                  <div style={{visibility: isDesktopIndustryHovered ? "visible" : "hidden"}}/>                  
+                <Link href="/industry">
+                  <div/>                  
                   industry
                 </Link>
 
                 {/* Journalism tab */}
-                <Link href="/" 
+                {/* <Link href="/" 
                   onMouseEnter={()=> setIsDesktopJournalismHovered(true)}
                   onMouseLeave={()=> setIsDesktopJournalismHovered(false)}
                 >
                   <div style={{visibility: isDesktopJournalismHovered ? "visible" : "hidden"}}/>                  
                   journalism
-                </Link>
+                </Link> */}
                 
               </div>
             } 
