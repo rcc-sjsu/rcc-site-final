@@ -1,13 +1,14 @@
-.RCCSection {
+.container {
   display: flex;
+  flex-direction: row-reverse;
   width: fit-content;
   gap: 3.75rem;
   font-size: 1.62rem;
-  margin: 0 auto 0 auto;
+  margin: 5rem auto 0 auto;
   align-items: center;
 }
 
-.RCCText {
+.allText {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +33,7 @@
 
 .smileyIcon {
   width: 12rem;
-  margin-left: auto;
+  margin-left: 15rem;
   margin-top: -7.75rem;
 }
 
@@ -46,26 +47,32 @@
   }
 }
 
-.RCCGradientContainer {
-  margin-top: -31rem;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-.RCCGradient {
-  width: 65rem;
+.gradient {
+  position: absolute;
+  margin-top: -32rem;
+  margin-left: -45rem;
+  width: 75rem;
   height: 30rem;
 }
 
 @media (width <= 1280px) {
 
-  .RCCSection {
-    flex-direction: column-reverse;
-    gap: 2rem;
+  .container {
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 0;
   }
 
-  .RCCText {
+  .imageContainer {
+     display: grid;
+
+    * {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+  }
+
+  .allText {
     margin-top: -10rem;
     max-width: unset;
     width: 80%;
@@ -74,11 +81,7 @@
     gap: 1rem;
   }
 
-  .RCCHeading h1 div {
-    font-size: 2.5rem;
-  }
-
-  .RCCParagraph {
+  .description {
     font-size: 1.25rem;
   }
 
@@ -90,48 +93,44 @@
     }
   }
 
-  .RCCImageContainer {
+  .photo {
     scale: 0.55;
+    margin-top: -2.5rem;
   }
 
-  .RCCGradientContainer {
-    position: absolute;
-    top: 51rem;
-  }
-  
-  .RCCGradient {
-    transform: scale(0.7);
+  .gradient {
+    width: 26rem;
+    height: 26rem;
+    margin: auto;
+    position: unset;
   }
 
 }
 
 @media (width <= 640px) {
 
-  .RCCSection {
-    display: flex;
+  .container {
+    display: grid;
+    justify-content: center;
     width: 100vw;
+
+    > div {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
   }
 
-  .RCCText {
-    width: 90%;
+  .allText {
+    width: 90vw;
     margin: auto;
     gap: 0rem;
   }
 
-  .RCCImageContainer {
+  .photo {
     visibility: collapse;
   }
-  
-  .RCCHeading {
-    margin-bottom: -0.5rem;
 
-    h1 div {
-      font-size: 2rem;
-      line-height: 2.75rem;
-    }
-  }
-
-  .RCCParagraph {
+  .description {
     margin-top: 2rem;
     font-size: 1rem;
   }
@@ -144,14 +143,11 @@
       width: 1.35rem;   
     }
   }
-
-  .RCCGradientContainer {
-    position: absolute;
-    top: 32rem;
-  }
   
-  .RCCGradient {
-    transform: scale(0.7);
+  .gradient {
+    width: 20rem;
+    height: 20rem;
+    margin: auto;
   }
 
 }
