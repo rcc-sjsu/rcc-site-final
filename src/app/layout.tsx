@@ -22,6 +22,12 @@ const zillaSlab = Zilla_Slab({
   weight: '500',
 });
 
+const zillaSlab = Zilla_Slab({
+  variable: '--font-zilla-slab',
+  subsets: ['latin'],
+  weight: ['500','600','700']
+})
+
 export const metadata: Metadata = {
   title: 'RCC Site',
   description: "Member Portal for SJSU's Responsible Computing Club",

@@ -2,29 +2,14 @@ import { headingProps } from "./type";
 import styles from "./Heading.module.css"
 import { JSX } from "react";
 
-export default function Heading({headingTag, children, customStyle, align, logoPath, logoAlign, logoSize}: headingProps) {
+export default function Heading({headingTag, className, children, align, logoPath, logoAlign, logoSize}: headingProps) {
   
   const HeadingTag = headingTag as keyof JSX.IntrinsicElements
 
-  const h1Style: React.CSSProperties = {
-    fontFamily: "var(--font-zilla-slab)",
-    fontSize: "4.5rem",
-    justifyContent: align == "left" ? "left" : "center",
-    display: "flex",
-    gap: "1rem",
-    fontWeight: "bold",
-    lineHeight: "5rem",
-    color: "#470085"
-  } 
-
-  const combinedStyle = {
-    ...h1Style,
-    ...customStyle
-  }
-  
   return (
     <HeadingTag 
-      style={combinedStyle}
+      style={{justifyContent: align == "left" ? "left" : "center"}}
+      className={`${styles.heading} ${className}`}
     >
 
       {/* Left-aligned logo */}
@@ -49,6 +34,7 @@ export default function Heading({headingTag, children, customStyle, align, logoP
         <img 
           src={logoPath} 
           className={styles.logo}
+          alt=""
           style={{ 
             width: logoSize + "rem", 
           }}
