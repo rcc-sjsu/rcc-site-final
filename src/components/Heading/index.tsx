@@ -2,14 +2,14 @@ import { headingProps } from "./type";
 import styles from "./Heading.module.css"
 import { JSX } from "react";
 
-export default function Heading({headingTag, children, align, logoPath, logoAlign, logoSize}: headingProps) {
+export default function Heading({headingTag, className, children, align, logoPath, logoAlign, logoSize}: headingProps) {
   
   const HeadingTag = headingTag as keyof JSX.IntrinsicElements
 
   return (
     <HeadingTag 
       style={{justifyContent: align == "left" ? "left" : "center"}}
-      className={styles.heading}
+      className={`${styles.heading} ${className}`}
     >
 
       {/* Left-aligned logo */}
