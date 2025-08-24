@@ -7,12 +7,6 @@ export default function Home() {
   return (
     <>
       {/* Your unique home page content goes here */}
-
-      <div className="w-20">
-      <Heading align="left" headingTag="h1">
-        Bigbig balls
-      </Heading>
-      </div>
     </>
   );
 }
