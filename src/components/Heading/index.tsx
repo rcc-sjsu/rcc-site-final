@@ -34,6 +34,7 @@ export default function Heading({headingTag, className, children, align, logoPat
         <img 
           src={logoPath} 
           className={styles.logo}
+          alt=""
           style={{ 
             width: logoSize + "rem", 
           }}
