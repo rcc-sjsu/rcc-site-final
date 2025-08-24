@@ -1,8 +1,8 @@
+@ -0,0 +1,121 @@
 .header {
   font-family: var(--font-nunito-sans);
   z-index: 10;
   background-color: white;
-  margin-top: 0.75rem;
 }
 
 .desktopContainer {
@@ -106,6 +106,7 @@
   height: 100vh;
   width: 100vw;
   position: absolute;
+  z-index: 4;
 }
 
 @media (width >= 40rem) {
@@ -113,9 +114,7 @@
   .backgroundBlur {
     visibility: visible;
   }
-  .header {
-    margin-top: 0;
-  }
+
   .desktopContainer {
     display: block;
   }
