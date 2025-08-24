@@ -93,6 +93,11 @@
     font-weight: 700;
 }
 
+.middleIndustryText {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .industryAndPastEventDivider {
     margin-top: 1.75rem;
     margin-bottom: 1.25rem;
@@ -189,7 +194,6 @@
     }
 
     .thirdPastEvent {
-        align-items: stretch;
         grid-column: span 1 / span 1;
     }
 
@@ -206,6 +210,11 @@
 
     .pastEventsAndInterestFormDivider {
         margin-block: 2rem;
+    }
+
+    .middleIndustryText {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -225,8 +234,17 @@
         height: 300px;
     }
 
+    .industryTextAndImageContainer {
+        margin-inline: 3rem;
+    }
+
     .dataFeminismPastEventImage {
         margin-bottom: 1rem;
+    }
+
+    .middleIndustryText {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
     }
     
 }

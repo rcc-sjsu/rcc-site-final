@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 // import BackgroundGradient from '@/components/BackgroundGradient';
-// import Heading from '@/components/Heading';
+import Heading from '@/components/Heading';
 import styles from './industry.module.css';
 
 export default function IndustryPage() {
@@ -12,35 +12,43 @@ export default function IndustryPage() {
         {/* Industry Section */}
         <section className={styles.sectionContainer}>
           {/* <BackgroundGradient color="purple" className="size-72 inline"></BackgroundGradient> */}
-          {/* <Heading
+          <Heading
             headingTag={'h1'}
             children={'Industry'}
             logoPath="/images/handshake-logo.svg"
             logoAlign="right"
             logoSize={7}
-          /> */}
+          />
           <div>
-            <h1 className={styles.heading}>Industry</h1>
+            {/* <h1 className={styles.heading}>Industry</h1> */}
             <div className={styles.industryTextAndImageContainer}>
-              <p className={styles.industryText}>
-                The Industry Committee actively partners with professionals and companies to bring you inspiring speaker
-                events and vibrant networking opportunities—all focused on responsible computing in action.
-                <br />
-                <br className={styles.hiddenBR} />
-                We&apos;re here to help you build the skills and connections you need to grow, thrive, and succeed!
-                <br />
-                <br />
-                <b>
-                  Interested in hosting an event with us? Reach out to us at{' '}
-                  <span className={styles.indigoText}>rcc.sjsu@gmail.com</span> or fill out{' '}
-                  <span className={styles.indigoText}>
-                    <Link href="#interest-form" className={styles.interestFormLink}>
-                      this interest form
-                    </Link>
-                  </span>{' '}
-                  to get in contact!
-                </b>
-              </p>
+              <div>
+                <p className={styles.industryText}>
+                  The Industry Committee actively partners with professionals and companies to bring you inspiring
+                  speaker events and vibrant networking opportunities—all focused on responsible computing in action.
+                </p>
+                <p className={`${styles.industryText} ${styles.middleIndustryText}`}>
+                  We&apos;re here to help you build the skills and connections you need to grow, thrive, and succeed!
+                </p>
+                <p className={styles.industryText}>
+                  <b>
+                    Interested in hosting an event with us? Reach out to us at{' '}
+                    <span className={styles.indigoText}>
+                      <Link href="mailto:rcc.sjsu@gmail.com" className={styles.interestFormLink}>
+                        rcc.sjsu@gmail.com
+                      </Link>
+                    </span>{' '}
+                    or fill out{' '}
+                    <span className={styles.indigoText}>
+                      <Link href="#interest-form" className={styles.interestFormLink}>
+                        this interest form
+                      </Link>
+                    </span>{' '}
+                    to get in contact!
+                  </b>
+                </p>
+              </div>
+
               <Image
                 src="/images/industry-lauren-klein.svg"
                 alt=""
@@ -52,15 +60,15 @@ export default function IndustryPage() {
           </div>
         </section>
 
-        <hr className={styles.industryAndPastEventDivider} />
+        <hr className={styles.industryAndPastEventDivider} aria-hidden="true" />
 
         {/* Past Events Section */}
         <section className={styles.sectionContainer}>
           {/* <BackgroundGradient color="purple" className="size-72 inline"></BackgroundGradient> */}
-          {/* <Heading headingTag={'h2'} children={'Past Events'} /> */}
-          <h2 className={`${styles.indigoText} ${styles.heading}`}>
+          <Heading headingTag={'h2'} children={'Past Events'} />
+          {/* <h2 className={`${styles.indigoText} ${styles.heading}`}>
             <b>Past Events</b>
-          </h2>
+          </h2> */}
           <div className={styles.pastEventsContainer}>
             <div className={styles.pastEvent}>
               <Image
@@ -108,20 +116,20 @@ export default function IndustryPage() {
           </div>
         </section>
 
-        <hr className="my-4 md:my-8 xl:my-10"></hr>
+        <hr className={styles.pastEventsAndInterestFormDivider} aria-hidden="true"></hr>
       </div>
 
       {/* Interest Form Section */}
       <section id="interest-form" className={styles.interestFormSectionContainer}>
-        {/* <Heading
+        <Heading
           headingTag={'h2'}
           children={'Interest Form'}
           logoPath="/images/shapes-logo.svg"
           align="left"
           logoAlign="left"
           logoSize={7}
-        /> */}
-        <h2 className={`${styles.indigoText} ${styles.heading} ${styles.interestFormHeading}`}>Interest Form</h2>
+        />
+        {/* <h2 className={`${styles.indigoText} ${styles.heading} ${styles.interestFormHeading}`}>Interest Form</h2> */}
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSfLu2YuHYDi6YdLcCEPCO2ue3o8FeCTnzrB7gadmeeSJ_0wVw/viewform?embedded=true"
           width="100%"

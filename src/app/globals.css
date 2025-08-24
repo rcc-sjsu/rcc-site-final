@@ -85,7 +85,7 @@
   }
 
   hr {
-    outline: black;
+    color: #7D7D7D;
     width: 100%;
   }
 }
