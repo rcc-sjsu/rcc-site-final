@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
 
         {/* Column 2: Shortcut links */}
-        <nav className={styles.footerColumn} aria-label="Shortcut">
+        <nav className={`${styles.footerColumn} ${styles.shortcut}`} aria-label="Shortcut">
           <p className={styles.footerHeading}>SHORTCUT</p>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}><Link href="/about">about us</Link></li>
@@ -38,7 +38,7 @@ export default function Footer() {
         </nav>
 
         {/* Column 3: Social links */}
-        <nav className={styles.footerColumn} aria-label="Follow us">
+        <nav className={`${styles.footerColumn} ${styles.follow}`} aria-label="Follow us">
           <p className={styles.footerHeading}>FOLLOW US</p>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>

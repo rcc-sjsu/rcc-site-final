@@ -1,6 +1,6 @@
-/* Scoped reset kill global p margins only inside the footer */
-:where(.footer) p { 
-  margin-block: 0; /* removes top & bottom margins from globals */
+/* Scoped reset: kill global p margins only inside the footer */
+:where(.footer) p {
+  margin-block: 0;
 }
 
 :where(.footer) :where(.footerColumn) :where(p:last-child) {
@@ -18,33 +18,72 @@
 /* Keep box-sizing local */
 .footer, .footer * { box-sizing: border-box; }
 
+/* ========== LAYOUT ========== */
 .footerContainer {
   max-width: 1200px;
   margin-inline: auto;
-  padding-block: 2rem;      /* top/bottom padding for footer only */
-  padding-inline: 0.75rem;  /* footer-specific gutters */
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  padding-block: 2rem;
+  padding-inline: 0.75rem;
+
+  /* GRID layout */
+  display: grid;
+  gap: 1.5rem;
+
+  /* <500px: stack ALL sections (single column) */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "main"
+    "follow"
+    "shortcut"
+    "contact";
 }
 
+/* >=500px: keep a 2-column grid until tablet */
+@media (min-width: 500px) {
+  .footerContainer {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-areas:
+      "main follow"
+      "shortcut contact";
+    align-items: start;
+  }
+}
+
+/* >=768px: slightly wider main column */
 @media (min-width: 768px) {
   .footerContainer {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-areas:
+      "main follow"
+      "shortcut contact";
+  }
+}
+
+/* >=1080px: explicit 4 columns + wider horizontal gutter */
+@media (min-width: 1080px) {
+  .footerContainer {
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    grid-template-areas: "main shortcut follow contact";
+    column-gap: 3rem; /* wider horizontal spacing */
+  }
+  .footerMain {
+    padding-right: 0.5rem; /* subtle buffer inside the left column */
   }
 }
 
 .footerColumn {
-  flex: 1;
+  min-width: 0; /* allow content to shrink inside grid without overflow */
   display: flex;
   flex-direction: column;
-  min-width: 220px;
 }
 
-.footerMain { flex: 2; min-width: 300px; }
+/* Place items into grid areas */
+.footerMain   { grid-area: main; }
+.shortcut     { grid-area: shortcut; }
+.follow       { grid-area: follow; }
+.contactUs    { grid-area: contact; }
 
+/* ========== TYPOGRAPHY ========== */
 .footerTitle {
   color: white;
   font-size: 1.4rem;
@@ -59,6 +98,14 @@
   margin: 0 0 1rem 0;
 }
 
+/* <500px: make description narrower for readability */
+@media (max-width: 499px) {
+  .footerDescription {
+    max-width: 36ch;   /* adjust to taste */
+    margin-right: auto; /* keep it left-aligned */
+  }
+}
+
 .footerHeading {
   color: white;
   font-size: 1.1rem;
@@ -68,13 +115,13 @@
   margin: 0 0 0.25rem 0;
 }
 
-/* Precise control of link spacing */
+/* ========== LINKS/LISTS ========== */
 .linkList {
   list-style: none;
   padding: 0;
   margin: 0.25rem 0 0 0;
   display: grid;
-  gap: 0.25rem; /* reduce gap between links here */
+  gap: 0.25rem; /* tighter link spacing */
 }
 
 .footer a {
@@ -82,12 +129,23 @@
   text-decoration: none;
   transition: opacity 0.2s ease;
   font-size: 0.85rem;
-  line-height: 1.35; /* tighter than default */
+  line-height: 1.35;
 }
-.footer a:hover { 
-    opacity: 0.75; 
+.footer a:hover { opacity: 0.75; }
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 }
 
+.socialIcon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+/* ========== CONTENT POLISH ========== */
 .contactDescription {
   color: white;
   font-size: 0.85rem;
@@ -101,23 +159,4 @@
   align-items: center;
   gap: 0.5rem;
   opacity: 0.95;
-}
-.iconLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-}
-
-.socialIcon {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1.2em;
-}
-
-/* Hide Shortcut and Contact Us under 768px */
-@media (max-width: 767px) {
-  .footer :where(nav[aria-label="Shortcut"]),
-  .footer :where(.contactUs) {
-    display: none !important;
-  }
 }
