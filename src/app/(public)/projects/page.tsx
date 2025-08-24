@@ -102,11 +102,11 @@ export default function ProjectsPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.glow} aria-hidden />
+      <div className={styles.glowHero} aria-hidden />
 
 
       <main id="main-content" className={styles.main}>
-      <div className={styles.glow} aria-hidden />
+      <div className={styles.glowPortfolio} aria-hidden />
 
         {/* ProjectsHero Section */}
         <section className={styles.heroSection} aria-labelledby="projects-heading">
@@ -116,7 +116,7 @@ export default function ProjectsPage() {
             logoPath="/lightbulb-sticker.svg"
             logoAlign="right"
             logoSize={6}
-            customStyle={{ marginBottom: '2rem' }}
+            customStyle={{ marginBottom: '3rem' }}
           >
             Projects
           </Heading>
@@ -173,8 +173,6 @@ export default function ProjectsPage() {
             align="center"
             customStyle={{ 
               marginBottom: '3rem',
-              fontSize: '3.5rem',
-              color: '#7972a8' 
             }}
           >
             Our Portfolio
@@ -208,14 +206,12 @@ export default function ProjectsPage() {
         >
           <Heading
             headingTag="h2"
-            align="center"
+            align="left"
             logoPath="/shapes-sticker.svg"
             logoAlign="left"
             logoSize={6}
             customStyle={{ 
               marginBottom: '2rem',
-              fontSize: '3.5rem',
-              color: '#7972a8' 
             }}
           >
             Interest Form
