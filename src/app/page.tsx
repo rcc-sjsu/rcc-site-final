@@ -1,23 +1,32 @@
-import BackgroundGradient from "@/components/BackgroundGradient";
-import Heading from "@/components/Heading";
 import aboutStyles from "./(public)/home/about.module.css"
 import missionStyles from "./(public)/home/mission.module.css"
+import BackgroundGradient from "@/components/BackgroundGradient";
+import Heading from "@/components/Heading";
 
-export default function HomePage() {
-
+export default function Home() {
   return (
-    <main>
+    <div style={{overflow: "clip"}}>
 
       {/* About */}
-      <section className={aboutStyles.RCCSection}>
+      <section className={aboutStyles.container}>
 
-        <div className={aboutStyles.RCCText}>
+        {/* Image and gradient container */}
+        <div className={aboutStyles.imageContainer}> 
 
-          <div className={aboutStyles.RCCHeading}>
-            <Heading headingTag="h1"> Responsible Computing Club </Heading>
+          <div className={aboutStyles.photo}>
+            <img className={aboutStyles.lightbulbIcon} src="/home_icons/lightbulb.svg"/>
+            <div className={aboutStyles.mozillaLogo}/>
+            <img className={aboutStyles.smileyIcon} src="/home_icons/smiley-icon.svg"/>
           </div>
+          <BackgroundGradient className={aboutStyles.gradient} color="purple"/>
 
-          <p className={aboutStyles.RCCParagraph}>
+        </div>
+
+        <div className={aboutStyles.allText}>
+
+          <Heading headingTag="h1"> Responsible Computing Club </Heading>
+
+          <p className={aboutStyles.description}>
             The Responsible Computing Club (RCC) at SJSU, partnering with Mozilla, empowers students to shape the future of tech. 
             We unite students to explore the ethics of tech through hands-on, 
             cross-disciplinary projects. Together, we’re shaping a more responsible and inclusive future. Connect with us below!
@@ -42,30 +51,26 @@ export default function HomePage() {
 
         </div>
 
-        <div className={aboutStyles.RCCImageContainer}>
-          <img className={aboutStyles.lightbulbIcon} src="/home_icons/lightbulb.svg"/>
-          <div className={aboutStyles.mozillaLogo}/>
-          <img className={aboutStyles.smileyIcon} src="/home_icons/smiley-icon.svg"/>
-        </div>
-
       </section>
 
-      <div className={aboutStyles.RCCGradientContainer}>
-        <BackgroundGradient className={aboutStyles.RCCGradient} color="purple"/>
-      </div>
+      
 
       {/* Mission Statement */}
-      <section className={missionStyles.missionSection}>
+      <section className={missionStyles.section}>
         
-        <div className={missionStyles.groupPhoto}/>
+        {/* Image and gradient container */}
+        <div className={missionStyles.imageContainer}>
+          
+          <div className={missionStyles.photo}/>
+          <BackgroundGradient className={missionStyles.gradient} color="purple"/>
         
-        <div className={missionStyles.missionText}>
+        </div>  
+      
+        <div className={missionStyles.allText}>
 
-          <div className={missionStyles.missionHeading}>
-            <Heading headingTag="h2"> Our Mission Statement </Heading>
-          </div>
+          <Heading headingTag="h2"> Our Mission Statement </Heading>
 
-          <p className={missionStyles.missionParagraph}>
+          <p className={missionStyles.description}>
             RCC’s mission is to make responsible computing 
             <strong><em> relevant to everyone </em></strong> 
             and 
@@ -81,10 +86,7 @@ export default function HomePage() {
 
       </section>
 
-      <div className={missionStyles.missionGradientContainer}>
-        <BackgroundGradient className={missionStyles.missionGradient} color="purple"/>
-      </div>
+    </div>
 
-    </main>
   );
 }
