@@ -1,4 +1,4 @@
-import { getUser } from '@/app/appUtils/authHelpers';
+import { getUser } from '@/app/utils/authUtils/authHelpers';
 
 export default async function PrivatePage() {
   // const user = await checkAuthStatus();
