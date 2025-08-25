@@ -63,21 +63,27 @@
     color: var(--color-brand-dark-grey);
     font-family: var(--font-nunito-sans);
   }
-
+/* 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-zilla-slab);
-  }
+  } */
 
-  h1 {
+  /* h1 {
     color: var(--color-brand-indigo);
     font-size: 50pt;
-  }
+  } */
 
   p {
-    max-width: 70ch;
-    line-height: 1.5;
-    font-size: 19;
-    margin-bottom: 2.25em;
+    font-family: var(--font-nunito-sans);
+    /* max-width: 70ch; */
+    /* line-height: 1.5; */
+    font-size: 19px;
+    /* margin-bottom: 2.25em; */
+  }
+  @media (max-width: 1280px) {
+    p {
+      font-size: 17px;
+    }
   }
 
   a {
@@ -86,6 +92,8 @@
 
   hr {
     color: #7D7D7D;
+    border-color: #7D7D7D;
+    border-width: 1px;
     width: 100%;
   }
 }
