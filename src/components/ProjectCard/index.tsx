@@ -63,15 +63,12 @@ export default function ProjectCard({color, photoURL, projectName, projectURL, t
               
               {/* Writing individual teammate names */}
               {Object.values(members).map((member, index) => (
-                    
-                  <text>
-                    <a  className={styles.teammate} key={index} href={member.linkedInURL}>
+                  <span key={index}>
+                    <a  className={styles.teammate} href={member.linkedInURL} target="_blank" rel="noopener noreferrer">
                       {member.name}
                     </a>
-
                     {index < members.length - 1 && ", "}
-                  </text>
-              
+                  </span>
               ))}
 
             </p>
