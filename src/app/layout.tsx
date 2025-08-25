@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Nunito_Sans, Zilla_Slab } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/Header';
+import Footer from '@/components/footer/Footer';
 import styles from './page.module.css';
 
 const inter = Inter({
@@ -35,11 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunitoSans.variable} ${inter.variable} ${zillaSlab.variable}`}>
-        {/* The Header component will appear on all pages */}
+      <body className={`${styles.container }${nunitoSans.variable} ${inter.variable} ${zillaSlab.variable}`}>
         <Header />
         {/* All your page content will be rendered inside this main tag */}
         <main className={styles.pageContent}>{children}</main>
+        <Footer/>
       </body>
     </html>
   );
