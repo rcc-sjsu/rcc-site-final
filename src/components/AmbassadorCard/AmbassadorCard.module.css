@@ -1,0 +1,33 @@
+.container {
+  width: 15rem;
+  font-family: var(--font-nunito-sans);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.photo {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;     /* White background if headshot fails to load */
+  flex-shrink: 0;               /* Headshot won't shrink */
+}
+
+.ambassadorDetails {
+  margin: 1.25rem;
+}
+
+.ambassadorName {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 0 0 0.125rem 0;
+  text-align: center;
+}
+
+.ambassadorRole {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
