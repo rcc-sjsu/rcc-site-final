@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './Header.module.css'; // Import the CSS module for the Header
 import { createClient } from '../../../utils/supabase/server'; // Import server-side Supabase client
-import { logout } from '../../app/appUtils/authActions'; // Import the logout server action
+import { logout } from '../../app/utils/authUtils/authActions'; // Import the logout server action
 
 export default async function Header() {
   const supabase = await createClient();
