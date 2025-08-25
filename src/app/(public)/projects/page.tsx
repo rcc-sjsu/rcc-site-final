@@ -4,6 +4,7 @@ import ProjectCard from '@/components/ProjectCard';
 import Divider from '@/components/Divider';
 import { projectProps } from '@/components/ProjectCard/type';
 import styles from './page.module.css';
+import BackgroundGradient from '@/components/BackgroundGradient';
 
 /**
  * Projects Page Component
@@ -102,11 +103,13 @@ export default function ProjectsPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.glowHero} aria-hidden />
-
+      
+      
+      {/* <div className={styles.glowHero} aria-hidden /> */}
 
       <main id="main-content" className={styles.main}>
-      <div className={styles.glowPortfolio} aria-hidden />
+        
+        {/* <div className={styles.glowPortfolio} aria-hidden /> */}
 
         {/* ProjectsHero Section */}
         <section className={styles.heroSection} aria-labelledby="projects-heading">
@@ -116,82 +119,90 @@ export default function ProjectsPage() {
             logoPath="/lightbulb-sticker.svg"
             logoAlign="right"
             logoSize={6}
-            customStyle={{ marginBottom: '3rem' }}
           >
             Projects
           </Heading>
           
-          <div className={styles.heroContent}>
-            <div className={styles.textContent}>
-              <p className={styles.missionText}>
-                RCC aims to spread its impact beyond the college campus; 
-                we've partnered with individuals and organizations — from 
-                senior scientists to non-profits — to create projects with a{' '}
-                <strong>real, tangible impact</strong> on our community.
-              </p>
-              
-              <p className={styles.contactText}>
-              <strong><em>Interested in collaborating?</em> Reach out to us at{' '}
-                <a 
-                  href="mailto:rccmozillaconsulting@gmail.com"
-                  className={styles.emailLink}
-                  aria-label="Email RCC for collaboration"
-                >
-                  rccmozillaconsulting@gmail.com
-                </a>{' '}
-                or fill out{' '}
-                <a 
-                  href="#interest-form" 
-                  className={styles.formLink}
-                  aria-label="Go to interest form section"
-                >
-                  this interest form
-                </a>{' '}
-                to get in contact!</strong>
-              </p>
-            </div>
+          <div className={styles.heroGlowAndText}>
             
-            <div className={styles.imageContainer}>
-              <Image
-                src="/projects-heroimg.png"
-                alt="Students collaborating on a project"
-                width={400}
-                height={300}
-                className={styles.heroImage}
-                priority // Above the fold image
-              />
+            <BackgroundGradient className={styles.glowHero} color="purple"/>
+
+            <div className={styles.heroContent}>
+              <div className={styles.textContent}>
+                <p className={styles.missionText}>
+                  RCC aims to spread its impact beyond the college campus; 
+                  we've partnered with individuals and organizations — from 
+                  senior scientists to non-profits — to create {' '}
+                  <strong> projects with a real, tangible impact</strong> on our community.
+                </p>
+                
+                <p className={styles.contactText}>
+                <strong><em>Interested in collaborating? Reach out to us at{' '}
+                  <a 
+                    href="mailto:rccmozillaconsulting@gmail.com"
+                    className={styles.emailLink}
+                    aria-label="Email RCC for collaboration"
+                  >
+                    rccmozillaconsulting@gmail.com
+                  </a>{' '}
+                  or fill out{' '}
+                  <a 
+                    href="#interest-form" 
+                    className={styles.formLink}
+                    aria-label="Go to interest form section"
+                  >
+                    this interest form
+                  </a>{' '}
+                  to get in contact!</em></strong>
+                </p>
+              </div>
+              
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/projects-heroimg.png"
+                  alt="Students collaborating on a project"
+                  width={315}
+                  height={215}
+                  className={styles.heroImage}
+                  priority // Above the fold image
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <Divider />
+        {/* <Divider /> */}
+        <hr/>
 
         {/* Portfolio Section */}
         <section className={styles.portfolioSection} aria-labelledby="portfolio-heading">
+
           <Heading
             headingTag="h2"
             align="center"
-            customStyle={{ 
-              marginBottom: '3rem',
-            }}
           >
             Our Portfolio
           </Heading>
           
-          <div 
-            className={styles.projectGrid}
-            role="grid"
-            aria-label="Project portfolio grid"
-          >
-            {sampleProjects.map((project, index) => (
-              <div 
-                key={index} 
-                role="gridcell"
-                className={styles.projectCardWrapper}
-              >
-                <ProjectCard {...project} />
-              </div>
-            ))}
+          <div className={styles.projectGlowAndGrid}>
+            
+            <BackgroundGradient className={styles.glowPortfolio} color="purple"/>
+
+            <div 
+              className={styles.projectGrid}
+              role="grid"
+              aria-label="Project portfolio grid"
+            >
+              {sampleProjects.map((project, index) => (
+                <div 
+                  key={index} 
+                  role="gridcell"
+                  className={styles.projectCardWrapper}
+                >
+                  <ProjectCard {...project} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

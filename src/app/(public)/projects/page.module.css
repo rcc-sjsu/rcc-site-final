@@ -7,9 +7,20 @@
 
 .main {
   contain: layout style; /* Performance optimization */
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   /* max-width: 1200px; */
   margin: 0 auto;
+}
+
+.heroGlowAndText {
+  display: grid;
+  justify-content: center;
+  height: max-content;
+
+  > * {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 }
 
 /* Hero Section Styles */
@@ -20,33 +31,36 @@
 
 .heroContent {
   display: flex;
+  margin: auto;
+  width: 60rem; 
   gap: 2rem;
   justify-content: center;
   justify-items: center;
   align-items: center;
-  margin-top: 2rem;
+  /* margin-top: 4rem; */
 }
 
 .textContent {
-  max-width: 600px;
+  width: 55%;
   margin: 0 auto;
 }
 
 .missionText {
-  font-size: 1.5rem;
-  line-height: 1.6;
+  /* font-size: 1.5rem;
+  line-height: 1.6; */
   margin-bottom: 1.5rem;
   color: var(--color-brand-dark-grey);
 }
 
 .contactText {
-  font-size: 1.5rem;
-  line-height: 1.5;
+  /* font-size: 1.5rem;
+  line-height: 1.5; */
   color: var(--color-brand-dark-grey);
 }
 
 .emailLink,
 .formLink {
+  font-style: italic;
   color: var(--color-brand-indigo);
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -68,6 +82,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .heroImage {
@@ -81,24 +96,30 @@
 }
 
 .glowHero {
-  width: 130rem;            
-  height: 30rem;           
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.3;             
-  background: radial-gradient(circle, #a855f7 0%, #9b5de7 25%, transparent 60%);
-  position: absolute;
-  border-radius: 50%;       
-  filter: blur(60px);        
-  pointer-events: none;
-  will-change: transform;    /* Optimize performance for animations */
+  margin: auto;
+  width: 55rem;
+  height: 25rem;         
+  will-change: transform;  /*  Optimize performance for animations */
+}
+
+.projectGlowAndGrid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  margin-top: 5rem;
+
+  > * {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 }
 
 .glowPortfolio {
-  width: 100rem;             
-  height: 30rem;             
-  top: 45%;
+  width: 85rem;             
+  height: 45rem;
+  margin: auto;             
+  /* top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.3;              
@@ -108,7 +129,7 @@
   filter: blur(60px);        
   pointer-events: none;
   z-index: -1;
-  will-change: transform;    
+  will-change: transform;     */
 }
 
 .portfolioSection {
@@ -117,17 +138,19 @@
 
 .projectGrid {
   display: flex;
+  width: 90vw;
   flex-wrap: wrap;
   gap: 3rem;
-  justify-items: center;
+  /* justify-items: center; */
   justify-content: center;
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 .projectCardWrapper {
-  width: 100%;
-  max-width: 400px;
+  /* width: 100%; */
+  /* max-width: 400px; */
+  max-width: 80%;
   transition: transform 0.3s ease;
 }
 
@@ -166,11 +189,44 @@
   color: var(--color-brand-dark-grey);
 }
 
+@media (1280px < width <= 1441px) {
+  .glowPortfolio {
+    width: 60rem;
+    height: 80rem;
+  }
+}
 
+@media (748px < width <= 1280px) {
+  .heroContent {
+    width: 80vw;
+  }
+  .heroImage {
+    scale: 0.9;
+  }
+  .glowPortfolio {
+    width: 70rem;
+    height: 35rem
+  }
+  .projectGrid {
+    gap: 1rem;
+    width: 100vw;
+    padding: 0 2rem;
+  }
+
+  @media (width <= 1105px) {
+    .glowPortfolio {
+      width: 50rem;
+      height: 60rem;
+    }
+    .projectGrid {
+      gap: 3rem
+    }
+  }
+}
 
 @media (max-width: 767px) {
   .main {
-    padding: 0 0.75rem; 
+    /* padding: 0 0.75rem;  */
   }
 
   .heroSection {
@@ -178,14 +234,14 @@
   }
 
   .missionText {
-    font-size: 1rem; 
-    line-height: 1.5;
+    /* font-size: 1rem;  */
+    /* line-height: 1.5; */
     margin-bottom: 1rem;
   }
 
   .contactText {
-    font-size: 1rem; 
-    line-height: 1.4;
+    /* font-size: 1rem;  */
+    /* line-height: 1.4; */
   }
 
   .heroImage {
@@ -249,13 +305,13 @@
 
 @media (max-width: 480px) {
   .main {
-    padding: 0 0.5rem; 
+    /* padding: 0 0.5rem;  */
   }
 
   .missionText,
   .contactText {
-    font-size: 0.875rem; 
-    line-height: 1.4;
+    /* font-size: 0.875rem; 
+    line-height: 1.4; */
   }
 
   .heroImage {
@@ -278,7 +334,7 @@
 
 @media (min-width: 768px) {
   .main {
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
   }
   
   .heroContent {
@@ -291,14 +347,12 @@
   }
   
   .heroSection {
-    padding: 4rem 0 5rem;
+    padding: 4rem 0 7rem;
   }
   
   .portfolioSection {
     padding: 5rem 0;
   }
-  
-
   
   .interestSection {
     padding: 5rem 0 0 0;
@@ -316,9 +370,10 @@
     gap: 3rem;
   }
   
-  .projectGrid {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0 2rem;
+  .projectGrid { 
+    /* margin-top: 5rem; */
+    /* grid-template-columns: repeat(3, 1fr);
+    padding: 0 2rem; */
   }
   
   .googleForm {
@@ -329,7 +384,7 @@
 
 @media (min-width: 1200px) {
   .main {
-    padding: 0 3rem;
+    /* padding: 0 3rem; */
   }
   
   .interestSection {
