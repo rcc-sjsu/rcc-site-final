@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
       <>        
-        <header style={{fontFamily: "var(--font-nunito-sans)"}} className={desktopStyles.header}>
+        <header className={desktopStyles.header}>
           
           {/* Mobile Menu */}
           <div className={mobileStyles.mobileContainer}>
@@ -33,7 +33,6 @@ export default function Header() {
               {/* About Us, Ambassadorship, Events Menu */}
               <div 
               className={mobileStyles.mobileMainMenu}
-              style={{display: "flex"}}
               >
                 <Link href="/">home</Link>
 
@@ -60,23 +59,22 @@ export default function Header() {
               </div>
 
               {/* Ambassadorship Submenu */}
-              <div 
-                className={mobileStyles.mobileSubMenu}
-                onMouseEnter={()=> setIsMobileHovered(true)}
-                onMouseLeave={()=> setIsMobileHovered(false)}
-                style={{display: isMobileAmbassClicked || isMobileHovered ? "flex" : "none"}}
-              >
-                <Link href="/ambassadors">ambassadors</Link>
-                <Link href="/projects">projects</Link>
-                <Link href="/industry">industry</Link>
-                {/* <Link href="/industry">journalism</Link> */}
-              </div>
+              {(isMobileAmbassClicked || isMobileHovered) && 
+                <div 
+                  className={mobileStyles.mobileSubMenu}
+                  onMouseEnter={()=> setIsMobileHovered(true)}
+                  onMouseLeave={()=> setIsMobileHovered(false)}
+                >
+                  <Link href="/ambassadors">ambassadors</Link>
+                  <Link href="/projects">projects</Link>
+                  <Link href="/industry">industry</Link>
+                  {/* <Link href="/industry">journalism</Link> */}
+                </div>
+              }
 
             </div>
-
           </div>
           
-
           {/* Desktop Menu */}
           <div className={desktopStyles.desktopContainer}>
 
@@ -109,7 +107,7 @@ export default function Header() {
             </div>
 
             {/* Ambassadorship Submenu */}
-            { (isDesktopHovered || isDesktopAmbassadorshipClicked ) &&
+            {(isDesktopHovered || isDesktopAmbassadorshipClicked) &&
               <div 
                 onMouseEnter={() => setIsDesktopHovered(true)}
                 onMouseLeave={() => setIsDesktopHovered(false)}
@@ -151,8 +149,10 @@ export default function Header() {
         </header>
 
         {/* Background blur when Ambassadorship tab is open */}
-        <div style={{backgroundColor: isDesktopHovered || isDesktopAmbassadorshipClicked ? "rgba(118, 118, 118, 0.32)" : "", backdropFilter: isDesktopHovered || isDesktopAmbassadorshipClicked ? "blur(3px)" : ""}} className={desktopStyles.backgroundBlur}/>
-        
+        {(isDesktopHovered || isDesktopAmbassadorshipClicked) &&
+          <div className={desktopStyles.backgroundBlur}/>        
+        }
+
       </>
     );
 

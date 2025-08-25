@@ -45,6 +45,7 @@
 }
 
 .mobileMainMenu {
+  display: flex;
   z-index: 10;
   flex-direction: column;
   font-size: medium;
@@ -88,6 +89,7 @@
 
 /* Sub Menu Ambassadorship tab */
 .mobileSubMenu {
+  display: flex;
   z-index: 5;
   font-size: medium;
   flex-direction: column;
