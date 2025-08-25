@@ -35,11 +35,12 @@
 
 .projectName {
   font-weight: bold;
-  font-size: 1.25rem;
+  color: var(--color-brand-dark-grey)
+  /* font-size: 1.25rem; */
 }
 
 .description {
-  font-size: 1.25rem;
+  /* font-size: 1.25rem; */
   margin: 0 1.25rem 0 1.25rem;
 } 
 
@@ -50,4 +51,20 @@
 
 .teammateContainer {
   margin: 0.25rem 1.25rem 0 1.25rem;
+  a {
+    color: var(--color-brand-dark-grey);
+  }
+}
+
+@media (width <= 1280px) {
+  .container {
+   /* scale: 0.9; */
+   width: 21rem
+  }
+  .photoContainer {
+    height: 12rem
+  }
+  .photo {
+    width: 8rem;
+  }
 }
