@@ -1,0 +1,390 @@
+
+.container {
+  font-family: var(--font-nunito-sans);
+  min-height: 100vh;
+  background-color: white;
+}
+
+.main {
+  contain: layout style; /* Performance optimization */
+  padding: 0 1rem;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+/* Hero Section Styles */
+.heroSection {
+  padding: 3rem 0 4rem;
+  text-align: center;
+}
+
+.heroContent {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.textContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.missionText {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--color-brand-dark-grey);
+}
+
+.contactText {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--color-brand-dark-grey);
+}
+
+.emailLink,
+.formLink {
+  color: var(--color-brand-indigo);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.emailLink:hover,
+.emailLink:focus,
+.formLink:hover,
+.formLink:focus {
+  color: var(--color-brand-dark-purple);
+  border-bottom-color: var(--color-brand-dark-purple);
+  text-decoration: none;
+  outline: 2px solid var(--color-brand-pale-purple);
+  outline-offset: 2px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.heroImage:hover {
+  transform: scale(1.02);
+}
+
+.glowHero {
+  width: 130rem;            
+  height: 30rem;           
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;             
+  background: radial-gradient(circle, #a855f7 0%, #9b5de7 25%, transparent 60%);
+  position: absolute;
+  border-radius: 50%;       
+  filter: blur(60px);        
+  pointer-events: none;
+  will-change: transform;    /* Optimize performance for animations */
+}
+
+.glowPortfolio {
+  width: 100rem;             
+  height: 30rem;             
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;              
+  background: radial-gradient(circle, #a855f7 0%, #9b5de7 25%, transparent 60%);
+  position: absolute;
+  border-radius: 50%;        
+  filter: blur(60px);        
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;    
+}
+
+.portfolioSection {
+  padding: 4rem 0;
+}
+
+.projectGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.projectCardWrapper {
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.projectCardWrapper:hover {
+  transform: translateY(-4px);
+}
+
+.projectCardWrapper:focus-within {
+  outline: 2px solid var(--color-brand-indigo);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.interestSection {
+  padding: 4rem 0 0 0;
+  text-align: center;
+  margin: 0 calc(-1rem); /* Counteract main container padding */
+}
+
+.formContainer {
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.googleForm {
+  width: 100%;
+  height: 600px;
+  border: none;
+  background-color: #F0EBF8;
+  display: block;
+}
+
+.fallbackText {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--color-brand-dark-grey);
+}
+
+
+
+@media (max-width: 767px) {
+  .main {
+    padding: 0 0.75rem; 
+  }
+
+  .heroSection {
+    padding: 2rem 0 3rem; 
+  }
+
+  .missionText {
+    font-size: 1rem; 
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .contactText {
+    font-size: 1rem; 
+    line-height: 1.4;
+  }
+
+  .heroImage {
+    width: 100%;
+    max-width: 280px; 
+    height: auto;
+  }
+
+  .imageContainer {
+    margin-top: 1.5rem;
+  }
+
+  .heroContent {
+    display: grid;
+    grid-template-columns: 1fr; 
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .projectGrid {
+    gap: 1.5rem;
+    padding: 0 0.5rem; 
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .projectCardWrapper {
+    width: 100%;
+  }
+
+  .portfolioSection {
+    padding: 3rem 0;
+  }
+
+  .interestSection {
+    padding: 3rem 0 0 0;
+    margin: 0 calc(-0.75rem); 
+  }
+
+  .googleForm {
+    height: 500px; 
+  }
+
+  .glow {
+    width: 25rem;    
+    height: 60rem;   
+  }
+  
+  .glowHero {
+    width: 25rem;    
+    height: 50rem;   
+    top: 40%;  
+  }
+  
+  .glowPortfolio {
+    width: 25rem;    
+    height: 200rem; 
+    top: 55%;  
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 0 0.5rem; 
+  }
+
+  .missionText,
+  .contactText {
+    font-size: 0.875rem; 
+    line-height: 1.4;
+  }
+
+  .heroImage {
+    max-width: 240px;
+  }
+
+  .projectGrid {
+    padding: 0 0.25rem; 
+    gap: 1rem;
+  }
+
+  .googleForm {
+    height: 450px; 
+  }
+
+  .interestSection {
+    margin: 0 calc(-0.5rem); /* Match small phone padding */
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 0 2rem;
+  }
+  
+  .heroContent {
+    grid-template-columns: 1fr 400px;
+    text-align: left;
+  }
+  
+  .textContent {
+    margin: 0;
+  }
+  
+  .heroSection {
+    padding: 4rem 0 5rem;
+  }
+  
+  .portfolioSection {
+    padding: 5rem 0;
+  }
+  
+
+  
+  .interestSection {
+    padding: 5rem 0 0 0;
+    margin: 0 calc(-2rem); /* Counteract main container padding on tablet */
+  }
+  
+  .googleForm {
+    height: 700px;
+  }
+ 
+}
+
+@media (min-width: 1024px) {
+  .heroContent {
+    gap: 3rem;
+  }
+  
+  .projectGrid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 2rem;
+  }
+  
+  .googleForm {
+    height: 800px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .main {
+    padding: 0 3rem;
+  }
+  
+  .interestSection {
+    margin: 0 calc(-3rem); /* Counteract main container padding on large screens */
+  }
+}
+
+/* Print styles for accessibility */
+@media print {
+  .container {
+    background-color: white;
+  }
+  
+  .googleForm {
+    display: none;
+  }
+  
+  .fallbackText {
+    display: block !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .emailLink,
+  .formLink {
+    border-bottom: 2px solid currentColor;
+  }
+  
+  .heroImage,
+  .googleForm,
+  .portfolioSection {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+}
+
+/* Divider spacing */
+.container :global(.dividerContainer) {
+  margin: 3rem 0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .heroImage,
+  .projectCardWrapper,
+  .emailLink,
+  .formLink {
+    transition: none;
+  }
+  
+  .heroImage:hover {
+    transform: none;
+  }
+  
+  .projectCardWrapper:hover {
+    transform: none;
+  }
+}

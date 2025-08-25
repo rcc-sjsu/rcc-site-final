@@ -1,0 +1,114 @@
+.mobileContainer {
+  margin-top: 1rem;
+  margin-left: 0.75rem;
+  position: absolute;
+
+  /* Main and Sub Menus */
+  > div {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-top: 0.625rem;
+  }
+
+  /* Hamburger button */
+  > button {
+    box-shadow: 0 1px 5px 0.5px rgba(0, 0, 0, 0.256);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+
+    /* Hamburger icon */
+    img {
+      opacity: 0.75;
+      width: 1.2rem;
+    }
+  }
+
+}
+
+.mobileContainer > button:hover {
+  cursor: pointer;
+}
+
+.mobileMainMenu, .mobileSubMenu {
+  background-color: white;
+  box-shadow: 0 2.5px 6px 1.5px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  justify-content: center;
+  height: 6rem;
+  margin: auto;
+}
+
+.mobileMainMenu {
+  display: flex;
+  z-index: 10;
+  flex-direction: column;
+  font-size: medium;
+
+  /* Main Menu Links */
+  > a, div {
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem 0 0.75rem;
+    color: var(--color-brand-dark-grey)
+  }
+
+  > a:hover, div:hover {
+    background-color: oklch(92.8% 0.006 264.531);
+    cursor: pointer;
+  }
+}
+
+/* Main Menu Ambassadorship tab*/
+.mobileAmbassadorship {
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  div {
+    padding-left: 0;
+    transform: scale(0.75) rotate(-90deg);
+    background-position: center;
+    background-image: url('/header/keyboard_arrow_down.png');
+  }
+}
+
+/* Sub Menu Ambassadorship tab */
+.mobileSubMenu {
+  display: flex;
+  z-index: 5;
+  font-size: medium;
+  flex-direction: column;
+
+  > a {
+    display: flex;
+    color: var(--color-brand-dark-grey);
+    align-items: center;
+    height: 1.6rem;
+    padding: 0 0.75rem 0 0.75rem; 
+  }
+}
+
+.mobileSubMenu > a:hover {
+  background-color: oklch(92.8% 0.006 264.531);
+}
+
+@media (width >= 40rem) {
+  .mobileContainer {
+    display: none;
+  }
+}
