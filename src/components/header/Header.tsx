@@ -37,7 +37,7 @@ export default function Header() {
               >
                 <Link href="/">home</Link>
 
-                <p 
+                <div 
                   onMouseEnter={()=> setIsMobileHovered(true)}
                   onMouseLeave={()=> setIsMobileHovered(false)}
                   onClick={() => {
@@ -52,10 +52,10 @@ export default function Header() {
                   className={mobileStyles.mobileAmbassadorship}
                   style={{backgroundColor: isMobileHovered || isMobileAmbassClicked ? "oklch(92.8% 0.006 264.531)" : ""}}
                 >
-                  ambassadorship
+                  <p>ambassadorship</p>
                   <div/>
-                </p>
-
+                </div>
+                
                 <Link href="/events">events</Link>
               </div>
 
