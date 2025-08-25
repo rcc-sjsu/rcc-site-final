@@ -1,0 +1,117 @@
+.section {
+  display: flex;
+  width: fit-content;
+  gap: 1rem;
+  font-size: 1.62rem;
+  margin: 5rem auto 0 auto;
+  align-items: center;
+  padding-bottom: 7.5rem;
+}
+
+.allText {
+  text-align: center;
+}
+
+.description {
+  margin: 0 auto 0 auto;
+  margin-top: 2rem;
+  max-width: 42.5rem;
+}
+
+.imageContainer {
+  display: grid;
+  margin-left: -14rem;
+
+  * {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+}
+
+.photo {
+  width: 26.25rem;
+  background-image: url(/home_images/group_photo.jpg);
+  background-size: cover;
+  background-position: center;
+  margin: auto 3rem auto auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.gradient {
+  width: 43rem;
+  height: 40rem;
+}
+
+@media (width <= 1280px) {
+  .section {
+    margin-top: 3rem;
+    width: 100vw;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .imageContainer {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .photo {
+    scale: 0.6;
+    margin: 0;
+  }
+
+  .gradient {
+    width: 26rem;
+    height: 26rem;
+    margin: auto;
+  }
+
+  .allText {
+    margin-top: -6rem;
+    width: 80%;
+  }
+
+  .description {
+    max-width: unset;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+  }
+
+}
+
+
+@media (width <= 640px) {
+  .section {
+    margin-top: 0rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+  }
+
+  .photo {
+    display: none;
+  }
+
+  .allText {
+    width: 90vw;
+    margin: auto;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .gradient {
+    margin: auto;
+    width: 20rem;
+    height: 20rem;
+  }
+}
