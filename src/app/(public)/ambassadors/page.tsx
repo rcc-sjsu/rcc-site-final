@@ -1,7 +1,7 @@
 // app/public/ambassadors/page.tsx
 import React from 'react';
 import styles from './page.module.css';
-import AmbassadorCard from '../../../components/AmbassadorCard';
+import AmbassadorCard from './components';
 
 export default function AmbassadorsPage() {
   return (
