@@ -38,7 +38,7 @@ export default function Home() {
               <img src="/home_icons/Instagram.svg"></img>
             </a>
             <a href="">
-              <img src="/home_icons/LinkedIn.svg"></img>
+              <img src="/home_icons/Linkedin.svg"></img>
             </a>
             <a href="">
               <img src="/home_icons/Mail.svg"></img>
