@@ -171,7 +171,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <Divider />
+        <hr />
 
         {/* Portfolio Section */}
         <section className={styles.portfolioSection} aria-labelledby="portfolio-heading">
@@ -206,7 +206,7 @@ export default function ProjectsPage() {
         </section>
 
        
-        <Divider />
+        <hr />
 
         {/* Interest Form Section */}
         <section 
