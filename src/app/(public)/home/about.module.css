@@ -86,7 +86,7 @@
 
   .socialContainer {
     gap: 2.25rem;
-    
+    margin: auto;
     a {
       width: 2rem;
     }
