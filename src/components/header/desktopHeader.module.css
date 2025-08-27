@@ -6,7 +6,6 @@
 
 .desktopContainer {
   display: none;
-  /* font-size: 1.5rem */
 }
 
 .desktopMainMenu {
@@ -17,8 +16,10 @@
   background-color: white;
   gap: 3.75rem;
   height: 4.25rem;
+  z-index: 15;
 
   > a {
+    font-size: 1.25rem;
     color: var(--color-brand-dark-grey);
   }
 
@@ -43,6 +44,7 @@
   /* ambassadorship text */
   p {
     margin: 0; 
+    font-size: 1.25rem;
     color: var(--color-brand-dark-grey);
   }
 
@@ -73,8 +75,9 @@
   /* submenu links */
   a {
     display: flex;
+    font-size: 1.15rem;
     align-items: center;
-    width: 12.5rem;
+    width: 11.5rem;
     margin: -0.5rem auto 0 auto;
     color: var(--color-brand-dark-grey);
 

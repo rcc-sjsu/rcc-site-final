@@ -2,6 +2,7 @@
   margin-top: 1rem;
   margin-left: 0.75rem;
   position: absolute;
+  z-index: 15;
 
   /* Main and Sub Menus */
   > div {
@@ -42,6 +43,7 @@
   justify-content: center;
   height: 6rem;
   margin: auto;
+  z-index: 15;
 }
 
 .mobileMainMenu {
