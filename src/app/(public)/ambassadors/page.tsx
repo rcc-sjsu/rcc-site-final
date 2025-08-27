@@ -384,7 +384,7 @@ export default function AmbassadorsPage() {
         <AmbassadorCard
           color="red"
           photoURL="../../../../headshots/journalism/jan-abigail-acosta.jpeg"
-          name="Jan Abigail Acosta"
+          name="Abigail Acosta"
           role="Journalism Ambassador"
         />
         <AmbassadorCard
