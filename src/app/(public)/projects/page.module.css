@@ -32,7 +32,7 @@
 .heroContent {
   display: flex;
   margin: auto;
-  width: 60rem; 
+  /* width: 60rem;  */
   gap: 2rem;
   justify-content: center;
   justify-items: center;
@@ -41,7 +41,7 @@
 }
 
 .textContent {
-  width: 55%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -150,7 +150,7 @@
 .projectCardWrapper {
   /* width: 100%; */
   /* max-width: 400px; */
-  max-width: 80%;
+  /* max-width: 80%; */
   transition: transform 0.3s ease;
 }
 
@@ -167,7 +167,8 @@
 .interestSection {
   padding: 4rem 0 0 0;
   text-align: center;
-  margin: 0 calc(-1rem); /* Counteract main container padding */
+  /* margin: 0 calc(-1rem);
+  padding-left: 1rem; */
 }
 
 .formContainer {
@@ -269,7 +270,7 @@
   }
 
   .projectCardWrapper {
-    width: 100%;
+    /* width: 100%; */
   }
 
   .portfolioSection {
@@ -278,7 +279,8 @@
 
   .interestSection {
     padding: 3rem 0 0 0;
-    margin: 0 calc(-0.75rem); 
+    /* margin: 0 calc(-0.75rem); 
+    padding-left: 0.75rem; */
   }
 
   .googleForm {
@@ -292,13 +294,13 @@
   
   .glowHero {
     width: 25rem;    
-    height: 50rem;   
+    height: 30rem;   
     top: 40%;  
   }
   
   .glowPortfolio {
     width: 25rem;    
-    height: 200rem; 
+    height: 120rem; 
     top: 55%;  
   }
 }
@@ -320,7 +322,7 @@
 
   .projectGrid {
     padding: 0 0.25rem; 
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .googleForm {
@@ -328,7 +330,8 @@
   }
 
   .interestSection {
-    margin: 0 calc(-0.5rem); /* Match small phone padding */
+    /* margin: 0 calc(-0.5rem); 
+    padding-left: 0.5rem; */
   }
 }
 
@@ -356,7 +359,8 @@
   
   .interestSection {
     padding: 5rem 0 0 0;
-    margin: 0 calc(-2rem); /* Counteract main container padding on tablet */
+    /* margin: 0 calc(-2rem); 
+    padding-left: 2rem;  */
   }
   
   .googleForm {
@@ -368,6 +372,7 @@
 @media (min-width: 1024px) {
   .heroContent {
     gap: 3rem;
+    width: 60rem;
   }
   
   .projectGrid { 
@@ -388,7 +393,8 @@
   }
   
   .interestSection {
-    margin: 0 calc(-3rem); /* Counteract main container padding on large screens */
+    /* margin: 0 calc(-3rem);
+    padding-left: 3rem;  */
   }
 }
 

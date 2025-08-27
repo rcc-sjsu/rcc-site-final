@@ -171,8 +171,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* <Divider /> */}
-        <hr/>
+        <Divider />
 
         {/* Portfolio Section */}
         <section className={styles.portfolioSection} aria-labelledby="portfolio-heading">
