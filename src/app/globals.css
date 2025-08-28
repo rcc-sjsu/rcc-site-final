@@ -77,24 +77,37 @@
     font-family: var(--font-nunito-sans);
     /* max-width: 70ch; */
     /* line-height: 1.5; */
-    font-size: 19px;
+    font-size: 24px;
     /* margin-bottom: 2.25em; */
-  }
-  @media (max-width: 1280px) {
-    p {
-      font-size: 17px;
-    }
   }
 
   a {
+    font-size: 24px;
     color: var(--color-brand-indigo);
   }
 
+  @media (max-width: 1280px) {
+    p, a {
+      font-size: 17px;
+    }
+  }
+  @media (max-width: 768px) {
+    p, a {
+      font-size: 15px
+    }
+  }
+  @media (max-width: 640px) {
+    p, a {
+      font-size: 13px
+    }
+  }
+
   hr {
-    color: #7D7D7D;
+    background-color: #7D7D7D;
     border-color: #7D7D7D;
-    border-width: 1px;
-    width: 100%;
+    border-width: 1.5px;
+    width: 80%;
+    margin: auto;
   }
 }
 
