@@ -2,6 +2,7 @@
   margin-top: 1rem;
   margin-left: 0.75rem;
   position: absolute;
+  z-index: 15;
 
   /* Main and Sub Menus */
   > div {
@@ -42,16 +43,17 @@
   justify-content: center;
   height: 6rem;
   margin: auto;
+  z-index: 15;
 }
 
 .mobileMainMenu {
   display: flex;
   z-index: 10;
   flex-direction: column;
-  font-size: medium;
 
   /* Main Menu Links */
   > a, div {
+    font-size: medium;
     height: 1.75rem;
     display: flex;
     align-items: center;
@@ -77,6 +79,7 @@
 
   p {
     margin: 0;
+    font-size: medium;
   }
 
   div {
@@ -91,14 +94,14 @@
 .mobileSubMenu {
   display: flex;
   z-index: 5;
-  font-size: medium;
   flex-direction: column;
 
   > a {
+    font-size: medium;
     display: flex;
     color: var(--color-brand-dark-grey);
     align-items: center;
-    height: 1.6rem;
+    height: 1.65rem;
     padding: 0 0.75rem 0 0.75rem; 
   }
 }
