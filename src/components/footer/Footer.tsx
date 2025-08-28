@@ -69,7 +69,7 @@ export default function Footer() {
             </li>
             <li className={styles.linkItem}>
               <Link
-                href="https://discord.gg/RGG9dMw4Rc"
+                href="https://discord.com/invite/RGG9dMw4Rc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}
