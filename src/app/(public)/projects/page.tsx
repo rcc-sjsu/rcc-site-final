@@ -24,18 +24,16 @@ export default function ProjectsPage() {
       teamName: "Web Development Committee",
       description: "The website you are on right now!",
       teamMembers: {
-        "Project Manager": [
-          { name: "Ynha Nguyen", linkedInURL: "https://www.linkedin.com/in/ynha-nguyen-74459a334/" }
-        ],
         "Lead Ambassador": [
-          { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" }
+          { name: "Ashley Roman", linkedInURL: "https://www.linkedin.com/in/ashley-roman-sjsu/" }
         ],
         "Ambassadors": [
+          { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
           { name: "Anton Clayton", linkedInURL: "https://www.linkedin.com/in/anton-clayton/" },
           { name: "Connie Ly", linkedInURL: "https://www.linkedin.com/in/conniely04/" },
           { name: "Preethi Mohan", linkedInURL: "https://www.linkedin.com/in/preethi-mohan-73331628a/" },
           { name: "Marl Jonson", linkedInURL: "https://www.linkedin.com/in/marl-jonson/" },
-          { name: "Ashley Roman", linkedInURL: "https://www.linkedin.com/in/ashley-roman-sjsu/" }
+          { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" }
         ]
       }
     },
@@ -45,15 +43,15 @@ export default function ProjectsPage() {
       projectName: "Inclusive World Website",
       projectURL: "#",
       teamName: "Inclusive World Intern Team",
-      description: "Website for differently abled students to develop skills and abilities.",
+      description: "A website for differently abled students to develop skills and abilities.",
       teamMembers: {
         "Project Manager": [
           { name: "Samriddhi Matharu", linkedInURL: "https://www.linkedin.com/in/samriddhi-matharu-827082235/" }
         ],
         "Operations": [
           { name: "Wilfredo Concepcion", linkedInURL: "https://www.linkedin.com/in/wlfrdoconc/" },
-          { name: "Tyler Awendor", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
-          { name: "Jaime Elepano", linkedInURL: "https://www.linkedin.com/in/jaime-elepano/?trk=people-guest_people_search-card" },
+          { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
+          { name: "Jaime Elepano", linkedInURL: "https://www.linkedin.com/in/jaime-elepano/" },
           { name: "Ashley Roman", linkedInURL: "https://www.linkedin.com/in/ashley-roman-sjsu/" }
         ],
         "Development Leads": [
@@ -82,7 +80,7 @@ export default function ProjectsPage() {
           { name: "Surabhi Bage", linkedInURL: "https://www.linkedin.com/in/surabhibage/" }
         ],
         "Full Stack": [
-          { name: "Yuli Tatishchev", linkedInURL: "https://www.linkedin.com/in/yuri-tatishchev/" },
+          { name: "Yuri Tatishchev", linkedInURL: "https://www.linkedin.com/in/yuri-tatishchev/" },
           { name: "Shakshi Sharma", linkedInURL: "https://www.linkedin.com/in/shakshi-sharma-aa5306213/" },
           { name: "Rupashi Bahl", linkedInURL: "https://www.linkedin.com/in/rupashibahl/" },
           { name: "Eric Nguyen", linkedInURL: "https://www.linkedin.com/in/eric-nguyen-089b7530a/" }
