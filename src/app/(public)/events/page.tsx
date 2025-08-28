@@ -11,10 +11,16 @@ export default function Events() {
   return (
     <div className="px-4 sm:px-6 lg:px-20">
       <div className="flex flex-col lg:flex-row items-center justify-center mb-8 sm:mb-16">
-        <Heading headingTag="h1" align="center">
+        <Heading
+          headingTag="h1"
+          align="center"
+          logoPath="/icons/shape-icon.svg"
+          logoAlign="right"
+          logoSize={12}
+          aria-labelledby="events-heading"
+        >
           Events
         </Heading>
-        <Image src="/icons/shape-icon.svg" alt="Shape Icon" width={200} height={200} />
       </div>
 
       <EventImages />
