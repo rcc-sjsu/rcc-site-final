@@ -1,6 +1,8 @@
 .header {
   font-family: var(--font-nunito-sans);
   z-index: 10;
+  width: 100vw;
+  position: fixed;
   background-color: white;
 }
 
@@ -35,7 +37,6 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  height: 100%;
 
   :hover {
     cursor: pointer;
@@ -105,16 +106,17 @@
 /* Background blur when Ambassadorship tab is open */
 .backgroundBlur {
   visibility: collapse;
-  height: 100vh;
+  min-height: 100vh;
+  top: 0;
   width: 100vw;
-  position: absolute;
-  background-color: rgba(118, 118, 118, 0.32);
+  position: fixed;
+  background-color: rgba(118, 118, 118, 0.322);
   backdrop-filter: blur(3px);
   z-index: 4;
 }
 
 @media (width >= 40rem) {
-  
+
   .backgroundBlur {
     visibility: visible;
   }
