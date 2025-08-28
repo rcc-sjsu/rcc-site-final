@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { createClient } from '../../utils/supabase/server';
+import { createClient } from '../utils/supabase/server';
 
 // On every request (going to a new page), this middleware activates
 export async function middleware(request: NextRequest) {
@@ -11,11 +11,8 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Define the protected route path.
-  const protectedPath = '/protected';
-
   // Check if the user is not authenticated and the requested path is a protected one.
-  if (!user && request.nextUrl.pathname.startsWith(protectedPath)) {
+  if (!user) {
     // Redirect to the login page or an auth-error page.
     return NextResponse.redirect(new URL('/auth-error', request.url));
   }
@@ -24,6 +21,8 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+// ADD ALL PROTECTED ROUTES HERE
+// CONFIG WILL AUTOMATICALLY APPLY THE MIDDLEWARE TO THE ROUTES INSIDE THE MATCHER
 export const config = {
-  matcher: ['/protected/:path*'],
+  matcher: ['/privateCheck/:path*'],
 };
