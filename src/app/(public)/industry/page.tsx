@@ -1,9 +1,9 @@
 'use client';
 // import BackgroundGradient from '@/components/BackgroundGradient';
 import styles from './industry.module.css';
-import IndustryComponent from './IndustryComponent';
-import PastEventsComponent from './PastEvents';
-import InterestFormComponent from './InterestForm';
+import IndustryComponent from './components/IndustryComponent';
+import PastEventsComponent from './components/PastEvents';
+import InterestFormComponent from './components/InterestForm';
 
 export default function IndustryPage() {
   return (
