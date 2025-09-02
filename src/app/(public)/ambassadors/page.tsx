@@ -11,13 +11,13 @@ export default function AmbassadorsPage() {
         The Mozilla Student Ambassadorship Program at RCC empowers students to take the
         lead in shaping the future of ethical technology. Ambassadors work closely with
         Mozilla and RCC to spark campus-wide conversations on responsible computing!
-        <br/>
-        <br/>
-          Want to get involved? Reach out to us
-          at <a href="mailto:rcc.sjsu@gmail.com">rcc.sjsu@gmail.com</a> or follow
-          us <a href="https://www.instagram.com/rcc.sjsu/">@rcc.sjsu</a> on Instagram to learn more!
-        <br/>
-        <br/>
+        <br />
+        <br />
+        Want to get involved? Reach out to us
+        at <a href="mailto:rcc.sjsu@gmail.com">rcc.sjsu@gmail.com</a> or follow
+        us <a href="https://www.instagram.com/rcc.sjsu/">@rcc.sjsu</a> on Instagram to learn more!
+        <br />
+        <br />
         Our Committees:
       </div>
       <br />
@@ -104,7 +104,7 @@ export default function AmbassadorsPage() {
       <br />
       <h1 className={styles.teamName}>Case</h1>
       <div className={styles.teamDescription}>
-        The Case Competition Committee designs and hosts challenges that encourage 
+        The Case Competition Committee designs and hosts challenges that encourage
         participants to solve real-world tech ethics problems, promoting critical
         thinking, teamwork, and responsible innovation.
       </div>
@@ -240,12 +240,19 @@ export default function AmbassadorsPage() {
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/web-dev/connie-ly.jpeg"
-          name="Connie Ly"
+          photoURL="../../../../headshots/web-dev/tyler-awender.png"
+          name="Tyler Awender"
           role="Web Dev Ambassador"
         />
       </div>
       <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/connie-ly.jpeg"
+          name="Connie Ly"
+          role="Web Dev Ambassador"
+        />
+
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/preethi-mohan.jpeg"
@@ -259,7 +266,8 @@ export default function AmbassadorsPage() {
           name="Marl Jonson"
           role="Web Dev Ambassador"
         />
-
+      </div>
+      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/matthew-bernard.png"
@@ -267,7 +275,6 @@ export default function AmbassadorsPage() {
           role="Web Dev Ambassador"
         />
       </div>
-
       <br />
       <br />
       <h1 className={styles.teamName}>Membership Outreach</h1>
@@ -352,7 +359,7 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/marketing/marc-mcdaniel.jpeg"
+          photoURL="../../../../headshots/marketing/marc-mcdaniel.png"
           name="Marc McDaniel"
           role="Digital Marketing Ambassador"
         />
