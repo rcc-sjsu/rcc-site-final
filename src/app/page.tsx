@@ -29,21 +29,21 @@ export default function Home() {
           <p className={aboutStyles.description}>
             The Responsible Computing Club (RCC) at SJSU, partnering with Mozilla, empowers students to shape the future of tech. 
             We unite students to explore the ethics of tech through hands-on, 
-            cross-disciplinary projects. Together, we’re shaping a more responsible and inclusive future. Connect with us below!
+            cross-disciplinary projects. Together, we're shaping a more responsible and inclusive future. Connect with us below!
           </p>
 
           <div className={aboutStyles.socialContainer}>
 
-            <a href="">
+            <a href="https://www.instagram.com/rcc.sjsu/">
               <img src="/home_icons/Instagram.svg"></img>
             </a>
-            <a href="">
-              <img src="/home_icons/Linkedin.svg"></img>
+            <a href="https://www.linkedin.com/company/rcc-sjsu/">
+              <img src="/home_icons/LinkedIn.svg"></img>
             </a>
-            <a href="">
+            <a href="mailto:rcc.sjsu@gmail.com">
               <img src="/home_icons/Mail.svg"></img>
             </a>
-            <a href="">
+            <a href="https://discord.com/invite/RGG9dMw4Rc">
               <img src="/home_icons/Discord.svg"></img>
             </a>
 
@@ -71,7 +71,7 @@ export default function Home() {
           <Heading headingTag="h2"> Our Mission Statement </Heading>
 
           <p className={missionStyles.description}>
-            RCC’s mission is to make responsible computing 
+            RCC's mission is to make responsible computing 
             <strong><em> relevant to everyone </em></strong> 
             and 
             <strong><em> applicable to their everyday lives</em></strong>, 
