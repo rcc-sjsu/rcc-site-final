@@ -1,13 +1,27 @@
-import { login, signup } from '../../utils/authUtils/authActions';
+'use client';
+
+import { useActionState } from 'react';
+import { login } from './actions';
+import { useRef } from 'react';
+import styles from './page.module.css';
+import { EmailInput, PasswordInput } from './components/Inputs';
+import { ErrorMessage } from './components/ErrorMessage';
+import { ForgotPassword } from './components/ForgotPassword';
+import { SubmitButton } from './components/SubmitButton';
+
 export default function LoginPage() {
+  const [state, formAction, isPending] = useActionState(login, { error: null });
+  const formRef = useRef<HTMLFormElement>(null);
+
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" name="password" type="password" required />
-      <button formAction={login}>Log in</button>
-      <button formAction={signup}>Sign up</button>
-    </form>
+    <div className={styles.container}>
+      <form ref={formRef} action={formAction} className={styles.form}>
+        <EmailInput />
+        <ErrorMessage error={state?.error || ''} />
+        <PasswordInput />
+        <ForgotPassword />
+        <SubmitButton isPending={isPending} />
+      </form>
+    </div>
   );
 }
