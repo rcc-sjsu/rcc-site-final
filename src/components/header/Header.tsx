@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import mobileStyles from './mobileHeader.module.css'
 import desktopStyles from "./desktopHeader.module.css"
+
 
 export default function Header() {
 
@@ -16,10 +17,33 @@ export default function Header() {
     const [isDesktopHovered, setIsDesktopHovered] = useState(false)
     const [isDesktopAmbassadorshipClicked, setIsDesktopAmbassadorshipClicked] = useState(false)
 
+    
+  const clickRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+  
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (clickRef.current && !clickRef.current.contains(event.target as Node)) {
+        setIsHamburgerClicked(false)
+        setIsMobileHovered(false)
+        setIsMobileAmbassClicked(false)
+        setIsDesktopHovered(false)
+        setIsDesktopAmbassadorshipClicked(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleOutsideClick)
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    }
+
+  })
+
     return (
-      <>        
-        <header className={desktopStyles.header}>
-          
+      <>      
+        <header ref={clickRef} className={desktopStyles.header}>
+
           {/* Mobile Menu */}
           <div className={mobileStyles.mobileContainer}>
 

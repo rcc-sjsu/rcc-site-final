@@ -1,5 +1,6 @@
 export default function Signup() {
-  return (
-    <div/>
-  )
+    return (
+      <div/>
+    )
 }
+

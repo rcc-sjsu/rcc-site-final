@@ -159,7 +159,6 @@ export default function InstaCarousel() {
             key={index}
             onClick={() => setCurrentSetIndex(index)}
             className={`${styles.dot} ${currentSetIndex === index ? styles.dotActive : styles.dotInactive}`}
-            aria-label={`Go to set ${index + 1}`}
           />
         ))}
       </div>
