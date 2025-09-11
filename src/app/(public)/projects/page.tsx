@@ -43,7 +43,7 @@ export default function ProjectsPage() {
       projectName: "Inclusive World Website",
       projectURL: "#",
       teamName: "Inclusive World Intern Team",
-      description: "A website for differently abled students to develop skills and abilities.",
+      description: "Role-based management portal for tracking student coursework, attendance, surveys, etc. in educational programs for differently abled students.",
       teamMembers: {
         "Project Manager": [
           { name: "Samriddhi Matharu", linkedInURL: "https://www.linkedin.com/in/samriddhi-matharu-827082235/" }
@@ -132,6 +132,19 @@ export default function ProjectsPage() {
                   we've partnered with individuals and organizations — from 
                   senior scientists to non-profits — to create {' '}
                   <strong> projects with a real, tangible impact</strong> on our community.
+                </p>
+                
+                <p className={styles.missionText}>
+                  Want to join one of these projects? Check out our{' '}
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSevgjX74hvIqRHgi9j5gfzEtpgoNjhZmrQMMZS33awqFjQvjg/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open volunteer application form in new tab"
+                  >
+                    <em><strong>volunteer application form</strong></em>
+                  </a>
+                  {' '}to get involved!
                 </p>
                 
                 <p className={styles.contactText}>
