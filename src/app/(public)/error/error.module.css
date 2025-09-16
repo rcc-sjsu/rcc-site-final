@@ -1,0 +1,94 @@
+
+.errorContainer {
+    height: 100vh;
+    padding-inline: 1.5rem;
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textAndImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.confirmEmailImage {
+    width: 60px;
+    height: 60px;
+}
+
+.heading {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.backToHomeButton {
+    background-color: var(--color-brand-indigo);
+    color: var(--color-white);
+    border-radius: 0.5rem;
+    padding-inline: 1.25rem;
+    padding-block: 0.25rem;
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    line-height: calc(1.25 / 0.875);
+    cursor: pointer;
+}
+
+.backToHomeButton:hover{
+    font-size: 1.125rem;
+    line-height: calc(1.75 / 1.125);
+}
+
+/* sm */
+@media (min-width: 640px) { 
+    .checkEmailContainer {
+        padding-inline: 2.5rem;
+    }
+    .confirmEmailImage {
+        width: 80px;
+        height: 80px;
+    }
+    
+}
+
+/* md */
+@media (min-width: 768px) { 
+    .checkEmailContainer {
+        padding-inline: 5rem;
+        padding-top: 2.5rem;
+    }
+    .confirmEmailImage {
+        width: 100px;
+        height: 100px;
+    }
+    .heading {
+        padding-bottom: 0.75rem;
+    }
+    .backToHomeButton {
+        margin-top: 2.25rem;
+    }
+    
+}
+
+/* lg */
+@media (min-width: 1024px) { 
+    .confirmEmailImage {
+        width: 120px;
+        height: 120px;
+    }
+    .backToHomeButton {
+        font-size: 1.25rem;
+        line-height: calc(1.75 / 1.25);
+    }
+    .backToHomeButton:hover{
+        font-size: 1.5rem;
+        line-height: calc(2 / 1.5);
+    }
+}
+
+/* xl */
+@media (min-width: 1280px) { 
+}

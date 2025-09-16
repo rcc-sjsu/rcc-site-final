@@ -1,0 +1,64 @@
+.checkEmailContainer {
+    height: 100vh;
+    padding-inline: 1.5rem;
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textAndImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.confirmEmailImage {
+    width: 90px;
+    height: 90px;
+}
+
+.heading {
+    padding-bottom: 0.5rem;
+}
+
+/* sm */
+@media (min-width: 640px) { 
+    .checkEmailContainer {
+        padding-inline: 2.5rem;
+    }
+    .confirmEmailImage {
+        width: 130px;
+        height: 130px;
+    }
+    
+}
+
+/* md */
+@media (min-width: 768px) { 
+    .checkEmailContainer {
+        padding-inline: 5rem;
+        padding-top: 2.5rem;
+    }
+    .confirmEmailImage {
+        width: 150px;
+        height: 150px;
+    }
+    .heading {
+        padding-bottom: 0.75rem;
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) { 
+    .confirmEmailImage {
+        width: 170px;
+        height: 170px;
+    }
+    
+}
+
+/* xl */
+@media (min-width: 1280px) { 
+}
