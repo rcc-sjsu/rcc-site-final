@@ -7,10 +7,10 @@ export async function getUser() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Null check -> will redirect user to auth-error page
-  if (!user) {
-    redirect('/auth-error');
-  }
+  // // Null check -> will redirect user to auth-error page
+  // if (!user) {
+  //   redirect('/auth-error');
+  // }
 
   return user;
 }

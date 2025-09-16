@@ -4,9 +4,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import mobileStyles from './mobileHeader.module.css'
 import desktopStyles from "./desktopHeader.module.css"
+import type { User } from '@supabase/supabase-js';
+import { useAuthStore } from '@/store/authStore';
 
+interface HeaderProps {
+  user: User | null;
+}
 
-export default function Header() {
+export default function Header({user}: HeaderProps) {
 
     // Mobile Click and Hover listeners
     const [isHamburgerClicked, setIsHamburgerClicked] = useState(false)
