@@ -1,0 +1,69 @@
+/* page.module.css */
+
+.signup-input {
+  width: 100%;
+  padding-top: 1.25rem; /* Reduced padding */
+  padding-bottom: 1.25rem; /* Reduced padding */
+  padding-left: 1.5rem; /* Space for icon */
+  padding-right: 1rem;
+  background-color: #ffffff; /* White background */
+  color: black;
+  border-radius: 9999px; /* Fully rounded */
+  font-size: 1.1rem; /* Smaller font size for inputs */
+  font-weight: bold;
+  font-weight: normal; /* Normal weight for input text */
+  border: 2px solid #5C1C75; /* Light gray border */
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(92, 28, 117, 0.2); /* Subtle purple shadow */
+  transition: all 0.2s ease-in-out;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+/* No specific media queries for signup-input and icon-style in CSS,
+   as Tailwind will handle overall layout and the base styles are now
+   more compact. */
+
+
+.sign-up-button {
+  width: 100%; /* Full width within its container */
+  margin-top: 1.5rem; /* Adjusted margin */
+  margin-bottom: 1.5rem; /* Adjusted margin */
+  padding-top: 1rem; /* Reduced padding */
+  padding-bottom: 1rem; /* Reduced padding */
+  background-color: #470085; /* Changed to the new purple color */
+  color: #ffffff;
+  border-radius: 9999px; /* Fully rounded */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.125rem; /* Slightly smaller font for button */
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 28, 117, 0.45);
+}
+
+.sign-up-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.sign-up-button:hover:not(:disabled) {
+  background-color: #350064; /* Darker shade for hover effect */
+}
+
+/* No specific media queries for get-started in CSS,
+   as its width is now 100% and will adapt to the parent container's responsiveness. */
+
+
+.signup-input-container {
+  position: relative;
+  width: 100%;
+  /* Removed fixed margin-top/bottom here, let the form's gap handle spacing */
+}
+
+.signup-graphic-shadow {
+  /* Syntax: drop-shadow(offset-x offset-y blur-radius color) */
+  filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.3)); /* Adjust values as needed */
+}
