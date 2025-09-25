@@ -1,28 +1,12 @@
 'use client';
-import Heading from '@/components/Heading';
-import Image from 'next/image';
-import styles from './error.module.css';
-import { useRouter } from 'next/navigation';
+import ErrorComponent from './ErrorComponent';
 
 export default function ErrorPage() {
-  const router = useRouter();
-
   return (
-    <div className={styles.errorContainer}>
-      <div className={styles.textAndImageContainer}>
-        <Image
-          src="/images/circled-cross-symbol.svg"
-          alt=""
-          width={250}
-          height={250}
-          className={styles.confirmEmailImage}
-        ></Image>
-        <Heading headingTag={'h1'} children={'Something went wrong!'} className={styles.heading} />
-        <p>An unknown error has occurred. Please try again later.</p>
-        <button className={styles.backToHomeButton} onClick={() => router.push(`/`)}>
-          Back to Home
-        </button>
-      </div>
-    </div>
+    <ErrorComponent
+      img={'/images/circled-cross-symbol.svg'}
+      errorTitle={'Something went wrong!'}
+      errorDescription={'An unknown error has occurred. Please try again later.'}
+    ></ErrorComponent>
   );
 }
