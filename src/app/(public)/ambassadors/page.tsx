@@ -62,15 +62,15 @@ export default function AmbassadorsPage() {
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/executive-board/anusha-damle.jpeg"
+          photoURL="../../../../headshots/executive-board/anusha-damle.jpg"
           name="Anusha Damle"
           role="Treasurer"
         />
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/executive-board/kalyn-bui.png"
-          name="Kalyn Bui"
+          photoURL="../../../../headshots/executive-board/placeholder.png"
+          name="TBA"
           role="Secretary"
         />
       </div>
@@ -86,16 +86,16 @@ export default function AmbassadorsPage() {
 
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
-          color="red"
-          photoURL="../../../../headshots/workshops/pranavi-kristipati.jpeg"
-          name="Pranavi Kristipati"
-          role="Workshops Ambassador"
-        />
-
-        <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/workshops/jupjeet-rai.jpeg"
           name="Jupjeet Rai"
+          role="Lead Ambassador"
+        />
+
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/workshops/pranavi-kristipati.jpeg"
+          name="Pranavi Kristipati"
           role="Workshops Ambassador"
         />
       </div>
@@ -157,26 +157,16 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="red"
-          photoURL="../../../../headshots/consulting/glerys-gonzalez.jpeg"
-          name="Glerys Gonzalez"
-          role="Lead Ambassador"
-        />
-
-        <AmbassadorCard
-          color="red"
           photoURL="../../../../headshots/consulting/samriddhi-matharu.jpeg"
           name="Samriddhi Matharu"
-          role="Project Manager"
+          role="Lead Ambassador"
         />
-
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/consulting/surabhi-bage.png"
+          photoURL="../../../../headshots/consulting/placeholder.png"
           name="Surabhi Bage"
           role="Consulting Ambassador"
         />
-      </div>
-      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/consulting/lexine-asuncion.jpeg"
@@ -184,7 +174,6 @@ export default function AmbassadorsPage() {
           role="Consulting Ambassador"
         />
       </div>
-
       <br />
       <br />
       <h1 className={styles.teamName}>Industry</h1>
@@ -196,7 +185,7 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/industry/madison-ammirati.png"
+          photoURL="../../../../headshots/industry/madison-ammirati.jpg"
           name="Madison Ammirati"
           role="Lead Ambassador"
         />
@@ -235,7 +224,7 @@ export default function AmbassadorsPage() {
           color="blue"
           photoURL="../../../../headshots/web-dev/anton-clayton.jpeg"
           name="Anton Clayton"
-          role="Web Dev Ambassador"
+          role="Lead Ambassador"
         />
 
         <AmbassadorCard
@@ -367,9 +356,9 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/marketing/ryan-nikopour.png"
-          name="Ryan Nikopour"
-          role="Graphic Design Ambassador"
+          photoURL="../../../../headshots/marketing/alice-wu.jpg"
+          name="Alice Wu"
+          role="Digital Marketing Ambassador"
         />
         <AmbassadorCard
           color="blue"
@@ -398,12 +387,6 @@ export default function AmbassadorsPage() {
           color="red"
           photoURL="../../../../headshots/journalism/harika-chandrasekhar.png"
           name="Harika Chandrasekhar"
-          role="Journalism Ambassador"
-        />
-        <AmbassadorCard
-          color="blue"
-          photoURL="../../../../headshots/journalism/jupjeet-rai.jpeg"
-          name="Jupjeet Rai"
           role="Journalism Ambassador"
         />
       </div>
@@ -441,7 +424,7 @@ export default function AmbassadorsPage() {
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="red"
-          photoURL="../../../../headshots/finance/anusha-damle.jpeg"
+          photoURL="../../../../headshots/executive-board/anusha-damle.jpg"
           name="Anusha Damle"
           role="Lead Ambassador"
         />
