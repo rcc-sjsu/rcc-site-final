@@ -69,8 +69,8 @@ export default function AmbassadorsPage() {
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/executive-board/placeholder.png"
-          name="TBA"
+          photoURL="../../../../headshots/executive-board/verafaith-delrio.jpg"
+          name="Vera Faith Del Rio"
           role="Secretary"
         />
       </div>
