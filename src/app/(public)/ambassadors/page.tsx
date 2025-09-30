@@ -478,13 +478,19 @@ export default function AmbassadorsPage() {
         <AmbassadorCard
           color="red"
           photoURL="../../../../headshots/journalism/jan-abigail-acosta.jpeg"
-          name="Abigail Acosta"
+          name="Jan Abigail Acosta"
           role="Journalism Ambassador"
         />
         <AmbassadorCard
           color="red"
           photoURL="../../../../headshots/journalism/harika-chandrasekhar.png"
           name="Harika Chandrasekhar"
+          role="Journalism Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/placeholder.png"
+          name="Aryan Kumar"
           role="Journalism Ambassador"
         />
       </div>
