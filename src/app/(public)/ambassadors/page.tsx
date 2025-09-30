@@ -39,8 +39,8 @@ export default function AmbassadorsPage() {
 
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/executive-board/shannon-lo.png"
-          name="Shannon Lo"
+          photoURL="../../../../headshots/placeholder.png"
+          name="Hodo Abdulkarim"
           role="External Vice President"
         />
 
@@ -91,11 +91,44 @@ export default function AmbassadorsPage() {
           name="Jupjeet Rai"
           role="Lead Ambassador"
         />
-
         <AmbassadorCard
           color="red"
           photoURL="../../../../headshots/workshops/pranavi-kristipati.jpeg"
           name="Pranavi Kristipati"
+          role="Workshops Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/workshops/sweksha-shaw.png"
+          name="Sweksha Shaw"
+          role="Workshops Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/workshops/devarsh-shroff.png"
+          name="Devarsh Shroff"
+          role="Workshops Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/workshops/pearl-shah.png"
+          name="Pearl Shah"
+          role="Workshops Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/placeholder.png"
+          name="Aysha Mujeeb"
+          role="Workshops Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/workshops/madiha-fatima.png"
+          name="Madiha Fatima"
           role="Workshops Ambassador"
         />
       </div>
@@ -163,7 +196,7 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/consulting/placeholder.png"
+          photoURL="../../../../headshots/placeholder.png"
           name="Surabhi Bage"
           role="Consulting Ambassador"
         />
@@ -171,6 +204,20 @@ export default function AmbassadorsPage() {
           color="blue"
           photoURL="../../../../headshots/consulting/lexine-asuncion.jpeg"
           name="Lexine Asuncion"
+          role="Consulting Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/consulting/sherine-aldrin.jpg"
+          name="Sherine Aldrin"
+          role="Consulting Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/consulting/aishwarya-anburaja.png"
+          name="Aishwarya Anburaja"
           role="Consulting Ambassador"
         />
       </div>
@@ -189,18 +236,30 @@ export default function AmbassadorsPage() {
           name="Madison Ammirati"
           role="Lead Ambassador"
         />
-
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/industry/sejal-ghanate.png"
+          name="Sejal Ghanate"
+          role="Lead Ambassador"
+        />
         <AmbassadorCard
           color="red"
           photoURL="../../../../headshots/industry/sumaiyah-alamgir.png"
           name="Sumaiyah Alamgir"
           role="Industry Ambassador"
         />
-
+      </div>
+      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/industry/yamini-karthik.jpeg"
           name="Yamini Karthik"
+          role="Industry Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/industry/yuwen-zhang.png"
+          name="Yuwen Zhang"
           role="Industry Ambassador"
         />
       </div>
@@ -301,6 +360,32 @@ export default function AmbassadorsPage() {
           name="Updesh Sachdeva"
           role="Membership Outreach Ambassador"
         />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/membership-outreach/tabassum-zahir.png"
+          name="Tabassum Zahir"
+          role="Membership Outreach Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/placeholder.png"
+          name="Mariam Jamil"
+          role="Membership Outreach Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/membership-outreach/don-dang.png"
+          name="Don Dang"
+          role="Membership Outreach Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/membership-outreach/amishi-seth.png"
+          name="Amishi Seth"
+          role="Membership Outreach Ambassador"
+        />
       </div>
 
       <br />
@@ -366,8 +451,21 @@ export default function AmbassadorsPage() {
           name="Chris Le"
           role="Graphic Design Ambassador"
         />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/madelyn-whitney.png"
+          name="Madelyn Whitney"
+          role="Graphic Design Ambassador"
+        />
       </div>
-
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/marketing/vy-ho.png"
+          name="Vy Ho"
+          role="Graphic Design Ambassador"
+        />
+      </div>
       <br />
       <br />
       <h1 className={styles.teamName}>Journalism</h1>
@@ -412,8 +510,21 @@ export default function AmbassadorsPage() {
           name="Sonya Sorkin"
           role="Growth Analytics Ambassador"
         />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/growth-analytics/zainab-shaikh.png"
+          name="Zainab Shaikh"
+          role="Growth Analytics Ambassador"
+        />
       </div>
-
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/growth-analytics/vani-sethi.png"
+          name="Vani Sethi"
+          role="Growth Analytics Ambassador"
+        />
+      </div>
       <br />
       <br />
       <h1 className={styles.teamName}>Finance</h1>
