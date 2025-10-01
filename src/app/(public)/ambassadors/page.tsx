@@ -196,7 +196,7 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/placeholder.png"
+          photoURL="../../../../headshots/consulting/surabhi-bage.jpg"
           name="Surabhi Bage"
           role="Consulting Ambassador"
         />
