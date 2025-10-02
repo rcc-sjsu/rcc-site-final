@@ -1,0 +1,17 @@
+# Supabase local development files
+# These are created when using Supabase CLI locally
+
+# Local Supabase config
+.branches
+.temp
+.env
+
+# Docker volumes
+volumes/
+
+# Local config (if using CLI)
+config.toml
+
+# Supabase Studio
+studio/
+

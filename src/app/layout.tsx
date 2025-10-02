@@ -15,7 +15,7 @@ const inter = Inter({
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
   variable: '--font-nunito-sans',
-  weight: '500',
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 
 const zillaSlab = Zilla_Slab({
@@ -38,7 +38,7 @@ export default async function RootLayout({
   const user = await getUser();
   return (
     <html lang="en">
-      <body className={`${styles.container}${nunitoSans.variable} ${inter.variable} ${zillaSlab.variable}`}>
+      <body className={`${styles.container} ${nunitoSans.variable} ${inter.variable} ${zillaSlab.variable}`}>
         <Header user={user} />
         {/* All your page content will be rendered inside this main tag */}
         <main className={styles.pageContent}>{children}</main>
