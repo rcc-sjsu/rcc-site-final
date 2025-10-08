@@ -29,11 +29,12 @@ export default function ProjectsPage() {
         ],
         "Ambassadors": [
           { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
-          { name: "Anton Clayton", linkedInURL: "https://www.linkedin.com/in/anton-clayton/" },
           { name: "Connie Ly", linkedInURL: "https://www.linkedin.com/in/conniely04/" },
           { name: "Preethi Mohan", linkedInURL: "https://www.linkedin.com/in/preethi-mohan-73331628a/" },
           { name: "Marl Jonson", linkedInURL: "https://www.linkedin.com/in/marl-jonson/" },
-          { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" }
+          { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" },
+          { name: "Emily Thach", linkedInURL: "https://www.linkedin.com/in/emilythachh/" },
+          { name: "Alvin Tran", linkedInURL: "https://www.linkedin.com/in/tralvin/" }
         ]
       }
     },

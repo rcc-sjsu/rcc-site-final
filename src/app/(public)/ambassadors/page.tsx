@@ -8,6 +8,8 @@ export default function AmbassadorsPage() {
     <main className={styles.container}>
       <h1 style={{ textAlign: 'center' }}>Mozilla Student Ambassadors</h1>
       <div style={{ fontSize: '1.075rem', textAlign: 'center' }}>
+        <br />
+        <br />
         The Mozilla Student Ambassadorship Program at RCC empowers students to take the
         lead in shaping the future of ethical technology. Ambassadors work closely with
         Mozilla and RCC to spark campus-wide conversations on responsible computing!
@@ -129,6 +131,12 @@ export default function AmbassadorsPage() {
           color="blue"
           photoURL="../../../../headshots/workshops/madiha-fatima.png"
           name="Madiha Fatima"
+          role="Workshops Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/workshops/annie-doan.jpg"
+          name="Annie Doan"
           role="Workshops Ambassador"
         />
       </div>
@@ -308,6 +316,20 @@ export default function AmbassadorsPage() {
           color="blue"
           photoURL="../../../../headshots/web-dev/matthew-bernard.png"
           name="Matthew Bernard"
+          role="Web Dev Ambassador"
+        />
+      </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/emily-thach.jpg"
+          name="Emily Thach"
+          role="Web Dev Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/web-dev/alvin-tran.jpg"
+          name="Alvin Tran"
           role="Web Dev Ambassador"
         />
       </div>
