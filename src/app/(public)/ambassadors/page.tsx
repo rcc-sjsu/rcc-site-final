@@ -270,6 +270,12 @@ export default function AmbassadorsPage() {
           name="Yuwen Zhang"
           role="Industry Ambassador"
         />
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/industry/harshitha-venkateswaran.jpg"
+          name="Harshitha Venkateswaran"
+          role="Industry Ambassador"
+        />
       </div>
 
       <br />
@@ -495,12 +501,6 @@ export default function AmbassadorsPage() {
           color="red"
           photoURL="../../../../headshots/journalism/harika-chandrasekhar.png"
           name="Harika Chandrasekhar"
-          role="Journalism Ambassador"
-        />
-        <AmbassadorCard
-          color="red"
-          photoURL="../../../../headshots/placeholder.png"
-          name="Aryan Kumar"
           role="Journalism Ambassador"
         />
       </div>
