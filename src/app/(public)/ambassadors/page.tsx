@@ -314,7 +314,7 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="blue"
-          photoURL="../../../../headshots/web-dev/marl-jonson.jpeg"
+          photoURL="../../../../headshots/web-dev/marl-jonson.jpg"
           name="Marl Jonson"
           role="Web Dev Ambassador"
         />
