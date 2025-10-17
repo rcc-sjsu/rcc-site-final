@@ -334,6 +334,12 @@ export default function AmbassadorsPage() {
         />
         <AmbassadorCard
           color="blue"
+          photoURL="../../../../headshots/web-dev/caleb-fringer.png"
+          name="Caleb Fringer"
+          role="Web Dev Ambassador"
+        />
+        <AmbassadorCard
+          color="blue"
           photoURL="../../../../headshots/web-dev/alvin-tran.jpg"
           name="Alvin Tran"
           role="Web Dev Ambassador"

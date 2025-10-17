@@ -34,6 +34,7 @@ export default function ProjectsPage() {
           { name: "Marl Jonson", linkedInURL: "https://www.linkedin.com/in/marl-jonson/" },
           { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" },
           { name: "Emily Thach", linkedInURL: "https://www.linkedin.com/in/emilythachh/" },
+          { name: "Caleb Fringer", linkedInURL: "https://www.linkedin.com/in/caleb-fringer/" },
           { name: "Alvin Tran", linkedInURL: "https://www.linkedin.com/in/tralvin/" }
         ]
       }
