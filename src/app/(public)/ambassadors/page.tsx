@@ -277,6 +277,14 @@ export default function AmbassadorsPage() {
           role="Industry Ambassador"
         />
       </div>
+      <div className={styles.ambassadorCards}>
+        <AmbassadorCard
+          color="blue"
+          photoURL="../../../../headshots/industry/diya-suresh.jpg"
+          name="Diya Suresh"
+          role="Industry Ambassador"
+        />
+      </div>
 
       <br />
       <br />
