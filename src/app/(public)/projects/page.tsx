@@ -25,15 +25,17 @@ export default function ProjectsPage() {
       description: "The website you are on right now!",
       teamMembers: {
         "Lead Ambassador": [
-          { name: "Ashley Roman", linkedInURL: "https://www.linkedin.com/in/ashley-roman-sjsu/" }
+          { name: "Vacant", linkedInURL: "" }
         ],
         "Ambassadors": [
           { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
-          { name: "Anton Clayton", linkedInURL: "https://www.linkedin.com/in/anton-clayton/" },
           { name: "Connie Ly", linkedInURL: "https://www.linkedin.com/in/conniely04/" },
           { name: "Preethi Mohan", linkedInURL: "https://www.linkedin.com/in/preethi-mohan-73331628a/" },
           { name: "Marl Jonson", linkedInURL: "https://www.linkedin.com/in/marl-jonson/" },
-          { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" }
+          { name: "Matthew Bernard", linkedInURL: "https://www.linkedin.com/in/matthewbernard/" },
+          { name: "Emily Thach", linkedInURL: "https://www.linkedin.com/in/emilythachh/" },
+          { name: "Caleb Fringer", linkedInURL: "https://www.linkedin.com/in/caleb-fringer/" },
+          { name: "Alvin Tran", linkedInURL: "https://www.linkedin.com/in/tralvin/" }
         ]
       }
     },
