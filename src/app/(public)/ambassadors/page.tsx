@@ -295,11 +295,25 @@ export default function AmbassadorsPage() {
       </div>
       <div className={styles.ambassadorCards}>
         <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/web-dev/shareen-rodrigues.jpg"
+          name="Shareen Rodrigues"
+          role="Lead Ambassador"
+        />
+        <AmbassadorCard
+          color="red"
+          photoURL="../../../../headshots/web-dev/eesha-maddali.png"
+          name="Eesha Maddali"
+          role="Lead Ambassador"
+        />
+        <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/tyler-awender.png"
           name="Tyler Awender"
           role="Web Dev Ambassador"
         />
+      </div>
+      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/connie-ly.jpeg"
@@ -312,14 +326,14 @@ export default function AmbassadorsPage() {
           name="Preethi Mohan"
           role="Web Dev Ambassador"
         />
-      </div>
-      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/marl-jonson.jpg"
           name="Marl Jonson"
           role="Web Dev Ambassador"
         />
+      </div>
+      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/matthew-bernard.jpg"
@@ -332,14 +346,14 @@ export default function AmbassadorsPage() {
           name="Emily Thach"
           role="Web Dev Ambassador"
         />
-      </div>
-      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/caleb-fringer.png"
           name="Caleb Fringer"
           role="Web Dev Ambassador"
         />
+      </div>
+      <div className={styles.ambassadorCards}>
         <AmbassadorCard
           color="blue"
           photoURL="../../../../headshots/web-dev/alvin-tran.jpg"
