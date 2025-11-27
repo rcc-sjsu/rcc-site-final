@@ -25,10 +25,10 @@ export default function ProjectsPage() {
       description: "The website you are on right now!",
       teamMembers: {
         "Lead Ambassador": [
-          { name: "Vacant", linkedInURL: "" }
+          { name: "Shareen Rodrigues", linkedInURL: "https://www.linkedin.com/in/shareen-rodrigues/" },
+          { name: "Eesha Maddali", linkedInURL: "https://www.linkedin.com/in/eesha-maddali/" }
         ],
         "Ambassadors": [
-          { name: "Tyler Awender", linkedInURL: "https://www.linkedin.com/in/tylerawender/" },
           { name: "Connie Ly", linkedInURL: "https://www.linkedin.com/in/conniely04/" },
           { name: "Preethi Mohan", linkedInURL: "https://www.linkedin.com/in/preethi-mohan-73331628a/" },
           { name: "Marl Jonson", linkedInURL: "https://www.linkedin.com/in/marl-jonson/" },
@@ -61,7 +61,7 @@ export default function ProjectsPage() {
           { name: "Bence Danko", linkedInURL: "https://www.linkedin.com/in/bence-jordan-danko/" },
         ],
         "Development Interns": [
-          { name: "Shreyas Boyar", linkedInURL: "#" },
+          { name: "Shreyas Bhoyar", linkedInURL: "https://www.linkedin.com/in/shreyas-bhoyar/" },
           { name: "Preethi Mohan", linkedInURL: "https://www.linkedin.com/in/preethi-mohan-73331628a/" },
           { name: "Abigail Acosta", linkedInURL: "https://www.linkedin.com/in/jan-abigail-acosta/" },
           { name: "Ynha Nguyen", linkedInURL: "https://www.linkedin.com/in/ynha-nguyen-74459a334/" },
