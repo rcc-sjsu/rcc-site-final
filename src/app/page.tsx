@@ -2,6 +2,9 @@ import aboutStyles from "./(public)/home/about.module.css"
 import missionStyles from "./(public)/home/mission.module.css"
 import BackgroundGradient from "@/components/BackgroundGradient";
 import Heading from "@/components/Heading";
+import { SiLinkedin, SiInstagram, SiDiscord } from 'react-icons/si';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -33,27 +36,49 @@ export default function Home() {
           </p>
 
           <div className={aboutStyles.socialContainer}>
-
-            <a href="https://www.instagram.com/rcc.sjsu/">
+            <Link
+              href="https://www.instagram.com/rcc.sjsu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="RCC on Instagram"
+              title="Instagram"
+              >
               <img src="/home_icons/Instagram.svg"></img>
-            </a>
-            <a href="https://www.linkedin.com/company/rcc-sjsu/">
+            </Link>
+
+            <Link
+              href="https://www.linkedin.com/company/rcc-sjsu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="RCC on Instagram"
+              title="Linkedin"
+              >
               <img src="/home_icons/LinkedIn.svg"></img>
-            </a>
-            <a href="mailto:rcc.sjsu@gmail.com">
+            </Link>
+
+             <Link
+              href="mailto:rcc.sjsu@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="RCC on Instagram"
+              title="Email"
+              >
               <img src="/home_icons/Mail.svg"></img>
-            </a>
-            <a href="https://discord.com/invite/RGG9dMw4Rc">
+            </Link>
+           
+            <Link
+              href="https://discord.com/invite/RGG9dMw4Rc"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="RCC on Discord"
+              title="Discord"
+            >
               <img src="/home_icons/Discord.svg"></img>
-            </a>
+            </Link>
 
           </div>
-
         </div>
-
       </section>
-
-      
 
       {/* Mission Statement */}
       <section className={missionStyles.section}>
