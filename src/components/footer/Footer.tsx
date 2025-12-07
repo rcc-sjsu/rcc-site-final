@@ -13,17 +13,11 @@ export default function Footer() {
         <div className={`${styles.footerColumn} ${styles.footerMain}`}>
           <p className={styles.footerTitle}>Responsible Computing Club</p>
           <p className={styles.footerDescription}>
-            The Responsible Computing Club (RCC) at SJSU partners with Mozilla to
-            empower students and shape the future of tech.
+            The Responsible Computing Club (RCC) at SJSU partners with Mozilla to empower students and shape the future
+            of tech.
           </p>
           <div className={styles.footerLogo}>
-            <Image
-              src="/images/footer/mozilla-footer-logo.png"
-              alt="Mozilla"
-              width={90}
-              height={30}
-              priority
-            />
+            <Image src="/images/footer/mozilla-footer-logo.png" alt="Mozilla" width={90} height={30} priority />
           </div>
         </div>
 
@@ -31,9 +25,21 @@ export default function Footer() {
         <nav className={`${styles.footerColumn} ${styles.shortcut}`} aria-label="Shortcut">
           <p className={styles.footerHeading}>SHORTCUT</p>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}><Link href="/about">about us</Link></li>
-            <li className={styles.linkItem}><Link href="/ambassadorship">ambassadorship</Link></li>
-            <li className={styles.linkItem}><Link href="/events">events</Link></li>
+            <li className={styles.linkItem}>
+              <Link href="/">home</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link href="/ambassadors">ambassadors</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link href="/projects">projects</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link href="/industry">industry</Link>
+            </li>
+            <li className={styles.linkItem}>
+              <Link href="/events">events</Link>
+            </li>
           </ul>
         </nav>
 

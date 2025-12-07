@@ -16,7 +16,7 @@ export default function Header() {
     // Desktop Click and Hover listeners
     const [isDesktopHovered, setIsDesktopHovered] = useState(false)
     const [isDesktopAmbassadorshipClicked, setIsDesktopAmbassadorshipClicked] = useState(false)
-
+    const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     
   const clickRef = useRef<HTMLElement>(null)
 
@@ -58,7 +58,7 @@ export default function Header() {
               <div 
               className={mobileStyles.mobileMainMenu}
               >
-                <Link href="/">home</Link>
+                <Link href="/">Home</Link>
 
                 <div 
                   onMouseEnter={()=> setIsMobileHovered(true)}
@@ -75,11 +75,11 @@ export default function Header() {
                   className={mobileStyles.mobileAmbassadorship}
                   style={{backgroundColor: isMobileHovered || isMobileAmbassClicked ? "oklch(92.8% 0.006 264.531)" : ""}}
                 >
-                  <p>ambassadorship</p>
+                  <p>Ambassadorship</p>
                   <div/>
                 </div>
                 
-                <Link href="/events">events</Link>
+                <Link href="/events">Events</Link>
               </div>
 
               {/* Ambassadorship Submenu */}
@@ -89,9 +89,9 @@ export default function Header() {
                   onMouseEnter={()=> setIsMobileHovered(true)}
                   onMouseLeave={()=> setIsMobileHovered(false)}
                 >
-                  <Link href="/ambassadors">ambassadors</Link>
-                  <Link href="/projects">projects</Link>
-                  <Link href="/industry">industry</Link>
+                  <Link href="/ambassadors">Ambassadors</Link>
+                  <Link href="/projects">Projects</Link>
+                  <Link href="/industry">Industry</Link>
                   {/* <Link href="/industry">journalism</Link> */}
                 </div>
               }
@@ -105,55 +105,64 @@ export default function Header() {
             {/* About Us, Ambassadorship, Events Menu */}
             <div className={desktopStyles.desktopMainMenu}>
 
-              <Link href="/">home</Link>
+              <Link href="/">Home</Link>
 
               <div className={desktopStyles.desktopAmbassadorship}
-                onClick={() => {
-                  if (isDesktopAmbassadorshipClicked) {
-                    setIsDesktopAmbassadorshipClicked(false)
-                    setIsDesktopHovered(false)
-                   }
-                   else { 
-                    setIsDesktopAmbassadorshipClicked(true)                   
-                  }
+                
+                onMouseEnter={()=> {
+                  if (hoverCloseTimer.current) clearTimeout(hoverCloseTimer.current);
+                  setIsDesktopHovered(true)
                 }}
-                onMouseEnter={()=> setIsDesktopHovered(true)}
-                onMouseLeave={()=> setIsDesktopHovered(false)}
+                onMouseLeave={()=> {
+                  // delay closing, so moving into submenu doesn't flicker-close
+                  hoverCloseTimer.current = setTimeout(() => {
+                    setIsDesktopHovered(false);
+                  }, 150);
+                }}
               >
 
-                <p style={{textDecoration: isDesktopAmbassadorshipClicked || isDesktopHovered ? "underline" : ""}}>ambassadorship</p>
+                <p style={{textDecoration: isDesktopHovered ? "underline" : ""}}>Ambassadorship</p>
                 <div/>
               
               </div>
               
-              <Link href="/events">events</Link>
+              <Link href="/events">Events</Link>
 
             </div>
 
             {/* Ambassadorship Submenu */}
-            {(isDesktopHovered || isDesktopAmbassadorshipClicked) &&
-              <div 
-                onMouseEnter={() => setIsDesktopHovered(true)}
-                onMouseLeave={() => setIsDesktopHovered(false)}
+            {(isDesktopHovered) &&
+              <div onClick={() => {
+                setIsDesktopHovered(false) 
+              }}
+                onMouseEnter={() => {
+                  if (hoverCloseTimer.current) clearTimeout(hoverCloseTimer.current);
+                  setIsDesktopHovered(true)
+                }}
+                onMouseLeave={() => {
+                  hoverCloseTimer.current = setTimeout(() => {
+                    setIsDesktopHovered(false);
+                  }, 150);
+                }}
                 className={desktopStyles.desktopSubMenu}
               >
                 
                 {/* Ambassadors tab */}
-                <Link href="/ambassadors">
+                <Link href="/ambassadors" onClick={()=> setIsDesktopHovered(false)}>
                   <div/>
-                  ambassadors
+                  Ambassadors
                 </Link>
                 
                 {/* Projects tab */}
-                <Link href="/projects">
+                <Link href="/projects" onClick={()=> setIsDesktopHovered(false)}>
                   <div/>                  
-                  projects
+                  Projects
                 </Link>
 
                 {/* Industry tab */}
-                <Link href="/industry">
+                <Link href="/industry" onClick={()=> setIsDesktopHovered(false)}>
                   <div/>                  
-                  industry
+                  Industry
                 </Link>
 
                 {/* Journalism tab */}
@@ -173,7 +182,7 @@ export default function Header() {
         </header>
 
         {/* Background blur when Ambassadorship tab is open */}
-        {(isDesktopHovered || isDesktopAmbassadorshipClicked) &&
+        {(isDesktopHovered) &&
           <div className={desktopStyles.backgroundBlur}/>        
         }
 

@@ -89,7 +89,7 @@
       width: 1.25rem;
       transform: scale(0.75) rotate(-90deg);
       background-position: center;
-      background-image: url('/header/keyboard_arrow_down.png');
+      /* background-image: url('/header/keyboard_arrow_down.png'); */
     }
 
   }
