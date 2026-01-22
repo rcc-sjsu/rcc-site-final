@@ -24,8 +24,8 @@ export async function GET() {
 
     const data = await response.json();
 
-    if (!response.ok) {
-      console.error(`Instagram API error response: ${data}`);
+     if (!response.ok) {
+      console.error('Instagram API error response:', data);
       return NextResponse.json(
         { error: data },
         { status: response.status }
