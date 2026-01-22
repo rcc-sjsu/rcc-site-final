@@ -12,7 +12,7 @@ export async function GET() {
     const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN; //access token for instagram API
 
     if (!instagramAccessToken) {
-      return NextResponse.json({ error: 'No instaram access token' }, { status: 500 });
+      return NextResponse.json({ error: 'No instagram access token' }, { status: 500 });
     }
 
     //fetch posts from ig using basic display api
@@ -22,11 +22,16 @@ export async function GET() {
       { next: { revalidate: 3600 } } // keep data for 1 hour to reduce api calls
     );
 
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error(`Instagram API error: ${response.status}`);
+      console.error(`Instagram API error response: ${data}`);
+      return NextResponse.json(
+        { error: data },
+        { status: response.status }
+      );
     }
 
-    const data = await response.json();
 
     //return Instagram posts
     return NextResponse.json({ posts: data.data });
