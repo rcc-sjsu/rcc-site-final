@@ -130,6 +130,45 @@
   transform: translateY(0%);
 }
 
-.skip-to-content-link:focus {
-  transform: translateY(0%);
+/* FullCalendar RCC theme overrides */
+.rcc-calendar .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-brand-dark-violet);
+}
+.rcc-calendar .fc-button-primary {
+  background: var(--color-brand-dark-periwinkle);
+  border-color: var(--color-brand-dark-periwinkle);
+  color: white;
+}
+.rcc-calendar .fc-button-primary:hover {
+  background: var(--color-brand-dark-violet);
+  border-color: var(--color-brand-dark-violet);
+}
+.rcc-calendar .fc-button-primary:not(:disabled).fc-button-active,
+.rcc-calendar .fc-button-primary:not(:disabled):active {
+  background: var(--color-brand-dark-violet);
+  border-color: var(--color-brand-dark-violet);
+}
+.rcc-calendar .fc-day-today {
+  background: color-mix(in srgb, var(--color-brand-pale-violet) 15%, transparent);
+}
+.rcc-calendar .fc-event {
+  background: var(--color-brand-dark-periwinkle);
+  border-color: var(--color-brand-dark-periwinkle);
+}
+.rcc-calendar .fc-event:hover {
+  background: var(--color-brand-dark-violet);
+  border-color: var(--color-brand-dark-violet);
+}
+.rcc-calendar .fc-col-header-cell-cushion {
+  color: var(--color-brand-dark-grey);
+  font-weight: 600;
+}
+.rcc-calendar .fc-scrollgrid {
+  border-color: var(--color-brand-lavender);
+}
+.rcc-calendar .fc-theme-standard td,
+.rcc-calendar .fc-theme-standard th {
+  border-color: color-mix(in srgb, var(--color-brand-lavender) 50%, transparent);
 }
