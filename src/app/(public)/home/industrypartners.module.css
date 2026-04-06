@@ -4,10 +4,10 @@
   width: fit-content;
   gap: 3.75rem;
   font-size: 1.62rem;
-  margin: 0 auto 0 auto;
+  margin: 5rem auto 0 auto;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 60rem;
+  max-width: 80rem;
   gap: 3rem;
   text-align: center;
   padding-bottom: 2rem;
@@ -45,11 +45,12 @@
 
 .gradient {
   position: absolute;
-  margin-top: 7rem;
+  margin-top: 15rem;
   /* margin-left: -25rem; */
   width: 20rem;
   height: 15rem;
 }
+
 
 /* .gradient2 {
   position: absolute;
@@ -58,6 +59,10 @@
   width: 20rem;
   height: 10rem;
 } */
+
+.socialMediaIcons {
+  background-color: white;
+}
 
 /* .seeOurStoryButton {
   background-color: #411A63;
@@ -128,10 +133,13 @@
 @media (width <= 640px) {
 
   .container {
+    /* display: grid; */
     justify-content: center;
     width: 90vw;
     margin: auto;
-    gap: 0rem;
+    gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 
     > div {
       grid-column: 1/2;
