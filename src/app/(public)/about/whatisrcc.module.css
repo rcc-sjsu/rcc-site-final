@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  width: fit-content;
+  gap: 4rem;
+  font-size: 1.62rem;
+  margin: 0 auto 0 auto;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  max-width: 90%;
+  padding-bottom: 2rem;
+
+  /* display: flex;
+  flex-direction: row-reverse;
+  width: fit-content;
+  gap: 3.75rem;
+  font-size: 1.62rem;
+  margin: 5rem auto 0 auto;
+  align-items: center; */
+}
+
+.gradient {
+  position: absolute;
+  margin-top: 7rem;
+  /* margin-left: -25rem; */
+  width: 15rem;
+  height: 15rem;
+}
+
+.allText {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 43rem;
+  gap: 2rem;
+}
+
+.collageImage {
+  width: 375px;
+  height: 375px;
+  object-fit: cover;
+}
+
+@media (width <= 1280px) {
+
+  .container {
+    gap: 3rem;
+    /* margin: 0 0 0 0;
+    max-width: 95%; */
+    /* max-width: unset; */
+    /* width: 80%; */
+    /* justify-content: center; */
+    align-content: center;
+  }
+
+  .description {
+    font-size: 1.25rem;
+  }
+
+  .gradient {
+    margin-top: 0rem;
+  }
+
+  .allText {
+    max-width: 38rem;
+    /* width: 80%; */
+    justify-content: center;
+    gap: 1.75rem;
+  }
+
+  .collageImage {
+    width: 265px;
+    height: 265px;
+    object-fit: cover;
+  }
+
+}
+
+
+@media (width <= 1024px) {
+  .container {
+    flex-direction: column;
+    padding-top: 0rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .gradient {
+    margin-top: -15rem;
+  }
+
+  .allText {
+    max-width: unset;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+}
+
+@media (width <= 768px) {
+  .container {
+    padding-bottom: 2rem;
+  }
+
+  .collageImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+@media (width <= 640px) {
+
+  .container {
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    text-align: center;
+
+    > div {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .allText {
+    width: 90vw;
+    margin: auto;
+  }
+
+}
