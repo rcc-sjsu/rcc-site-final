@@ -43,10 +43,10 @@ export default function Home() {
         {/* option 1 for hover, focus, and active: hover:bg-brand-dark-violet focus:outline-2 focus:outline-offset-2 focus:outline-brand-cobalt-blue focus:bg-brand-cobalt-blue active:outline-2 active:outline-offset-2 active:outline-brand-cobalt-blue active:bg-brand-cobalt-blue */}
 
         <Link
-          href="#"
+          href="/about"
           className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
         >
-          See Our Story
+          Get to Know Us
           <MoveRightIcon size="1.5em"></MoveRightIcon>
         </Link>
 
