@@ -3,25 +3,26 @@ title: Database ER Diagram
 ---
 erDiagram
     User {
-        string student_id PK
-        string first_name "NOT NULL"
-        string last_name "NOT NULL"
-        string preferred_name
-        string preferred_email
-        string school_email "NOT NULL"
+        int id PK
+        string full_name "NOT NULL"
+        string preferred_name "NOT NULL"
+        string family_name 
+        string preferred_email UK "NOT NULL"
+        string school_email UK
         string phone
+        string pronouns
         string major
         string discord_username UK
         date expected_graduation
     }
     Team {
-        int team_id PK
+        int id PK
         string team_name "NOT NULL"
         string description
     }
     Ambassador {
-        string student_id FK
-        int team_id FK
+        int student FK
+        int team FK
         string role "NOT NULL"
     }
     User |o..|| Ambassador : is
