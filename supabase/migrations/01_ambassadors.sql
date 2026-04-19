@@ -12,3 +12,6 @@ CREATE TABLE public.ambassadors (
   headshot_url varchar,
   PRIMARY KEY (student, team)
 );
+
+ALTER TABLE public.teams ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.ambassadors ENABLE ROW LEVEL SECURITY;

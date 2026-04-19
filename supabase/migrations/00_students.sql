@@ -12,3 +12,5 @@ CREATE TABLE public.students (
   expected_graduation date,
   is_member boolean DEFAULT FALSE
 );
+
+ALTER TABLE public.students ENABLE ROW LEVEL SECURITY;
