@@ -2,7 +2,7 @@
 title: Database ER Diagram
 ---
 erDiagram
-    User {
+    Student {
         int id PK
         string full_name "NOT NULL"
         string preferred_name "NOT NULL"
@@ -24,6 +24,8 @@ erDiagram
         int student FK
         int team FK
         string role "NOT NULL"
+        linkedin_url varchar,
+        headshot_url varchar
     }
     User |o..|| Ambassador : is
     Ambassador }o..|| Team : "works on"
