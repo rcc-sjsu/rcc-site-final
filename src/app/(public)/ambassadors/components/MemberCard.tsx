@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface MemberCardProps {
   full_name: string;
   role: string;
-  imageUrl?: string;
+  image_url?: string;
+  linkedIn_url?: string;
 }
 
 function getInitials(name: string) {
@@ -16,7 +18,7 @@ function getInitials(name: string) {
     .slice(0, 2);
 }
 
-export default function MemberCard({ full_name, role, imageUrl }: MemberCardProps) {
+export default function MemberCard({ full_name, role, image_url: image_url, linkedIn_url }: MemberCardProps) {
   return (
     <Card className="overflow-hidden border-zinc-200 shadow-sm flex flex-col">
       <CardContent className="p-6 flex flex-col items-center text-center gap-4">
@@ -24,7 +26,7 @@ export default function MemberCard({ full_name, role, imageUrl }: MemberCardProp
         {/* Shadcn Avatar acting as the main profile picture */}
         <Avatar className="w-32 h-32 border border-zinc-100 shadow-sm">
           <AvatarImage
-            src={imageUrl}
+            src={image_url}
             alt={`Headshot of ${full_name}`}
             className="object-cover"
           />
@@ -40,6 +42,6 @@ export default function MemberCard({ full_name, role, imageUrl }: MemberCardProp
         </div>
 
       </CardContent>
-    </Card>
+    </Card >
   );
 }
