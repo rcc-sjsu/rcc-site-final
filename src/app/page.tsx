@@ -8,7 +8,7 @@ import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import MembershipPage from "../app/(public)/membership/components/MembershipPage"
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
 import { SiLinkedin, SiInstagram, SiDiscord } from 'react-icons/si';
@@ -20,6 +20,7 @@ import { CiMail } from 'react-icons/ci';
 export default function Home() {
   return (
     <div style={{ overflow: 'clip' }}>
+    
       {/* About Section */}
       <section className={aboutStyles.container}>
         {/* Image and gradient container */}
@@ -41,14 +42,23 @@ export default function Home() {
          </Button> */}
 
         {/* option 1 for hover, focus, and active: hover:bg-brand-dark-violet focus:outline-2 focus:outline-offset-2 focus:outline-brand-cobalt-blue focus:bg-brand-cobalt-blue active:outline-2 active:outline-offset-2 active:outline-brand-cobalt-blue active:bg-brand-cobalt-blue */}
-
-        <Link
+            <section className='flex gap-3'>
+            <Link
           href="/about"
           className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
         >
           Get to Know Us
           <MoveRightIcon size="1.5em"></MoveRightIcon>
         </Link>
+                <Link
+          href="/membership"
+          className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+        >
+          Become a Member!
+          
+        </Link>
+            </section>
+        
 
         {/* Data Analytics */}
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">

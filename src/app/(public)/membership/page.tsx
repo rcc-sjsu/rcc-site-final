@@ -1,8 +1,10 @@
 import React from 'react';
-import MembershipForm from './components/MembershipForm';
+// membership/page.tsx
+import MembershipContent from './components/MembershipPage';
 
-export default async function MembershipPage() {
-  return <>
-    <MembershipForm />
-  </>
+export default function MembershipPage() {
+  return(<>
+  <MembershipContent />
+  </>)
+   ;
 }
