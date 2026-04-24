@@ -5,8 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldError, FieldSeparator } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
+import { Button } from '@/components/ui/button';
 
 const formSchema = z.object({
   fullName: z.string(),
@@ -21,7 +22,6 @@ const formSchema = z.object({
 });
 
 type Schema = z.infer<typeof formSchema>
-
 
 type GraduationDate = {
   value: Date
@@ -289,6 +289,13 @@ export default function MembershipForm() {
           </FieldGroup>
         </form>
       </CardContent>
+      <CardFooter>
+        <Field>
+          <Button type="submit" form="student-info-form">
+            Submit
+          </Button>
+        </Field>
+      </CardFooter>
     </Card >
   )
 }
