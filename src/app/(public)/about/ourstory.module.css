@@ -5,11 +5,11 @@
     width: fit-content;
     gap: 4.5rem;
     font-size: 1.62rem;
-    margin: 5rem auto 0 auto;
+    margin: 5rem auto 6rem auto;
     align-items: center;
     /* flex-wrap: wrap; */
     max-width: 90%;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
   
     /* display: flex;
     flex-direction: row-reverse;
@@ -22,10 +22,10 @@
   
   .gradient {
     position: absolute;
-    margin-top: 7rem;
-    /* margin-left: -25rem; */
-    width: 15rem;
-    height: 15rem;
+    margin-top: 2rem;
+    margin-left: -2rem;
+    width: 23rem;
+  height: 23rem;
   }
   
   .allText {
@@ -61,6 +61,8 @@
     
     .gradient {
       margin-top: 0rem;
+      width: 15rem;
+      height: 15rem;
     }
   
     .allText {
@@ -83,13 +85,10 @@
     .container {
       flex-direction: column;
       padding-top: 0rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: 1rem;
       text-align: center;
       justify-content: center;
-    }
-  
-    .gradient {
-      margin-top: -15rem;
+      gap: 1.75rem;
     }
   
     .allText {
@@ -97,7 +96,20 @@
       flex-direction: row;
       gap: 2rem;
     }
+
+    .collageImage {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
   
+  }
+
+  @media (width <= 768px) {
+    .container {
+      padding-bottom: 2.5rem;
+      gap: 2rem;
+    }
   }
   
   @media (width <= 640px) {
@@ -106,8 +118,7 @@
       justify-content: center;
       width: 90vw;
       margin: auto;
-      gap: 0rem;
-      padding-bottom: 1.25rem;
+      gap: 1.75rem;
       text-align: center;
   
       > div {

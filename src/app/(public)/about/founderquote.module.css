@@ -4,13 +4,12 @@
     width: fit-content;
     gap: 3.75rem;
     font-size: 1.62rem;
-    margin: 3rem auto 6rem auto;
+    margin: 5rem auto 6rem auto;
     align-items: center;
     flex-wrap: wrap;
-    max-width: 60rem;
-    gap: 1.5rem;
+    max-width: 50rem;
+    gap: 3rem;
     text-align: center;
-    padding-top: 2rem;
     padding-bottom: 2rem;
   }
   
@@ -21,14 +20,23 @@
     width: 15rem;
     height: 15rem;
   }
+  
+  .founder-quote{
+    font-size: 3rem;
+  }
+
+  .juliaImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
 
   @media (width <= 1280px) {
   
     .container {
       flex-direction: column;
       gap: 2rem;
-      max-width: unset;
-      width: 80%;
+      width: 70%;
       text-align: center;
       justify-content: center;
       align-content: center;
@@ -55,11 +63,22 @@
       margin-top: -15rem;
     }
 
+    .description {
+      font-size: 1rem;
+    }
   }
 
   @media (width <= 768px) {
     .container {
+      width: 80%;
+      padding-top: 2.5rem;
       padding-bottom: 2.5rem;
+    }
+
+    .juliaImage {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
     }
   }
   
@@ -67,11 +86,9 @@
   
     .container {
       justify-content: center;
-      width: 90vw;
       margin: auto;
       gap: 1.5rem;
       margin-bottom: 2rem;
-      padding-bottom: 3rem;
   
       > div {
         grid-column: 1/2;
@@ -80,7 +97,13 @@
     }
   
     .description {
-      font-size: 1rem;
+      font-size: 0.75rem;
+    }
+
+    .juliaImage {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
     }
   
   }

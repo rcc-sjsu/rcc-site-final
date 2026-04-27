@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
-import styles from '../whatisrcc.module.css';
+import styles from '../ourstory.module.css';
 
 export default function OurStory() {
   return (
@@ -26,7 +26,7 @@ export default function OurStory() {
           <Link
             href="https://www.mozillafoundation.org/en/blog/responsible-computing-challenge-holds-trustworthy-ai-and-career-development-events-with-student-groups-at-san-jose-state-university/"
             target="_blank"
-            className="text-[1.25rem] xl:text-[1.62rem] lg:text- underline underline-offset-5 decoration-brand-indigo hover:text-brand-dark-violet hover:decoration-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-lavender focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold focus:decoration-brand-dark-purple active:outline-offset-0 active:outline-brand-lavender active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold active:decoration-brand-dark-purple"
+            className="text-[1rem] sm:text-[1.25rem] xl:text-[24px] underline underline-offset-5 decoration-brand-indigo hover:text-brand-dark-violet hover:decoration-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-lavender focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold focus:decoration-brand-dark-purple active:outline-offset-0 active:outline-brand-lavender active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold active:decoration-brand-dark-purple"
           >
             Mozilla’s Responsible Computing Challenge
           </Link>
