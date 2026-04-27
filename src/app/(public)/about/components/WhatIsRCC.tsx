@@ -24,16 +24,16 @@ export default function WhatIsRCC() {
         <div className="flex flex-col md:flex-row gap-7 md:gap-4 w-[80%] lg:w-auto">
           <Link
             href="#get-involved"
-            className="flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 lg:px-15 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+            className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
           >
             Get Involved
+            <MoveRightIcon size="1.5em"></MoveRightIcon>
           </Link>
           <Link
             href="/events"
-            className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+            className="flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 lg:px-15 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
           >
             See Our Work
-            <MoveRightIcon size="1.5em"></MoveRightIcon>
           </Link>
         </div>
       </div>
