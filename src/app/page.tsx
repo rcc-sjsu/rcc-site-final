@@ -28,8 +28,7 @@ export default function Home() {
 
         <p className={aboutStyles.description}>
           The Responsible Computing Club (RCC) at SJSU empowers students to shape the future of tech. We unite students
-          to explore the ethics of tech through hands-on, cross-disciplinary projects. Together, we're shaping a more
-          responsible and inclusive future.
+          to explore the ethics of tech through hands-on, cross-disciplinary projects.
         </p>
 
         {/* <Button
