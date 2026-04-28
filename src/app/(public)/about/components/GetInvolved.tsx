@@ -25,7 +25,7 @@ export default function GetInvolved() {
               Are you a student interested in joining RCC? Become a member today for free!
             </p>
             <Link
-              href="#"
+              href="/membership"
               className="flex items-center justify-center bg-brand-indigo px-6 md:px-5 py-2 md:py-3 w-full sm:w-[90%] md:w-[40%] lg:w-[80%] text-lg lg:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
             >
               Become a Member
