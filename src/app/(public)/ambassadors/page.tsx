@@ -1,28 +1,24 @@
-import React from 'react';
 import TeamSection from './components/TeamSection';
-import { createClient } from '../../../../utils/supabase/server';
+import { createClient } from '@/lib/supabase/server';
+import { QueryData } from '@supabase/supabase-js';
 
-type AmbassadorRow = {
-  team_id: number;
-  team_name: string;
-  team_description: string | null;
-  role: string | null;
-  headshot_url: string | null;
-  full_name: string | null;
-};
 
 export default async function AmbassadorsPage() {
   const supabase = await createClient();
 
-  const { data: rows, error } = await supabase
+  const ambassadorsQuery = supabase
     .from('public_ambassadors_view')
-    .select('*')
-    .returns<AmbassadorRow[]>();
+    .select('*');
+  type Ambassadors = QueryData<typeof ambassadorsQuery>
+
+  const { data, error } = await ambassadorsQuery;
 
   if (error) {
     console.error("Error fetching team members:", error);
     return <div>Failed to load ambassadors.</div>;
   }
+
+  const rows: Ambassadors = data;
 
   // 2. Group the flat rows by Team Name
   const teamsMap = new Map<string, any>();
