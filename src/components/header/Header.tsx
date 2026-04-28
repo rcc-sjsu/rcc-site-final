@@ -50,7 +50,7 @@ export default function Header() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="/members" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+              <Link href="/membership" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
                 Membership
               </Link>
             </NavigationMenuItem>

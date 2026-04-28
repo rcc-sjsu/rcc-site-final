@@ -8,14 +8,10 @@ import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
-import MembershipPage from '../app/(public)/membership/components/MembershipPage';
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
 import { SiLinkedin, SiInstagram, SiDiscord } from 'react-icons/si';
 import { CiMail } from 'react-icons/ci';
-
-// import { ButtonRender } from '@/components/LinkStyledAsAButton/buttonRender';
-// import { buttonVariants } from '@/components/ui/button';
 
 export default function Home() {
   return (
@@ -71,8 +67,6 @@ export default function Home() {
             <p className="text-xl md:text-2xl">Non-Tech Majors</p>
           </li>
         </ul>
-
-        {/* <ButtonRender>hiii</ButtonRender> */}
       </section>
 
       {/* Industry Partners Section */}

@@ -1,10 +1,8 @@
 import React from 'react';
-// membership/page.tsx
-import MembershipContent from './components/MembershipPage';
+import MembershipForm from './components/MembershipForm';
 
 export default function MembershipPage() {
-  return(<>
-  <MembershipContent />
-  </>)
-   ;
+  return (
+    <MembershipForm />
+  );
 }
