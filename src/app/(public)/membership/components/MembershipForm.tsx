@@ -59,7 +59,7 @@ export default function MembershipForm() {
     console.log(data)
   }
   return (
-    <Card className="mx-auto w-full sm:max-w-4xl">
+    <Card className="mx-auto min-w-95 sm:max-w-6xl">
       <CardHeader>
         <CardTitle className="px-4 py-2">
           New Members Registration
