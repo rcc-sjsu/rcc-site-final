@@ -1,9 +1,8 @@
 "use client";
-import React from 'react';
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldError, FieldSeparator } from '@/components/ui/field';
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldError, FieldSeparator, FieldSet, FieldLegend } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
@@ -14,11 +13,11 @@ const formSchema = z.object({
   preferredName: z.string(),
   familyName: z.string(),
   schoolEmail: z.email(),
-  preferredEmail: z.email(),
-  phone: z.string(),
+  preferredEmail: z.email().optional(),
+  phone: z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/).optional(),
   pronouns: z.string().optional(),
   major: z.string(),
-  expectedGraduation: z.date(),
+  expectedGraduation: z.string(),
 });
 
 type Schema = z.infer<typeof formSchema>
@@ -60,235 +59,316 @@ export default function MembershipForm() {
     console.log(data)
   }
   return (
-    <Card className="w-full sm:max-w-md">
+    <Card className="mx-auto w-full sm:max-w-4xl">
       <CardHeader>
-        <CardTitle>
+        <CardTitle className="px-4 py-2">
           New Members Registration
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form id="student-info-form" onSubmit={form.handleSubmit(onSubmit)}>
-          <FieldGroup>
-            <Controller
-              name="fullName"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>Full Name</FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Jane Doe"
-                  />
-                  <FieldDescription>
-                    Please provide your full name
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+          <FieldSet className="p-4">
+            <FieldLegend>Biographical Information</FieldLegend>
+            <FieldGroup className="sm:grid grid-cols-2 gap-4">
+              <Controller
+                name="fullName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>Full Name</FieldLabel>
+                    </div>
 
-            <Controller
-              name="preferredName"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Preferred Name
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Jane"
-                  />
-                  <FieldDescription>
-                    How would you like to be called?
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Please provide your full name
+                      </FieldDescription>
+                    </div>
 
-            <Controller
-              name="familyName"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Family Name
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Doe"
-                  />
-                  <FieldDescription>
-                    What is your family name?
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Jane Doe"
+                    />
 
-            <Controller
-              name="pronouns"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Pronouns
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="she/her"
-                  />
-                  <FieldDescription>
-                    What are your pronouns?
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
 
-            <FieldSeparator />
+              <Controller
+                name="preferredName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Preferred Name
+                      </FieldLabel>
+                    </div>
 
-            <Controller
-              name="schoolEmail"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    SJSU Email
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="jane.doe@sjsu.edu"
-                  />
-                  <FieldDescription>
-                    Please provide your school email.
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    <div className="flex-1">
+                      <FieldDescription>
+                        How would you like to be called?
+                      </FieldDescription>
+                    </div>
 
-            <Controller
-              name="preferredEmail"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Preferred Email
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="jane.doe@gmail.com"
-                  />
-                  <FieldDescription>
-                    Please provide your preferred email for newsletters, events, and opportunities.
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Jane"
+                    />
 
-            <Controller
-              name="phone"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Mobile Phone
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="(408) 123-4567"
-                  />
-                  <FieldDescription>
-                    If you'd like to receive communications via text, please provide your mobile phone number.
-                  </FieldDescription>
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
 
-            <FieldSeparator />
+              <Controller
+                name="familyName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Family Name
+                      </FieldLabel>
+                    </div>
 
-            <Controller
-              name="major"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Major
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Graphics Design"
-                  />
-                  <FieldDescription>
-                    What is your major?
-                  </FieldDescription>
-                </Field>
-              )}
-            />
+                    <div className="flex-1">
+                      <FieldDescription>
+                        What is your family name?
+                      </FieldDescription>
+                    </div>
 
-            <Controller
-              name="expectedGraduation"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Expected Graduation
-                  </FieldLabel>
-                  <Combobox
-                    items={graduationDates}
-                  >
-                    <ComboboxInput placeholder={graduationDates[0].label} />
-                    <ComboboxContent>
-                      <ComboboxEmpty>No valid dates found.</ComboboxEmpty>
-                      <ComboboxList>
-                        {(graduationDate) => (
-                          <ComboboxItem key={graduationDate.value} value={graduationDate}>
-                            {graduationDate.label}
-                          </ComboboxItem>
-                        )}
-                      </ComboboxList>
-                    </ComboboxContent>
-                  </Combobox>
-                </Field>
-              )}
-            />
-          </FieldGroup>
-        </form>
-      </CardContent>
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Doe"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="pronouns"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Pronouns
+                      </FieldLabel>
+                    </div>
+
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        What are your pronouns?
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="she/her"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </FieldSet >
+
+          <FieldSeparator className="mb-2" />
+
+          <FieldSet className="p-4">
+            <FieldLegend>Contact Information</FieldLegend>
+            <FieldGroup className="sm:grid grid-cols-2">
+              <Controller
+                name="schoolEmail"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        SJSU Email
+                      </FieldLabel>
+                    </div>
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Please provide your school email.
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="jane.doe@sjsu.edu"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="phone"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Mobile Phone
+                      </FieldLabel>
+                    </div>
+
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        If you'd like to receive communications via text, please provide your mobile phone number.
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="(408) 123-4567"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="preferredEmail"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="col-span-2 flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Preferred Email
+                      </FieldLabel>
+                    </div>
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Please provide your preferred email for newsletters, events, and opportunities.
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="jane.doe@gmail.com"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </FieldSet>
+
+          <FieldSeparator className="mb-2" />
+
+          <FieldSet className="p-4">
+            <FieldLegend>Academic Information</FieldLegend>
+            <FieldGroup className="grid grid-cols-2 content-center">
+              <Controller
+                name="major"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Major
+                      </FieldLabel>
+                    </div>
+
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        What is your major?
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Graphics Design"
+                    />
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="expectedGraduation"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Expected Graduation
+                      </FieldLabel>
+                    </div>
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Which semester do you anticipate graduating?
+                      </FieldDescription>
+                    </div>
+
+                    <Combobox
+                      items={graduationDates}
+                    >
+                      <ComboboxInput placeholder={graduationDates[0].label} />
+                      <ComboboxContent>
+                        <ComboboxEmpty>No valid dates found.</ComboboxEmpty>
+                        <ComboboxList>
+                          {(graduationDate) => (
+                            <ComboboxItem key={graduationDate.value} value={graduationDate}>
+                              {graduationDate.label}
+                            </ComboboxItem>
+                          )}
+                        </ComboboxList>
+                      </ComboboxContent>
+                    </Combobox>
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </FieldSet>
+        </form >
+      </CardContent >
       <CardFooter>
         <Field>
           <Button type="submit" form="student-info-form">
