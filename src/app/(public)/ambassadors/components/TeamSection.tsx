@@ -19,7 +19,7 @@ export default function TeamSection({ title, description, members }: TeamSection
             full_name={member.full_name}
             key={member.full_name}
             role={member.role}
-            imageUrl={member.headshot_url}
+            image_url={member.headshot_url}
           />
         ))}
       </div>
