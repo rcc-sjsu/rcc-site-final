@@ -10,7 +10,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
-import { SiLinkedin, SiInstagram, SiDiscord } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
+import { SiInstagram, SiDiscord } from 'react-icons/si';
 import { CiMail } from 'react-icons/ci';
 
 export default function Home() {
@@ -181,10 +182,10 @@ export default function Home() {
               className="flex justify-items-center h-auto lg:h-full xl:h-auto py-3 px-8 md:py-4 bg-brand-lavender text-brand-indigo rounded-lg border-2 border-brand-indigo hover:bg-brand-indigo hover:**:p-0 hover:text-white focus:outline-3 focus:outline-offset-4  focus:outline-brand-light-steel-blue focus:bg-brand-indigo focus:**:p-0 focus:text-white focus:font-semibold active:outline-offset-4 active:bg-brand-indigo active:**:p-0 active:text-white active:font-semibold"
             >
               <div className="flex gap-2 md:gap-5 lg:gap-4 place-items-center justify-start lg:justify-center">
-                <SiLinkedin
+                <FaLinkedin
                   role="presentation"
                   className="text-4xl md:text-5xl bg-brand-indigo text-white p-2 md:p-2.5 rounded-md md:rounded-xl"
-                ></SiLinkedin>
+                ></FaLinkedin>
                 <div className="text-left">
                   {' '}
                   <p className="text-xs md:text-sm hidden md:block">See Our Work</p>

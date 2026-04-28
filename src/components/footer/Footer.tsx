@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { SiLinkedin, SiInstagram, SiDiscord } from 'react-icons/si';
+import { SiInstagram, SiDiscord } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -56,7 +57,7 @@ export default function Footer() {
                 aria-label="RCC on LinkedIn"
                 title="LinkedIn"
               >
-                <SiLinkedin className={styles.socialIcon} aria-hidden="true" />
+                <FaLinkedin className={styles.socialIcon} aria-hidden="true" />
                 <span>linkedin</span>
               </Link>
             </li>
