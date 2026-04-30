@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
 import { Button } from '@/components/ui/button';
-
+import { Accordion } from "@base-ui/react";
 const formSchema = z.object({
   fullName: z.string(),
   preferredName: z.string(),
@@ -58,32 +58,63 @@ export default function MembershipForm() {
   function onSubmit(data: Schema) {
     console.log(data)
   }
-  return (
-    <Card className="mx-auto min-w-95 sm:max-w-6xl">
+return (
+  <> 
+    <Accordion.Root
+  className="flex flex-col items-center gap-4 w-full max-w-md mx-auto"
+  type="single"
+  collapsible
+>
+  <Accordion.Item className="w-full border rounded-lg">
+    <Accordion.Header>
+      <Accordion.Trigger className="w-full text-center py-3 font-semibold">
+        Web Dev Ambassador
+      </Accordion.Trigger>
+    </Accordion.Header>
+
+    <Accordion.Panel className="overflow-hidden transition-all duration-300 data-[state=closed]:max-h-0 data-[state=open]:max-h-40">
+      <div className="text-center pb-3">
+        Does Web Dev
+      </div>
+    </Accordion.Panel>
+  </Accordion.Item>
+
+  <Accordion.Item className="w-full border rounded-lg">
+    <Accordion.Header>
+      <Accordion.Trigger className="w-full text-center py-3 font-semibold">
+        Graphic Design
+      </Accordion.Trigger>
+    </Accordion.Header>
+
+    <Accordion.Panel className="overflow-hidden transition-all duration-300 data-[state=closed]:max-h-0 data-[state=open]:max-h-40">
+      <div className="text-center pb-3">
+        Something Graphic Design Description
+      </div>
+    </Accordion.Panel>
+  </Accordion.Item>
+</Accordion.Root>
+    <Card className="mx-auto w-full max-w-5xl">
       <CardHeader>
         <CardTitle className="px-4 py-2">
           New Members Registration
         </CardTitle>
       </CardHeader>
+
       <CardContent>
         <form id="student-info-form" onSubmit={form.handleSubmit(onSubmit)}>
           <FieldSet className="p-4">
             <FieldLegend>Biographical Information</FieldLegend>
-            <FieldGroup className="sm:grid grid-cols-2 gap-4">
+
+            <FieldGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                 name="fullName"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>Full Name</FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        Please provide your full name
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Full Name</FieldLabel>
+                    <FieldDescription>
+                      Please provide your full name
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -103,18 +134,13 @@ export default function MembershipForm() {
                 name="preferredName"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Preferred Name
-                      </FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        How would you like to be called?
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      Preferred Name
+                    </FieldLabel>
+                    <FieldDescription>
+                      How would you like to be called?
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -134,18 +160,11 @@ export default function MembershipForm() {
                 name="familyName"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Family Name
-                      </FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        What is your family name?
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Family Name</FieldLabel>
+                    <FieldDescription>
+                      What is your family name?
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -165,19 +184,11 @@ export default function MembershipForm() {
                 name="pronouns"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Pronouns
-                      </FieldLabel>
-                    </div>
-
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        What are your pronouns?
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Pronouns</FieldLabel>
+                    <FieldDescription>
+                      What are your pronouns?
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -193,29 +204,23 @@ export default function MembershipForm() {
                 )}
               />
             </FieldGroup>
-          </FieldSet >
+          </FieldSet>
 
           <FieldSeparator className="mb-2" />
 
           <FieldSet className="p-4">
             <FieldLegend>Contact Information</FieldLegend>
-            <FieldGroup className="sm:grid grid-cols-2">
+
+            <FieldGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                 name="schoolEmail"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        SJSU Email
-                      </FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        Please provide your school email.
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>SJSU Email</FieldLabel>
+                    <FieldDescription>
+                      Please provide your school email.
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -235,19 +240,12 @@ export default function MembershipForm() {
                 name="phone"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Mobile Phone
-                      </FieldLabel>
-                    </div>
-
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        If you'd like to receive communications via text, please provide your mobile phone number.
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Mobile Phone</FieldLabel>
+                    <FieldDescription>
+                      If you'd like to receive communications via text, please
+                      provide your mobile phone number.
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -267,18 +265,17 @@ export default function MembershipForm() {
                 name="preferredEmail"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="col-span-2 flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Preferred Email
-                      </FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        Please provide your preferred email for newsletters, events, and opportunities.
-                      </FieldDescription>
-                    </div>
+                  <Field
+                    data-invalid={fieldState.invalid}
+                    className="sm:col-span-2"
+                  >
+                    <FieldLabel htmlFor={field.name}>
+                      Preferred Email
+                    </FieldLabel>
+                    <FieldDescription>
+                      Please provide your preferred email for newsletters,
+                      events, and opportunities.
+                    </FieldDescription>
 
                     <Input
                       {...field}
@@ -300,32 +297,28 @@ export default function MembershipForm() {
 
           <FieldSet className="p-4">
             <FieldLegend>Academic Information</FieldLegend>
-            <FieldGroup className="grid grid-cols-2 content-center">
+
+            <FieldGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                 name="major"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Major
-                      </FieldLabel>
-                    </div>
-
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        What is your major?
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>Major</FieldLabel>
+                    <FieldDescription>
+                      What is your major?
+                    </FieldDescription>
 
                     <Input
                       {...field}
                       id={field.name}
                       aria-invalid={fieldState.invalid}
-                      placeholder="Graphics Design"
+                      placeholder="Graphic Design"
                     />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
@@ -334,41 +327,50 @@ export default function MembershipForm() {
                 name="expectedGraduation"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-                    <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Expected Graduation
-                      </FieldLabel>
-                    </div>
-
-                    <div className="flex-1">
-                      <FieldDescription>
-                        Which semester do you anticipate graduating?
-                      </FieldDescription>
-                    </div>
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      Expected Graduation
+                    </FieldLabel>
+                    <FieldDescription>
+                      Which semester do you anticipate graduating?
+                    </FieldDescription>
 
                     <Combobox
                       items={graduationDates}
+                      value={field.value}
+                      onValueChange={field.onChange}
                     >
                       <ComboboxInput placeholder={graduationDates[0].label} />
+
                       <ComboboxContent>
-                        <ComboboxEmpty>No valid dates found.</ComboboxEmpty>
+                        <ComboboxEmpty>
+                          No valid dates found.
+                        </ComboboxEmpty>
+
                         <ComboboxList>
                           {(graduationDate) => (
-                            <ComboboxItem key={graduationDate.value} value={graduationDate}>
+                            <ComboboxItem
+                              key={graduationDate.value}
+                              value={graduationDate.value}
+                            >
                               {graduationDate.label}
                             </ComboboxItem>
                           )}
                         </ComboboxList>
                       </ComboboxContent>
                     </Combobox>
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
             </FieldGroup>
           </FieldSet>
-        </form >
-      </CardContent >
+        </form>
+      </CardContent>
+
       <CardFooter>
         <Field>
           <Button type="submit" form="student-info-form">
@@ -376,6 +378,7 @@ export default function MembershipForm() {
           </Button>
         </Field>
       </CardFooter>
-    </Card >
-  )
+    </Card>
+  </>
+);
 }
