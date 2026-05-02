@@ -34,7 +34,7 @@ export default function EventImages() {
       <div className="text-center lg:text-left lg:w-[40%]">
         <p className={styles.description}>
           RCC's committees regularly hold events to promote{' '}
-          <strong className={styles.fontBold}>community involvement </strong>
+          <strong className={styles.boldFont}>community involvement</strong>
           in ethical technology and cross-disciplinary initiative!
         </p>
       </div>
