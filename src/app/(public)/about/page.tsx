@@ -3,6 +3,7 @@ import WhatIsRCC from './components/WhatIsRCC';
 import OurMission from './components/OurMission';
 import OurStory from './components/OurStory';
 import FounderQuote from './components/FounderQuote';
+import OurWork from './components/OurWork';
 import GetInvolved from './components/GetInvolved';
 
 export default function About() {
@@ -19,6 +20,9 @@ export default function About() {
 
       {/* Founder Quote Section */}
       <FounderQuote />
+
+      {/* Our Work Section */}
+      <OurWork />
 
       {/* Get Involved Section */}
       <GetInvolved />
