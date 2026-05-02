@@ -9,9 +9,7 @@ export default function GetInvolved() {
     <section id="get-involved" className={styles.container}>
       <Heading headingTag="h2"> Get Involved</Heading>
 
-      <p className={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      </p>
+      <p className={styles.description}>Want to join RCC? See which option below fits you the best.</p>
 
       <ul className="flex flex-col lg:grid lg:grid-cols-2 auto-cols-max gap-15 md:gap-20 xl:gap-30 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
         {/* Students - Become a Member */}
