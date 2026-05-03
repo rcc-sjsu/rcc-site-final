@@ -349,13 +349,14 @@ export default function MembershipForm() {
 
                     <Combobox
                       items={graduationDates}
+                      onValueChange={field.onChange}
                     >
                       <ComboboxInput placeholder={graduationDates[0].label} />
                       <ComboboxContent>
                         <ComboboxEmpty>No valid dates found.</ComboboxEmpty>
                         <ComboboxList>
                           {(graduationDate) => (
-                            <ComboboxItem key={graduationDate.value} value={graduationDate}>
+                            <ComboboxItem key={graduationDate.label} value={graduationDate.label}>
                               {graduationDate.label}
                             </ComboboxItem>
                           )}
