@@ -2,12 +2,16 @@
 import aboutStyles from './(public)/home/about.module.css';
 import industryStyles from './(public)/home/industrypartners.module.css';
 import socialMediaStyles from './(public)/home/socialmedia.module.css';
+import recentEventsStyles from './(public)/home/recentevents.module.css';
+import recentProjectStyles from './(public)/home/recentprojects.module.css';
 
 // component imports
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
 import { FaLinkedin } from 'react-icons/fa';
@@ -119,10 +123,146 @@ export default function Home() {
         </ul>
       </section>
 
+      {/* Recent Events section */}
+      <section className={recentEventsStyles.container}>
+        <Heading headingTag="h2"> Recent Events </Heading>
+        <BackgroundGradient className={recentEventsStyles.gradient} color="purple" />
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
+          <Card className="h-auto xl:h-min justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-dark-violet)] md:shadow-[-12px_12px_0_var(--color-brand-dark-violet)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
+            </div>
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">
+                  End of the Year Banquet
+                </h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Join us for a night of food, awards, activities, and great company as we celebrate everything we’ve
+                  accomplished this year and wrap up the semester together.
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="h-auto justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-indigo)] md:shadow-[-12px_12px_0_var(--color-brand-indigo)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
+            </div>
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">
+                  Game Development Workshop
+                </h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Learn the fundamentals of game development in an interactive workshop with GoDot Engine. Enjoy some
+                  free food and a laid-back activity to help unwind before finals!
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="h-auto justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-dark-violet)] md:shadow-[-12px_12px_0_var(--color-brand-dark-violet)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
+            </div>
+
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">Amazon Youth Tech</h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Join us for Amazon Youth Tech, an interactive workshop where you’ll dive into AI/ML, Cloud
+                  Fundamentals, & Agentic AI on AWS — plus get the chance to connect and network with industry
+                  professionals!
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+
+        <Link
+          href="/events"
+          className="flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 md:py-3 w-[92%] sm:w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+        >
+          See More Events
+        </Link>
+      </section>
+
+      {/* Recent Projects Section */}
+      <section className={recentProjectStyles.container}>
+        <Heading headingTag="h2"> Recent Projects </Heading>
+        <BackgroundGradient className={recentProjectStyles.gradient} color="purple" />
+
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
+          <Card className="h-auto justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-indigo)] md:shadow-[-12px_12px_0_var(--color-brand-indigo)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/home_images/EPA_ESA_logo.png" alt="" width={150} height={150} />
+            </div>
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">EPA ESA Website</h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Developing an application that simplifies pesticide application data for pesticide applicators and
+                  farmers.
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="h-auto justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-dark-violet)] md:shadow-[-12px_12px_0_var(--color-brand-dark-violet)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/home_images/SPARTANS_OCLS.png" alt="" width={150} height={150} />
+            </div>
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">SPARTANS OCLS</h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Building a structured virtual community, improving user experience, creating newsletters, and
+                  supporting engagement for neurodiverse students.
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card className="h-auto justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0 shadow-[-10px_10px_0_var(--color-brand-indigo)] md:shadow-[-12px_12px_0_var(--color-brand-indigo)]">
+            <div className="px-3 pt-3 pb-2 flex justify-center">
+              <Image src="/home_images/the_creative_destination_logo.png" alt="" width={120} height={150} />
+            </div>
+            <CardHeader className="pb-3">
+              <CardTitle className="pb-1">
+                <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">Creative Destination</h3>
+              </CardTitle>
+              <CardDescription>
+                <p className="text-sm md:text-base xl:text-lg text-black">
+                  Enhancing website and social media presence to support donor engagement for literacy-focused
+                  laundromat community spaces.
+                </p>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+
+        <Link
+          href="/projects"
+          className="flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 md:py-3 w-[92%] sm:w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+        >
+          See More Projects
+        </Link>
+      </section>
+
       {/* Social Media Section */}
       <section className={socialMediaStyles.container}>
         <Heading headingTag="h2">Social Media</Heading>
-
         {/* list of links to social media pages */}
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 auto-cols-max gap-4 md:gap-7 2xl:gap-10 lg:w-full">
           {/* Instagram link */}
