@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 3.75rem;
+    font-size: 1.62rem;
+    margin: 4rem auto 0 auto;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+  
+  @media (width <= 1280px) {
+  
+    .container {
+      flex-direction: column;
+      gap: 2rem;
+      padding-top: 0rem;
+      margin-top: 2rem;
+      max-width: 90%;
+      width: 90%;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+    }
+  
+  }
+
+  @media (width <= 1024px) {
+    .container {
+      padding-top: 0rem;
+    }
+  }
+  
+  @media (width <= 640px) {
+  
+    .container {
+      /* display: grid; */
+      justify-content: center;
+      width: 90vw;
+      margin: auto;
+      gap: 1.5rem;
+      padding-top: 1.25rem;
+  
+      > div {
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
+    }
+  
+  }

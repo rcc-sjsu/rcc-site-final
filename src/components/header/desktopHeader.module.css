@@ -2,7 +2,8 @@
   font-family: var(--font-nunito-sans);
   z-index: 10;
   width: 100vw;
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: white;
 }
 

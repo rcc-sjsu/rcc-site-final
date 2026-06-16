@@ -1,192 +1,157 @@
 "use client"
 
-import React, { useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
-import mobileStyles from './mobileHeader.module.css'
-import desktopStyles from "./desktopHeader.module.css"
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { Menu, X } from 'lucide-react'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu'
+import { cn } from '@/lib/utils'
 
+const oldAmbassadorshipLinks = [
+  { href: '/ambassadors', label: 'Ambassadors' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/industry', label: 'Industry' },
+]
 
 export default function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileOldAmbassOpen, setMobileOldAmbassOpen] = useState(false)
 
-    // Mobile Click and Hover listeners
-    const [isHamburgerClicked, setIsHamburgerClicked] = useState(false)
-    const [isMobileHovered, setIsMobileHovered] = useState(false)
-    const [isMobileAmbassClicked, setIsMobileAmbassClicked] = useState(false)
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100">
 
-    // Desktop Click and Hover listeners
-    const [isDesktopHovered, setIsDesktopHovered] = useState(false)
-    const [isDesktopAmbassadorshipClicked, setIsDesktopAmbassadorshipClicked] = useState(false)
-    const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    
-  const clickRef = useRef<HTMLElement>(null)
+      {/* Desktop Nav */}
+      <div className="hidden sm:flex items-center justify-center h-[4.25rem]">
+        <NavigationMenu>
+          <NavigationMenuList className="gap-6">
 
-  useEffect(() => {
-  
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (clickRef.current && !clickRef.current.contains(event.target as Node)) {
-        setIsHamburgerClicked(false)
-        setIsMobileHovered(false)
-        setIsMobileAmbassClicked(false)
-        setIsDesktopHovered(false)
-        setIsDesktopAmbassadorshipClicked(false)
-      }
-    }
+            <NavigationMenuItem>
+              <Link href="/" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                Home
+              </Link>
+            </NavigationMenuItem>
 
-    document.addEventListener("mousedown", handleOutsideClick)
+            <NavigationMenuItem>
+              <Link href="/about" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                About Us
+              </Link>
+            </NavigationMenuItem>
 
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick)
-    }
+            <NavigationMenuItem>
+              <Link href="/events" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                Happening Now
+              </Link>
+            </NavigationMenuItem>
 
-  })
+            <NavigationMenuItem>
+              <Link href="/membership" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                Membership
+              </Link>
+            </NavigationMenuItem>
 
-    return (
-      <>      
-        <header ref={clickRef} className={desktopStyles.header}>
+            <NavigationMenuItem>
+              <Link href="/ambassadors" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                Ambassadors
+              </Link>
+            </NavigationMenuItem>
 
-          {/* Mobile Menu */}
-          <div className={mobileStyles.mobileContainer}>
+            <NavigationMenuItem>
+              <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "text-[1.1rem]")}>
+                Contact Us
+              </Link>
+            </NavigationMenuItem>
 
-            {/* Navbar Hamburger Button */}
-            <button type="button" onClick={() => !isHamburgerClicked ? setIsHamburgerClicked(true) : setIsHamburgerClicked(false)}>
-              <img src="/header/Hamburger_icon.svg"/>
+            {/* Old Ambassadorship dropdown — preserved for reference */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="text-[1.1rem] text-gray-400">
+                Old
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="flex flex-col w-44 p-1">
+                  {oldAmbassadorshipLinks.map(({ href, label }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        className="block px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+
+      {/* Mobile Nav */}
+      <div className="sm:hidden flex items-center h-14 px-4">
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="p-2 rounded-full shadow-sm bg-white border border-gray-200"
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+
+        {mobileOpen && (
+          <div className="absolute top-14 left-4 z-50 bg-white rounded-lg shadow-md min-w-44 py-1 border border-gray-100">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              Home
+            </Link>
+            <Link href="/#about" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              About Us
+            </Link>
+            <Link href="/events" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              Happening Now
+            </Link>
+            <Link href="/members" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              Membership
+            </Link>
+            <Link href="/ambassadors" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              Ambassadorship
+            </Link>
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
+              Contact Us
+            </Link>
+
+            {/* Old Ambassadorship dropdown */}
+            <button
+              onClick={() => setMobileOldAmbassOpen(!mobileOldAmbassOpen)}
+              className="w-full text-left px-4 py-2 text-sm text-gray-400 hover:bg-gray-50 flex items-center justify-between transition-colors"
+            >
+              Old
+              <span className={cn("transition-transform duration-200 text-xs", mobileOldAmbassOpen && "rotate-180")}>
+                ▾
+              </span>
             </button>
 
-            <div style={{display: isHamburgerClicked ? "flex" : "none"}}>
-
-              {/* About Us, Ambassadorship, Events Menu */}
-              <div 
-              className={mobileStyles.mobileMainMenu}
-              >
-                <Link href="/">Home</Link>
-
-                <div 
-                  onMouseEnter={()=> setIsMobileHovered(true)}
-                  onMouseLeave={()=> setIsMobileHovered(false)}
-                  onClick={() => {
-                    if (!isMobileAmbassClicked) {
-                      setIsMobileAmbassClicked(true)
-                    } 
-                    else {
-                      setIsMobileAmbassClicked(false)
-                      setIsMobileHovered(false)
-                    } 
-                  }}
-                  className={mobileStyles.mobileAmbassadorship}
-                  style={{backgroundColor: isMobileHovered || isMobileAmbassClicked ? "oklch(92.8% 0.006 264.531)" : ""}}
-                >
-                  <p>Ambassadorship</p>
-                  <div/>
-                </div>
-                
-                <Link href="/events">Events</Link>
+            {mobileOldAmbassOpen && (
+              <div className="border-t border-gray-100">
+                {oldAmbassadorshipLinks.map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-6 py-2 text-sm text-gray-500 hover:bg-gray-50 transition-colors"
+                  >
+                    {label}
+                  </Link>
+                ))}
               </div>
-
-              {/* Ambassadorship Submenu */}
-              {(isMobileAmbassClicked || isMobileHovered) && 
-                <div 
-                  className={mobileStyles.mobileSubMenu}
-                  onMouseEnter={()=> setIsMobileHovered(true)}
-                  onMouseLeave={()=> setIsMobileHovered(false)}
-                >
-                  <Link href="/ambassadors">Ambassadors</Link>
-                  <Link href="/projects">Projects</Link>
-                  <Link href="/industry">Industry</Link>
-                  {/* <Link href="/industry">journalism</Link> */}
-                </div>
-              }
-
-            </div>
+            )}
           </div>
-          
-          {/* Desktop Menu */}
-          <div className={desktopStyles.desktopContainer}>
+        )}
+      </div>
 
-            {/* About Us, Ambassadorship, Events Menu */}
-            <div className={desktopStyles.desktopMainMenu}>
-
-              <Link href="/">Home</Link>
-
-              <div className={desktopStyles.desktopAmbassadorship}
-                
-                onMouseEnter={()=> {
-                  if (hoverCloseTimer.current) clearTimeout(hoverCloseTimer.current);
-                  setIsDesktopHovered(true)
-                }}
-                onMouseLeave={()=> {
-                  // delay closing, so moving into submenu doesn't flicker-close
-                  hoverCloseTimer.current = setTimeout(() => {
-                    setIsDesktopHovered(false);
-                  }, 150);
-                }}
-              >
-
-                <p style={{textDecoration: isDesktopHovered ? "underline" : ""}}>Ambassadorship</p>
-                <div/>
-              
-              </div>
-              
-              <Link href="/events">Events</Link>
-
-            </div>
-
-            {/* Ambassadorship Submenu */}
-            {(isDesktopHovered) &&
-              <div onClick={() => {
-                setIsDesktopHovered(false) 
-              }}
-                onMouseEnter={() => {
-                  if (hoverCloseTimer.current) clearTimeout(hoverCloseTimer.current);
-                  setIsDesktopHovered(true)
-                }}
-                onMouseLeave={() => {
-                  hoverCloseTimer.current = setTimeout(() => {
-                    setIsDesktopHovered(false);
-                  }, 150);
-                }}
-                className={desktopStyles.desktopSubMenu}
-              >
-                
-                {/* Ambassadors tab */}
-                <Link href="/ambassadors" onClick={()=> setIsDesktopHovered(false)}>
-                  <div/>
-                  Ambassadors
-                </Link>
-                
-                {/* Projects tab */}
-                <Link href="/projects" onClick={()=> setIsDesktopHovered(false)}>
-                  <div/>                  
-                  Projects
-                </Link>
-
-                {/* Industry tab */}
-                <Link href="/industry" onClick={()=> setIsDesktopHovered(false)}>
-                  <div/>                  
-                  Industry
-                </Link>
-
-                {/* Journalism tab */}
-                {/* <Link href="/" 
-                  onMouseEnter={()=> setIsDesktopJournalismHovered(true)}
-                  onMouseLeave={()=> setIsDesktopJournalismHovered(false)}
-                >
-                  <div style={{visibility: isDesktopJournalismHovered ? "visible" : "hidden"}}/>                  
-                  journalism
-                </Link> */}
-                
-              </div>
-            } 
-            
-          </div>
-
-        </header>
-
-        {/* Background blur when Ambassadorship tab is open */}
-        {(isDesktopHovered) &&
-          <div className={desktopStyles.backgroundBlur}/>        
-        }
-
-      </>
-    );
-
+    </header>
+  )
 }
