@@ -7,17 +7,19 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
 import { Button } from '@/components/ui/button';
+import { createClient } from "@/lib/supabase/client";
 
 const formSchema = z.object({
-  fullName: z.string(),
-  preferredName: z.string(),
-  familyName: z.string(),
-  schoolEmail: z.email(),
-  preferredEmail: z.email().optional(),
+  // These must be snake_case to match Postgres column names.
+  full_name: z.string(),
+  preferred_name: z.string(),
+  family_name: z.string(),
+  school_email: z.email(),
+  preferred_email: z.email().optional(),
   phone: z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/).optional(),
   pronouns: z.string().optional(),
   major: z.string(),
-  expectedGraduation: z.string(),
+  expected_graduation: z.string(),
 });
 
 type Schema = z.infer<typeof formSchema>
@@ -50,13 +52,40 @@ const graduationDates: GraduationDate[] = function () {
   return items
 }();
 
+const supabase = createClient();
+
 export default function MembershipForm() {
   const form = useForm<Schema>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      // TODO: Change these to empty values once the DB integration works.
+      full_name: "Jane Doe",
+      preferred_name: "Jane",
+      family_name: "Doe",
+      school_email: "jane.doe@sjsu.edu",
+      preferred_email: "jane.doe@gmail.edu",
+      phone: "(408) 123-4567",
+      pronouns: "she/her",
+      major: "Graphics Design",
+      expected_graduation: "Fall 2030",
+    }
   });
 
-  function onSubmit(data: Schema) {
-    console.log(data)
+  async function onSubmit(formData: Schema) {
+    const result = formSchema.safeParse(formData);
+    if (!result.success) {
+      console.error(result.error);
+      alert(result.error)
+      return
+    }
+
+    const { error } = await supabase
+      .from("students")
+      .insert(result.data);
+    if (error) {
+      alert(`Error ${error.code}: ${error.message}`);
+      console.error(error);
+    }
   }
   return (
     <Card className="mx-auto min-w-95 sm:max-w-6xl">
@@ -71,7 +100,7 @@ export default function MembershipForm() {
             <FieldLegend>Biographical Information</FieldLegend>
             <FieldGroup className="sm:grid grid-cols-2 gap-4">
               <Controller
-                name="fullName"
+                name="full_name"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
@@ -100,7 +129,7 @@ export default function MembershipForm() {
               />
 
               <Controller
-                name="preferredName"
+                name="preferred_name"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
@@ -131,7 +160,7 @@ export default function MembershipForm() {
               />
 
               <Controller
-                name="familyName"
+                name="family_name"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
@@ -201,7 +230,7 @@ export default function MembershipForm() {
             <FieldLegend>Contact Information</FieldLegend>
             <FieldGroup className="sm:grid grid-cols-2">
               <Controller
-                name="schoolEmail"
+                name="school_email"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
@@ -264,7 +293,7 @@ export default function MembershipForm() {
               />
 
               <Controller
-                name="preferredEmail"
+                name="preferred_email"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="col-span-2 flex flex-col h-full">
@@ -331,7 +360,7 @@ export default function MembershipForm() {
               />
 
               <Controller
-                name="expectedGraduation"
+                name="expected_graduation"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
