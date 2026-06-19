@@ -87,6 +87,7 @@ export type Database = {
       }
       students: {
         Row: {
+          auth_user_id: string | null
           discord_username: string | null
           expected_graduation: string | null
           family_name: string | null
@@ -101,6 +102,7 @@ export type Database = {
           school_email: string | null
         }
         Insert: {
+          auth_user_id?: string | null
           discord_username?: string | null
           expected_graduation?: string | null
           family_name?: string | null
@@ -115,6 +117,7 @@ export type Database = {
           school_email?: string | null
         }
         Update: {
+          auth_user_id?: string | null
           discord_username?: string | null
           expected_graduation?: string | null
           family_name?: string | null
