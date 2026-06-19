@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
@@ -39,16 +40,28 @@ const graduationDates: GraduationDate[] = function () {
 
 const validGraduationLabels = graduationDates.map(d => d.label);
 
+const optionalString = z.string().transform((value) => value || undefined);
+
+const sjsuEmail = z.union([z.literal(""), z.string().regex(/^[A-Za-z]+\.[A-Za-z]+\d*@sjsu\.edu$/, {
+  message: "Please provide an SJSU email like first.last01@sjsu.edu.",
+})])
+  .transform((value) => value || undefined);
+
+const optionalPhone = z.union([
+  z.literal(""),
+  z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/),
+]).transform((value) => value || undefined);
+
 const formSchema = z.object({
   // These must be snake_case to match Postgres column names.
-  full_name: z.string(),
-  preferred_name: z.string(),
-  family_name: z.string(),
-  school_email: z.email(),
-  preferred_email: z.email().optional(),
-  phone: z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/).optional(),
-  pronouns: z.string().optional(),
-  major: z.string(),
+  full_name: z.string().min(1, "Please provide your full name."),
+  preferred_name: z.string().min(1, "How would you like to be called?"),
+  family_name: optionalString,
+  school_email: sjsuEmail,
+  preferred_email: z.email("Please provide a valid preferred email."),
+  phone: optionalPhone,
+  pronouns: optionalString,
+  major: optionalString,
   expected_graduation: z
     .string({ message: "Please select a graduation date." })
     // Validate: Check if the string the Combobox passed matches one of our labels
@@ -61,37 +74,71 @@ const formSchema = z.object({
       // We can use '!' because .refine() already guaranteed the match exists
       return match!.value;
     }),
+  password: z.string().min(8, "Password must be at least 8 characters."),
+  confirm_password: z.string(),
+}).refine((data) => data.password === data.confirm_password, {
+  path: ["confirm_password"],
+  message: "Passwords do not match.",
 });
 
 type FormOutput = z.output<typeof formSchema>
 
+function formatDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 const supabase = createClient();
 
 export default function MembershipForm() {
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
+    mode: "onTouched",
     defaultValues: {
-      // TODO: Change these to empty values once the DB integration works.
-      full_name: "Jane Doe",
-      preferred_name: "Jane",
-      family_name: "Doe",
-      school_email: "jane.doe@sjsu.edu",
-      preferred_email: "jane.doe@gmail.edu",
-      phone: "(408) 123-4567",
-      pronouns: "she/her",
-      major: "Graphics Design",
-      expected_graduation: "Fall 2030",
+      full_name: "",
+      preferred_name: "",
+      family_name: "",
+      school_email: "",
+      preferred_email: "",
+      phone: "",
+      pronouns: "",
+      major: "",
+      expected_graduation: "",
+      password: "",
+      confirm_password: "",
     }
   });
 
   async function onSubmit(formData: FormOutput) {
-    const { error } = await supabase
-      .from("students")
-      .insert(formData);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    const { password, confirm_password: _confirmPassword, expected_graduation, ...profile } = formData;
+    const { error } = await supabase.auth.signUp({
+      email: formData.preferred_email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/confirm?next=/membership`,
+        data: {
+          ...profile,
+          expected_graduation: formatDate(expected_graduation),
+        },
+      },
+    });
+
     if (error) {
-      alert(`Error ${error.code}: ${error.message}`);
-      console.error(error);
+      setSubmitError(error.message);
+      return;
     }
+
+    form.reset();
+    setSubmitSuccess(true);
   }
   return (
     <Card className="mx-auto min-w-95 sm:max-w-6xl">
@@ -257,6 +304,7 @@ export default function MembershipForm() {
                       id={field.name}
                       aria-invalid={fieldState.invalid}
                       placeholder="jane.doe@sjsu.edu"
+                      type="email"
                     />
 
                     {fieldState.invalid && (
@@ -320,6 +368,71 @@ export default function MembershipForm() {
                       id={field.name}
                       aria-invalid={fieldState.invalid}
                       placeholder="jane.doe@gmail.com"
+                      type="email"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Password
+                      </FieldLabel>
+                    </div>
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Create a password for your member account.
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      type="password"
+                      autoComplete="new-password"
+                    />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="confirm_password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
+                    <div className="flex-1">
+                      <FieldLabel htmlFor={field.name}>
+                        Confirm Password
+                      </FieldLabel>
+                    </div>
+
+                    <div className="flex-1">
+                      <FieldDescription>
+                        Re-enter your password to confirm it.
+                      </FieldDescription>
+                    </div>
+
+                    <Input
+                      {...field}
+                      id={field.name}
+                      aria-invalid={fieldState.invalid}
+                      type="password"
+                      autoComplete="new-password"
                     />
 
                     {fieldState.invalid && (
@@ -361,6 +474,10 @@ export default function MembershipForm() {
                       aria-invalid={fieldState.invalid}
                       placeholder="Graphics Design"
                     />
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
@@ -398,6 +515,10 @@ export default function MembershipForm() {
                         </ComboboxList>
                       </ComboboxContent>
                     </Combobox>
+
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
@@ -406,9 +527,19 @@ export default function MembershipForm() {
         </form >
       </CardContent >
       <CardFooter>
-        <Field>
-          <Button type="submit" form="student-info-form">
-            Submit
+        <Field className="px-4">
+          {submitError && (
+            <FieldError>{submitError}</FieldError>
+          )}
+
+          {submitSuccess && (
+            <FieldDescription>
+              Account created. Please check your preferred email to confirm your membership account.
+            </FieldDescription>
+          )}
+
+          <Button type="submit" form="student-info-form" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? "Creating account..." : "Create Account"}
           </Button>
         </Field>
       </CardFooter>
