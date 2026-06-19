@@ -32,7 +32,7 @@ To get the project running locally on your machine, ensure you have **Node.js**
 1. **Clone the repository and switch to the correct branch:**
 
 ```bash
-git checkout refactor/spring-redesign
+git checkout main
 ```
 
 2. **Install dependencies:**
