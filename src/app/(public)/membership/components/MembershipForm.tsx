@@ -9,21 +9,6 @@ import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, 
 import { Button } from '@/components/ui/button';
 import { createClient } from "@/lib/supabase/client";
 
-const formSchema = z.object({
-  // These must be snake_case to match Postgres column names.
-  full_name: z.string(),
-  preferred_name: z.string(),
-  family_name: z.string(),
-  school_email: z.email(),
-  preferred_email: z.email().optional(),
-  phone: z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/).optional(),
-  pronouns: z.string().optional(),
-  major: z.string(),
-  expected_graduation: z.string(),
-});
-
-type Schema = z.infer<typeof formSchema>
-
 type GraduationDate = {
   value: Date
   label: string
@@ -52,10 +37,38 @@ const graduationDates: GraduationDate[] = function () {
   return items
 }();
 
+const validGraduationLabels = graduationDates.map(d => d.label);
+
+const formSchema = z.object({
+  // These must be snake_case to match Postgres column names.
+  full_name: z.string(),
+  preferred_name: z.string(),
+  family_name: z.string(),
+  school_email: z.email(),
+  preferred_email: z.email().optional(),
+  phone: z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/).optional(),
+  pronouns: z.string().optional(),
+  major: z.string(),
+  expected_graduation: z
+    .string({ message: "Please select a graduation date." })
+    // Validate: Check if the string the Combobox passed matches one of our labels
+    .refine((val) => validGraduationLabels.includes(val), {
+      message: "Invalid graduation date selected.",
+    })
+    // Transform: Take that valid label, find it in our array, and return the Date object
+    .transform((val) => {
+      const match = graduationDates.find((d) => d.label === val);
+      // We can use '!' because .refine() already guaranteed the match exists
+      return match!.value;
+    }),
+});
+
+type FormOutput = z.output<typeof formSchema>
+
 const supabase = createClient();
 
 export default function MembershipForm() {
-  const form = useForm<Schema>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       // TODO: Change these to empty values once the DB integration works.
@@ -71,17 +84,10 @@ export default function MembershipForm() {
     }
   });
 
-  async function onSubmit(formData: Schema) {
-    const result = formSchema.safeParse(formData);
-    if (!result.success) {
-      console.error(result.error);
-      alert(result.error)
-      return
-    }
-
+  async function onSubmit(formData: FormOutput) {
     const { error } = await supabase
       .from("students")
-      .insert(result.data);
+      .insert(formData);
     if (error) {
       alert(`Error ${error.code}: ${error.message}`);
       console.error(error);
