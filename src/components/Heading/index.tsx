@@ -1,5 +1,6 @@
 import { headingProps } from "./type";
 import styles from "./Heading.module.css"
+import Image from "next/image";
 import { JSX } from "react";
 
 export default function Heading({headingTag, className, children, align, logoPath, logoAlign, logoSize}: headingProps) {
@@ -14,12 +15,13 @@ export default function Heading({headingTag, className, children, align, logoPat
 
       {/* Left-aligned logo */}
       {logoPath && logoAlign=="left" && logoSize &&
-        <img 
+        <Image
           src={logoPath}
           className={styles.logo}
           style={{ 
             height: logoSize + "rem", 
           }}    
+          alt=""
         />
       }
       
@@ -31,7 +33,7 @@ export default function Heading({headingTag, className, children, align, logoPat
 
       {/* Right-aligned logo */}
       {logoPath && logoAlign=="right" && logoSize &&
-        <img 
+        <Image
           src={logoPath} 
           className={styles.logo}
           alt=""
