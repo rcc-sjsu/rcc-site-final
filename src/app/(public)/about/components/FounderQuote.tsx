@@ -1,9 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import BackgroundGradient from '@/components/BackgroundGradient';
-import Heading from '@/components/Heading';
 import styles from '../founderquote.module.css';
-import { UsersRound } from 'lucide-react';
 
 export default function FounderQuote() {
   return (
