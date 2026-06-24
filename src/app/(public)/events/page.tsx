@@ -1,7 +1,7 @@
 'use client';
 
-import Divider from '@/components/Divider';
 import Heading from '@/components/Heading';
+import { Separator } from '@/components/ui/separator';
 import EventImages from './components/EventImages';
 import EventsCalendar from './components/EventsCalendar';
 import EventCard from './components/EventCard';
@@ -28,7 +28,7 @@ export default function Events() {
       {/* Images + Description */}
       <EventImages />
 
-      <Divider />
+      <Separator className="my-5 mx-auto w-[90%] bg-[#1A143A]" />
 
       {/* Upcoming Events */}
       <div className="mt-10 mb-8 sm:mb-16">
@@ -50,7 +50,7 @@ export default function Events() {
         )}
       </div>
 
-      <Divider />
+      <Separator className="my-5 mx-auto w-[90%] bg-[#1A143A]" />
 
       {/* Calendar */}
       <div className="mt-10 mb-8 sm:mb-16">
