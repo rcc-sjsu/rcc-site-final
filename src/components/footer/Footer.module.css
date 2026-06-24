@@ -16,7 +16,10 @@
 }
 
 /* Keep box-sizing local */
-.footer, .footer * { box-sizing: border-box; }
+.footer,
+.footer * {
+  box-sizing: border-box;
+}
 
 /* ========== LAYOUT ========== */
 .footerContainer {
@@ -32,10 +35,10 @@
   /* <500px: stack ALL sections (single column) */
   grid-template-columns: 1fr;
   grid-template-areas:
-    "main"
-    "follow"
-    "shortcut"
-    "contact";
+    'main'
+    'follow'
+    'shortcut'
+    'contact';
 }
 
 /* >=500px: keep a 2-column grid until tablet */
@@ -43,8 +46,8 @@
   .footerContainer {
     grid-template-columns: 1.4fr 1fr;
     grid-template-areas:
-      "main follow"
-      "shortcut contact";
+      'main follow'
+      'shortcut contact';
     align-items: start;
   }
 }
@@ -54,8 +57,8 @@
   .footerContainer {
     grid-template-columns: 1.6fr 1fr;
     grid-template-areas:
-      "main follow"
-      "shortcut contact";
+      'main follow'
+      'shortcut contact';
   }
 }
 
@@ -63,7 +66,7 @@
 @media (min-width: 1080px) {
   .footerContainer {
     grid-template-columns: 1.6fr 1fr 1fr 1fr;
-    grid-template-areas: "main shortcut follow contact";
+    grid-template-areas: 'main shortcut follow contact';
     column-gap: 3rem; /* wider horizontal spacing */
   }
   .footerMain {
@@ -78,10 +81,18 @@
 }
 
 /* Place items into grid areas */
-.footerMain   { grid-area: main; }
-.shortcut     { grid-area: shortcut; }
-.follow       { grid-area: follow; }
-.contactUs    { grid-area: contact; }
+.footerMain {
+  grid-area: main;
+}
+.shortcut {
+  grid-area: shortcut;
+}
+.follow {
+  grid-area: follow;
+}
+.contactUs {
+  grid-area: contact;
+}
 
 /* ========== TYPOGRAPHY ========== */
 .footerTitle {
@@ -101,7 +112,7 @@
 /* <500px: make description narrower for readability */
 @media (max-width: 499px) {
   .footerDescription {
-    max-width: 36ch;   /* adjust to taste */
+    max-width: 36ch; /* adjust to taste */
     margin-right: auto; /* keep it left-aligned */
   }
 }
@@ -131,7 +142,9 @@
   font-size: 0.85rem;
   line-height: 1.35;
 }
-.footer a:hover { opacity: 0.75; }
+.footer a:hover {
+  opacity: 0.75;
+}
 
 .iconLink {
   display: inline-flex;

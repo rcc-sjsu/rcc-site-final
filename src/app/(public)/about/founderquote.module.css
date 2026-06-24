@@ -1,110 +1,104 @@
 .container {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 3.75rem;
+  font-size: 1.62rem;
+  margin: 5rem auto 6rem auto;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 50rem;
+  gap: 3rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.gradient {
+  position: absolute;
+  margin-top: 7rem;
+  /* margin-left: -25rem; */
+  width: 15rem;
+  height: 15rem;
+}
+
+.founder-quote {
+  font-size: 3rem;
+}
+
+.juliaImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (width <= 1280px) {
+  .container {
     flex-direction: column;
-    width: fit-content;
-    gap: 3.75rem;
-    font-size: 1.62rem;
-    margin: 5rem auto 6rem auto;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 50rem;
-    gap: 3rem;
+    gap: 2rem;
+    width: 70%;
     text-align: center;
-    padding-bottom: 2rem;
+    justify-content: center;
+    align-content: center;
   }
-  
+
+  .description {
+    font-size: 1.25rem;
+  }
+
   .gradient {
-    position: absolute;
-    margin-top: 7rem;
-    /* margin-left: -25rem; */
-    width: 15rem;
-    height: 15rem;
+    margin-top: 0rem;
   }
-  
-  .founder-quote{
-    font-size: 3rem;
+}
+
+@media (width <= 1024px) {
+  .container {
+    padding-top: 0rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .gradient {
+    margin-top: -15rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media (width <= 768px) {
+  .container {
+    width: 80%;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .juliaImage {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
   }
+}
 
-  @media (width <= 1280px) {
-  
-    .container {
-      flex-direction: column;
-      gap: 2rem;
-      width: 70%;
-      text-align: center;
-      justify-content: center;
-      align-content: center;
-    }
-  
-    .description {
-      font-size: 1.25rem;
-    }
-  
-    .gradient {
-      margin-top: 0rem;
-    }
-  
-  }
-  
-  
-  @media (width <= 1024px) {
-    .container {
-      padding-top: 0rem;
-      padding-bottom: 0.5rem;
-    }
-  
-    .gradient {
-      margin-top: -15rem;
-    }
+@media (width <= 640px) {
+  .container {
+    justify-content: center;
+    margin: auto;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 
-    .description {
-      font-size: 1rem;
+    > div {
+      grid-column: 1/2;
+      grid-row: 1/2;
     }
   }
 
-  @media (width <= 768px) {
-    .container {
-      width: 80%;
-      padding-top: 2.5rem;
-      padding-bottom: 2.5rem;
-    }
-
-    .juliaImage {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-    }
+  .description {
+    font-size: 0.75rem;
   }
-  
-  @media (width <= 640px) {
-  
-    .container {
-      justify-content: center;
-      margin: auto;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-  
-      > div {
-        grid-column: 1/2;
-        grid-row: 1/2;
-      }
-    }
-  
-    .description {
-      font-size: 0.75rem;
-    }
 
-    .juliaImage {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-    }
-  
+  .juliaImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
   }
-  
+}

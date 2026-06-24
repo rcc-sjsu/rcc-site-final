@@ -22,7 +22,6 @@
 }
 
 @media (width <= 1280px) {
-
   .container {
     flex-direction: column;
     gap: 2rem;
@@ -40,9 +39,7 @@
   .gradient {
     margin-top: 0rem;
   }
-
 }
-
 
 @media (width <= 1024px) {
   .container {
@@ -56,7 +53,6 @@
 }
 
 @media (width <= 640px) {
-
   .container {
     justify-content: center;
     width: 90vw;
@@ -75,5 +71,4 @@
     margin-bottom: 2rem;
     font-size: 1rem;
   }
-
 }

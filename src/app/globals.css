@@ -1,20 +1,20 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   /* some colors from Figma prototypes */
   --color-brand-dark-grey: #383838;
-  --color-brand-dark-purple: #411A63;
+  --color-brand-dark-purple: #411a63;
   --color-brand-indigo: #470085;
-  --color-brand-pale-purple: #DEB8FE;
-  --color-brand-cobalt-blue: #2F419B;
-  --color-brand-pale-blue: #E2E8FD;
-  --color-brand-dark-pastel-purple: #9580D7;
-  --color-brand-light-steel-blue: #7289DA;
-  --color-brand-lilac: #CDA8F9;
+  --color-brand-pale-purple: #deb8fe;
+  --color-brand-cobalt-blue: #2f419b;
+  --color-brand-pale-blue: #e2e8fd;
+  --color-brand-dark-pastel-purple: #9580d7;
+  --color-brand-light-steel-blue: #7289da;
+  --color-brand-lilac: #cda8f9;
 
   /* some Mozilla colors */
   --color-brand-ironside-grey: #666666;
@@ -75,14 +75,14 @@
 :root {
   /* some colors from Figma prototypes */
   --color-brand-dark-grey: #383838;
-  --color-brand-dark-purple: #411A63;
+  --color-brand-dark-purple: #411a63;
   --color-brand-indigo: #470085;
-  --color-brand-pale-purple: #DEB8FE;
-  --color-brand-cobalt-blue: #2F419B;
-  --color-brand-pale-blue: #E2E8FD;
-  --color-brand-dark-pastel-purple: #9580D7;
-  --color-brand-light-steel-blue: #7289DA;
-  --color-brand-lilac: #CDA8F9;
+  --color-brand-pale-purple: #deb8fe;
+  --color-brand-cobalt-blue: #2f419b;
+  --color-brand-pale-blue: #e2e8fd;
+  --color-brand-dark-pastel-purple: #9580d7;
+  --color-brand-light-steel-blue: #7289da;
+  --color-brand-lilac: #cda8f9;
 
   /* some Mozilla colors */
   --color-brand-ironside-grey: #666666;
@@ -139,7 +139,7 @@
     font-family: var(--font-nunito-sans);
     @apply bg-background text-foreground;
   }
-/* 
+  /* 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-zilla-slab);
   } */
@@ -163,24 +163,27 @@
   }
 
   @media (max-width: 1280px) {
-    p, a {
+    p,
+    a {
       font-size: 17px;
     }
   }
   @media (max-width: 768px) {
-    p, a {
-      font-size: 15px
+    p,
+    a {
+      font-size: 15px;
     }
   }
   @media (max-width: 640px) {
-    p, a {
-      font-size: 13px
+    p,
+    a {
+      font-size: 13px;
     }
   }
 
   hr {
-    background-color: #7D7D7D;
-    border-color: #7D7D7D;
+    background-color: #7d7d7d;
+    border-color: #7d7d7d;
     border-width: 1.5px;
     width: 80%;
     margin: auto;

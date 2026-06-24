@@ -29,14 +29,14 @@
       width: 1.2rem;
     }
   }
-
 }
 
 .mobileContainer > button:hover {
   cursor: pointer;
 }
 
-.mobileMainMenu, .mobileSubMenu {
+.mobileMainMenu,
+.mobileSubMenu {
   background-color: white;
   box-shadow: 0 2.5px 6px 1.5px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
@@ -52,16 +52,18 @@
   flex-direction: column;
 
   /* Main Menu Links */
-  > a, div {
+  > a,
+  div {
     font-size: medium;
     height: 1.75rem;
     display: flex;
     align-items: center;
     padding: 0 0.75rem 0 0.75rem;
-    color: var(--color-brand-dark-grey)
+    color: var(--color-brand-dark-grey);
   }
 
-  > a:hover, div:hover {
+  > a:hover,
+  div:hover {
     background-color: oklch(92.8% 0.006 264.531);
     cursor: pointer;
   }
@@ -102,7 +104,7 @@
     color: var(--color-brand-dark-grey);
     align-items: center;
     height: 1.65rem;
-    padding: 0 0.75rem 0 0.75rem; 
+    padding: 0 0.75rem 0 0.75rem;
   }
 }
 

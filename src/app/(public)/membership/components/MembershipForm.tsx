@@ -1,99 +1,122 @@
-"use client";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+'use client';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldError, FieldSeparator, FieldSet, FieldLegend } from '@/components/ui/field';
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldError,
+  FieldSeparator,
+  FieldSet,
+  FieldLegend,
+} from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Combobox, ComboboxContent, ComboboxInput, ComboboxEmpty, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxEmpty,
+  ComboboxItem,
+  ComboboxList,
+} from '@/components/ui/combobox';
 import { Button } from '@/components/ui/button';
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from '@/lib/supabase/client';
 
 type GraduationDate = {
-  value: Date
-  label: string
-}
-const graduationDates: GraduationDate[] = function () {
+  value: Date;
+  label: string;
+};
+const graduationDates: GraduationDate[] = (function () {
   const today = new Date();
   const year = today.getFullYear();
 
-  const years = Array.from({ length: 5 }, (_val, idx) => year + idx)
-  const semesters = ["Spring", "Fall"]
+  const years = Array.from({ length: 5 }, (_val, idx) => year + idx);
+  const semesters = ['Spring', 'Fall'];
 
-  let items = years.flatMap(year => semesters.map(sem => ({
-    label: `${sem} ${year}`,
-    value: new Date(year, sem == "Spring" ? 4 : 11)
-  })));
+  let items = years.flatMap((year) =>
+    semesters.map((sem) => ({
+      label: `${sem} ${year}`,
+      value: new Date(year, sem == 'Spring' ? 4 : 11),
+    }))
+  );
 
   // Rotate if the Spring semester is already over for this calendar .
   if (year > 5) {
     items = items.splice(1);
     items.push({
       label: `Spring ${year + 5}`,
-      value: new Date(year + 5, 4)
+      value: new Date(year + 5, 4),
     });
   }
 
-  return items
-}();
+  return items;
+})();
 
-const validGraduationLabels = graduationDates.map(d => d.label);
+const validGraduationLabels = graduationDates.map((d) => d.label);
 
 const optionalString = z.string().transform((value) => value || undefined);
 
-const sjsuEmail = z.union([z.literal(""), z.string().regex(/^[A-Za-z]+\.[A-Za-z]+\d*@sjsu\.edu$/, {
-  message: "Please provide an SJSU email like first.last01@sjsu.edu.",
-})])
+const sjsuEmail = z
+  .union([
+    z.literal(''),
+    z.string().regex(/^[A-Za-z]+\.[A-Za-z]+\d*@sjsu\.edu$/, {
+      message: 'Please provide an SJSU email like first.last01@sjsu.edu.',
+    }),
+  ])
   .transform((value) => value || undefined);
 
-const optionalPhone = z.union([
-  z.literal(""),
-  z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/),
-]).transform((value) => value || undefined);
+const optionalPhone = z
+  .union([z.literal(''), z.string().regex(/^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/)])
+  .transform((value) => value || undefined);
 
-const formSchema = z.object({
-  // These must be snake_case to match Postgres column names.
-  full_name: z.string().min(1, "Please provide your full name."),
-  preferred_name: z.string().min(1, "How would you like to be called?"),
-  family_name: optionalString,
-  school_email: sjsuEmail,
-  preferred_email: z.email("Please provide a valid preferred email."),
-  phone: optionalPhone,
-  pronouns: optionalString,
-  major: optionalString,
-  expected_graduation: z
-    .string({ message: "Please select a graduation date." })
-    // Validate: Check if the string the Combobox passed matches one of our labels
-    .refine((val) => validGraduationLabels.includes(val), {
-      message: "Invalid graduation date selected.",
-    })
-    // Transform: Take that valid label, find it in our array, and return the Date object
-    .transform((val) => {
-      const match = graduationDates.find((d) => d.label === val);
-      // We can use '!' because .refine() already guaranteed the match exists
-      return match!.value;
-    }),
-  password: z.string().min(8, "Password must be at least 8 characters."),
-  confirm_password: z.string(),
-}).refine((data) => data.password === data.confirm_password, {
-  path: ["confirm_password"],
-  message: "Passwords do not match.",
-});
+const formSchema = z
+  .object({
+    // These must be snake_case to match Postgres column names.
+    full_name: z.string().min(1, 'Please provide your full name.'),
+    preferred_name: z.string().min(1, 'How would you like to be called?'),
+    family_name: optionalString,
+    school_email: sjsuEmail,
+    preferred_email: z.email('Please provide a valid preferred email.'),
+    phone: optionalPhone,
+    pronouns: optionalString,
+    major: optionalString,
+    expected_graduation: z
+      .string({ message: 'Please select a graduation date.' })
+      // Validate: Check if the string the Combobox passed matches one of our labels
+      .refine((val) => validGraduationLabels.includes(val), {
+        message: 'Invalid graduation date selected.',
+      })
+      // Transform: Take that valid label, find it in our array, and return the Date object
+      .transform((val) => {
+        const match = graduationDates.find((d) => d.label === val);
+        // We can use '!' because .refine() already guaranteed the match exists
+        return match!.value;
+      }),
+    password: z.string().min(8, 'Password must be at least 8 characters.'),
+    confirm_password: z.string(),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    path: ['confirm_password'],
+    message: 'Passwords do not match.',
+  });
 
-type FormOutput = z.output<typeof formSchema>
+type FormOutput = z.output<typeof formSchema>;
 
 function formatDate(date: Date) {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
 }
 
 const supabase = createClient();
 
-const fieldErrorClassName = "min-h-5";
+const fieldErrorClassName = 'min-h-5';
 
 export default function MembershipForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -101,20 +124,20 @@ export default function MembershipForm() {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
-    mode: "onTouched",
+    mode: 'onTouched',
     defaultValues: {
-      full_name: "",
-      preferred_name: "",
-      family_name: "",
-      school_email: "",
-      preferred_email: "",
-      phone: "",
-      pronouns: "",
-      major: "",
-      expected_graduation: "",
-      password: "",
-      confirm_password: "",
-    }
+      full_name: '',
+      preferred_name: '',
+      family_name: '',
+      school_email: '',
+      preferred_email: '',
+      phone: '',
+      pronouns: '',
+      major: '',
+      expected_graduation: '',
+      password: '',
+      confirm_password: '',
+    },
   });
 
   async function onSubmit(formData: FormOutput) {
@@ -145,9 +168,7 @@ export default function MembershipForm() {
   return (
     <Card className="mx-auto min-w-95 sm:max-w-6xl">
       <CardHeader>
-        <CardTitle className="px-4 py-2">
-          New Members Registration
-        </CardTitle>
+        <CardTitle className="px-4 py-2">New Members Registration</CardTitle>
       </CardHeader>
       <CardContent>
         <form id="student-info-form" onSubmit={form.handleSubmit(onSubmit)}>
@@ -164,22 +185,13 @@ export default function MembershipForm() {
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        Please provide your full name
-                      </FieldDescription>
+                      <FieldDescription>Please provide your full name</FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Jane Doe"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Jane Doe" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -191,28 +203,17 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Preferred Name
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Preferred Name</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        How would you like to be called?
-                      </FieldDescription>
+                      <FieldDescription>How would you like to be called?</FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Jane"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Jane" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -224,28 +225,17 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Family Name
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Family Name</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        What is your family name?
-                      </FieldDescription>
+                      <FieldDescription>What is your family name?</FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Doe"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Doe" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -257,35 +247,23 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Pronouns
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Pronouns</FieldLabel>
                     </div>
-
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        What are your pronouns?
-                      </FieldDescription>
+                      <FieldDescription>What are your pronouns?</FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="she/her"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="she/her" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
               />
             </FieldGroup>
-          </FieldSet >
+          </FieldSet>
 
           <FieldSeparator className="mb-2" />
 
@@ -298,15 +276,11 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        SJSU Email
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>SJSU Email</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        Please provide your school email.
-                      </FieldDescription>
+                      <FieldDescription>Please provide your school email.</FieldDescription>
                     </div>
 
                     <Input
@@ -318,9 +292,7 @@ export default function MembershipForm() {
                     />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -332,11 +304,8 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Mobile Phone
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Mobile Phone</FieldLabel>
                     </div>
-
 
                     <div className="flex-1">
                       <FieldDescription>
@@ -344,17 +313,10 @@ export default function MembershipForm() {
                       </FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="(408) 123-4567"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="(408) 123-4567" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -366,9 +328,7 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="col-span-2 flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Preferred Email
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Preferred Email</FieldLabel>
                     </div>
 
                     <div className="flex-1">
@@ -386,9 +346,7 @@ export default function MembershipForm() {
                     />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -400,15 +358,11 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Password
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        Create a password for your member account.
-                      </FieldDescription>
+                      <FieldDescription>Create a password for your member account.</FieldDescription>
                     </div>
 
                     <Input
@@ -420,9 +374,7 @@ export default function MembershipForm() {
                     />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -434,15 +386,11 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Confirm Password
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Confirm Password</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        Re-enter your password to confirm it.
-                      </FieldDescription>
+                      <FieldDescription>Re-enter your password to confirm it.</FieldDescription>
                     </div>
 
                     <Input
@@ -454,9 +402,7 @@ export default function MembershipForm() {
                     />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -474,31 +420,18 @@ export default function MembershipForm() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
-
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Major
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Major</FieldLabel>
                     </div>
 
-
                     <div className="flex-1">
-                      <FieldDescription>
-                        What is your major?
-                      </FieldDescription>
+                      <FieldDescription>What is your major?</FieldDescription>
                     </div>
 
-                    <Input
-                      {...field}
-                      id={field.name}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Graphics Design"
-                    />
+                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Graphics Design" />
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
@@ -510,21 +443,14 @@ export default function MembershipForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid} className="flex flex-col h-full">
                     <div className="flex-1">
-                      <FieldLabel htmlFor={field.name}>
-                        Expected Graduation
-                      </FieldLabel>
+                      <FieldLabel htmlFor={field.name}>Expected Graduation</FieldLabel>
                     </div>
 
                     <div className="flex-1">
-                      <FieldDescription>
-                        Which semester do you anticipate graduating?
-                      </FieldDescription>
+                      <FieldDescription>Which semester do you anticipate graduating?</FieldDescription>
                     </div>
 
-                    <Combobox
-                      items={graduationDates}
-                      onValueChange={field.onChange}
-                    >
+                    <Combobox items={graduationDates} onValueChange={field.onChange}>
                       <ComboboxInput placeholder={graduationDates[0].label} />
                       <ComboboxContent>
                         <ComboboxEmpty>No valid dates found.</ComboboxEmpty>
@@ -539,22 +465,18 @@ export default function MembershipForm() {
                     </Combobox>
 
                     <div className={fieldErrorClassName}>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
+                      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </div>
                   </Field>
                 )}
               />
             </FieldGroup>
           </FieldSet>
-        </form >
-      </CardContent >
+        </form>
+      </CardContent>
       <CardFooter>
         <Field className="px-4">
-          {submitError && (
-            <FieldError>{submitError}</FieldError>
-          )}
+          {submitError && <FieldError>{submitError}</FieldError>}
 
           {submitSuccess && (
             <FieldDescription>
@@ -563,10 +485,10 @@ export default function MembershipForm() {
           )}
 
           <Button type="submit" form="student-info-form" disabled={form.formState.isSubmitting}>
-            {form.formState.isSubmitting ? "Creating account..." : "Create Account"}
+            {form.formState.isSubmitting ? 'Creating account...' : 'Create Account'}
           </Button>
         </Field>
       </CardFooter>
-    </Card >
-  )
+    </Card>
+  );
 }

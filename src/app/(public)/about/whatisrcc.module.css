@@ -43,7 +43,6 @@
 }
 
 @media (width <= 1280px) {
-
   .container {
     gap: 3rem;
     /* margin: 0 0 0 0;
@@ -76,9 +75,7 @@
     height: 265px;
     object-fit: cover;
   }
-
 }
-
 
 @media (width <= 1024px) {
   .container {
@@ -98,7 +95,6 @@
     flex-direction: row;
     gap: 2rem;
   }
-
 }
 
 @media (width <= 768px) {
@@ -114,7 +110,6 @@
 }
 
 @media (width <= 640px) {
-
   .container {
     justify-content: center;
     margin: auto;
@@ -135,5 +130,4 @@
     width: 90vw;
     margin: auto;
   }
-
 }

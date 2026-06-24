@@ -78,9 +78,7 @@
     margin-top: 1rem;
     font-size: 1.25rem;
   }
-
 }
-
 
 @media (width <= 640px) {
   .section {

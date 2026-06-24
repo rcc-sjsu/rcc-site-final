@@ -24,14 +24,10 @@ export async function GET() {
 
     const data = await response.json();
 
-     if (!response.ok) {
+    if (!response.ok) {
       console.error('Instagram API error response:', data);
-      return NextResponse.json(
-        { error: data },
-        { status: response.status }
-      );
+      return NextResponse.json({ error: data }, { status: response.status });
     }
-
 
     //return Instagram posts
     return NextResponse.json({ posts: data.data });

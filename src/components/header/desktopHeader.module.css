@@ -30,7 +30,6 @@
   > a:hover {
     text-decoration: underline;
   }
-
 }
 
 /* Main Menu Ambassadorship tab*/
@@ -46,7 +45,7 @@
 
   /* ambassadorship text */
   p {
-    margin: 0; 
+    margin: 0;
     font-size: 1.25rem;
     color: var(--color-brand-dark-grey);
   }
@@ -93,16 +92,14 @@
       background-position: center;
       /* background-image: url('/header/keyboard_arrow_down.png'); */
     }
-
   }
 
   a:hover {
     text-decoration: underline;
-      div {
-        visibility: visible;
-      }
+    div {
+      visibility: visible;
+    }
   }
-
 }
 
 /* Background blur when Ambassadorship tab is open */
@@ -118,12 +115,10 @@
 }
 
 @media (width >= 40rem) {
-
   .backgroundBlur {
     visibility: visible;
   }
   .desktopContainer {
     display: block;
   }
-
 }

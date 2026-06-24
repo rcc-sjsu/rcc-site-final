@@ -10,7 +10,6 @@ import events from './data/Events';
 export default function Events() {
   return (
     <div className="px-4 sm:px-6 lg:px-20">
-
       {/* Page heading */}
       <div className="flex flex-col lg:flex-row items-center justify-center mb-8 sm:mb-16">
         <Heading
@@ -44,9 +43,7 @@ export default function Events() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-[var(--color-brand-dark-lavender)]">
-            No upcoming events. Check back soon!
-          </p>
+          <p className="text-center text-[var(--color-brand-dark-lavender)]">No upcoming events. Check back soon!</p>
         )}
       </div>
 
@@ -61,7 +58,6 @@ export default function Events() {
         </div>
         <EventsCalendar />
       </div>
-
     </div>
   );
 }
