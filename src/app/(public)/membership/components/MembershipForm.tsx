@@ -340,7 +340,7 @@ export default function MembershipForm() {
 
                     <div className="flex-1">
                       <FieldDescription>
-                        If you'd like to receive communications via text, please provide your mobile phone number.
+                        If you&apos;d like to receive communications via text, please provide your mobile phone number.
                       </FieldDescription>
                     </div>
 

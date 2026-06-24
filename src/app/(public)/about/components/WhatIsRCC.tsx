@@ -16,8 +16,8 @@ export default function WhatIsRCC() {
             accessibility in tech through engaging workshops, speaker events, and social meetups.
           </p>
           <p className={styles.description}>
-            We believe everyone, whether you're in arts, humanities, or sciences, plays a key role in shaping tech that
-            truly serves people first!
+            We believe everyone, whether you&apos;re in arts, humanities, or sciences, plays a key role in shaping tech
+            that truly serves people first!
           </p>
         </div>
         {/* Call to Action (CTA) buttons */}
