@@ -93,6 +93,8 @@ function formatDate(date: Date) {
 
 const supabase = createClient();
 
+const fieldErrorClassName = "min-h-5";
+
 export default function MembershipForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -174,9 +176,11 @@ export default function MembershipForm() {
                       placeholder="Jane Doe"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -205,9 +209,11 @@ export default function MembershipForm() {
                       placeholder="Jane"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -236,9 +242,11 @@ export default function MembershipForm() {
                       placeholder="Doe"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -268,9 +276,11 @@ export default function MembershipForm() {
                       placeholder="she/her"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -307,9 +317,11 @@ export default function MembershipForm() {
                       type="email"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -339,9 +351,11 @@ export default function MembershipForm() {
                       placeholder="(408) 123-4567"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -371,9 +385,11 @@ export default function MembershipForm() {
                       type="email"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -403,9 +419,11 @@ export default function MembershipForm() {
                       autoComplete="new-password"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -435,9 +453,11 @@ export default function MembershipForm() {
                       autoComplete="new-password"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -475,9 +495,11 @@ export default function MembershipForm() {
                       placeholder="Graphics Design"
                     />
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
@@ -516,9 +538,11 @@ export default function MembershipForm() {
                       </ComboboxContent>
                     </Combobox>
 
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    <div className={fieldErrorClassName}>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </div>
                   </Field>
                 )}
               />
