@@ -15,11 +15,11 @@ type GraduationDate = {
   label: string
 }
 const graduationDates: GraduationDate[] = function () {
-  let today = new Date();
-  let year = today.getFullYear();
+  const today = new Date();
+  const year = today.getFullYear();
 
-  let years = Array.from({ length: 5 }, (_val, idx) => year + idx)
-  let semesters = ["Spring", "Fall"]
+  const years = Array.from({ length: 5 }, (_val, idx) => year + idx)
+  const semesters = ["Spring", "Fall"]
 
   let items = years.flatMap(year => semesters.map(sem => ({
     label: `${sem} ${year}`,
