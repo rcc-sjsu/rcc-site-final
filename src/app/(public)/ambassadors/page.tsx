@@ -2,6 +2,18 @@ import TeamSection from './components/TeamSection';
 import { createClient } from '@/lib/supabase/server';
 import { QueryData } from '@supabase/supabase-js';
 
+type AmbassadorMember = {
+  full_name: string;
+  role: string;
+  headshot_url?: string;
+};
+
+type AmbassadorTeam = {
+  name: string;
+  description: string | null;
+  members: AmbassadorMember[];
+};
+
 export default async function AmbassadorsPage() {
   const supabase = await createClient();
 
@@ -18,9 +30,13 @@ export default async function AmbassadorsPage() {
   const rows: Ambassadors = data;
 
   // 2. Group the flat rows by Team Name
-  const teamsMap = new Map<string, any>();
+  const teamsMap = new Map<string, AmbassadorTeam>();
 
   rows?.forEach((row) => {
+    if (!row.team_name) {
+      return;
+    }
+
     // If the team doesn't exist in our map yet, add it
     if (!teamsMap.has(row.team_name)) {
       teamsMap.set(row.team_name, {
@@ -41,9 +57,11 @@ export default async function AmbassadorsPage() {
       }
 
       // Push the formatted member into the team's array
-      teamsMap.get(row.team_name).members.push({
+      const team = teamsMap.get(row.team_name);
+
+      team?.members.push({
         full_name: row.full_name,
-        role: row.role,
+        role: row.role || '',
         headshot_url: imageUrl,
       });
     }
