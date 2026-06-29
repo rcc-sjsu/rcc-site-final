@@ -1,21 +1,16 @@
-import { gradientProps } from "./type";
-import styles from "./BackgroundGradient.module.css"
+import { cn } from '@/lib/utils';
 
-export default function BackgroundGradient({className, color}: gradientProps) {
-  
+type BackgroundGradientProps = {
+  className?: string;
+  color: 'purple' | 'blue';
+};
+
+export default function BackgroundGradient({ className, color }: BackgroundGradientProps) {
+  const colorClassName = color === 'blue' ? 'bg-brand-pale-blue opacity-100' : 'bg-brand-pale-purple opacity-60';
+
   return (
-    
-    <div
-    className={`${className} ${styles.gradientContainer}`}
-    >
-      <div
-        className={styles.gradient}
-        style={{
-          backgroundColor: color == "blue" ? "#E2E8FD" : "#DEB8FE",
-          opacity: color == "blue" ? "1" : "0.6",
-        }}
-      />
+    <div aria-hidden="true" className={cn('pointer-events-none z-[-1] flex', className)}>
+      <div className={cn('size-full rounded-full blur-[6rem]', colorClassName)} />
     </div>
-
   );
 }

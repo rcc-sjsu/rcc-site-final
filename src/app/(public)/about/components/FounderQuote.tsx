@@ -1,15 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import BackgroundGradient from '@/components/BackgroundGradient';
-import Heading from '@/components/Heading';
 import styles from '../founderquote.module.css';
-import { UsersRound } from 'lucide-react';
 
 export default function FounderQuote() {
   return (
     <section className={styles.container}>
       {/* For screen reader use only */}
-      <p className="sr-only">A Quote from RCC's Founder</p>
+      <p className="sr-only">A Quote from RCC&apos;s Founder</p>
 
       {/* RCC Founder quote */}
       <div className="flex flex-col justify-center items-center gap-7 md:gap-10 p-7 sm:p-10 md:p-15 lg:p-20 bg-purple-100 rounded-2xl md:rounded-4xl lg:rounded-[20%]">

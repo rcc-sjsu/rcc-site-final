@@ -1,7 +1,7 @@
 'use client';
 
-import Divider from '@/components/Divider';
 import Heading from '@/components/Heading';
+import { Separator } from '@/components/ui/separator';
 import EventImages from './components/EventImages';
 import EventsCalendar from './components/EventsCalendar';
 import EventCard from './components/EventCard';
@@ -10,7 +10,6 @@ import events from './data/Events';
 export default function Events() {
   return (
     <div className="px-4 sm:px-6 lg:px-20">
-
       {/* Page heading */}
       <div className="flex flex-col lg:flex-row items-center justify-center mb-8 sm:mb-16">
         <Heading
@@ -28,7 +27,7 @@ export default function Events() {
       {/* Images + Description */}
       <EventImages />
 
-      <Divider />
+      <Separator className="my-5 mx-auto w-[90%] bg-[#1A143A]" />
 
       {/* Upcoming Events */}
       <div className="mt-10 mb-8 sm:mb-16">
@@ -44,13 +43,11 @@ export default function Events() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-[var(--color-brand-dark-lavender)]">
-            No upcoming events. Check back soon!
-          </p>
+          <p className="text-center text-[var(--color-brand-dark-lavender)]">No upcoming events. Check back soon!</p>
         )}
       </div>
 
-      <Divider />
+      <Separator className="my-5 mx-auto w-[90%] bg-[#1A143A]" />
 
       {/* Calendar */}
       <div className="mt-10 mb-8 sm:mb-16">
@@ -61,7 +58,6 @@ export default function Events() {
         </div>
         <EventsCalendar />
       </div>
-
     </div>
   );
 }

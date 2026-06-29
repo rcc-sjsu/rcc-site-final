@@ -2,13 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 interface Event {
   id: number;
@@ -33,12 +27,7 @@ export default function EventCard({ event }: { event: Event }) {
         {/* Image */}
         <div className="relative h-48 w-full">
           {event.imageURL ? (
-            <Image
-              src={event.imageURL}
-              alt={event.title}
-              fill
-              className="object-cover"
-            />
+            <Image src={event.imageURL} alt={event.title} fill className="object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-[var(--color-brand-pale-blue)]">
               <span className="text-[var(--color-brand-dark-lavender)] text-sm">No Image</span>
@@ -59,9 +48,7 @@ export default function EventCard({ event }: { event: Event }) {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="text-xl">{event.title}</DialogTitle>
-            <DialogDescription className="text-[var(--color-brand-dull-periwinkle)]">
-              {event.date}
-            </DialogDescription>
+            <DialogDescription className="text-[var(--color-brand-dull-periwinkle)]">{event.date}</DialogDescription>
           </DialogHeader>
           <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
             <p className="text-base text-gray-600 leading-relaxed">{event.longDesc}</p>

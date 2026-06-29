@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';

@@ -1,4 +1,4 @@
-import MemberCard from "./MemberCard";
+import MemberCard from './MemberCard';
 
 interface TeamSectionProps {
   title: string;
@@ -10,9 +10,7 @@ export default function TeamSection({ title, description, members }: TeamSection
   return (
     <section className="mb-20">
       <h2 className="text-3xl font-bold mb-4 tracking-tight">{title}</h2>
-      <p className="mt-4 text-zinc-700 leading-relaxed">
-        {description}
-      </p>
+      <p className="mt-4 text-zinc-700 leading-relaxed">{description}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {members.map((member) => (
           <MemberCard
@@ -25,4 +23,4 @@ export default function TeamSection({ title, description, members }: TeamSection
       </div>
     </section>
   );
-};
+}

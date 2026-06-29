@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import styles from '../ourmission.module.css';
 import { UsersRound } from 'lucide-react';
@@ -20,8 +19,8 @@ export default function OurMission() {
           ethical, and environmental impact rather than just the technical side.
         </p>
         <p className={styles.description}>
-          In order to make RCC relevant to all majors (and minors) and to hone their collective strengths, we've created
-          dedicated teams focused on areas like workshops, consulting, marketing, web dev, and so much more!
+          In order to make RCC relevant to all majors (and minors) and to hone their collective strengths, we&apos;ve
+          created dedicated teams focused on areas like workshops, consulting, marketing, web dev, and so much more!
         </p>
       </div>
 

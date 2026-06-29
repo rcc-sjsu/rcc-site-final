@@ -7,7 +7,7 @@ export default function EventImages() {
       {/*left images section*/}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8 lg:mb-0 lg:mr-8 w-full lg:w-[60%]">
         <div className="flex items-center justify-center">
-          <div className="relative rounded-full overflow-hidden aspect-square w-[280px] sm:w-[320px] md:w-[400px]">
+          <div className="relative rounded-full overflow-hidden aspect-square w-70 sm:w-[320px] md:w-100">
             <Image
               src="/images/events1.jpg"
               alt="events1"
@@ -19,7 +19,7 @@ export default function EventImages() {
           </div>
         </div>
         <div className="flex items-center justify-center sm:mt-8">
-          <div className="relative rounded-full overflow-hidden aspect-square w-[280px] sm:w-[320px] md:w-[400px]">
+          <div className="relative rounded-full overflow-hidden aspect-square w-70 sm:w-[320px] md:w-100">
             <Image
               src="/images/events2.jpg"
               alt="events2"
@@ -33,7 +33,7 @@ export default function EventImages() {
       </div>
       <div className="text-center lg:text-left lg:w-[40%]">
         <p className={styles.description}>
-          RCC's committees regularly hold events to promote{' '}
+          RCC&apos;s committees regularly hold events to promote{' '}
           <strong className={styles.boldFont}>community involvement </strong>
           in ethical technology and cross-disciplinary initiative!
         </p>
