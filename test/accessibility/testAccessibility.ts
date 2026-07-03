@@ -26,6 +26,17 @@ const ACHECKER_FILES_ROOT = path.join(REPO_ROOT, 'achecker');
 const ACHECKER_OUTPUTS_DIR = path.join(ACHECKER_FILES_ROOT, 'output');
 const ACHECKER_BASELINES_DIR = path.join(ACHECKER_FILES_ROOT, 'baselines');
 
+// WARNING: DO NOT set `cacheFolder` in the config here. you will crash achecker. i don't feel like figuring out why
+const ACHECKER_CONFIG: Parameters<typeof achecker.setConfig>[0] = {
+  outputFolder: ACHECKER_OUTPUTS_DIR,
+  baselineFolder: ACHECKER_BASELINES_DIR,
+  // @ts-expect-error: eRuleLevel isn't exported so we can't do this properly. but these are the correct values
+  failLevels: ['violation', 'potentialviolation', 'recommendation', 'potentialrecommendation', 'review'],
+  outputFilenameTimestamp: true,
+  outputFormat: ['json', 'html'],
+};
+
+/** produces the string label we use to uniquely identify a page on our site in achecker */
 function urlToLabel(url: URL): string {
   const trimmed = url.pathname.replace(/^\//, '');
   if (trimmed.length === 0) return 'index';
@@ -48,7 +59,11 @@ async function main() {
 
   // get the server's url
   const address = server.address();
-  if (typeof address === 'string' || address === null) throw new Error(); // FIXME just use an assert
+  if (typeof address === 'string' || address === null) {
+    // (see docs for `.address()` -- we should have one since listening event has already fired, and we shouldn't have a
+    //  string because we're not doing any of the things that produces a string return value i don't think)
+    throw new Error('got bad address from server (this should never happen so something went wrong somewhere)');
+  }
   const baseUrl = new URL(
     `http://${address.family === 'IPv6' ? `[${address.address}]` : address.address}:${address.port}`
   );
@@ -56,47 +71,44 @@ async function main() {
 
   const routes = getNextRoutes(NEXT_SRC);
 
-  // WARNING: DO NOT set `cacheFolder` in the config here. you will crash achecker. i don't feel like figuring out why
-  await achecker.setConfig({
-    outputFolder: ACHECKER_OUTPUTS_DIR,
-    baselineFolder: ACHECKER_BASELINES_DIR,
-    // @ts-expect-error: eRuleLevel isn't exported so we can't do this properly. but these are the correct values
-    failLevels: ['violation', 'potentialviolation', 'recommendation', 'potentialrecommendation', 'review'],
-    outputFilenameTimestamp: true,
-    outputFormat: ['json', 'html'],
-  });
+  await achecker.setConfig(ACHECKER_CONFIG);
 
   for (const route of routes) {
-    await using disposer = new AsyncDisposableStack();
+    await testRoute(route, baseUrl);
+  }
+}
 
-    const url = new URL(route, baseUrl);
-    const label = urlToLabel(url);
-    console.group(label);
-    disposer.defer(() => {
-      console.groupEnd();
-    });
+async function testRoute(route: string, baseUrl: URL) {
+  await using disposer = new AsyncDisposableStack();
 
-    const results = await achecker.getCompliance(url.toString(), label);
-    const report = results.report;
-    if ('details' in report) {
-      throw report.details;
-    } // TODO handle this (report is achecker.ICheckerError) correctly
+  const url = new URL(route, baseUrl);
+  const label = urlToLabel(url);
+  console.group(label);
+  disposer.defer(() => {
+    console.groupEnd();
+  });
 
-    const compliance = achecker.assertCompliance(report);
-    console.log(achecker.eAssertResult[compliance]);
-    if (compliance !== achecker.eAssertResult.PASS) {
-      // console.error(achecker.stringifyResults(report));
-      console.log(
-        `find report at ${['html', 'json'].map((ext) => path.join(ACHECKER_OUTPUTS_DIR, `${label}.${ext}`)).join(' or ')}`
-      );
-      const baseline = achecker.getBaseline(label);
-      if (baseline === null) console.warn('no baseline.');
-      else {
-        const diff = achecker.diffResultsWithExpected(report, baseline, true);
-        const diffPath = path.join(ACHECKER_OUTPUTS_DIR, `${label}.diff.json`);
-        fs.writeFile(diffPath, JSON.stringify(diff, undefined, '  '));
-        console.warn(`baseline was present. find report<->baseline diff at ${diffPath}`);
-      }
+  const results = await achecker.getCompliance(url.toString(), label);
+  const report = results.report;
+  // (check for report is achecker.ICheckerError)
+  if ('details' in report) {
+    throw new Error(`achecker failed to analyze route '${route}': ${String(report.details)}`);
+  }
+
+  const compliance = achecker.assertCompliance(report);
+  console.log(achecker.eAssertResult[compliance]);
+  if (compliance !== achecker.eAssertResult.PASS) {
+    // console.error(achecker.stringifyResults(report));
+    console.log(
+      `find report at ${['html', 'json'].map((ext) => path.join(ACHECKER_OUTPUTS_DIR, `${label}.${ext}`)).join(' or ')}`
+    );
+    const baseline = achecker.getBaseline(label);
+    if (baseline === null) console.warn('no baseline.');
+    else {
+      const diff = achecker.diffResultsWithExpected(report, baseline, true);
+      const diffPath = path.join(ACHECKER_OUTPUTS_DIR, `${label}.diff.json`);
+      fs.writeFile(diffPath, JSON.stringify(diff, undefined, '  '));
+      console.warn(`baseline was present. find report<->baseline diff at ${diffPath}`);
     }
   }
 }
