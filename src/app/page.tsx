@@ -13,6 +13,14 @@ import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils'; /* helper util. (can remove but will need to rewrite some parts) */
+import { Marquee, type Partner } from '@/components/ui/marquee'
+
+/* array of partner names (can remove but will need to rewrite some parts) */
+const industryPartners: Partner[] = [
+  { name: 'Credo AI', src: '/home_images/credo_AI_logo.png', width: 190, height: 190 },
+  { name: 'EPA/ESA', src: '/home_images/EPA_ESA_logo.png', width: 120, height: 120 },
+  { name: 'The Creative Destination', src: '/home_images/the_creative_destination_logo.png', width: 110, height: 120 },
+];
 
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
@@ -66,7 +74,7 @@ export default function Home() {
             href="/about#get-involved"
             className={cn(
               buttonVariants({ variant: 'default', size: 'lg' }),
-              'w-[75%] md:w-auto text-lg md:text-xl transition-colors duration-200'
+              'w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
             )}
           >
             Get Involved
@@ -77,7 +85,7 @@ export default function Home() {
             href="/about"
             className={cn(
               buttonVariants({ variant: 'secondary', size: 'lg' }),
-              'w-[75%] md:w-auto text-lg md:text-xl transition-colors duration-200'
+              'w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
             )}
           >
             Get to Know Us
@@ -86,15 +94,15 @@ export default function Home() {
 
         {/* Data Analytics */}
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
-          <li className="h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
+          <li className="stat-card h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
             <p className="text-xl md:text-2xl">364</p>
             <p className="text-xl md:text-2xl">Total Members</p>
           </li>
-          <li className="h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-5 lg:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
+          <li className="stat-card h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-5 lg:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
             <p className="text-xl md:text-2xl">66</p>
             <p className="text-xl md:text-2xl">Active Members</p>
           </li>
-          <li className="h-auto md:h-full lg:h-auto flex flex-col justify-center md:col-span-2 lg:col-span-1 text-xl border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] not-placeholder-shown:rounded-2xl px-10 lg:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
+          <li className="stat-card h-auto md:h-full lg:h-auto flex flex-col justify-center md:col-span-2 lg:col-span-1 text-xl border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] not-placeholder-shown:rounded-2xl px-10 lg:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
             <p className="text-xl md:text-2xl">18%</p>
             <p className="text-xl md:text-2xl">Non-Tech Majors</p>
           </li>
@@ -105,49 +113,9 @@ export default function Home() {
       <section className={industryStyles.container}>
         <Heading headingTag="h2">Industry Partners</Heading>
         <BackgroundGradient className={industryStyles.gradient} color="purple" />
-
+      
         {/* list of industry partners */}
-        <ul className="flex flex-col h-full justify-items-center items-stretch md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-2 md:gap-7 xl:gap-4">
-          {/* NEED TO ADD A BACKGROUND COLOR OF WHITE TO EACH OF THE FIGURES ONCE THE REBRAND COLORS HAVE BEEN CHOSEN */}
-          <li>
-            <figure className="h-full w-full aspect-square flex flex-col justify-center items-center p-6 gap-4 md:gap-8">
-              <Image
-                src="/home_images/credo_AI_logo.png"
-                alt=""
-                width={190}
-                height={190}
-                className="w-20 md:w-auto md:h-auto"
-              ></Image>
-              <figcaption className="text-lg md:text-2xl">Credo AI</figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure className="h-full w-full aspect-square flex flex-col justify-center items-center p-6 gap-4">
-              <Image
-                src="/home_images/EPA_ESA_logo.png"
-                alt=""
-                width={120}
-                height={120}
-                className="w-20 md:w-auto md:h-auto"
-              ></Image>
-              <figcaption className="text-lg md:text-2xl">EPA/ESA</figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure className="h-full w-full aspect-square flex flex-col justify-center items-center md:col-span-2 lg:col-span-1 md:w-auto md:h-auto lg:w-full lg:h-full p-6 gap-4">
-              <Image
-                src="/home_images/the_creative_destination_logo.png"
-                alt=""
-                width={110}
-                height={120}
-                className="w-20 md:w-auto md:h-auto"
-              ></Image>
-              <figcaption className="text-lg md:text-2xl">
-                <p>The Creative</p> <p>Destination</p>
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
+        <Marquee partners={industryPartners} />
       </section>
 
       {/* Recent Events section */}
