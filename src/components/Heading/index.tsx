@@ -21,28 +21,14 @@ export default function Heading({
     >
       {/* Left-aligned logo */}
       {logoPath && logoAlign == 'left' && logoSize && (
-        <Image
-          src={logoPath}
-          className={styles.logo}
-          style={{
-            height: logoSize + 'rem',
-          }}
-          alt=""
-        />
+        <Image src={logoPath} className={styles.logo} height={logoSize} width={logoSize} alt="" />
       )}
 
       <div className={styles.heading}>{children}</div>
 
       {/* Right-aligned logo */}
       {logoPath && logoAlign == 'right' && logoSize && (
-        <Image
-          src={logoPath}
-          className={styles.logo}
-          alt=""
-          style={{
-            width: logoSize + 'rem',
-          }}
-        />
+        <Image src={logoPath} className={styles.logo} alt="" height={logoSize} width={logoSize} />
       )}
     </HeadingTag>
   );

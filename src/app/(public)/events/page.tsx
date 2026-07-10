@@ -17,7 +17,7 @@ export default function Events() {
           align="center"
           logoPath="/icons/shape-icon.svg"
           logoAlign="right"
-          logoSize={12}
+          logoSize={84}
           aria-labelledby="events-heading"
         >
           Events
