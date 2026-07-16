@@ -33,4 +33,5 @@
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .marquee-wrapper { overflow-x: auto; }
+  .marquee-group[aria-hidden="true"] { display: none; }
 }

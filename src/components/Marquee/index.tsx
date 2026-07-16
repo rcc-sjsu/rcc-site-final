@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import styles from './Marquee.module.css';
 
 export interface Partner {
   name: string;
@@ -9,7 +10,7 @@ export interface Partner {
 
 function PartnerLogo({ partner }: { partner: Partner }) {
   return (
-    <figure className="marquee-item flex flex-col items-center justify-center gap-3">
+    <figure className={`${styles['marquee-item']} flex flex-col items-center justify-center gap-3`}>
       <Image
         src={partner.src}
         alt={partner.name}
@@ -26,7 +27,7 @@ function PartnerLogo({ partner }: { partner: Partner }) {
 
 function MarqueeGroup({ partners, hidden }: { partners: Partner[]; hidden?: boolean }) {
   return (
-    <div className="marquee-group" aria-hidden={hidden || undefined}>
+    <div className={styles['marquee-group']} aria-hidden={hidden || undefined}>
       {partners.map((partner) => (
         <PartnerLogo key={partner.name} partner={partner} />
       ))}
@@ -47,13 +48,13 @@ export function Marquee({
   minWidth?: number;
   maxWidth?: number;
 }) {
-  const duration = Math.max(partners.length * secondsPerItem, 12); /* duration calculation. can remove to manually adjust in globals.css */
+  const duration = Math.max(partners.length * secondsPerItem, 12);
   const wrapperWidth = Math.min(maxWidth, Math.max(minWidth, partners.length * pxPerItem));
 
   return (
-    <div className="marquee-outer mx-auto" style={{ maxWidth: wrapperWidth }}>
-      <div className="marquee-wrapper">
-        <div className="marquee-track" style={{ animationDuration: `${duration}s` }}>
+    <div className={`${styles['marquee-outer']} mx-auto`} style={{ maxWidth: wrapperWidth }}>
+      <div className={styles['marquee-wrapper']}>
+        <div className={styles['marquee-track']} style={{ animationDuration: `${duration}s` }}>
           <MarqueeGroup partners={partners} />
           <MarqueeGroup partners={partners} hidden />
         </div>
