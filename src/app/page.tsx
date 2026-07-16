@@ -12,8 +12,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils'; /* helper util. (can remove but will need to rewrite some parts) */
-import { Marquee, type Partner } from '@/components/ui/marquee'
+import { cn } from '@/lib/utils';
+import { Marquee, type Partner } from '@/components/Marquee/index';
 
 /* array of partner names (can remove but will need to rewrite some parts) */
 const industryPartners: Partner[] = [

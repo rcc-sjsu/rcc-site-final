@@ -256,44 +256,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* marquee component */
-.marquee-wrapper {
-  overflow: hidden;
-  width: 100%;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
-          mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 15s linear infinite;
-}
-
-.marquee-group {
-  display: flex;
-  flex-shrink: 0;
-}
-
-.marquee-item {
-  flex-shrink: 0;
-  margin-right: 96px; /* adjust for distance between icons */
-}
-
-.marquee-outer {
-  width: 100%;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-  .marquee-wrapper { overflow-x: auto; }
-}
-
 /* card hovering effect */
 .stat-card {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
