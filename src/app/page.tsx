@@ -42,35 +42,10 @@ export default function Home() {
           to explore the ethics of tech through hands-on, cross-disciplinary projects.
         </p>
 
-        {/* <Button
-           variant="link"
-           className={'bg-brand-dark-purple px-14 py-6 text-xl text-white cursor-pointer seeOurStoryButton'}
-         >
-           See Our Story
-         </Button> */}
-
-        {/* option 1 for hover, focus, and active: hover:bg-brand-dark-violet focus:outline-2 focus:outline-offset-2 focus:outline-brand-cobalt-blue focus:bg-brand-cobalt-blue active:outline-2 active:outline-offset-2 active:outline-brand-cobalt-blue active:bg-brand-cobalt-blue */}
         {/* Call to Action (CTA) buttons */}
         <div className="flex flex-col items-center justify-center md:flex-row gap-7 md:gap-4 w-[80%] lg:w-auto">
-          {/* old: hardcoded Link classNames, kept for reference
+          {/* new: more modular linked buttons. can apply to all buttons to reduce clutter */}
           <Link
-            href="/about#get-involved"
-            className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-hover-accent focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
-          >
-            Get Involved
-            <MoveRightIcon size="1.5em"></MoveRightIcon>
-          </Link>
-          <Link
-            href="/about"
-            className="flex gap-3 items-center justify-center bg-white border border-brand-indigo px-6 md:px-10 py-2 w-[75%] md:w-auto text-lg md:text-xl text-brand-indigo rounded-lg hover:bg-hover-accent hover:text-white hover:border-hover-accent focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
-          >
-            Get to Know Us
-          </Link>
-        </div>
-        */}
-
-        {/* new: more modular linked buttons. can apply to all buttons to reduce clutter */}
-          <Link 
             href="/about#get-involved"
             className={cn(
               buttonVariants({ variant: 'default', size: 'lg' }),
@@ -113,7 +88,7 @@ export default function Home() {
       <section className={industryStyles.container}>
         <Heading headingTag="h2">Industry Partners</Heading>
         <BackgroundGradient className={industryStyles.gradient} color="purple" />
-      
+
         {/* list of industry partners */}
         <Marquee partners={industryPartners} />
       </section>
