@@ -2,7 +2,7 @@
   overflow: hidden;
   width: 100%;
   -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
-          mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
 }
 
 .marquee-track {
@@ -26,12 +26,22 @@
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-  .marquee-wrapper { overflow-x: auto; }
-  .marquee-group[aria-hidden="true"] { display: none; }
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-wrapper {
+    overflow-x: auto;
+  }
+  .marquee-group[aria-hidden='true'] {
+    display: none;
+  }
 }
