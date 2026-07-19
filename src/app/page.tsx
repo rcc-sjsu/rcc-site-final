@@ -1,9 +1,8 @@
-// css style imports
-import aboutStyles from './(public)/home/about.module.css';
-import industryStyles from './(public)/home/industrypartners.module.css';
-import socialMediaStyles from './(public)/home/socialmedia.module.css';
-import recentEventsStyles from './(public)/home/recentevents.module.css';
-import recentProjectStyles from './(public)/home/recentprojects.module.css';
+import aboutStyles from './_home/about.module.css';
+import industryStyles from './_home/industrypartners.module.css';
+import socialMediaStyles from './_home/socialmedia.module.css';
+import recentEventsStyles from './_home/recentevents.module.css';
+import recentProjectStyles from './_home/recentprojects.module.css';
 
 // component imports
 import BackgroundGradient from '@/components/BackgroundGradient';
