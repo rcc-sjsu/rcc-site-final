@@ -1,6 +1,8 @@
 import TeamSection from './components/TeamSection';
 import { createClient } from '@/lib/supabase/server';
-import { QueryData } from '@supabase/supabase-js';
+import type { Tables } from '@/types/database.types';
+
+type AmbassadorRow = Tables<'public_ambassadors_view'>;
 
 type AmbassadorMember = {
   full_name: string;
@@ -18,7 +20,6 @@ export default async function AmbassadorsPage() {
   const supabase = await createClient();
 
   const ambassadorsQuery = supabase.from('public_ambassadors_view').select('*');
-  type Ambassadors = QueryData<typeof ambassadorsQuery>;
 
   const { data, error } = await ambassadorsQuery;
 
@@ -27,7 +28,7 @@ export default async function AmbassadorsPage() {
     return <div>Failed to load ambassadors.</div>;
   }
 
-  const rows: Ambassadors = data;
+  const rows = (data ?? []) as AmbassadorRow[];
 
   // 2. Group the flat rows by Team Name
   const teamsMap = new Map<string, AmbassadorTeam>();
