@@ -1,5 +1,3 @@
-// FIXME move this script somewhere more idiomatic for this project if there is such a place
-
 import * as achecker from 'accessibility-checker';
 import { createServer } from 'http';
 import next from 'next';
@@ -82,6 +80,8 @@ const ACHECKER_CONFIG: Parameters<typeof achecker.setConfig>[0] = {
   failLevels: ['violation', 'potentialviolation', 'recommendation', 'potentialrecommendation', 'review'],
   outputFilenameTimestamp: true,
   outputFormat: ['json', 'html'],
+  ruleArchive: "latest",
+  policies: ["WCAG_2_2"],
 };
 
 /** produces the string label we use to uniquely identify a page on our site in achecker */
@@ -153,6 +153,9 @@ async function testRoute(route: string, baseUrl: URL) {
   const compliance = achecker.assertCompliance(report);
   console.log(achecker.eAssertResult[compliance]);
   if (compliance !== achecker.eAssertResult.PASS) {
+    // give a failing exit code once we eventually gracefully exit.
+    process.exitCode = 1;
+    // print full failure inline, if the user requested that
     if (args['print-full-failures']) {
       console.error(achecker.stringifyResults(report));
     }
