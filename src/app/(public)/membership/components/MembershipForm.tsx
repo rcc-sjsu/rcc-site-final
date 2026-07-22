@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/combobox';
 import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase/client';
+import { sjsuMajors } from '../data/sjsuMajors';
 
 type GraduationDate = {
   value: Date;
@@ -57,6 +58,7 @@ const graduationDates: GraduationDate[] = (function () {
 })();
 
 const validGraduationLabels = graduationDates.map((d) => d.label);
+const validMajorLabels: string[] = sjsuMajors.map((major) => major.label);
 
 const optionalString = z.string().transform((value) => value || undefined);
 
@@ -83,7 +85,12 @@ const formSchema = z
     preferred_email: z.email('Please provide a valid preferred email.'),
     phone: optionalPhone,
     pronouns: optionalString,
-    major: optionalString,
+    major: z
+      .string()
+      .refine((value) => value === '' || validMajorLabels.includes(value), {
+        message: 'Please select a valid SJSU major.',
+      })
+      .transform((value) => value || undefined),
     expected_graduation: z
       .string({ message: 'Please select a graduation date.' })
       // Validate: Check if the string the Combobox passed matches one of our labels
@@ -428,7 +435,24 @@ export default function MembershipForm() {
                       <FieldDescription>What is your major?</FieldDescription>
                     </div>
 
-                    <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Graphics Design" />
+                    <Combobox items={sjsuMajors} onValueChange={field.onChange}>
+                      <ComboboxInput
+                        id={field.name}
+                        placeholder="Select your major"
+                        showClear
+                        aria-invalid={fieldState.invalid}
+                      />
+                      <ComboboxContent>
+                        <ComboboxEmpty>No majors found.</ComboboxEmpty>
+                        <ComboboxList>
+                          {(major) => (
+                            <ComboboxItem key={major.value} value={major.value}>
+                              {major.label}
+                            </ComboboxItem>
+                          )}
+                        </ComboboxList>
+                      </ComboboxContent>
+                    </Combobox>
 
                     <div className={fieldErrorClassName}>
                       {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
