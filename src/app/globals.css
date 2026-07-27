@@ -257,22 +257,36 @@
 }
 
 /* card hovering effect */
-.stat-card {
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+.pop-hover {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.15s ease-out;
 }
 
-.stat-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--color-brand-indigo) !important;
+.pop-hover--br:hover {
+  transform: translate(calc(-1 * var(--pop-size, 6px)), calc(-1 * var(--pop-size, 6px)));
+}
+.pop-hover--bl:hover {
+  transform: translate(var(--pop-size, 6px), calc(-1 * var(--pop-size, 6px)));
+}
+
+.pop-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pop-shadow--br {
+  transform: translate(var(--pop-shadow-size, var(--pop-size, 6px)), var(--pop-shadow-size, var(--pop-size, 6px)));
+}
+.pop-shadow--bl {
+  transform: translate(calc(-1 * var(--pop-shadow-size, var(--pop-size, 6px))), var(--pop-shadow-size, var(--pop-size, 6px)));
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stat-card {
-    transition: box-shadow 0.15s ease;
-  }
-  .stat-card:hover {
+  .pop-hover--br:hover,
+  .pop-hover--bl:hover {
     transform: none;
   }
 }
