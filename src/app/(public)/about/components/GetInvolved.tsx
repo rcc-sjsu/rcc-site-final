@@ -1,7 +1,12 @@
+// component imports
 import Link from 'next/link';
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import styles from '../getinvolved.module.css';
+import { buttonVariants } from '@/components/ui/button';
+
+// utilities
+import { cn } from '@/lib/utils';
 
 export default function GetInvolved() {
   return (
@@ -23,7 +28,10 @@ export default function GetInvolved() {
             </p>
             <Link
               href="/membership"
-              className="flex items-center justify-center bg-brand-indigo px-6 md:px-5 py-2 md:py-3 w-full sm:w-[90%] md:w-[40%] lg:w-[80%] text-lg lg:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+              className={cn(
+                buttonVariants({ variant: 'default-outline', size: 'default' }),
+                'h-auto px-6 md:px-5 py-2 md:py-3 w-full sm:w-[90%] md:w-[40%] lg:w-[80%] text-lg lg:text-xl transition-colors duration-200'
+              )}
             >
               Become a Member
             </Link>
@@ -43,7 +51,10 @@ export default function GetInvolved() {
             </p>
             <Link
               href="#"
-              className="flex items-center justify-center bg-brand-indigo px-6 md:px-5 py-2 md:py-3 w-full sm:w-[90%] md:w-[40%] lg:w-[80%] text-lg lg:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+              className={cn(
+                buttonVariants({ variant: 'default-outline', size: 'default' }),
+                'h-auto px-6 md:px-5 py-2 md:py-3 w-full sm:w-[90%] md:w-[40%] lg:w-[80%] text-lg lg:text-xl transition-colors duration-200'
+              )}
             >
               Reach Out to RCC
             </Link>

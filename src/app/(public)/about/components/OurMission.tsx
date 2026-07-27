@@ -1,8 +1,13 @@
+// component imports
 import Image from 'next/image';
 import Link from 'next/link';
 import Heading from '@/components/Heading';
 import styles from '../ourmission.module.css';
 import { UsersRound } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+
+// utilities
+import { cn } from '@/lib/utils';
 
 export default function OurMission() {
   return (
@@ -26,10 +31,13 @@ export default function OurMission() {
 
       <Link
         href="/ambassadors"
-        className="group flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2 md:py-3 w-[90%] sm:w-[75%] md:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+        className={cn(
+          buttonVariants({ variant: 'default', size: 'default' }),
+          'group h-auto px-6 md:px-10 py-2 md:py-3 w-[90%] sm:w-[75%] md:w-auto text-lg md:text-xl transition-colors duration-200'
+        )}
       >
         Meet Our Ambassadors
-        <UsersRound size="1em" className="group-focus:stroke-3 group-active:stroke-3"></UsersRound>
+        <UsersRound size="1em" className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3" />
       </Link>
     </section>
   );

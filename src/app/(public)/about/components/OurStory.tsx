@@ -1,8 +1,13 @@
+// component imports
 import Image from 'next/image';
 import Link from 'next/link';
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import styles from '../ourstory.module.css';
+import { buttonVariants } from '@/components/ui/button';
+
+// utilities
+import { cn } from '@/lib/utils';
 
 export default function OurStory() {
   return (
@@ -37,7 +42,10 @@ export default function OurStory() {
         <Link
           href="https://www.mozillafoundation.org/en/blog/announcing-the-responsible-computing-club-at-san-jos%C3%A9-state-university/"
           target="_blank"
-          className="flex items-center justify-center bg-brand-indigo px-6 md:px-5 py-2 md:py-3 w-auto md:w-[50%] lg:w-[65%] xl:w-sm text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+          className={cn(
+            buttonVariants({ variant: 'default', size: 'default' }),
+            'h-auto px-6 md:px-5 py-2 md:py-3 w-auto md:w-[50%] lg:w-[65%] xl:w-sm text-lg md:text-xl transition-colors duration-200'
+          )}
         >
           Learn More About RCC’s Origins
         </Link>
