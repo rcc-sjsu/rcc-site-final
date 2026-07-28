@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Database backups
 backups/
+
+# achecker outputs (we should only be committing baselines)
+/achecker/output
