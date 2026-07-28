@@ -19,6 +19,15 @@ disposer.defer(() => {
   process.stdin.pause();
 });
 
+const ARG_ALIASES: Partial<Record<keyof typeof args, Partial<typeof args>>> = {
+  ci: {
+    'print-full-failures': true,
+    'pause-before-exit': false,
+    'pause-on-fail': false,
+    route: [], // (because no routes listed => test all routes)
+  },
+};
+
 const { values: args } = parseArgs({
   strict: true,
   allowNegative: true,
@@ -30,8 +39,18 @@ const { values: args } = parseArgs({
     'print-full-failures': { type: 'boolean', short: 'v', default: false },
     'pause-before-exit': { type: 'boolean', short: 'p', default: false },
     'pause-on-fail': { type: 'boolean', short: 'P', default: false },
+    ci: { type: 'boolean', default: false },
   },
 });
+
+// apply alias args
+Object.assign(
+  args,
+  ...Object.entries(ARG_ALIASES)
+    .filter(([alias, _values]) => args[alias as keyof typeof ARG_ALIASES] === true)
+    .map(([_alias, values]) => values)
+);
+
 if (args.help === true) {
   console.log(`\
 usage: testAccessibility [OPTIONS]
@@ -52,6 +71,8 @@ Options:
     useful if you want to pull up the site to view the problems.
   [-P|--pause-on-fail]
     similar to --pause-before-exit, but pauses after each individual route.
+  [--ci]
+    stable shorthand for the options which should be set for a CI run.
 `);
   process.exit(1);
 }
@@ -78,10 +99,11 @@ const ACHECKER_CONFIG: Parameters<typeof achecker.setConfig>[0] = {
   baselineFolder: ACHECKER_BASELINES_DIR,
   // @ts-expect-error: eRuleLevel isn't exported so we can't do this properly. but these are the correct values
   failLevels: ['violation', 'potentialviolation', 'recommendation', 'potentialrecommendation', 'review'],
+  // ^ may potentially need to cut some of those levels if prohibitively many false positives -amgg
   outputFilenameTimestamp: true,
   outputFormat: ['json', 'html'],
-  ruleArchive: "latest",
-  policies: ["WCAG_2_2"],
+  ruleArchive: 'latest',
+  policies: ['WCAG_2_2'],
 };
 
 /** produces the string label we use to uniquely identify a page on our site in achecker */
