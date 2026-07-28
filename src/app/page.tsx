@@ -69,7 +69,7 @@ export default function Home() {
 
         {/* Data Analytics (aka stat cards)*/}
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
-          <li className="relative" style={{ '--pop-size': '3px' } as React.CSSProperties}>
+          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
             <div
               aria-hidden="true"
               className="pop-shadow pop-shadow--br rounded-2xl"
@@ -80,7 +80,7 @@ export default function Home() {
               <p className="text-xl md:text-2xl">Total Members</p>
             </div>
           </li>
-          <li className="relative" style={{ '--pop-size': '3px' } as React.CSSProperties}>
+          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
             <div
               aria-hidden="true"
               className="pop-shadow pop-shadow--br rounded-2xl"
@@ -91,7 +91,7 @@ export default function Home() {
               <p className="text-xl md:text-2xl">Active Members</p>
             </div>
           </li>
-          <li className="relative" style={{ '--pop-size': '3px' } as React.CSSProperties}>
+          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
             <div
               aria-hidden="true"
               className="pop-shadow pop-shadow--br rounded-2xl"

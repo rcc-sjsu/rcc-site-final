@@ -16,7 +16,7 @@ export default function PastProjects() {
 
       <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max lg:items-center xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
         {/* Spartan Food Pantry Project — indigo shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"
@@ -42,7 +42,7 @@ export default function PastProjects() {
         </div>
 
         {/* FairLens — dark-violet shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"
@@ -66,7 +66,7 @@ export default function PastProjects() {
         </div>
 
         {/* Inclusive World Website — indigo shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"

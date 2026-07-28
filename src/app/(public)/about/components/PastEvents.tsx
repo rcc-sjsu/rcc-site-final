@@ -16,7 +16,7 @@ export default function PastEvents() {
 
       <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
         {/* Data Feminism with Lauren Klein — dark-violet shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"
@@ -49,7 +49,7 @@ export default function PastEvents() {
         </div>
 
         {/* RCC Case Competition: AI and Fraud — indigo shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"
@@ -83,7 +83,7 @@ export default function PastEvents() {
         </div>
 
         {/* Design in Tech: Workshop and Panel — dark-violet shadow, bottom-left */}
-        <div className="relative self-start" style={{ '--pop-size': '6px', '--pop-shadow-size': '10px' } as React.CSSProperties}>
+        <div className="relative self-start">
           <div
             aria-hidden="true"
             className="pop-shadow pop-shadow--bl rounded-xl"
