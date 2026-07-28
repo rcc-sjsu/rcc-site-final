@@ -263,11 +263,11 @@
   transition: transform 0.15s ease-out;
 }
 
-.pop-hover--br:hover {
-  transform: translate(calc(-1 * var(--pop-size, 6px)), calc(-1 * var(--pop-size, 6px)));
+.pop-hover--br:hover { /* --pop-distance = how much the card moves away from the shadow (distance away from card in hovering state) */
+  transform: translate(calc(-1 * var(--pop-distance, 6px)), calc(-1 * var(--pop-distance, 6px)));
 }
 .pop-hover--bl:hover {
-  transform: translate(var(--pop-size, 6px), calc(-1 * var(--pop-size, 6px)));
+  transform: translate(var(--pop-distance, 6px), calc(-1 * var(--pop-distance, 6px)));
 }
 
 .pop-shadow {
@@ -277,11 +277,11 @@
   z-index: 0;
 }
 
-.pop-shadow--br {
-  transform: translate(var(--pop-shadow-size, var(--pop-size, 6px)), var(--pop-shadow-size, var(--pop-size, 6px)));
+.pop-shadow--br { /* --shadow-size = how much shadow is always showing */
+  transform: translate(var(--shadow-size, 0px), var(--shadow-size, 0px));
 }
 .pop-shadow--bl {
-  transform: translate(calc(-1 * var(--pop-shadow-size, var(--pop-size, 6px))), var(--pop-shadow-size, var(--pop-size, 6px)));
+  transform: translate(calc(-1 * var(--shadow-size, 0px)), var(--shadow-size, 0px));
 }
 
 @media (prefers-reduced-motion: reduce) {
