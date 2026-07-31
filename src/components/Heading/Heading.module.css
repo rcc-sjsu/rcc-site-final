@@ -11,15 +11,7 @@
   gap: 1rem;
   font-weight: bold;
   line-height: 5.5rem;
-}
-
-.gradientText {
-  display: inline-block;
-  background: linear-gradient(90deg, #470085 0%, #9333ea 50%, #2563eb 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #470085;
 }
 
 @media (768px < width <= 1280px) {
