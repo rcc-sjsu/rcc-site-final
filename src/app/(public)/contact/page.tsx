@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
-import { contactFormSchema, type ContactFormValues } from '@/lib/validations/contact';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,36 +16,30 @@ import {
 } from '@/components/ui/card';
 import { FieldGroup, Field, FieldLabel, FieldError } from '@/components/ui/field';
 
-type SubmitState = 'idle' | 'success' | 'error';
+const contactFormSchema = z.object({
+  fullName: z.string().min(1, 'Please enter your name.'),
+  subject: z.string().min(1, 'Please enter a subject.'),
+  message: z.string().min(1, 'Please enter a message.'),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export default function ContactPage() {
-  const [submitState, setSubmitState] = useState<SubmitState>('idle');
-
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { fullName: '', email: '', message: '' },
+    defaultValues: { fullName: '', subject: '', message: '' },
   });
 
-  async function onSubmit(values: ContactFormValues) {
-    setSubmitState('idle');
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
-      if (!response.ok) throw new Error('Request failed');
-      setSubmitState('success');
-      reset();
-    } catch (error) {
-      console.error('Contact form submission error:', error);
-      setSubmitState('error');
-    }
+  function onSubmit(values: ContactFormValues) {
+    const body = `From: ${values.fullName}\n\n${values.message}`;
+    const mailtoUrl = `mailto:rcc.sjsu@gmail.com?subject=${encodeURIComponent(
+      values.subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
   }
 
   return (
@@ -59,10 +52,12 @@ export default function ContactPage() {
         <Card>
           <CardHeader>
             <CardTitle>Send us a message</CardTitle>
-            <CardDescription>We usually reply within a few business days.</CardDescription>
+            <CardDescription>
+              This will open your email client with your message ready to send.
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <FieldGroup>
                 <Field data-invalid={!!errors.fullName}>
                   <FieldLabel htmlFor="fullName">Full Name (Required)</FieldLabel>
@@ -70,10 +65,10 @@ export default function ContactPage() {
                   <FieldError errors={errors.fullName ? [errors.fullName] : undefined} />
                 </Field>
 
-                <Field data-invalid={!!errors.email}>
-                  <FieldLabel htmlFor="email">Email (Required)</FieldLabel>
-                  <Input id="email" type="email" autoComplete="email" aria-invalid={!!errors.email} {...register('email')} />
-                  <FieldError errors={errors.email ? [errors.email] : undefined} />
+                <Field data-invalid={!!errors.subject}>
+                  <FieldLabel htmlFor="subject">Subject (Required)</FieldLabel>
+                  <Input id="subject" aria-invalid={!!errors.subject} {...register('subject')} />
+                  <FieldError errors={errors.subject ? [errors.subject] : undefined} />
                 </Field>
 
                 <Field data-invalid={!!errors.message}>
@@ -82,20 +77,9 @@ export default function ContactPage() {
                   <FieldError errors={errors.message ? [errors.message] : undefined} />
                 </Field>
 
-                <Button type="submit" disabled={isSubmitting} className="w-full mt-2">
-                  {isSubmitting ? 'Sending…' : 'Submit'}
+                <Button type="submit" className="w-full mt-2">
+                  Submit
                 </Button>
-
-                {submitState === 'success' && (
-                  <p role="status" className="text-sm text-center text-green-600">
-                    Thanks for reaching out! We&apos;ll get back to you soon.
-                  </p>
-                )}
-                {submitState === 'error' && (
-                  <p role="alert" className="text-sm text-center text-destructive">
-                    Something went wrong sending your message. Please try again.
-                  </p>
-                )}
               </FieldGroup>
             </form>
           </CardContent>
