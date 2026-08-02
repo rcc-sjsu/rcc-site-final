@@ -1,49 +1,103 @@
 import Heading from '@/components/Heading';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
+
+const involvementActions = [
+  {
+    id: 'students-action',
+    title: 'Students',
+    description: 'Are you a student interested in joining RCC? Sign up and become a member today for free!',
+    buttonText: 'Join Us',
+    href: '/membership',
+    imageSrc: '/images/picnic-social-2.jpg',
+    overlayClassName: 'bg-brand-orange/80',
+    imageClassName: 'object-[45%_center]',
+    hoverTextClassName:
+      "group-hover/action-button:bg-[image:linear-gradient(rgb(255_87_52_/_0.8),rgb(255_87_52_/_0.8)),url('/images/picnic-social-2.jpg')] group-hover/action-button:bg-[position:45%_center]",
+  },
+  {
+    id: 'industry-action',
+    title: 'Industry',
+    description:
+      'Are you a company, industry professional, or other industry partner? Connect with RCC through our contact form!',
+    buttonText: 'Connect With Us',
+    href: '/contact',
+    imageSrc: '/images/rcc-case-comp.png',
+    overlayClassName: 'bg-brand-pink/80',
+    imageClassName: 'object-[55%_center]',
+    hoverTextClassName:
+      "group-hover/action-button:bg-[image:linear-gradient(rgb(228_17_103_/_0.8),rgb(228_17_103_/_0.8)),url('/images/rcc-case-comp.png')] group-hover/action-button:bg-[position:55%_center]",
+  },
+];
 
 export default function GetInvolved() {
   return (
-    <section id="get-involved" className="flex-col flex-center flex-wrap">
-      <Heading headingTag="h2">How Can You Get Involved?</Heading>
+    <section id="get-involved" className="pt-20 md:pt-28">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <Heading headingTag="h2">How Can You Get Involved?</Heading>
 
-      <p className="text-center">
-        Take a loot at what we&apos;ve done in the past and what we&apos;re doing right now so you can get an idea of
-        what you can contribute to in the future.
-      </p>
-
-      <p className="text-center">Start now and see which option below fits you best.</p>
-
-      <div className="flex flex-wrap">
-        <div
-          id="students-action"
-          className="relative overflow-hidden flex flex-col flex-1 items-center justify-center text-center "
-        >
-          <Image src="/images/picnic-social-2.jpg" alt="" className="grayscale object-cover -z-10" fill />
-          <div className="absolute inset-0 bg-brand-orange/80 -z-10" />
-          <Heading headingTag="h3" className="text-white">
-            Students
-          </Heading>
-          <p className="text-white">
-            Are you a student interested in joining RCC? Sign up and become a member today for free!
+        <div className="mx-auto mt-6 flex max-w-3xl flex-col gap-5">
+          <p className="text-base leading-relaxed md:text-lg xl:text-xl">
+            Take a look at what we&apos;ve done in{' '}
+            <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
+              the past
+            </Link>{' '}
+            and what we&apos;re doing{' '}
+            <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
+              right now
+            </Link>{' '}
+            so you can get an idea of what you can contribute to in the future.
           </p>
-          <Button>Join Us</Button>
-        </div>
 
-        <div
-          id="industry-action"
-          className="relative overflow-hidden flex flex-col flex-1 items-center justify-center text-center"
-        >
-          <Image src="/images/rcc-case-comp.png" alt="" className="grayscale object-cover -z-10" fill />
-          <div className="absolute inset-0 bg-brand-pink/80 -z-10" />
-
-          <Heading headingTag="h3">Industry</Heading>
-          <p className="text-white">
-            Are you a company, industry professional, or other industry partner? Connect with RCC through our contact
-            form!
+          <p className="text-base leading-relaxed md:text-lg xl:text-xl">
+            Start now and see which option below fits you best.
           </p>
-          <Button>Connect With Us</Button>
         </div>
+      </div>
+
+      <div className="relative left-1/2 mt-16 grid w-[calc(100vw+2px)] max-w-[2562px] -translate-x-1/2 overflow-hidden md:grid-cols-2">
+        {involvementActions.map((action) => (
+          <article
+            key={action.id}
+            id={action.id}
+            className="relative flex min-h-[420px] items-center justify-center overflow-hidden px-8 py-16 text-center md:min-h-[540px] lg:min-h-[640px]"
+          >
+            <Image
+              src={action.imageSrc}
+              alt=""
+              className={`object-cover grayscale -z-10 ${action.imageClassName}`}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+            <div className={`absolute inset-0 -z-9 ${action.overlayClassName}`} />
+
+            <div className="relative z-10 flex max-w-md flex-col items-center text-white">
+              <Heading headingTag="h3" tone="light" className="text-5xl leading-tight md:text-6xl lg:text-7xl">
+                {action.title}
+              </Heading>
+
+              <p className="mt-6 text-base font-semibold leading-snug text-white md:min-h-20 md:text-lg xl:text-xl">
+                {action.description}
+              </p>
+
+              <Link
+                href={action.href}
+                className={buttonVariants({
+                  variant: 'inverse',
+                  size: 'lg',
+                  className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2 text-base font-bold md:text-lg',
+                })}
+              >
+                <span
+                  className={`group-hover/action-button:bg-cover group-hover/action-button:bg-no-repeat group-hover/action-button:bg-clip-text group-hover/action-button:text-transparent ${action.hoverTextClassName}`}
+                >
+                  {action.buttonText}
+                </span>
+              </Link>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
