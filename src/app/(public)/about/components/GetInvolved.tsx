@@ -12,9 +12,8 @@ const involvementActions = [
     href: '/membership',
     imageSrc: '/images/picnic-social-2.jpg',
     overlayClassName: 'bg-brand-orange/80',
+    hoverTextClassName: 'group-hover/action-button:text-brand-orange/80',
     imageClassName: 'object-[45%_center]',
-    hoverTextClassName:
-      "group-hover/action-button:bg-[image:linear-gradient(rgb(255_87_52_/_0.8),rgb(255_87_52_/_0.8)),url('/images/picnic-social-2.jpg')] group-hover/action-button:bg-[position:45%_center]",
   },
   {
     id: 'industry-action',
@@ -25,9 +24,8 @@ const involvementActions = [
     href: '/contact',
     imageSrc: '/images/rcc-case-comp.png',
     overlayClassName: 'bg-brand-pink/80',
+    hoverTextClassName: 'group-hover/action-button:text-brand-pink/80',
     imageClassName: 'object-[55%_center]',
-    hoverTextClassName:
-      "group-hover/action-button:bg-[image:linear-gradient(rgb(228_17_103_/_0.8),rgb(228_17_103_/_0.8)),url('/images/rcc-case-comp.png')] group-hover/action-button:bg-[position:55%_center]",
   },
 ];
 
@@ -89,11 +87,7 @@ export default function GetInvolved() {
                   className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2 text-base font-bold md:text-lg',
                 })}
               >
-                <span
-                  className={`group-hover/action-button:bg-cover group-hover/action-button:bg-no-repeat group-hover/action-button:bg-clip-text group-hover/action-button:text-transparent ${action.hoverTextClassName}`}
-                >
-                  {action.buttonText}
-                </span>
+                <span className={action.hoverTextClassName}>{action.buttonText}</span>
               </Link>
             </div>
           </article>
