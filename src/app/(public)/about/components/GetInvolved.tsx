@@ -84,7 +84,8 @@ export default function GetInvolved() {
                 className={buttonVariants({
                   variant: 'inverse',
                   size: 'lg',
-                  className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2 text-base font-bold md:text-lg',
+                  className:
+                    'group/action-button mt-8 h-auto rounded-md px-6 py-2 text-base font-bold md:text-lg bg-clip-border',
                 })}
               >
                 <span className={action.hoverTextClassName}>{action.buttonText}</span>
