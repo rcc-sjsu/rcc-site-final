@@ -37,13 +37,13 @@ export default function GetInvolved() {
 
         <div className="mx-auto mt-6 flex max-w-3xl flex-col gap-5">
           <p className="text-base leading-relaxed md:text-lg xl:text-xl">
-            Take a look at what we&apos;ve done in{' '}
+            Take a look at{' '}
             <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
-              the past
+              what we&apos;ve done in the past
             </Link>{' '}
-            and what we&apos;re doing{' '}
+            and{' '}
             <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
-              right now
+              what we&apos;re doing right now
             </Link>{' '}
             so you can get an idea of what you can contribute to in the future.
           </p>
