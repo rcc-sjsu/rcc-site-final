@@ -7,21 +7,6 @@
   overflow: hidden;
 }
 
-.heading {
-  text-align: center;
-  color: #5939af;
-  font-family: var(--font-zilla-slab);
-  font-size: clamp(2.75rem, 4.5vw, 4rem);
-  font-weight: 700;
-  margin-bottom: 44px;
-  line-height: 1.1;
-}
-
-.heading h2 {
-  margin: 0;
-  white-space: nowrap;
-}
-
 .carouselWrapper {
   width: 100%;
   display: flex;
@@ -33,14 +18,6 @@
 @media (max-width: 640px) {
   .container {
     padding: 42px 0 48px;
-  }
-
-  .heading {
-    margin-bottom: 36px;
-  }
-
-  .heading h2 {
-    white-space: normal;
   }
 
   .carouselWrapper {
