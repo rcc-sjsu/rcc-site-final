@@ -26,6 +26,8 @@
   --color-brand-dull-periwinkle: #93a2e2;
   --color-brand-baby-pink: #f6badf;
   --color-brand-baby-blue: #9bd6f5;
+  --color-brand-orange: #ff5734;
+  --color-brand-pink: #e41167;
 
   /* supporting RCC brand colors */
   --color-brand-dark-violet: #280b63;
@@ -84,7 +86,7 @@
   --color-brand-dark-pastel-purple: #9580d7;
   --color-brand-light-steel-blue: #7289da;
   --color-brand-lilac: #cda8f9;
-  --color-brand-accent-orange: #d68a5c; /* probably change hex to other orange */
+  --color-brand-accent-orange: #ff5734; /* probably change hex to other orange */
 
   /* some Mozilla colors */
   --color-brand-ironside-grey: #666666;
