@@ -6,7 +6,7 @@ import recentProjectStyles from './(public)/home/recentprojects.module.css';
 
 // component imports
 import BackgroundGradient from '@/components/BackgroundGradient';
-import { CompaniesSection } from '@/components/CompaniesSection';
+import CompaniesSection from '@/components/CompaniesSection/CompaniesSection';
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
