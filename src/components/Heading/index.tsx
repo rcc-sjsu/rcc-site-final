@@ -27,7 +27,7 @@ export default function Heading({
         <Image src={logoPath} className={styles.logo} height={logoSize} width={logoSize} alt="" />
       )}
 
-      <span className={styles.headingText}>{children}</span>
+      <span className={styles.gradientText}>{children}</span>
 
       {/* Right-aligned logo */}
       {logoPath && logoAlign == 'right' && logoSize && (
