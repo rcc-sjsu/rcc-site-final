@@ -35,7 +35,10 @@ export default function WhatIsRCC() {
             )}
           >
             Get Involved
-            <MoveRightIcon size="1.5em" className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3"></MoveRightIcon>
+            <MoveRightIcon
+              size="1.5em"
+              className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3"
+            ></MoveRightIcon>
           </Link>
           <Link
             href="#our-work-about-page"

@@ -53,7 +53,10 @@ export default function Home() {
             )}
           >
             Get Involved
-            <MoveRightIcon size="1.5em" className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3" />
+            <MoveRightIcon
+              size="1.5em"
+              className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3"
+            />
           </Link>
 
           <Link
@@ -311,7 +314,10 @@ export default function Home() {
               href="https://www.instagram.com/rcc.sjsu/"
               target="_blank"
               aria-labelledby="social-media-button-1"
-              className={cn(buttonVariants({ variant: 'social', size: 'lg' }), 'group w-full transition-colors duration-200')}
+              className={cn(
+                buttonVariants({ variant: 'social', size: 'lg' }),
+                'group w-full transition-colors duration-200'
+              )}
             >
               <div className="flex gap-2 md:gap-4 place-items-center justify-start lg:justify-center">
                 <SiInstagram
@@ -320,7 +326,9 @@ export default function Home() {
                 />
                 <div className="text-left">
                   <p className="text-xs md:text-sm hidden md:block">Follow Us</p>
-                  <p id="social-media-button-1" className="text-lg md:text-xl">Instagram</p>
+                  <p id="social-media-button-1" className="text-lg md:text-xl">
+                    Instagram
+                  </p>
                 </div>
               </div>
             </Link>
@@ -331,7 +339,10 @@ export default function Home() {
               href="https://discord.com/invite/RGG9dMw4Rc"
               target="_blank"
               aria-labelledby="social-media-button-2"
-              className={cn(buttonVariants({ variant: 'social', size: 'lg' }), 'group w-full transition-colors duration-200')}
+              className={cn(
+                buttonVariants({ variant: 'social', size: 'lg' }),
+                'group w-full transition-colors duration-200'
+              )}
             >
               <div className="flex gap-2 md:gap-4 place-items-center justify-start lg:justify-center">
                 <SiDiscord
@@ -340,7 +351,9 @@ export default function Home() {
                 />
                 <div className="text-left">
                   <p className="text-xs md:text-sm lg:text-xs xl:text-sm hidden md:block">Join Our Community</p>
-                  <p id="social-media-button-2" className="text-lg md:text-xl">Discord</p>
+                  <p id="social-media-button-2" className="text-lg md:text-xl">
+                    Discord
+                  </p>
                 </div>
               </div>
             </Link>
@@ -351,7 +364,10 @@ export default function Home() {
               href="https://www.linkedin.com/company/rcc-sjsu/"
               target="_blank"
               aria-labelledby="social-media-button-3"
-              className={cn(buttonVariants({ variant: 'social', size: 'lg' }), 'group w-full transition-colors duration-200')}
+              className={cn(
+                buttonVariants({ variant: 'social', size: 'lg' }),
+                'group w-full transition-colors duration-200'
+              )}
             >
               <div className="flex gap-2 md:gap-5 lg:gap-4 place-items-center justify-start lg:justify-center">
                 <FaLinkedin
@@ -360,7 +376,9 @@ export default function Home() {
                 />
                 <div className="text-left">
                   <p className="text-xs md:text-sm hidden md:block">See Our Work</p>
-                  <p id="social-media-button-3" className="text-lg md:text-xl">LinkedIn</p>
+                  <p id="social-media-button-3" className="text-lg md:text-xl">
+                    LinkedIn
+                  </p>
                 </div>
               </div>
             </Link>
@@ -371,7 +389,10 @@ export default function Home() {
               href="mailto:rcc.sjsu@gmail.com"
               target="_blank"
               aria-labelledby="social-media-button-4"
-              className={cn(buttonVariants({ variant: 'social', size: 'lg' }), 'group w-full transition-colors duration-200')}
+              className={cn(
+                buttonVariants({ variant: 'social', size: 'lg' }),
+                'group w-full transition-colors duration-200'
+              )}
             >
               <div className="flex gap-2 md:gap-4 place-items-center justify-start lg:justify-center">
                 <CiMail
@@ -381,7 +402,9 @@ export default function Home() {
                 />
                 <div className="text-left">
                   <p className="text-xs md:text-sm hidden md:block">Reach Out to Us</p>
-                  <p id="social-media-button-4" className="text-lg md:text-xl">Email</p>
+                  <p id="social-media-button-4" className="text-lg md:text-xl">
+                    Email
+                  </p>
                 </div>
               </div>
             </Link>

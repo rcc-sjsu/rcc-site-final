@@ -265,7 +265,8 @@
   transition: transform 0.15s ease-out;
 }
 
-.pop-hover--br:hover { /* --pop-distance = how much the card moves away from the shadow (distance away from card in hovering state) */
+.pop-hover--br:hover {
+  /* --pop-distance = how much the card moves away from the shadow (distance away from card in hovering state) */
   transform: translate(calc(-1 * var(--pop-distance, 6px)), calc(-1 * var(--pop-distance, 6px)));
 }
 .pop-hover--bl:hover {
@@ -279,7 +280,8 @@
   z-index: 0;
 }
 
-.pop-shadow--br { /* --shadow-size = how much shadow is always showing */
+.pop-shadow--br {
+  /* --shadow-size = how much shadow is always showing */
   transform: translate(var(--shadow-size, 0px), var(--shadow-size, 0px));
 }
 .pop-shadow--bl {

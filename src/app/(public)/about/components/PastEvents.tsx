@@ -73,9 +73,9 @@ export default function PastEvents() {
               </CardTitle>
               <CardDescription>
                 <p className="text-xs md:text-sm xl:text-base text-black">
-                  Explore how AI is transforming fraud detection at the intersection of technology and finance. Teams will
-                  design innovative solutions&mdash;whether through policy safeguards, or technical improvements&mdash;to
-                  tackle one of the most pressing challenges in the financial world today.
+                  Explore how AI is transforming fraud detection at the intersection of technology and finance. Teams
+                  will design innovative solutions&mdash;whether through policy safeguards, or technical
+                  improvements&mdash;to tackle one of the most pressing challenges in the financial world today.
                 </p>
               </CardDescription>
             </CardHeader>
