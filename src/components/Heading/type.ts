@@ -4,6 +4,7 @@ export type headingProps = {
   children: React.ReactNode;
   customStyle?: React.CSSProperties;
   align?: 'left' | 'center';
+  tone?: 'default' | 'light';
   logoPath?: string;
   logoAlign?: 'left' | 'right';
   logoSize?: number;
