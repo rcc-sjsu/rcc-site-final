@@ -24,6 +24,7 @@ const zillaSlab = Zilla_Slab({
   variable: '--font-zilla-slab',
   subsets: ['latin'],
   weight: ['500', '600', '700'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata: Metadata = {

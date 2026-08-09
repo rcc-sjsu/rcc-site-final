@@ -1,0 +1,103 @@
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+  min-height: 580px;
+  padding: 20px 25px;
+  gap: 60px;
+  font-family: var(--font-zilla-slab);
+  background: #fbf4ff;
+  overflow: hidden;
+}
+
+.rule {
+  flex: 0 0 1px;
+  align-self: stretch;
+  width: 100%;
+  min-height: 1px;
+  border-radius: 999px;
+  background: #a031d4;
+}
+
+.quotationMarks {
+  display: block;
+  flex: 0 0 auto;
+  width: 117px;
+  height: 90px;
+}
+
+.quote {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 1240px);
+  margin: 0;
+  text-align: center;
+}
+
+.quote blockquote,
+.quote p {
+  margin: 0;
+}
+
+.quote p {
+  color: #010101;
+  font-family: var(--font-zilla-slab);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.quote em {
+  color: #a031d4;
+  font-style: italic;
+}
+
+.quote figcaption {
+  margin-top: 58px;
+  color: #010101;
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 150%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-height: 0;
+    gap: 40px;
+  }
+
+  .quote {
+    width: 100%;
+  }
+
+  .quote p {
+    font-size: 32px;
+  }
+
+  .quote figcaption {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 16px;
+    gap: 32px;
+  }
+
+  .quotationMarks {
+    width: 88px;
+    height: auto;
+  }
+
+  .quote p {
+    font-size: 28px;
+  }
+}
