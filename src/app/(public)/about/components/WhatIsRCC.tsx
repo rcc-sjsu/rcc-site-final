@@ -1,9 +1,14 @@
+// component imports
 import Image from 'next/image';
 import Link from 'next/link';
 import BackgroundGradient from '@/components/BackgroundGradient';
 import Heading from '@/components/Heading';
 import styles from '../whatisrcc.module.css';
 import { MoveRightIcon } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+
+// utilities
+import { cn } from '@/lib/utils';
 
 export default function WhatIsRCC() {
   return (
@@ -24,14 +29,23 @@ export default function WhatIsRCC() {
         <div className="flex flex-col md:flex-row gap-7 md:gap-4 w-[80%] lg:w-auto">
           <Link
             href="#get-involved"
-            className="flex gap-3 items-center justify-center bg-brand-indigo px-6 md:px-10 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+            className={cn(
+              buttonVariants({ variant: 'default', size: 'lg' }),
+              'group h-auto gap-3 px-6 md:px-10 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl transition-colors duration-200'
+            )}
           >
             Get Involved
-            <MoveRightIcon size="1.5em"></MoveRightIcon>
+            <MoveRightIcon
+              size="1.5em"
+              className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3"
+            ></MoveRightIcon>
           </Link>
           <Link
             href="#our-work-about-page"
-            className="flex gap-2 items-center justify-center bg-brand-indigo px-6 md:px-10 lg:px-15 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl text-white rounded-lg hover:bg-brand-dark-violet focus:outline-3 focus:outline-offset-0 focus:outline-brand-dark-purple focus:bg-brand-lavender focus:text-brand-dark-purple focus:font-semibold active:outline-offset-0 active:outline-brand-dark-purple active:bg-brand-lavender active:text-brand-dark-purple active:font-semibold"
+            className={cn(
+              buttonVariants({ variant: 'default', size: 'lg' }),
+              'h-auto px-6 md:px-10 lg:px-15 py-2.5 w-auto md:w-1/2 lg:w-auto text-lg md:text-xl transition-colors duration-200'
+            )}
           >
             See Our Work
           </Link>

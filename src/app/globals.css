@@ -270,22 +270,38 @@
 }
 
 /* card hovering effect */
-.stat-card {
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+.pop-hover {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.15s ease-out;
 }
 
-.stat-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--color-brand-indigo) !important;
+.pop-hover--br:hover {
+  /* --pop-distance = how much the card moves away from the shadow (distance away from card in hovering state) */
+  transform: translate(calc(-1 * var(--pop-distance, 6px)), calc(-1 * var(--pop-distance, 6px)));
+}
+.pop-hover--bl:hover {
+  transform: translate(var(--pop-distance, 6px), calc(-1 * var(--pop-distance, 6px)));
+}
+
+.pop-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pop-shadow--br {
+  /* --shadow-size = how much shadow is always showing */
+  transform: translate(var(--shadow-size, 0px), var(--shadow-size, 0px));
+}
+.pop-shadow--bl {
+  transform: translate(calc(-1 * var(--shadow-size, 0px)), var(--shadow-size, 0px));
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stat-card {
-    transition: box-shadow 0.15s ease;
-  }
-  .stat-card:hover {
+  .pop-hover--br:hover,
+  .pop-hover--bl:hover {
     transform: none;
   }
 }
