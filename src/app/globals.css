@@ -76,6 +76,17 @@
 }
 
 :root {
+  /* can be editted/removed */
+  --white: #fefefe;
+  --black: #010101;
+  --light-purple: #fbf4ff;
+  --blurple: #5939af;
+  --purple: #a031d4;
+  --pink: #e41167;
+  --orange: #ff5734;
+  --yellow: #ff9839;
+  --gradient: linear-gradient(to right, var(--purple), var(--pink), var(--orange), var(--yellow));
+
   /* some colors from Figma prototypes */
   --color-brand-dark-grey: #383838;
   --color-brand-dark-purple: #411a63;

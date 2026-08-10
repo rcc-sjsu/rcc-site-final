@@ -79,7 +79,7 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/#about"
+              href="/about"
               onClick={() => setMobileOpen(false)}
               className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
             >

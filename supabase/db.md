@@ -2,6 +2,7 @@
 title: Database ER Diagram
 ---
 
+```mermaid
 erDiagram
 Student {
 int id PK
@@ -30,3 +31,4 @@ headshot_url varchar
 }
 User |o..|| Ambassador : is
 Ambassador }o..|| Team : "works on"
+```

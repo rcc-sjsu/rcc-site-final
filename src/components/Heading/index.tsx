@@ -15,19 +15,19 @@ export default function Heading({
   logoSize,
 }: headingProps) {
   const HeadingTag = headingTag as keyof JSX.IntrinsicElements;
-  const toneClassName = tone === 'light' ? styles.light : '';
+  const textToneClassName = tone === 'light' ? styles.lightText : styles.gradientText;
 
   return (
     <HeadingTag
       style={{ justifyContent: align == 'left' ? 'left' : 'center', ...customStyle }}
-      className={`${styles.heading} ${toneClassName} ${className ?? ''}`}
+      className={`${styles.heading} ${className ?? ''}`}
     >
       {/* Left-aligned logo */}
       {logoPath && logoAlign == 'left' && logoSize && (
         <Image src={logoPath} className={styles.logo} height={logoSize} width={logoSize} alt="" />
       )}
 
-      <span className={styles.headingText}>{children}</span>
+      <span className={`${styles.headingText} ${textToneClassName}`}>{children}</span>
 
       {/* Right-aligned logo */}
       {logoPath && logoAlign == 'right' && logoSize && (
