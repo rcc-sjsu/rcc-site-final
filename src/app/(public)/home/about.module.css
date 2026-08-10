@@ -1,74 +1,121 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: fit-content;
-  gap: 3.75rem;
-  font-size: 1.62rem;
-  margin: 0 auto 0 auto;
-  align-items: center;
   flex-wrap: wrap;
-  max-width: 60rem;
-  gap: 3rem;
+  margin: 0 auto 0 auto;
+  width: fit-content;
+  align-items: center;
   text-align: center;
+  gap: 3rem;
   padding-bottom: 2rem;
 }
 
-.gradient {
-  position: absolute;
-  margin-top: 7rem;
-  /* margin-left: -25rem; */
-  width: 15rem;
-  height: 15rem;
+.title {
+  font-family: var(--font-zilla-slab);
+  font-weight: bold;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  color: transparent;
+
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  max-width: 90vw;
+
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s ease-in-out; /* load from left to right */
+}
+
+.title.visible {
+  clip-path: inset(0 0 0 0);
+}
+
+.description {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+
+  max-width: 60rem;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out 0.3s; /* fade in */
+}
+
+.description.visible {
+  opacity: 1;
+}
+
+.description strong {
+  color: var(--blurple);
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.ctaButton,
+.secondaryButton {
+  font-weight: 700;
+  font-size: 1.5rem;
+
+  width: 16rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+
+  transition: all 0.3s ease;
+}
+
+.ctaButton {
+  color: var(--white);
+  font-weight: 700;
+  background: var(--pink);
+}
+
+.ctaButton:hover {
+  background: var(--gradient);
+}
+
+.secondaryButton {
+  color: var(--pink);
+  border: solid 1px;
+  background: var(--white);
+}
+
+.secondaryButton:hover {
+  color: var(--white);
+  background: var(--pink);
 }
 
 @media (width <= 1280px) {
   .container {
-    flex-direction: column;
     gap: 2rem;
-    max-width: unset;
-    width: 80%;
-    text-align: center;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .description {
-    font-size: 1.25rem;
-  }
-
-  .gradient {
-    margin-top: 0rem;
+    width: 80vw;
   }
 }
 
 @media (width <= 1024px) {
   .container {
-    padding-top: 0rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .gradient {
-    margin-top: -15rem;
+    padding-bottom: 1rem;
   }
 }
 
 @media (width <= 640px) {
-  .container {
-    justify-content: center;
-    width: 90vw;
-    margin: auto;
-    gap: 0rem;
-    padding-bottom: 1.25rem;
-
-    > div {
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
+  .buttons {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .description {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    font-size: 1rem;
+  .ctaButton,
+  .secondaryButton {
+    font-weight: 700;
+    font-size: 1.25rem;
+
+    width: 60vw;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .container {
+    width: 90vw;
+    padding-bottom: 1.25rem;
   }
 }

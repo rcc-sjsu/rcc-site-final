@@ -1,0 +1,45 @@
+.container {
+  min-height: 70vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(88, 101, 242, 0.6);
+}
+
+.title {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: -1px; /* trying to remove pixel gaps */
+
+  height: auto;
+  width: clamp(20rem, 50vw, 55rem);
+
+  filter: drop-shadow(-0.5rem 0.5rem 0.5rem var(--blurple));
+}
+
+@media (width <= 1280px) {
+  .container {
+    min-height: 60vh;
+  }
+}
+
+@media (width <= 1024px) {
+  .container {
+    min-height: 50vh;
+  }
+}
+
+@media (width <= 640px) {
+  .container {
+    min-height: 40vh;
+  }
+}
