@@ -1,14 +1,18 @@
 // component imports
+import CoolQuote from '@/components/CoolQuote/CoolQuote';
 import WhatIsRCC from './components/WhatIsRCC';
 import OurMission from './components/OurMission';
 import OurStory from './components/OurStory';
-import FounderQuote from './components/FounderQuote';
 import OurWork from './components/OurWork';
 import GetInvolved from './components/GetInvolved';
+import styles from './aboutpage.module.css';
 
 export default function About() {
   return (
-    <div style={{ overflow: 'clip' }}>
+    <div className={styles.container}>
+      {/* Founder Quote Section */}
+      <CoolQuote />
+
       {/* What is RCC Section */}
       <WhatIsRCC />
 
@@ -17,9 +21,6 @@ export default function About() {
 
       {/* Our Story Section */}
       <OurStory />
-
-      {/* Founder Quote Section */}
-      <FounderQuote />
 
       {/* Our Work Section */}
       <OurWork />
