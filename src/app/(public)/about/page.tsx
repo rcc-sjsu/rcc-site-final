@@ -1,5 +1,5 @@
 // component imports
-import { CoolQuote } from '@/components/CoolQuote';
+import CoolQuote from '@/components/CoolQuote/CoolQuote';
 import WhatIsRCC from './components/WhatIsRCC';
 import OurMission from './components/OurMission';
 import OurStory from './components/OurStory';
