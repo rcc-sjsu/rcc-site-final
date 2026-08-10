@@ -1,3 +1,7 @@
+// home page sections
+import Hero from './(public)/home/components/HeroSection';
+import About from './(public)/home/components/About';
+
 // css style imports
 import aboutStyles from './(public)/home/about.module.css';
 import socialMediaStyles from './(public)/home/socialmedia.module.css';
@@ -15,7 +19,6 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 // icon imports
-import { MoveRightIcon } from 'lucide-react';
 import { FaLinkedin } from 'react-icons/fa';
 import { SiInstagram, SiDiscord } from 'react-icons/si';
 import { CiMail } from 'react-icons/ci';
@@ -23,43 +26,11 @@ import { CiMail } from 'react-icons/ci';
 export default function Home() {
   return (
     <div style={{ overflow: 'clip' }}>
-      {/* About Section */}
+      <Hero />
+      <About />
+
+      {/* Stats Section */}
       <section className={aboutStyles.container}>
-        <Heading headingTag="h1"> Responsible Computing Club </Heading>
-        <BackgroundGradient className={aboutStyles.gradient} color="purple" />
-        {/* <BackgroundGradient className={aboutStyles.gradient2} color="purple" /> */}
-
-        <p className={aboutStyles.description}>
-          The Responsible Computing Club (RCC) at SJSU empowers students to shape the future of tech. We unite students
-          to explore the ethics of tech through hands-on, cross-disciplinary projects.
-        </p>
-
-        {/* Call to Action (CTA) buttons */}
-        <div className="flex flex-col items-center justify-center md:flex-row gap-7 md:gap-4 w-[80%] lg:w-auto">
-          {/* new: more modular linked buttons. can apply to all buttons to reduce clutter */}
-          <Link
-            href="/about#get-involved"
-            className={cn(
-              buttonVariants({ variant: 'default', size: 'lg' }),
-              'w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
-            )}
-          >
-            Get Involved
-            <MoveRightIcon size="1.5em" />
-          </Link>
-
-          <Link
-            href="/about"
-            className={cn(
-              buttonVariants({ variant: 'secondary', size: 'lg' }),
-              'w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
-            )}
-          >
-            Get to Know Us
-          </Link>
-        </div>
-
-        {/* Data Analytics */}
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
           <li className="stat-card h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3 shadow-[5px_5px_0_var(--color-brand-indigo)] md:shadow-[7px_7px_0_var(--color-brand-indigo)]">
             <p className="text-xl md:text-2xl">364</p>
