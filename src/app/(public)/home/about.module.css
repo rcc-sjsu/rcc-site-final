@@ -66,12 +66,14 @@
 
 .ctaButton {
   color: var(--white);
+  background: var(--gradient);
+  background-size: 200% 100%;
+  background-position: left;
   font-weight: 700;
-  background: var(--pink);
 }
 
 .ctaButton:hover {
-  background: var(--gradient);
+  background-position: right;
 }
 
 .secondaryButton {
