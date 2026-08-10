@@ -1,0 +1,26 @@
+.container {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  padding: 54px 0 56px;
+  overflow: hidden;
+}
+
+.carouselWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 42px 0 48px;
+  }
+
+  .carouselWrapper {
+    gap: 24px;
+  }
+}

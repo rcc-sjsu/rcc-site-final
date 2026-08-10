@@ -1,6 +1,7 @@
 ---
 title: Database ER Diagram
 ---
+
 ```mermaid
 erDiagram
 Student {
