@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 3rem;
   font-size: 1.62rem;
-  margin: 3rem auto 6rem auto;
+  margin: 3rem auto 2rem auto;
   align-items: center;
   flex-wrap: wrap;
   max-width: 70rem;
@@ -24,6 +24,7 @@
   .container {
     flex-direction: column;
     gap: 2rem;
+    margin-bottom: 2rem;
     max-width: 200rem;
     text-align: center;
     justify-content: center;

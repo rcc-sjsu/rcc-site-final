@@ -31,7 +31,7 @@ const involvementActions = [
 
 export default function GetInvolved() {
   return (
-    <section id="get-involved" className="pt-20 md:pt-28">
+    <section id="get-involved" className="pt-26 md:pt-30">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <Heading headingTag="h2">How Can You Get Involved?</Heading>
 

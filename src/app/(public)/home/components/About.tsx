@@ -20,6 +20,7 @@ export default function About() {
           }
           if (entry.target === descRef.current && entry.isIntersecting) {
             setDescVisible(true);
+            setTitleVisible(true);
           }
         });
       },
@@ -34,9 +35,9 @@ export default function About() {
 
   return (
     <section className={styles.container}>
-      <div ref={titleRef} className={`${styles.title} ${titleVisible ? styles.visible : ''}`}>
+      <h1 ref={titleRef} className={`${styles.title} ${titleVisible ? styles.visible : ''}`}>
         Responsible Computing Club
-      </div>
+      </h1>
 
       <p ref={descRef} className={`${styles.description} ${descVisible ? styles.visible : ''}`}>
         A student organization at SJSU that empowers people to shape the future of technology. We{' '}

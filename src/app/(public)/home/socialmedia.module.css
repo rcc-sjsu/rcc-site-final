@@ -4,7 +4,7 @@
   width: fit-content;
   gap: 3.75rem;
   font-size: 1.62rem;
-  margin: 4rem auto 0 auto;
+  margin: 2rem auto 0 auto;
   align-items: center;
   flex-wrap: wrap;
   gap: 3rem;
@@ -37,7 +37,7 @@
     /* display: grid; */
     justify-content: center;
     width: 90vw;
-    margin: auto;
+    margin: 1rem auto 0 auto;
     gap: 1.5rem;
     padding-top: 1.25rem;
 

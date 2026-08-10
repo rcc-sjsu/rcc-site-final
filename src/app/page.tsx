@@ -4,7 +4,6 @@ import About from './(public)/home/components/About';
 
 // css style imports
 import aboutStyles from './(public)/home/about.module.css';
-import industryStyles from './(public)/home/industrypartners.module.css';
 import socialMediaStyles from './(public)/home/socialmedia.module.css';
 import recentEventsStyles from './(public)/home/recentevents.module.css';
 import recentProjectStyles from './(public)/home/recentprojects.module.css';
@@ -17,23 +16,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
-import { Marquee, type Partner } from '@/components/Marquee/index';
 
 // utilities
 import { cn } from '@/lib/utils';
-
-/* array of partner names */
-const industryPartners: Partner[] = [
-  { name: 'Credo AI', src: '/home_images/credo_AI_logo.png', width: 190, height: 190 },
-  { name: 'EPA/ESA', src: '/home_images/EPA_ESA_logo.png', width: 120, height: 120 },
-  { name: 'The Creative Destination', src: '/home_images/the_creative_destination_logo.png', width: 110, height: 120 },
-];
 
 // icon imports
 import { FaLinkedin } from 'react-icons/fa';
 import { SiInstagram, SiDiscord } from 'react-icons/si';
 import { CiMail } from 'react-icons/ci';
-import { MoveRightIcon } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -43,43 +33,8 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className={aboutStyles.container}>
-        <Heading headingTag="h1"> Responsible Computing Club </Heading>
-        <BackgroundGradient className={aboutStyles.gradient} color="purple" />
-
-        <p className={aboutStyles.description}>
-          The Responsible Computing Club (RCC) at SJSU empowers students to shape the future of tech. We unite students
-          to explore the ethics of tech through hands-on, cross-disciplinary projects.
-        </p>
-
-        {/* Call to Action (CTA) buttons */}
-        <div className="flex flex-col items-center justify-center md:flex-row gap-7 md:gap-4 w-[80%] lg:w-auto">
-          <Link
-            href="/about#get-involved"
-            className={cn(
-              buttonVariants({ variant: 'default', size: 'xlg' }),
-              'group w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
-            )}
-          >
-            Get Involved
-            <MoveRightIcon
-              size="1.5em"
-              className="transition-[stroke-width] duration-200 ease-out group-hover:stroke-3"
-            />
-          </Link>
-
-          <Link
-            href="/about"
-            className={cn(
-              buttonVariants({ variant: 'secondary', size: 'xlg' }),
-              'w-[75%] md:w-auto text-xl md:text-2xl px-8 md:px-12 py-8 transition-colors duration-200'
-            )}
-          >
-            Get to Know Us
-          </Link>
-        </div>
-
         {/* Data Analytics (aka stat cards)*/}
-        <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
+        <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-8 sm:mt-8 md:mt-10 xl:mt-12 text-brand-indigo">
           <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
             <div
               aria-hidden="true"
@@ -114,13 +69,6 @@ export default function Home() {
             </div>
           </li>
         </ul>
-      </section>
-
-      {/* Industry Partners Section */}
-      <section className={industryStyles.container}>
-        <Heading headingTag="h2">Industry Partners</Heading>
-        <BackgroundGradient className={industryStyles.gradient} color="purple" />
-        <Marquee partners={industryPartners} />
       </section>
 
       {/* Recent Events section */}
