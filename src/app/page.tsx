@@ -1,26 +1,18 @@
 // css style imports
 import aboutStyles from './(public)/home/about.module.css';
-import industryStyles from './(public)/home/industrypartners.module.css';
 import socialMediaStyles from './(public)/home/socialmedia.module.css';
 import recentEventsStyles from './(public)/home/recentevents.module.css';
 import recentProjectStyles from './(public)/home/recentprojects.module.css';
 
 // component imports
 import BackgroundGradient from '@/components/BackgroundGradient';
+import CompaniesSection from '@/components/CompaniesSection/CompaniesSection';
 import Heading from '@/components/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Marquee, type Partner } from '@/components/Marquee/index';
-
-/* array of partner names (can remove but will need to rewrite some parts) */
-const industryPartners: Partner[] = [
-  { name: 'Credo AI', src: '/home_images/credo_AI_logo.png', width: 190, height: 190 },
-  { name: 'EPA/ESA', src: '/home_images/EPA_ESA_logo.png', width: 120, height: 120 },
-  { name: 'The Creative Destination', src: '/home_images/the_creative_destination_logo.png', width: 110, height: 120 },
-];
 
 // icon imports
 import { MoveRightIcon } from 'lucide-react';
@@ -82,15 +74,6 @@ export default function Home() {
             <p className="text-xl md:text-2xl">Non-Tech Majors</p>
           </li>
         </ul>
-      </section>
-
-      {/* Industry Partners Section */}
-      <section className={industryStyles.container}>
-        <Heading headingTag="h2">Industry Partners</Heading>
-        <BackgroundGradient className={industryStyles.gradient} color="purple" />
-
-        {/* list of industry partners */}
-        <Marquee partners={industryPartners} />
       </section>
 
       {/* Recent Events section */}
@@ -229,6 +212,9 @@ export default function Home() {
           See More Projects
         </Link>
       </section>
+
+      {/* Companies Section */}
+      <CompaniesSection />
 
       {/* Social Media Section */}
       <section className={socialMediaStyles.container}>

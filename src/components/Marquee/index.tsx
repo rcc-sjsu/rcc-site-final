@@ -10,17 +10,15 @@ export interface Partner {
 
 function PartnerLogo({ partner }: { partner: Partner }) {
   return (
-    <figure className={`${styles['marquee-item']} flex flex-col items-center justify-center gap-3`}>
+    <figure className={`${styles['marquee-item']} flex items-center justify-center`}>
       <Image
         src={partner.src}
         alt={partner.name}
         width={partner.width ?? 140}
         height={partner.height ?? 140}
-        className="h-20 w-auto object-contain md:h-28"
+        unoptimized
+        className={styles['marquee-logo']}
       />
-      <figcaption className="text-sm md:text-base font-semibold text-brand-indigo whitespace-nowrap">
-        {partner.name}
-      </figcaption>
     </figure>
   );
 }
@@ -28,8 +26,8 @@ function PartnerLogo({ partner }: { partner: Partner }) {
 function MarqueeGroup({ partners, hidden }: { partners: Partner[]; hidden?: boolean }) {
   return (
     <div className={styles['marquee-group']} aria-hidden={hidden || undefined}>
-      {partners.map((partner) => (
-        <PartnerLogo key={partner.name} partner={partner} />
+      {partners.map((partner, index) => (
+        <PartnerLogo key={`${partner.name}-${index}`} partner={partner} />
       ))}
     </div>
   );
@@ -37,24 +35,28 @@ function MarqueeGroup({ partners, hidden }: { partners: Partner[]; hidden?: bool
 
 export function Marquee({
   partners,
-  secondsPerItem = 4,
+  duration = 30,
   pxPerItem = 220,
   minWidth = 320,
   maxWidth = 900,
+  reverse = false,
 }: {
   partners: Partner[];
-  secondsPerItem?: number;
+  duration?: number;
   pxPerItem?: number;
   minWidth?: number;
   maxWidth?: number;
+  reverse?: boolean;
 }) {
-  const duration = Math.max(partners.length * secondsPerItem, 12);
   const wrapperWidth = Math.min(maxWidth, Math.max(minWidth, partners.length * pxPerItem));
 
   return (
     <div className={`${styles['marquee-outer']} mx-auto`} style={{ maxWidth: wrapperWidth }}>
       <div className={styles['marquee-wrapper']}>
-        <div className={styles['marquee-track']} style={{ animationDuration: `${duration}s` }}>
+        <div
+          className={`${styles['marquee-track']} ${reverse ? styles['marquee-track-reverse'] : ''}`}
+          style={{ animationDuration: `${duration}s` }}
+        >
           <MarqueeGroup partners={partners} />
           <MarqueeGroup partners={partners} hidden />
         </div>
