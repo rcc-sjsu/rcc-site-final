@@ -1,0 +1,63 @@
+.header {
+  --header-color-text: #f00;
+  --header-color-accent: #0f0;
+  --header-color-bg: #00f;
+
+  position: sticky;
+  top: 0;
+}
+
+.headerOpaque {
+  background-color: var(--header-color-bg);
+}
+
+.headerTransparent {
+  background: linear-gradient(var(--header-color-bg), transparent);
+}
+
+/* a hyperlink navbar item */
+.navLink {
+  font-size: 1rem;
+  color: var(--header-color-text);
+  font-weight: 400;
+  &:hover {
+    color: var(--header-color-accent);
+    font-weight: 700;
+  }
+  transition:
+    font-weight 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.navLinkCurrent {
+  font-weight: 700;
+  color: var(--header-color-accent);
+  text-decoration: underline 2px;
+  &:hover {
+    /* (making it transparent instead of turning it off since that way we can transition the decoration color to get it
+     *  to animate) */
+    text-decoration-color: transparent;
+  }
+}
+
+/* navlink bold spacing fix stuff
+ * via https://css-tricks.com/bold-on-hover-without-the-layout-shift/ */
+.navLink {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  &::after {
+    content: attr(data-text);
+    content: attr(data-text) / '';
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    font-weight: 700;
+    @media speech {
+      display: none;
+    }
+  }
+}

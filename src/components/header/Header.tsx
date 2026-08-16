@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
+import style from './header.module.css';
+
 interface NavItem {
   text: string;
   href: string;
@@ -23,20 +25,48 @@ const nav_items: NavItem[] = [
   { text: 'Membership', href: '/membership' },
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
+  // FIXME needs the actual link for whatever page thats gonna be
+  { text: 'Past Work', href: '/' },
 ];
 
-export default function Header() {
+interface Props {
+  transparent?: boolean;
+  'text-color'?: string;
+  'accent-color'?: string;
+  'bg-color'?: string;
+}
+
+export default function Header({
+  transparent = false,
+  'text-color': text_color,
+  'accent-color': accent_color,
+  'bg-color': bg_color,
+}: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100">
+    <header
+      className={cn(style.header, transparent ? style.headerTransparent : style.headerOpaque)}
+      style={
+        {
+          '--header-color-text': text_color,
+          '--header-color-accent': accent_color,
+          '--header-color-bg': bg_color,
+        } as React.CSSProperties
+      }
+    >
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center justify-center h-17">
         <NavigationMenu>
           <NavigationMenuList className="gap-6">
             {nav_items.map((item, idx) => (
               <NavigationMenuItem key={idx}>
-                <Link href={item.href} className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
+                {/* TODO double check there isnt a different way next wants us grabbing what the current page is */}
+                <Link
+                  href={item.href}
+                  data-text={item.text}
+                  className={cn(style.navLink, window.location.pathname === item.href && style.navLinkCurrent)}
+                >
                   {item.text}
                 </Link>
               </NavigationMenuItem>
