@@ -11,6 +11,20 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
+interface NavItem {
+  text: string;
+  href: string;
+}
+
+const nav_items: NavItem[] = [
+  { text: 'Home', href: '/' },
+  { text: 'About Us', href: '/about' },
+  { text: 'Happening Now', href: '/events' },
+  { text: 'Membership', href: '/membership' },
+  { text: 'Ambassadors', href: '/ambassadors' },
+  { text: 'Contact Us', href: '/contact' },
+];
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -20,41 +34,13 @@ export default function Header() {
       <div className="hidden sm:flex items-center justify-center h-17">
         <NavigationMenu>
           <NavigationMenuList className="gap-6">
-            <NavigationMenuItem>
-              <Link href="/" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Home
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/about" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                About Us
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/events" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Happening Now
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/membership" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Membership
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/ambassadors" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Ambassadors
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/contact" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Contact Us
-              </Link>
-            </NavigationMenuItem>
+            {nav_items.map((item, idx) => (
+              <NavigationMenuItem key={idx}>
+                <Link href={item.href} className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
+                  {item.text}
+                </Link>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
       </div>
@@ -71,48 +57,16 @@ export default function Header() {
 
         {mobileOpen && (
           <div className="absolute top-14 left-4 z-50 bg-white rounded-lg shadow-md min-w-44 py-1 border border-gray-100">
-            <Link
-              href="/"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/events"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Happening Now
-            </Link>
-            <Link
-              href="/members"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Membership
-            </Link>
-            <Link
-              href="/ambassadors"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Ambassadorship
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Contact Us
-            </Link>
+            {nav_items.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
+              >
+                {item.text}
+              </Link>
+            ))}
           </div>
         )}
       </div>
