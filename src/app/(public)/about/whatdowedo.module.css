@@ -1,0 +1,67 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    'upperCircle'
+    'lowerCircle'
+    'content';
+  place-items: center;
+  max-width: min(775px, calc(100% - 2rem));
+  margin-inline: auto;
+  > * {
+    grid-column: 1 / 1;
+  }
+}
+
+.content {
+  grid-row: content-start / content-end;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  font-size: 1.25rem;
+  gap: 1em;
+  text-align: center;
+  padding: 2em;
+  padding-block-start: 0;
+  p {
+    font-size: inherit;
+  }
+}
+
+.circle {
+  grid-row: upperCircle-start / lowerCircle-end;
+  display: grid;
+  width: min(250px, 80%);
+  aspect-ratio: 1 / 1;
+  position: relative; /* <- for child images to be `fill` */
+  place-items: center;
+  > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.bgBox {
+  grid-row: lowerCircle-start / content-end;
+}
+
+.glow {
+  /* TODO the color here is `var(--purple)` but with 50% opacity.
+   * we should maybe do the color globals differently so cases like this go smoother
+   * but for now im just gonna leave it like this.
+   * -amgg */
+  box-shadow: 0px 0px 20px #a031d480;
+}
+
+/* FIXME should go somewhere shared (or into the css of a reused component mayb),
+ * since this same style of button is used elsewhere too. */
+.smolbutton {
+  font-size: 1.15rem;
+  background-color: var(--color-brand-pink);
+  color: var(--white);
+  font-weight: 700;
+  display: block;
+  width: fit-content;
+  padding-inline: 1.25em;
+  padding-block: 0.3em;
+  border-radius: 2em;
+}

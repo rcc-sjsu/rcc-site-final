@@ -5,6 +5,7 @@ import OurMission from './components/OurMission';
 import OurStory from './components/OurStory';
 import OurWork from './components/OurWork';
 import GetInvolved from './components/GetInvolved';
+import WhatDoWeDo from './components/WhatDoWeDo';
 import styles from './aboutpage.module.css';
 
 export default function About() {
@@ -24,6 +25,9 @@ export default function About() {
 
       {/* Our Work Section */}
       <OurWork />
+
+      {/* What Do We Do Section */}
+      <WhatDoWeDo />
 
       {/* Get Involved Section */}
       <GetInvolved />
