@@ -24,6 +24,7 @@
     color: var(--header-color-accent);
     font-weight: 700;
   }
+  text-align: center;
   transition:
     font-weight 0.2s ease,
     text-decoration-color 0.2s ease;
@@ -47,6 +48,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  hyphens: manual;
   &::after {
     content: attr(data-text);
     content: attr(data-text) / '';
@@ -60,4 +62,22 @@
       display: none;
     }
   }
+}
+
+.logoImageContainer {
+  position: relative;
+  height: 40px;
+  aspect-ratio: 1;
+  box-sizing: content-box;
+  border: 3px solid var(--blurple);
+  background-color: var(--blurple);
+  border-radius: 100%;
+}
+
+.navLinksList {
+  display: flex;
+  align-items: center;
+  /* calculated with https://clampgenerator.com/tools/layout-spacing-size/ ,
+   * [900px,1000px] viewport, [8px,20px] prop */
+  gap: clamp(0.5rem, calc(-6.25rem + 12vw), 1.25rem);
 }

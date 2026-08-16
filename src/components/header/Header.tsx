@@ -2,13 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
+import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import { cn } from '@/lib/utils';
 
 import style from './header.module.css';
@@ -21,9 +17,9 @@ interface NavItem {
 const nav_items: NavItem[] = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },
-  { text: 'Happening Now', href: '/events' },
-  { text: 'Membership', href: '/membership' },
-  { text: 'Ambassadors', href: '/ambassadors' },
+  { text: 'Happen\u00ading Now', href: '/events' },
+  { text: 'Member\u00adship', href: '/membership' },
+  { text: 'Ambass\u00adadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
   // FIXME needs the actual link for whatever page thats gonna be
   { text: 'Past Work', href: '/' },
@@ -56,11 +52,16 @@ export default function Header({
       }
     >
       {/* Desktop Nav */}
-      <div className="hidden sm:flex items-center justify-center h-17">
-        <NavigationMenu>
-          <NavigationMenuList className="gap-6">
+      <div className="hidden sm:flex items-center justify-center h-20 mx-5">
+        {/* TODO a11y best practices question -- should this be labeled as button that goes to homepage, or should it be skipped entirely since theres alread a home button on the navbar which makes this redundant screenreader-wise */}
+        <Link href="/" aria-label="Home" className={style.logoImageContainer}>
+          <Image alt="" fill src="/RCC_Main_Logo_Final.png" />
+        </Link>
+        <div className="grow bg-[red] h-5 min-w-2" />
+        <NavigationMenu.Root>
+          <NavigationMenu.List className={style.navLinksList}>
             {nav_items.map((item, idx) => (
-              <NavigationMenuItem key={idx}>
+              <NavigationMenu.Item key={idx} className={style.navLinkContainer}>
                 {/* TODO double check there isnt a different way next wants us grabbing what the current page is */}
                 <Link
                   href={item.href}
@@ -69,12 +70,17 @@ export default function Header({
                 >
                   {item.text}
                 </Link>
-              </NavigationMenuItem>
+              </NavigationMenu.Item>
             ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+          </NavigationMenu.List>
+        </NavigationMenu.Root>
+        <div className="bg-[red] h-5 min-w-2 max-w-8 grow-[0.1]" />
+        {/* TODO temp placeholder for the sign in button & pfp circle */}
+        <div className="bg-[lime] min-w-16 w-16 h-8.5 rounded-full" />
+        <div className="bg-[lime] min-w-8.5 w-8.5 h-8.5 rounded-full" />
       </div>
 
+      {/* TODO need to deal w/ the mobile stuff */}
       {/* Mobile Nav */}
       <div className="sm:hidden flex items-center h-14 px-4">
         <button
