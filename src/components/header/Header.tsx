@@ -17,9 +17,9 @@ interface NavItem {
 const nav_items: NavItem[] = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },
-  { text: 'Happen\u00ading Now', href: '/events' },
-  { text: 'Member\u00adship', href: '/membership' },
-  { text: 'Ambass\u00adadors', href: '/ambassadors' },
+  { text: 'Happening Now', href: '/events' },
+  { text: 'Membership', href: '/membership' },
+  { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
   // FIXME needs the actual link for whatever page thats gonna be
   { text: 'Past Work', href: '/' },

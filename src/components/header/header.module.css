@@ -48,7 +48,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  hyphens: manual;
   &::after {
     content: attr(data-text);
     content: attr(data-text) / '';
