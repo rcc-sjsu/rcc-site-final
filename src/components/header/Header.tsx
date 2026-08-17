@@ -8,6 +8,7 @@ import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import { cn } from '@/lib/utils';
 
 import style from './header.module.css';
+import { usePathname } from 'next/navigation';
 
 interface NavItem {
   text: string;
@@ -39,6 +40,7 @@ export default function Header({
   'bg-color': bg_color,
 }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header
@@ -62,11 +64,10 @@ export default function Header({
           <NavigationMenu.List className={style.navLinksList}>
             {nav_items.map((item, idx) => (
               <NavigationMenu.Item key={idx} className={style.navLinkContainer}>
-                {/* TODO double check there isnt a different way next wants us grabbing what the current page is */}
                 <Link
                   href={item.href}
                   data-text={item.text}
-                  className={cn(style.navLink, window.location.pathname === item.href && style.navLinkCurrent)}
+                  className={cn(style.navLink, pathname === item.href && style.navLinkCurrent)}
                 >
                   {item.text}
                 </Link>
