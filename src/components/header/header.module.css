@@ -5,23 +5,23 @@
   position: sticky;
   top: 0;
   background-color: var(--header-color-bg);
-  width: 100%;
   /* TODO we should standardize our z-index values into some standard vars mayhaps. */
   z-index: 999;
 }
 
-.headerStandard {
+.header.headerStandard {
   --header-color-text: var(--black);
   --header-color-accent: var(--blurple);
   --header-color-bg: var(--white);
 }
 
-.headerHomepage {
+.header.headerHomepage {
   --header-color-text: var(--white);
   --header-color-accent: var(--yellow);
   --header-color-bg: var(--blurple);
   background: linear-gradient(var(--header-color-bg), transparent);
   position: fixed;
+  width: 100%; /* (needed on position:fixed) */
 }
 
 /* a hyperlink navbar item */

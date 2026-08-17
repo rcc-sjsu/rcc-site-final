@@ -30,7 +30,16 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // we special-case style stuff based on being the homepage
+  // It would be cleaner to not have to hardcode this page-specific logic in the
+  // header itself, but given that A) it's only used in a single page currently,
+  // B) we're already doing pathname-specific logic for highlighting the current
+  // page, and C) actually letting the page actually signal what header style it
+  // wants would either need some structural refactoring of stuff OR necessitate
+  // some janky or way-overcomplicated-for-this-situation (or both) solutions to
+  // facilitate that. So all things considered I think this is probably the best
+  // choice for now and if we start needing page-specific header styles in other
+  // pages too sometime down the line, then we can revisit this and do it right.
+  //                                                                       -amgg
   const is_homepage = pathname === '/';
 
   return (
