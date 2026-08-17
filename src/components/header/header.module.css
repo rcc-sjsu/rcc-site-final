@@ -37,6 +37,10 @@
   transition:
     font-weight 0.2s ease,
     text-decoration-color 0.2s ease;
+  /* default underline to invisible when we're not even using it,
+   * in order to prevent a pop-in for a second when clicking on the
+   * nav item for a page */
+  text-decoration-color: transparent;
 }
 
 .navLinkCurrent {
