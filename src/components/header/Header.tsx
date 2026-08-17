@@ -23,43 +23,25 @@ const nav_items: NavItem[] = [
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
   // FIXME needs the actual link for whatever page thats gonna be
-  { text: 'Past Work', href: '/' },
+  { text: 'Past Work', href: '/TODO' },
 ];
 
-interface Props {
-  transparent?: boolean;
-  'text-color'?: string;
-  'accent-color'?: string;
-  'bg-color'?: string;
-}
-
-export default function Header({
-  transparent = false,
-  'text-color': text_color,
-  'accent-color': accent_color,
-  'bg-color': bg_color,
-}: Props) {
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  // we special-case style stuff based on being the homepage
+  const is_homepage = pathname === '/';
+
   return (
-    <header
-      className={cn(style.header, transparent ? style.headerTransparent : style.headerOpaque)}
-      style={
-        {
-          '--header-color-text': text_color,
-          '--header-color-accent': accent_color,
-          '--header-color-bg': bg_color,
-        } as React.CSSProperties
-      }
-    >
+    <header className={cn(style.header, is_homepage ? style.headerHomepage : style.headerStandard)}>
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center justify-center h-20 mx-5">
         {/* TODO a11y best practices question -- should this be labeled as button that goes to homepage, or should it be skipped entirely since theres alread a home button on the navbar which makes this redundant screenreader-wise */}
         <Link href="/" aria-label="Home" className={style.logoImageContainer}>
           <Image alt="" fill src="/RCC_Main_Logo_Final.png" />
         </Link>
-        <div className="grow bg-[red] h-5 min-w-2" />
+        {/* (padding bodge) */} <div className="grow min-w-2" />
         <NavigationMenu.Root>
           <NavigationMenu.List className={style.navLinksList}>
             {nav_items.map((item, idx) => (
@@ -75,7 +57,7 @@ export default function Header({
             ))}
           </NavigationMenu.List>
         </NavigationMenu.Root>
-        <div className="bg-[red] h-5 min-w-2 max-w-8 grow-[0.1]" />
+        {/* (padding bodge) */} <div className="min-w-2 max-w-8 grow-[0.1]" />
         {/* TODO temp placeholder for the sign in button & pfp circle */}
         <div className="bg-[lime] min-w-16 w-16 h-8.5 rounded-full" />
         <div className="bg-[lime] min-w-8.5 w-8.5 h-8.5 rounded-full" />

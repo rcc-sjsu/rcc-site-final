@@ -2,17 +2,26 @@
   --header-color-text: #f00;
   --header-color-accent: #0f0;
   --header-color-bg: #00f;
-
   position: sticky;
   top: 0;
-}
-
-.headerOpaque {
   background-color: var(--header-color-bg);
+  width: 100%;
+  /* TODO we should standardize our z-index values into some standard vars mayhaps. */
+  z-index: 999;
 }
 
-.headerTransparent {
+.headerStandard {
+  --header-color-text: var(--black);
+  --header-color-accent: var(--blurple);
+  --header-color-bg: var(--white);
+}
+
+.headerHomepage {
+  --header-color-text: var(--white);
+  --header-color-accent: var(--yellow);
+  --header-color-bg: var(--blurple);
   background: linear-gradient(var(--header-color-bg), transparent);
+  position: fixed;
 }
 
 /* a hyperlink navbar item */
