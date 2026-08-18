@@ -9,11 +9,9 @@ export default function WhatDoWeDo() {
     <section className={styles.container}>
       <div className={cn(styles.bgBox, styles.glow, 'bg-[#FBF4FF] place-self-stretch rounded-3xl')} />
       <div className={cn(styles.circle, styles.glow, 'rounded-full')} aria-hidden>
-        {/* FIXME just using that as a placeholder image for now */}
-        <Image className="rounded-full" src="/images/picnic-social.jpg" alt="" fill />
-        <div className="bg-[white] absolute w-2/3 h-2/3 rounded-full"></div>
-        {/* TODO update w/ the new image */}
-        <Image src="/about/hand-holding-globe-icon.svg" alt="" fill className="p-[24%]" />
+        <Image className="rounded-full" src="/about/about-us-wdwd-photocircle.png" alt="" fill sizes="250px" />
+        <div className="bg-[white] absolute w-17/25 aspect-square rounded-full"></div>
+        <Image src="/about/hand-holding-globe-icon.svg" alt="" fill className="p-[26%]" />
       </div>
       <div className={styles.content}>
         <Heading headingTag="h2">What Do We Do?</Heading>
