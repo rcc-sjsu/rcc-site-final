@@ -67,9 +67,11 @@ export default function Header() {
           </NavigationMenu.List>
         </NavigationMenu.Root>
         {/* (padding bodge) */} <div className="min-w-2 max-w-8 grow-[0.1]" />
-        {/* TODO temp placeholder for the sign in button & pfp circle */}
-        <div className="bg-[lime] min-w-16 w-16 h-8.5 rounded-full" />
-        <div className="bg-[lime] min-w-8.5 w-8.5 h-8.5 rounded-full" />
+        <div className="flex gap-2">
+          <div className={cn(style.button, style.textButton)}>Sign In</div>
+          {/* TODO should probably embed this as an inline SVG instead for purposes of styling it instead of using the mask bodge. */}
+          <div className={cn(style.button, style.avatarPlaceholder)} />
+        </div>
       </div>
 
       {/* TODO need to deal w/ the mobile stuff */}
