@@ -54,9 +54,9 @@
 
 /* FIXME should go somewhere shared (or into the css of a reused component mayb),
  * since this same style of button is used elsewhere too. */
-.smolbutton {
+.ctaButton {
+  position: relative;
   font-size: 1.15rem;
-  background-color: var(--color-brand-pink);
   color: var(--white);
   font-weight: 700;
   display: block;
@@ -64,4 +64,49 @@
   padding-inline: 1.25em;
   padding-block: 0.3em;
   border-radius: 2em;
+  /*
+  background: linear-gradient(
+    90deg in oklab,
+    var(--blurple),
+    var(--color-brand-pink),
+    var(--yellow)
+  );
+  background-position: center;
+  background-size: 300% 100%;
+  transition: background-size .5s ease;
+  &:hover {
+    background-size: 100% 100%;
+  }
+  */
+  background: linear-gradient(90deg in oklab, var(--blurple), var(--color-brand-pink), var(--yellow));
+}
+
+.ctaButton > svg {
+  path {
+    transition: all 1s linear;
+    /* x: -100%; */
+  }
+}
+.ctaButton:hover > svg {
+  path {
+    x: 0%;
+  }
+}
+
+.g1,
+.g2 {
+  transition: cx 0.8s ease-in;
+  .ctaButton:hover & {
+    transition: cx 0.5s ease-out;
+  }
+}
+.g1 {
+  .ctaButton:hover & {
+    cx: 0%;
+  }
+}
+.g2 {
+  .ctaButton:hover & {
+    cx: 100%;
+  }
 }
