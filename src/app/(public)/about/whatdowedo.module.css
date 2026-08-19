@@ -82,31 +82,14 @@
 }
 
 .ctaButton > svg {
-  path {
-    transition: all 1s linear;
-    /* x: -100%; */
-  }
-}
-.ctaButton:hover > svg {
-  path {
-    x: 0%;
-  }
+  pointer-events: none;
 }
 
 .g1,
 .g2 {
-  transition: cx 0.8s ease-in;
+  transition: x 0.8s ease-in;
   .ctaButton:hover & {
-    transition: cx 0.5s ease-out;
-  }
-}
-.g1 {
-  .ctaButton:hover & {
-    cx: 0%;
-  }
-}
-.g2 {
-  .ctaButton:hover & {
-    cx: 100%;
+    transition: x 0.5s ease-out;
+    x: 0%;
   }
 }
