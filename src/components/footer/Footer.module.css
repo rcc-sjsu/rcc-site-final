@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: 2.2fr 1fr 1.3fr 1.35fr;
   gap: 2.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* RCC information */
@@ -71,7 +71,7 @@
 /* Follow us */
 .followSection,
 .contactSection {
-  align-self: center;
+  align-self: flex-start;
 }
 
 .linkList {
@@ -185,6 +185,22 @@
     grid-column: auto;
     align-items: flex-start;
     justify-content: flex-start;
+  }
+}
+@media (max-width: 630px) {
+  .followSection,
+  .contactSection {
+    grid-column: span 1;
+  }
+
+  .footerContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .clubSection,
+  .partnerSection {
+    grid-column: 1 / -1;
   }
 }
 
