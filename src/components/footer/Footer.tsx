@@ -11,7 +11,7 @@ export default function Footer() {
       <div className={styles.footerContainer}>
         <div className={styles.clubSection}>
           <Image
-            src="/about/pastProjects/rcc-logo.png"
+            src="/images/footer/rcc-footer-logo.png"
             alt="Responsible Computing Club logo"
             width={90}
             height={90}
@@ -83,11 +83,11 @@ export default function Footer() {
           </div>
 
           <Image
-            src="/images/footer/mozilla-footer-logo.png"
-            alt="Mozilla"
-            width={94}
-            height={30}
-            className={styles.mozillaLogo}
+             src="/images/footer/mozilla-footer-logo.svg"
+  alt="Mozilla"
+  width={94}
+  height={30}
+  className={styles.mozillaLogo}
           />
         </div>
       </div>
