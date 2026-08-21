@@ -95,8 +95,8 @@ export default function Home() {
                 </CardTitle>
                 <CardDescription>
                   <p className="text-sm md:text-base xl:text-lg text-black">
-                    Join us for a night of food, awards, activities, and great company as we celebrate everything we've
-                    accomplished this year and wrap up the semester together.
+                    Join us for a night of food, awards, activities, and great company as we celebrate everything
+                    we&apos;ve accomplished this year and wrap up the semester together.
                   </p>
                 </CardDescription>
               </CardHeader>
@@ -147,7 +147,7 @@ export default function Home() {
                 </CardTitle>
                 <CardDescription>
                   <p className="text-sm md:text-base xl:text-lg text-black">
-                    Join us for Amazon Youth Tech, an interactive workshop where you'll dive into AI/ML, Cloud
+                    Join us for Amazon Youth Tech, an interactive workshop where you&apos;ll dive into AI/ML, Cloud
                     Fundamentals, & Agentic AI on AWS — plus get the chance to connect and network with industry
                     professionals!
                   </p>
