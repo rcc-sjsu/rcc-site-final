@@ -2,3 +2,31 @@
   overflow: clip;
   margin-top: -3.5rem;
 }
+
+.container p a {
+  color: var(--purple);
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  background: transparent;
+}
+
+.container p a:visited,
+.container p a:hover,
+.container p a:active {
+  color: var(--purple);
+  background: transparent;
+}
+
+.container p a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.container p a:focus-visible {
+  border-radius: 0.125rem;
+  outline: 2px solid var(--color-brand-pale-purple);
+  outline-offset: 0.2em;
+  background: transparent;
+}
