@@ -21,8 +21,8 @@ export default function Footer() {
           <div className={styles.clubText}>
             <p className={styles.footerTitle}>Responsible Computing Club</p>
             <p className={styles.footerDescription}>
-              The Responsible Computing Club (RCC) at SJSU partners with Mozilla
-              to empower students and shape the future of tech.
+              The Responsible Computing Club (RCC) at SJSU partners with Mozilla to empower students and shape the
+              future of tech.
             </p>
           </div>
         </div>
@@ -32,33 +32,21 @@ export default function Footer() {
 
           <ul className={styles.linkList}>
             <li>
-              <a
-                href="https://www.linkedin.com/company/rcc-sjsu"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.linkedin.com/company/rcc-sjsu" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin aria-hidden="true" />
                 <span>LinkedIn</span>
               </a>
             </li>
 
             <li>
-              <a
-                href="https://www.instagram.com/rcc.sjsu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.instagram.com/rcc.sjsu/" target="_blank" rel="noopener noreferrer">
                 <SiInstagram aria-hidden="true" />
                 <span>Instagram</span>
               </a>
             </li>
 
             <li>
-              <a
-                href="https://discord.com/invite/RGG9dMw4Rc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://discord.com/invite/RGG9dMw4Rc" target="_blank" rel="noopener noreferrer">
                 <SiDiscord aria-hidden="true" />
                 <span>Discord</span>
               </a>
@@ -73,21 +61,19 @@ export default function Footer() {
         </div>
 
         <div className={styles.partnerSection}>
-          <div className={styles.sjsuLogo}>
-            <span className={styles.sjsuLetters}>SJSU</span>
-            <span className={styles.sjsuName}>
-              SAN JOSÉ STATE
-              <br />
-              UNIVERSITY
-            </span>
-          </div>
-
           <Image
-             src="/images/footer/mozilla-footer-logo.svg"
-  alt="Mozilla"
-  width={94}
-  height={30}
-  className={styles.mozillaLogo}
+            src="/images/footer/logo-sjsu.svg"
+            alt="San Jose State University"
+            width={180}
+            height={90}
+            className={styles.sjsuLogo}
+          />
+          <Image
+            src="/images/footer/mozilla-footer-logo.svg"
+            alt="Mozilla"
+            width={94}
+            height={30}
+            className={styles.mozillaLogo}
           />
         </div>
       </div>
