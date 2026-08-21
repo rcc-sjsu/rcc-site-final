@@ -80,13 +80,14 @@ export default function GetInvolved() {
 
               <Link
                 href={action.href}
+                style={{ fontSize: '1.5rem', fontWeight: 700 }}
                 className={buttonVariants({
                   variant: 'inverse',
                   size: 'lg',
                   className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2',
                 })}
               >
-                <span className={action.hoverTextClassName}>{action.buttonText}</span>
+                <span className={`${action.hoverTextClassName} text-2xl font-bold`}>{action.buttonText}</span>
               </Link>
             </div>
           </article>
