@@ -1,20 +1,17 @@
 // home page sections
 import Hero from './(public)/home/components/HeroSection';
 import About from './(public)/home/components/About';
+import DataSection from './(public)/home/components/DataSection';
+import ResourcesSection from './(public)/home/components/ResourcesSection';
+import ProjectsEventsSection from './(public)/home/components/ProjectsEventsSection';
 
 // css style imports
-import aboutStyles from './(public)/home/about.module.css';
 import socialMediaStyles from './(public)/home/socialmedia.module.css';
-import recentEventsStyles from './(public)/home/recentevents.module.css';
-import recentProjectStyles from './(public)/home/recentprojects.module.css';
 
 // component imports
-import BackgroundGradient from '@/components/BackgroundGradient';
 import CompaniesSection from '@/components/CompaniesSection/CompaniesSection';
-import Heading from '@/components/Heading';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Heading from '@/components/Heading';
 import { buttonVariants } from '@/components/ui/button';
 
 // utilities
@@ -30,235 +27,9 @@ export default function Home() {
     <div style={{ overflow: 'clip' }}>
       <Hero />
       <About />
-
-      {/* Stats Section */}
-      <section className={aboutStyles.container}>
-        <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 auto-cols-max gap-9 md:gap-10 xl:gap-5 place-items-center justify-between w-full md:w-[75%] xl:w-full h-auto md:h-full lg:h-auto mt-10 sm:mt-5 md:mt-7 xl:mt-10 text-brand-indigo">
-          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--br rounded-2xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <div className="pop-hover pop-hover--br h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3">
-              <p className="text-xl md:text-2xl">364</p>
-              <p className="text-xl md:text-2xl">Total Members</p>
-            </div>
-          </li>
-          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--br rounded-2xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <div className="pop-hover pop-hover--br h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3">
-              <p className="text-xl md:text-2xl">66</p>
-              <p className="text-xl md:text-2xl">Active Members</p>
-            </div>
-          </li>
-          <li className="relative" style={{ '--pop-distance': '4px' } as React.CSSProperties}>
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--br rounded-2xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <div className="pop-hover pop-hover--br h-auto md:h-full lg:h-auto flex flex-col justify-center border-2 md:border-4 border-brand-indigo bg-[#F2E4FE] rounded-2xl px-10 md:px-7 xl:px-10 py-3">
-              <p className="text-xl md:text-2xl">18%</p>
-              <p className="text-xl md:text-2xl">Non-Tech Majors</p>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      {/* Recent Events section */}
-      <section className={recentEventsStyles.container}>
-        <Heading headingTag="h2"> Recent Events </Heading>
-        <BackgroundGradient className={recentEventsStyles.gradient} color="purple" />
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
-          {/* End of the Year Banquet — dark-violet shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-dark-violet)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full xl:h-min justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">
-                    End of the Year Banquet
-                  </h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Join us for a night of food, awards, activities, and great company as we celebrate everything we've
-                    accomplished this year and wrap up the semester together.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-
-          {/* Game Development Workshop — indigo shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">
-                    Game Development Workshop
-                  </h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Learn the fundamentals of game development in an interactive workshop with GoDot Engine. Enjoy some
-                    free food and a laid-back activity to help unwind before finals!
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-
-          {/* Amazon Youth Tech — dark-violet shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-dark-violet)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/about/pastProjects/rcc-logo.png" alt="" width={150} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">Amazon Youth Tech</h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Join us for Amazon Youth Tech, an interactive workshop where you'll dive into AI/ML, Cloud
-                    Fundamentals, & Agentic AI on AWS — plus get the chance to connect and network with industry
-                    professionals!
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-
-        <Link
-          href="/events"
-          className={cn(
-            buttonVariants({ variant: 'default', size: 'default' }),
-            'h-auto px-6 md:px-10 py-2 md:py-3 w-[92%] sm:w-[75%] md:w-auto text-lg md:text-xl transition-colors duration-200'
-          )}
-        >
-          See More Events
-        </Link>
-      </section>
-
-      {/* Recent Projects Section */}
-      <section className={recentProjectStyles.container}>
-        <Heading headingTag="h2"> Recent Projects </Heading>
-        <BackgroundGradient className={recentProjectStyles.gradient} color="purple" />
-
-        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 auto-cols-max xl:auto-cols-auto gap-15 w-[90%] md:w-[85%] xl:w-280 pb-10">
-          {/* EPA ESA Website — indigo shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/home_images/EPA_ESA_logo.png" alt="" width={150} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">EPA ESA Website</h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Developing an application that simplifies pesticide application data for pesticide applicators and
-                    farmers.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-
-          {/* SPARTANS OCLS — dark-violet shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-dark-violet)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-dark-violet border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/home_images/SPARTANS_OCLS.png" alt="" width={150} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-dark-violet font-bold">SPARTANS OCLS</h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Building a structured virtual community, improving user experience, creating newsletters, and
-                    supporting engagement for neurodiverse students.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-
-          {/* Creative Destination — indigo shadow, bottom-left */}
-          <div className="relative self-start">
-            <div
-              aria-hidden="true"
-              className="pop-shadow pop-shadow--bl rounded-xl"
-              style={{ background: 'var(--color-brand-indigo)' }}
-            />
-            <Card className="pop-hover pop-hover--bl h-full justify-center px-2 py-6 sm:py-8 md:p-5 w-full border-brand-indigo border-2 ring-0">
-              <div className="px-3 pt-3 pb-2 flex justify-center">
-                <Image src="/home_images/the_creative_destination_logo.png" alt="" width={120} height={150} />
-              </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="pb-1">
-                  <h3 className="text-lg md:text-xl xl:text-2xl text-brand-indigo font-bold">Creative Destination</h3>
-                </CardTitle>
-                <CardDescription>
-                  <p className="text-sm md:text-base xl:text-lg text-black">
-                    Enhancing website and social media presence to support donor engagement for literacy-focused
-                    laundromat community spaces.
-                  </p>
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-
-        <Link
-          href="/projects"
-          className={cn(
-            buttonVariants({ variant: 'default', size: 'default' }),
-            'h-auto px-6 md:px-10 py-2 md:py-3 w-[92%] sm:w-[75%] md:w-auto text-lg md:text-xl transition-colors duration-200'
-          )}
-        >
-          See More Projects
-        </Link>
-      </section>
+      <DataSection />
+      <ResourcesSection />
+      <ProjectsEventsSection />
 
       {/* Companies Section */}
       <CompaniesSection />
