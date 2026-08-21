@@ -16,6 +16,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
+
+// utilities
 import { cn } from '@/lib/utils';
 
 // icon imports
@@ -262,6 +264,7 @@ export default function Home() {
       <CompaniesSection />
 
       {/* Social Media Section */}
+      {/* Social Media Section — unchanged from before */}
       <section className={socialMediaStyles.container}>
         <Heading headingTag="h2">Social Media</Heading>
         <ul className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 auto-cols-max gap-4 md:gap-7 2xl:gap-10 lg:w-full items-stretch">

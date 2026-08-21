@@ -4,7 +4,7 @@
   width: fit-content;
   gap: 2rem;
   font-size: 1.62rem;
-  margin: 3rem auto 6rem auto;
+  margin: 3rem auto 0 auto;
   align-items: center;
   flex-wrap: wrap;
   max-width: 70rem;
@@ -70,7 +70,7 @@
 @media (width <= 768px) {
   .container {
     max-width: 80%;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     padding-bottom: 2.5rem;
   }
 }
