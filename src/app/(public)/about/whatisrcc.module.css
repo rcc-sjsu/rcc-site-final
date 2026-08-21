@@ -1,99 +1,86 @@
 .container {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
-  width: fit-content;
-  gap: 4rem;
-  font-size: 1.62rem;
-  margin: 0 auto 0 auto;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4.5rem;
+  margin: 0 auto;
   align-items: center;
-  /* flex-wrap: wrap; */
-  max-width: 90%;
-  padding-bottom: 2rem;
-
-  /* display: flex;
-  flex-direction: row-reverse;
-  width: fit-content;
-  gap: 3.75rem;
-  font-size: 1.62rem;
-  margin: 5rem auto 0 auto;
-  align-items: center; */
-}
-
-.gradient {
-  position: absolute;
-  margin-top: 1rem;
-  margin-left: 0rem;
-  width: 23rem;
-  height: 23rem;
+  max-width: 1320px;
+  min-height: 500px;
+  padding: 3.75rem 1.25rem;
 }
 
 .allText {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  max-width: 43rem;
-  gap: 2rem;
+  max-width: 850px;
+  gap: 1.5rem;
+}
+
+.description {
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.ethical {
+  color: var(--purple);
+}
+
+.sustainability {
+  color: var(--pink);
+}
+
+.accessibility {
+  color: var(--orange);
+}
+
+.imageFrame {
+  flex: 0 0 auto;
+  border: 8px solid var(--yellow);
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .collageImage {
-  width: 375px;
-  height: 375px;
+  width: 350px;
+  height: 350px;
   object-fit: cover;
 }
 
 @media (width <= 1280px) {
   .container {
     gap: 3rem;
-    /* margin: 0 0 0 0;
-    max-width: 95%; */
-    /* max-width: unset; */
-    /* width: 80%; */
-    /* justify-content: center; */
-    align-content: center;
+    min-height: 420px;
   }
 
   .description {
     font-size: 1.25rem;
   }
 
-  .gradient {
-    margin-top: 0rem;
-    width: 15rem;
-    height: 15rem;
-  }
-
   .allText {
-    max-width: 38rem;
-    /* width: 80%; */
-    justify-content: center;
-    gap: 1.75rem;
+    max-width: 640px;
+    gap: 1.25rem;
   }
 
   .collageImage {
     width: 265px;
     height: 265px;
-    object-fit: cover;
   }
 }
 
 @media (width <= 1024px) {
   .container {
     flex-direction: column;
-    padding-top: 0rem;
-    padding-bottom: 1rem;
     text-align: center;
     justify-content: center;
-  }
-
-  .gradient {
-    margin-top: -25rem;
+    min-height: auto;
+    padding-top: 2rem;
   }
 
   .allText {
     max-width: unset;
-    flex-direction: row;
-    gap: 2rem;
+    align-items: center;
   }
 }
 
@@ -111,15 +98,8 @@
 
 @media (width <= 640px) {
   .container {
-    justify-content: center;
-    margin: auto;
     margin-bottom: 2rem;
-    text-align: center;
-
-    > div {
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
+    padding-inline: 1rem;
   }
 
   .description {
@@ -127,7 +107,7 @@
   }
 
   .allText {
-    width: 90vw;
+    width: 100%;
     margin: auto;
   }
 }
