@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<rect width="60" height="60" rx="10" fill="#E41167"/>
+<g id="Linkedin">
+<path d="M35.7 24.4737C38.1665 24.4737 40.532 25.4718 42.2761 27.2485C44.0202 29.0251 45 31.4348 45 33.9474V45H38.8V33.9474C38.8 33.1098 38.4734 32.3066 37.892 31.7144C37.3107 31.1222 36.5222 30.7895 35.7 30.7895C34.8778 30.7895 34.0893 31.1222 33.508 31.7144C32.9266 32.3066 32.6 33.1098 32.6 33.9474V45H26.4V33.9474C26.4 31.4348 27.3798 29.0251 29.1239 27.2485C30.868 25.4718 33.2335 24.4737 35.7 24.4737Z" stroke="#FEFEFE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.2 26.0526H14V45H20.2V26.0526Z" stroke="#FEFEFE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.1 21.3158C18.8121 21.3158 20.2 19.902 20.2 18.1579C20.2 16.4138 18.8121 15 17.1 15C15.3879 15 14 16.4138 14 18.1579C14 19.902 15.3879 21.3158 17.1 21.3158Z" stroke="#FEFEFE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>
