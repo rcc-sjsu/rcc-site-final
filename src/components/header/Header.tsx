@@ -18,12 +18,13 @@ interface NavItem {
 const nav_items: NavItem[] = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },
-  { text: 'Happening Now', href: '/events' },
+  // TODO: Uncomment me when this page is fully implemented!
+  // { text: 'Happening Now', href: '/events' },
   { text: 'Membership', href: '/membership' },
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
-  // FIXME needs the actual link for whatever page thats gonna be
-  { text: 'Past Work', href: '/TODO' },
+  // TODO: Uncomment me when this page is fully implemented!
+  // { text: 'Past Work', href: '/TODO' },
 ];
 
 export default function Header() {
