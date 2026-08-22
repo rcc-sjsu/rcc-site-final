@@ -1,0 +1,158 @@
+.header {
+  --header-color-text: #f00;
+  --header-color-accent: #0f0;
+  --header-color-bg: #00f;
+  position: sticky;
+  top: 0;
+  background-color: var(--header-color-bg);
+  /* TODO we should standardize our z-index values into some standard vars mayhaps. */
+  z-index: 999;
+}
+
+.header.headerStandard {
+  --header-color-text: var(--black);
+  --header-color-accent: var(--blurple);
+  --header-color-bg: var(--white);
+}
+
+.header.headerHomepage {
+  --header-color-text: var(--white);
+  --header-color-accent: var(--yellow);
+  --header-color-bg: var(--blurple);
+  background: linear-gradient(var(--header-color-bg), transparent);
+  position: fixed;
+  width: 100%; /* (needed on position:fixed) */
+}
+
+/* a hyperlink navbar item */
+.navLink {
+  font-size: 1rem;
+  color: var(--header-color-text);
+  font-weight: 400;
+  &:hover {
+    color: var(--header-color-accent);
+    font-weight: 700;
+  }
+  text-align: center;
+  transition:
+    font-weight 0.2s ease,
+    text-decoration-color 0.2s ease;
+  /* default underline to invisible when we're not even using it,
+   * in order to prevent a pop-in for a second when clicking on the
+   * nav item for a page */
+  text-decoration-color: transparent;
+}
+
+.navLinkCurrent {
+  font-weight: 700;
+  color: var(--header-color-accent);
+  text-decoration: underline 2px;
+  &:hover {
+    /* (making it transparent instead of turning it off since that way we can transition the decoration color to get it
+     *  to animate) */
+    text-decoration-color: transparent;
+  }
+}
+
+/* navlink bold spacing fix stuff
+ * via https://css-tricks.com/bold-on-hover-without-the-layout-shift/ */
+.navLink {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  &::after {
+    content: attr(data-text);
+    content: attr(data-text) / '';
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    font-weight: 700;
+    @media speech {
+      display: none;
+    }
+  }
+}
+
+.logoImageContainer {
+  position: relative;
+  height: 40px;
+  aspect-ratio: 1;
+  box-sizing: content-box;
+  border: 3px solid var(--blurple);
+  background-color: var(--blurple);
+  border-radius: 100%;
+}
+
+.navLinksList {
+  display: flex;
+  align-items: center;
+  /* calculated with https://clampgenerator.com/tools/layout-spacing-size/ ,
+   * [900px,1000px] viewport, [8px,20px] prop */
+  gap: clamp(0.5rem, calc(-6.25rem + 12vw), 1.25rem);
+}
+
+@property --header-button-mask-invert {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: true;
+}
+
+.button {
+  height: 2.125rem;
+  border-radius: 2.125rem;
+  transition-property: background-color, color, border-color, --header-button-mask-invert;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+  border: 2px solid var(--header-color-text);
+  color: var(--header-color-text);
+  &:hover {
+    border-color: var(--header-color-accent);
+    color: var(--header-color-bg);
+  }
+  /* variant-specific stuff */
+  &.textButton {
+    text-align: center;
+    align-content: center;
+    text-wrap: nowrap;
+    padding-inline: 0.5em;
+    color: var(--header-color-text);
+    &:hover {
+      color: var(--header-color-bg);
+      background-color: var(--header-color-accent);
+    }
+  }
+  &.avatarPlaceholder {
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    /* use clip overflow with a slightly inflated margin where available, to fix the slight gap visible at higher zoom levels */
+    @supports (overflow-clip-margin: 0.1px) {
+      overflow: clip;
+      overflow-clip-margin: 0.1px;
+    }
+    --header-button-mask-invert: 0;
+    &:hover {
+      --header-button-mask-invert: 1;
+      &::after {
+        background-color: var(--header-color-accent);
+      }
+    }
+    &::after {
+      z-index: -1;
+      content: '';
+      width: 100%;
+      height: 100%;
+      transition: inherit;
+      background-color: var(--header-color-text);
+      mask:
+        url('/icons/avatar.svg') no-repeat center / contain,
+        linear-gradient(rgba(0, 0, 0, var(--header-button-mask-invert)));
+      mask-composite: exclude;
+      position: absolute;
+      inset: 0;
+    }
+  }
+}
