@@ -1,4 +1,5 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
+import Link from 'next/link';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -22,12 +23,16 @@ const buttonVariants = cva(
           'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
-        link:
-          'text-primary underline-offset-4 hover:underline',
+        link: 'text-primary underline-offset-4 hover:underline',
         inverse:
           'border-white bg-transparent text-white hover:bg-white focus-visible:border-white focus-visible:ring-white/50 aria-expanded:border-white aria-expanded:bg-white',
         social:
           'bg-brand-lavender text-primary rounded-lg border-2 border-primary hover:bg-hover-accent hover:text-primary-foreground focus-visible:bg-hover-accent focus-visible:text-primary-foreground',
+        // (using a gradient for the solid-color non-hovered version too since that way with `transition-colors` it will
+        //  visually fade between the two backgrounds, as there's no clean way otherwise to transition bg images)
+        // (`bg-origin-border` needed to prevent an ugly 1px line on the right edge of the button caused by the
+        //  background not quite being centered)
+        cta: 'text-[color:var(--white)] font-bold rounded-4xl bg-origin-border transition-colors duration-400 bg-linear-to-r from-brand-pink via-brand-pink to-brand-pink hover:from-[var(--blurple)] hover:via-brand-pink hover:to-[var(--yellow)]',
       },
       size: {
         default:
@@ -41,6 +46,7 @@ const buttonVariants = cva(
           "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
         'icon-sm': 'size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg',
         'icon-lg': 'size-9',
+        'TODO-RENAME-ME-cta': 'text-lg px-6 py-1',
       },
     },
     defaultVariants: {
@@ -59,4 +65,13 @@ function Button({
   return <ButtonPrimitive data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props} />;
 }
 
-export { Button, buttonVariants };
+function LinkButton({
+  className,
+  variant = 'default',
+  size = 'default',
+  ...props
+}: React.ComponentProps<typeof Link> & VariantProps<typeof buttonVariants>) {
+  return <Link className={cn(buttonVariants({ variant, size, className }))} {...props} />;
+}
+
+export { Button, LinkButton, buttonVariants };

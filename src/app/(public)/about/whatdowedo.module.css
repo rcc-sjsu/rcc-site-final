@@ -45,9 +45,6 @@
 }
 
 .glow {
-  /* TODO the color here is `var(--purple)` but with 50% opacity.
-   * we should maybe do the color globals differently so cases like this go smoother
-   * but for now im just gonna leave it like this.
-   * -amgg */
-  box-shadow: 0px 0px 20px #a031d480;
+  /* (<spread-radius> as -50% of the <blur-radius> effectively gives us half opacity) */
+  box-shadow: 0px 0px 20px -10px var(--purple);
 }

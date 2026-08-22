@@ -2,7 +2,7 @@ import Heading from '@/components/Heading';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import styles from '../whatdowedo.module.css';
-import CTAButton from './CTAButton';
+import { LinkButton } from '@/components/ui/button';
 
 export default function WhatDoWeDo() {
   return (
@@ -23,7 +23,9 @@ export default function WhatDoWeDo() {
           In order to make RCC relevant to all majors (and minors) and to hone their collective strengths, we&apos;ve
           created dedicated teams focused on areas like workshops, consulting, marketing, web dev, and so much more!
         </p>
-        <CTAButton href="/ambassadors">Meet Our Ambassadors</CTAButton>
+        <LinkButton href="/ambassadors" variant="cta" size="TODO-RENAME-ME-cta">
+          Meet Our Ambassadors
+        </LinkButton>
       </div>
     </section>
   );
