@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className={styles.container}>
+    <section className={styles.container} data-intersecting-header-theme="Homepage">
       {/* padding-top from page.module.css takes up space here */}
       <Image
         src="/home_images/hero-background-image.png"

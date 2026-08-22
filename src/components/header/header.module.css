@@ -9,6 +9,11 @@
   z-index: 999;
 }
 
+.header.headerOverlappingContent {
+  position: fixed;
+  width: 100%; /* (needed on position:fixed) */
+}
+
 .header.headerStandard {
   --header-color-text: var(--black);
   --header-color-accent: var(--blurple);
@@ -20,8 +25,6 @@
   --header-color-accent: var(--yellow);
   --header-color-bg: var(--blurple);
   background: linear-gradient(var(--header-color-bg), transparent);
-  position: fixed;
-  width: 100%; /* (needed on position:fixed) */
 }
 
 /* a hyperlink navbar item */

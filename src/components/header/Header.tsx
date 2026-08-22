@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
@@ -26,9 +26,23 @@ const nav_items: NavItem[] = [
   { text: 'Past Work', href: '/TODO' },
 ];
 
+function initialHeaderThemeFor(pathname: string): string {
+  return (
+    {
+      '/': 'Homepage',
+    }[pathname] ?? 'Standard'
+  );
+}
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // here we default the header theme to whatever the initial page's header theme
+  // should probably be. doing this solves a brief flash of the wrong theme as
+  // the page is first loading
+  const [headerTheme, setHeaderTheme] = useState(initialHeaderThemeFor(pathname));
 
   // It would be cleaner to not have to hardcode this page-specific logic in the
   // header itself, but given that A) it's only used in a single page currently,
@@ -42,8 +56,40 @@ export default function Header() {
   //                                                                       -amgg
   const is_homepage = pathname === '/';
 
+  // FIXME should maybe be debounced a bit?
+  const updateHeaderTheme = useCallback(() => {
+    if (headerRef.current === null) return;
+    const bounds = headerRef.current.getBoundingClientRect();
+    const x = (bounds.left + bounds.right) / 2;
+    const y = (bounds.top + bounds.bottom) * 0.75;
+    const theme = document
+      .elementsFromPoint(x, y)
+      .map((elem) => elem.closest('[data-intersecting-header-theme]') as HTMLElement | SVGElement)
+      .find((elem) => elem !== null)?.dataset?.intersectingHeaderTheme;
+    setHeaderTheme(theme ?? 'Standard');
+  }, []);
+  useEffect(() => {
+    window.addEventListener('scroll', updateHeaderTheme);
+    // polling really isn't ideal but if there's some weird edge case where it doesn't otherwise get fired AND the user
+    // doesn't scroll, this will at least set it to the correct thing within a few seconds.
+    const timeout = setTimeout(updateHeaderTheme, 2_000);
+    return () => {
+      window.removeEventListener('scroll', updateHeaderTheme);
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  // re-calculate the header theme immediately after navigation, so that it'll be
+  // correct even before the user scrolls.
+  useEffect(() => {
+    updateHeaderTheme();
+  }, [pathname]);
+
   return (
-    <header className={cn(style.header, is_homepage ? style.headerHomepage : style.headerStandard)}>
+    <header
+      ref={headerRef}
+      className={cn(style.header, is_homepage && style.headerOverlappingContent, style[`header${headerTheme}`])}
+    >
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center justify-center h-20 mx-5">
         {/* accessibility note: I am giving this aria-hidden as there's also a link to the homepage in the header's navbar links.
