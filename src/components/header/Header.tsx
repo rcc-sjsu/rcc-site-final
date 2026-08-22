@@ -72,10 +72,10 @@ export default function Header() {
     window.addEventListener('scroll', updateHeaderTheme);
     // polling really isn't ideal but if there's some weird edge case where it doesn't otherwise get fired AND the user
     // doesn't scroll, this will at least set it to the correct thing within a few seconds.
-    const timeout = setTimeout(updateHeaderTheme, 2_000);
+    const timeout = setInterval(updateHeaderTheme, 2_000);
     return () => {
       window.removeEventListener('scroll', updateHeaderTheme);
-      clearTimeout(timeout);
+      clearInterval(timeout);
     };
   }, []);
 
