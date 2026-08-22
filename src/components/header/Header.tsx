@@ -46,24 +46,29 @@ export default function Header() {
     <header className={cn(style.header, is_homepage ? style.headerHomepage : style.headerStandard)}>
       {/* Desktop Nav */}
       <div className="hidden sm:flex items-center justify-center h-20 mx-5">
-        {/* TODO a11y best practices question -- should this be labeled as button that goes to homepage, or should it be skipped entirely since theres alread a home button on the navbar which makes this redundant screenreader-wise */}
-        <Link href="/" aria-label="Home" className={style.logoImageContainer}>
-          <Image alt="" fill src="/RCC_Main_Logo_Final.png" />
+        {/* accessibility note: I am giving this aria-hidden as there's also a link to the homepage in the header's navbar links.
+         * via w3.org/TR/wai-aria-1.2/#aria-hidden : "Authors MAY, with caution, use aria-hidden to hide visibly rendered content from assistive technologies only if the act of hiding this content is intended to improve the experience for users of assistive technologies by removing redundant or extraneous content." */}
+        <Link href="/" className={style.logoImageContainer} aria-hidden tabIndex={-1}>
+          <Image alt="RCC Home" fill src="/RCC_Main_Logo_Final.png" />
         </Link>
         {/* (padding bodge) */} <div className="grow min-w-2" />
         <NavigationMenu.Root>
           <NavigationMenu.List className={style.navLinksList}>
-            {nav_items.map((item, idx) => (
-              <NavigationMenu.Item key={idx} className={style.navLinkContainer}>
-                <Link
-                  href={item.href}
-                  data-text={item.text}
-                  className={cn(style.navLink, pathname === item.href && style.navLinkCurrent)}
-                >
-                  {item.text}
-                </Link>
-              </NavigationMenu.Item>
-            ))}
+            {nav_items.map((item, idx) => {
+              const current = pathname === item.href;
+              return (
+                <NavigationMenu.Item key={idx} className={style.navLinkContainer}>
+                  <Link
+                    href={item.href}
+                    data-text={item.text}
+                    className={cn(style.navLink, current && style.navLinkCurrent)}
+                    aria-current={current && 'page'}
+                  >
+                    {item.text}
+                  </Link>
+                </NavigationMenu.Item>
+              );
+            })}
           </NavigationMenu.List>
         </NavigationMenu.Root>
         {/* (padding bodge) */} <div className="min-w-2 max-w-8 grow-[0.1]" />
