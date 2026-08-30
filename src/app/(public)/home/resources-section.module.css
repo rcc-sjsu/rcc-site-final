@@ -1,0 +1,208 @@
+.container {
+  background: var(--white);
+  padding: 6.25rem;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5rem;
+  width: min(74.75rem, 100%);
+  margin: 0 auto;
+}
+
+.textColumn {
+  flex: 0 0 25rem;
+  width: 25rem;
+}
+
+.heading {
+  margin: 0 0 3.375rem;
+  font-family: var(--font-zilla-slab);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.marquee {
+  position: relative;
+  width: 25rem;
+  height: 31.25rem;
+  overflow: hidden;
+}
+
+.marquee::before,
+.marquee::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 8.8125rem;
+  pointer-events: none;
+  content: '';
+}
+
+.marquee::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--white), rgb(254 254 254 / 0));
+}
+
+.marquee::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--white), rgb(254 254 254 / 0));
+}
+
+.marqueeTrack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  width: 24.6875rem;
+  animation: offers-scroll 16s linear infinite;
+}
+
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.offer {
+  margin: 0;
+  color: var(--black);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 2.25rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.images {
+  display: flex;
+  flex: 0 1 46.625rem;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 46.625rem;
+}
+
+.topImage,
+.laurenImage,
+.aiFraudImage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  background: #d9d9d9;
+}
+
+.topImage {
+  aspect-ratio: 520 / 199;
+  width: 100%;
+}
+
+.topPhoto {
+  position: absolute;
+  top: -36.68%;
+  left: -0.09%;
+  width: 100.17%;
+  height: 147.24%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.bottomImages {
+  display: grid;
+  grid-template-columns: minmax(0, 344fr) minmax(0, 362fr);
+  gap: 2.5rem;
+}
+
+.laurenImage {
+  aspect-ratio: 344 / 272;
+}
+
+.aiFraudImage {
+  aspect-ratio: 362 / 272;
+}
+
+.fillPhoto {
+  position: absolute;
+  top: -11%;
+  left: -15%;
+  width: 205%;
+  height: auto;
+  max-width: none;
+}
+
+.aiFraudPhoto {
+  position: absolute;
+  top: -0.05%;
+  left: -0.28%;
+  width: 100.28%;
+  height: 100.09%;
+  max-width: none;
+  object-fit: cover;
+}
+
+@keyframes offers-scroll {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+@media (width <= 1280px) {
+  .container {
+    padding: 5rem 2rem;
+  }
+
+  .content {
+    gap: 3rem;
+  }
+}
+
+@media (width <= 1024px) {
+  .container {
+    padding: 4rem 1.5rem;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textColumn,
+  .images {
+    flex-basis: auto;
+    width: min(46.625rem, 100%);
+  }
+
+  .heading {
+    font-size: clamp(3rem, 8vw, 4rem);
+  }
+
+  .marquee {
+    width: 100%;
+    height: 20rem;
+  }
+}
+
+@media (width <= 640px) {
+  .bottomImages {
+    grid-template-columns: 1fr;
+  }
+
+  .offer {
+    font-size: 1.75rem;
+  }
+}
