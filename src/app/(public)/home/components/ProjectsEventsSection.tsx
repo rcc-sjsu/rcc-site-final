@@ -10,7 +10,7 @@ type ProjectEventItem = {
   tone: 'purple' | 'violet' | 'pink';
 };
 
-const items: ProjectEventItem[] = [
+const items: ProjectEventItem[] & { length: 3 } = [
   {
     title: 'Data Feminism with Lauren Klein',
     description:
