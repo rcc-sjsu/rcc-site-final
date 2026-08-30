@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Nunito_Sans, Zilla_Slab, Geist } from 'next/font/google';
+import { DotGothic16, Inter, Nunito_Sans, Zilla_Slab, Geist } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
@@ -27,6 +27,12 @@ const zillaSlab = Zilla_Slab({
   style: ['normal', 'italic'],
 });
 
+const dotGothic16 = DotGothic16({
+  variable: '--font-dot-gothic-16',
+  subsets: ['latin'],
+  weight: '400',
+});
+
 export const metadata: Metadata = {
   title: 'Responsible Computing Club @ SJSU',
   description: "Member Portal for SJSU's Responsible Computing Club",
@@ -39,7 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn('font-sans', geist.variable)}>
-      <body className={`${styles.container}${nunitoSans.variable} ${inter.variable} ${zillaSlab.variable}`}>
+      <body
+        className={cn(styles.container, nunitoSans.variable, inter.variable, zillaSlab.variable, dotGothic16.variable)}
+      >
         <Header />
         {/* All your page content will be rendered inside this main tag */}
         <main className={styles.pageContent}>{children}</main>
