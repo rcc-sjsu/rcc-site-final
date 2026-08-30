@@ -32,23 +32,18 @@ const involvementActions = [
 export default function GetInvolved() {
   return (
     <section id="get-involved" className="pt-26 md:pt-30">
-      <div className="mx-auto max-w-4xl px-6 text-center">
+      <div className="mx-auto max-w-[1200px] px-6 text-center">
         <Heading headingTag="h2">How Can You Get Involved?</Heading>
 
-        <div className="mx-auto mt-6 flex max-w-3xl flex-col gap-5">
-          <p className="text-base leading-relaxed md:text-lg xl:text-xl">
-            Take a look at{' '}
-            <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
-              what we&apos;ve done in the past
-            </Link>{' '}
-            and{' '}
-            <Link href="/events" className="text-base underline underline-offset-4 md:text-lg xl:text-xl">
-              what we&apos;re doing right now
-            </Link>{' '}
-            so you can get an idea of what you can contribute to in the future.
+        <div className="mx-auto mt-6 flex max-w-[1200px] flex-col gap-5">
+          <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
+            {/* TODO: Link "the past" to projects page once implemented. */}
+            Take a look at <span className="text-[var(--purple)]">what we&apos;ve done in the past</span> and{' '}
+            <Link href="/events">what we&apos;re doing right now</Link> so you can get an idea of{' '}
+            <span className="text-[var(--purple)]">what you can contribute to in the future</span>.
           </p>
 
-          <p className="text-base leading-relaxed md:text-lg xl:text-xl">
+          <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
             Start now and see which option below fits you best.
           </p>
         </div>
@@ -70,24 +65,29 @@ export default function GetInvolved() {
             />
             <div className={`absolute inset-0 -z-9 ${action.overlayClassName}`} />
 
-            <div className="relative z-10 flex max-w-md flex-col items-center text-white">
-              <Heading headingTag="h3" tone="light" className="text-5xl leading-tight md:text-6xl lg:text-7xl">
+            <div className="relative z-10 flex max-w-[500px] flex-col items-center text-white">
+              <Heading
+                headingTag="h3"
+                tone="light"
+                customStyle={{ fontSize: 'clamp(3.75rem, 8vw, 6rem)', lineHeight: 1 }}
+              >
                 {action.title}
               </Heading>
 
-              <p className="mt-6 text-base font-semibold leading-snug text-white md:min-h-20 md:text-lg xl:text-xl">
+              <p className="mt-6 text-base font-medium leading-[1.2] text-white md:min-h-20 md:text-xl xl:text-2xl">
                 {action.description}
               </p>
 
               <Link
                 href={action.href}
+                style={{ fontSize: '1.5rem', fontWeight: 700 }}
                 className={buttonVariants({
                   variant: 'inverse',
                   size: 'lg',
-                  className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2 text-base font-bold md:text-lg',
+                  className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2',
                 })}
               >
-                <span className={action.hoverTextClassName}>{action.buttonText}</span>
+                <span className={`${action.hoverTextClassName} text-2xl font-bold`}>{action.buttonText}</span>
               </Link>
             </div>
           </article>
