@@ -18,12 +18,14 @@ interface NavItem {
 const nav_items: NavItem[] = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },
-  { text: 'Happening Now', href: '/events' },
-  { text: 'Membership', href: '/membership' },
+  // TODO: uncomment me when these pages are ready for deployment.
+  // { text: 'Happening Now', href: '/events' },
+  // { text: 'Membership', href: '/membership' },
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
-  // FIXME needs the actual link for whatever page thats gonna be
-  { text: 'Past Work', href: '/TODO' },
+  // TODO: replace the href w/ link to the Past Work page and uncomment me
+  // when the Past Work page is ready for deployment.
+  // { text: 'Past Work', href: '/TODO' },
 ];
 
 function initialHeaderThemeFor(pathname: string): string {
