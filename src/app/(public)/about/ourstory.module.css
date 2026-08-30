@@ -1,102 +1,86 @@
 .container {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
-  width: fit-content;
+  justify-content: space-between;
+  width: 100%;
   gap: 4.5rem;
-  font-size: 1.62rem;
-  margin: 5rem auto 6rem auto;
+  margin: 0 auto;
   align-items: center;
-  /* flex-wrap: wrap; */
-  max-width: 90%;
-  padding-bottom: 3rem;
-
-  /* display: flex;
-    flex-direction: row-reverse;
-    width: fit-content;
-    gap: 3.75rem;
-    font-size: 1.62rem;
-    margin: 5rem auto 0 auto;
-    align-items: center; */
-}
-
-.gradient {
-  position: absolute;
-  margin-top: 2rem;
-  margin-left: -2rem;
-  width: 23rem;
-  height: 23rem;
+  max-width: 1320px;
+  min-height: 500px;
+  padding: 3.75rem 1.25rem;
 }
 
 .allText {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  max-width: 43rem;
-  gap: 2rem;
+  align-items: flex-end;
+  max-width: 850px;
+  gap: 1.5rem;
+  text-align: right;
+}
+
+.description {
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.imageFrame {
+  flex: 0 0 auto;
+  width: 350px;
+  height: 350px;
+  border: 8px solid var(--orange);
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .collageImage {
-  width: 375px;
-  height: 375px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: 46% center;
 }
 
 @media (width <= 1280px) {
   .container {
     gap: 3rem;
-    /* margin: 0 0 0 0;
-      max-width: 95%; */
-    /* max-width: unset; */
-    /* width: 80%; */
-    /* justify-content: center; */
-    align-content: center;
+    min-height: 420px;
   }
 
   .description {
     font-size: 1.25rem;
   }
 
-  .gradient {
-    margin-top: 0rem;
-    width: 15rem;
-    height: 15rem;
-  }
-
   .allText {
-    max-width: 38rem;
-    /* width: 80%; */
-    justify-content: center;
-    gap: 1.5rem;
+    max-width: 640px;
+    gap: 1.25rem;
   }
 
-  .collageImage {
+  .imageFrame {
     width: 265px;
     height: 265px;
-    object-fit: cover;
   }
 }
 
 @media (width <= 1024px) {
   .container {
     flex-direction: column;
-    padding-top: 0rem;
-    padding-bottom: 1rem;
     text-align: center;
     justify-content: center;
     gap: 1.75rem;
+    min-height: auto;
+    padding-top: 2rem;
   }
 
   .allText {
+    align-items: center;
     max-width: unset;
-    flex-direction: row;
-    gap: 2rem;
+    text-align: center;
   }
 
-  .collageImage {
+  .imageFrame {
     width: 200px;
     height: 200px;
-    object-fit: cover;
   }
 }
 
@@ -109,27 +93,18 @@
 
 @media (width <= 640px) {
   .container {
-    justify-content: center;
-    width: 90vw;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
     gap: 1.75rem;
-    text-align: center;
-
-    > div {
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
+    padding-inline: 1rem;
   }
 
   .description {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
     font-size: 1rem;
   }
 
   .allText {
-    width: 90vw;
+    width: 100%;
     margin: auto;
-    gap: 0rem;
   }
 }

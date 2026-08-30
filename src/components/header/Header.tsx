@@ -1,64 +1,131 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
+import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import { cn } from '@/lib/utils';
+
+import style from './header.module.css';
+import { usePathname } from 'next/navigation';
+
+interface NavItem {
+  text: string;
+  href: string;
+}
+
+const nav_items: NavItem[] = [
+  { text: 'Home', href: '/' },
+  { text: 'About Us', href: '/about' },
+  { text: 'Happening Now', href: '/events' },
+  { text: 'Membership', href: '/membership' },
+  { text: 'Ambassadors', href: '/ambassadors' },
+  { text: 'Contact Us', href: '/contact' },
+  // FIXME needs the actual link for whatever page thats gonna be
+  { text: 'Past Work', href: '/TODO' },
+];
+
+function initialHeaderThemeFor(pathname: string): string {
+  return (
+    {
+      '/': 'Homepage',
+    }[pathname] ?? 'Standard'
+  );
+}
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // here we default the header theme to whatever the initial page's header theme
+  // should probably be. doing this solves a brief flash of the wrong theme as
+  // the page is first loading
+  const [headerTheme, setHeaderTheme] = useState(initialHeaderThemeFor(pathname));
+
+  // It would be cleaner to not have to hardcode this page-specific logic in the
+  // header itself, but given that A) it's only used in a single page currently,
+  // B) we're already doing pathname-specific logic for highlighting the current
+  // page, and C) actually letting the page actually signal what header style it
+  // wants would either need some structural refactoring of stuff OR necessitate
+  // some janky or way-overcomplicated-for-this-situation (or both) solutions to
+  // facilitate that. So all things considered I think this is probably the best
+  // choice for now and if we start needing page-specific header styles in other
+  // pages too sometime down the line, then we can revisit this and do it right.
+  //                                                                       -amgg
+  const is_homepage = pathname === '/';
+
+  // FIXME should maybe be debounced a bit?
+  const updateHeaderTheme = useCallback(() => {
+    if (headerRef.current === null) return;
+    const bounds = headerRef.current.getBoundingClientRect();
+    const x = (bounds.left + bounds.right) / 2;
+    const y = (bounds.top + bounds.bottom) * 0.75;
+    const theme = document
+      .elementsFromPoint(x, y)
+      .map((elem) => elem.closest('[data-intersecting-header-theme]') as HTMLElement | SVGElement)
+      .find((elem) => elem !== null)?.dataset?.intersectingHeaderTheme;
+    setHeaderTheme(theme ?? 'Standard');
+  }, []);
+  useEffect(() => {
+    window.addEventListener('scroll', updateHeaderTheme);
+    // polling really isn't ideal but if there's some weird edge case where it doesn't otherwise get fired AND the user
+    // doesn't scroll, this will at least set it to the correct thing within a few seconds.
+    const timeout = setInterval(updateHeaderTheme, 2_000);
+    return () => {
+      window.removeEventListener('scroll', updateHeaderTheme);
+      clearInterval(timeout);
+    };
+  }, []);
+
+  // re-calculate the header theme immediately after navigation, so that it'll be
+  // correct even before the user scrolls.
+  useEffect(() => {
+    updateHeaderTheme();
+  }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100">
+    <header
+      ref={headerRef}
+      className={cn(style.header, is_homepage && style.headerOverlappingContent, style[`header${headerTheme}`])}
+    >
       {/* Desktop Nav */}
-      <div className="hidden sm:flex items-center justify-center h-17">
-        <NavigationMenu>
-          <NavigationMenuList className="gap-6">
-            <NavigationMenuItem>
-              <Link href="/" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Home
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/about" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                About Us
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/events" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Happening Now
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/membership" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Membership
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/ambassadors" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Ambassadors
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/contact" className={cn(navigationMenuTriggerStyle(), 'text-[1.1rem]')}>
-                Contact Us
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+      <div className="hidden sm:flex items-center justify-center h-20 mx-5">
+        {/* accessibility note: I am giving this aria-hidden as there's also a link to the homepage in the header's navbar links.
+         * via w3.org/TR/wai-aria-1.2/#aria-hidden : "Authors MAY, with caution, use aria-hidden to hide visibly rendered content from assistive technologies only if the act of hiding this content is intended to improve the experience for users of assistive technologies by removing redundant or extraneous content." */}
+        <Link href="/" className={style.logoImageContainer} aria-hidden tabIndex={-1}>
+          <Image alt="RCC Home" fill src="/RCC_Main_Logo_Final.png" />
+        </Link>
+        {/* (padding bodge) */} <div className="grow min-w-2" />
+        <NavigationMenu.Root>
+          <NavigationMenu.List className={style.navLinksList}>
+            {nav_items.map((item, idx) => {
+              const current = pathname === item.href;
+              return (
+                <NavigationMenu.Item key={idx} className={style.navLinkContainer}>
+                  <Link
+                    href={item.href}
+                    data-text={item.text}
+                    className={cn(style.navLink, current && style.navLinkCurrent)}
+                    aria-current={current && 'page'}
+                  >
+                    {item.text}
+                  </Link>
+                </NavigationMenu.Item>
+              );
+            })}
+          </NavigationMenu.List>
+        </NavigationMenu.Root>
+        {/* (padding bodge) */} <div className="min-w-2 max-w-8 grow-[0.1]" />
+        <div className="flex gap-2">
+          <div className={cn(style.button, style.textButton)}>Sign In</div>
+          {/* TODO should probably embed this as an inline SVG instead for purposes of styling it instead of using the mask bodge. */}
+          <div className={cn(style.button, style.avatarPlaceholder)} />
+        </div>
       </div>
 
+      {/* TODO need to deal w/ the mobile stuff */}
       {/* Mobile Nav */}
       <div className="sm:hidden flex items-center h-14 px-4">
         <button
@@ -71,48 +138,16 @@ export default function Header() {
 
         {mobileOpen && (
           <div className="absolute top-14 left-4 z-50 bg-white rounded-lg shadow-md min-w-44 py-1 border border-gray-100">
-            <Link
-              href="/"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/events"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Happening Now
-            </Link>
-            <Link
-              href="/members"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Membership
-            </Link>
-            <Link
-              href="/ambassadors"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Ambassadorship
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
-            >
-              Contact Us
-            </Link>
+            {nav_items.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
+              >
+                {item.text}
+              </Link>
+            ))}
           </div>
         )}
       </div>

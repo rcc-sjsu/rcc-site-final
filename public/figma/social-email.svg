@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<rect width="60" height="60" rx="10" fill="#FF5734"/>
+<path id="Email" d="M45 20.625C45 18.9062 43.605 17.5 41.9 17.5H17.1C15.395 17.5 14 18.9062 14 20.625M45 20.625V39.375C45 41.0938 43.605 42.5 41.9 42.5H17.1C15.395 42.5 14 41.0938 14 39.375V20.625M45 20.625L29.5 31.5625L14 20.625" stroke="#FEFEFE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
