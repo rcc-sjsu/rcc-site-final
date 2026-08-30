@@ -38,9 +38,9 @@ export default function GetInvolved() {
         <div className="mx-auto mt-6 flex max-w-[1200px] flex-col gap-5">
           <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
             {/* TODO: Link "the past" to projects page once implemented. */}
-            Take a look at what we&apos;ve done in <span className="text-[var(--purple)]">the past</span> and what
-            we&apos;re doing <Link href="/events">right now</Link> so you can get an idea of what you can contribute to
-            in <span className="text-[var(--purple)]">the future</span>.
+            Take a look at <span className="text-[var(--purple)]">what we&apos;ve done in the past</span> and{' '}
+            <Link href="/events">what we&apos;re doing right now</Link> so you can get an idea of{' '}
+            <span className="text-[var(--purple)]">what you can contribute to in the future</span>.
           </p>
 
           <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
