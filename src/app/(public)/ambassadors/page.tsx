@@ -14,6 +14,36 @@ type AmbassadorTeam = {
   members: AmbassadorMember[];
 };
 
+const ROLE_PRIORITY: Record<string, number> = {
+  President: 1,
+  'Internal Vice President': 2,
+  'External Vice President': 3,
+  'Publicity Vice President': 4,
+  'Lead Ambassador': 5,
+};
+
+function getLastName(fullName: string) {
+  return fullName.trim().split(/\s+/).at(-1) || '';
+}
+
+function compareMembers(a: AmbassadorMember, b: AmbassadorMember) {
+  const priorityDifference = (ROLE_PRIORITY[a.role] ?? 100) - (ROLE_PRIORITY[b.role] ?? 100);
+
+  if (priorityDifference !== 0) {
+    return priorityDifference;
+  }
+
+  const lastNameComparison = getLastName(a.full_name).localeCompare(getLastName(b.full_name), undefined, {
+    sensitivity: 'base',
+  });
+
+  if (lastNameComparison !== 0) {
+    return lastNameComparison;
+  }
+
+  return a.full_name.localeCompare(b.full_name, undefined, { sensitivity: 'base' });
+}
+
 export default async function AmbassadorsPage() {
   const supabase = await createClient();
 
@@ -67,7 +97,10 @@ export default async function AmbassadorsPage() {
     }
   });
 
-  const teams = Array.from(teamsMap.values());
+  const teams = Array.from(teamsMap.values()).map((team) => ({
+    ...team,
+    members: [...team.members].sort(compareMembers),
+  }));
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-4 font-sans text-zinc-900">
