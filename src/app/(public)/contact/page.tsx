@@ -49,8 +49,10 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="flex flex-col items-center px-4 py-16">
-      <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
+    <section className="flex flex-col items-center px-4 py-16" aria-labelledby="contact-heading">
+      <h1 id="contact-heading" className="text-3xl font-bold mb-2">
+        Contact Us
+      </h1>
       <p className="text-gray-600 mb-8">Fill out this form if you would like reach out to the RCC team!</p>
       <div className="w-full max-w-2xl">
         <Card>
@@ -113,6 +115,6 @@ export default function ContactPage() {
           </CardContent>
         </Card>
       </div>
-    </main>
+    </section>
   );
 }

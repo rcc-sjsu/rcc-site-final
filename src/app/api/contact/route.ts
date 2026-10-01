@@ -1,14 +1,12 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 
 import { contactFormSchema } from '@/lib/contact';
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
+  const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  const scriptSecret = process.env.GOOGLE_SCRIPT_SECRET;
 
-  if (!apiKey || !to || !from) {
+  if (!scriptUrl || !scriptSecret) {
     console.error('Contact email is missing required environment variables.');
     return NextResponse.json({ error: 'Contact email is not configured.' }, { status: 503 });
   }
@@ -34,17 +32,38 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
-    from,
-    to,
-    replyTo: email,
-    subject: `[RCC Contact] ${subject}`,
-    text: [`Name: ${fullName}`, `Email: ${email}`, '', message].join('\n'),
-  });
+  try {
+    const response = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret: scriptSecret, fullName, email, subject, message }),
+      cache: 'no-store',
+      redirect: 'follow',
+    });
 
-  if (error) {
-    console.error('Resend failed to send contact email:', error);
+    const responseText = await response.text();
+    let responseBody: unknown;
+
+    try {
+      responseBody = JSON.parse(responseText);
+    } catch {
+      console.error('Google Apps Script returned a non-JSON response:', response.status, responseText.slice(0, 500));
+      return NextResponse.json({ error: 'We could not send your message. Please try again.' }, { status: 502 });
+    }
+
+    const succeeded =
+      response.ok &&
+      typeof responseBody === 'object' &&
+      responseBody !== null &&
+      'ok' in responseBody &&
+      responseBody.ok === true;
+
+    if (!succeeded) {
+      console.error('Google Apps Script failed to send contact email:', response.status, responseBody);
+      return NextResponse.json({ error: 'We could not send your message. Please try again.' }, { status: 502 });
+    }
+  } catch (error) {
+    console.error('Google Apps Script request failed:', error);
     return NextResponse.json({ error: 'We could not send your message. Please try again.' }, { status: 502 });
   }
 
