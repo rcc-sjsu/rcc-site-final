@@ -85,8 +85,9 @@
   aspect-ratio: 1;
   box-sizing: content-box;
   border: 3px solid var(--blurple);
-  background-color: var(--blurple);
+  background-color: var(--white);
   border-radius: 100%;
+  overflow: hidden;
 }
 
 .navLinksList {

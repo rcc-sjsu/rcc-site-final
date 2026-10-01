@@ -9,7 +9,8 @@ const involvementActions = [
     title: 'Students',
     description: 'Are you a student interested in joining RCC? Sign up and become a member today for free!',
     buttonText: 'Join Us',
-    href: '/membership',
+    href: 'https://forms.gle/5yxmDebP4LWWWfw37',
+    external: true,
     imageSrc: '/images/picnic-social-2.jpg',
     overlayClassName: 'bg-brand-orange/80',
     hoverTextClassName: 'group-hover/action-button:text-brand-orange/80',
@@ -22,6 +23,7 @@ const involvementActions = [
       'Are you a company, industry professional, or other industry partner? Connect with RCC through our contact form!',
     buttonText: 'Connect With Us',
     href: '/contact',
+    external: false,
     imageSrc: '/images/rcc-case-comp.png',
     overlayClassName: 'bg-brand-pink/80',
     hoverTextClassName: 'group-hover/action-button:text-brand-pink/80',
@@ -80,6 +82,8 @@ export default function GetInvolved() {
 
               <Link
                 href={action.href}
+                target={action.external ? '_blank' : undefined}
+                rel={action.external ? 'noopener noreferrer' : undefined}
                 style={{ fontSize: '1.5rem', fontWeight: 700 }}
                 className={buttonVariants({
                   variant: 'inverse',

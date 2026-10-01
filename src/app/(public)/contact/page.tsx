@@ -1,39 +1,51 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { FieldGroup, Field, FieldLabel, FieldError } from '@/components/ui/field';
-
-const contactFormSchema = z.object({
-  fullName: z.string().min(1, 'Please enter your name.'),
-  subject: z.string().min(1, 'Please enter a subject.'),
-  message: z.string().min(1, 'Please enter a message.'),
-});
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
+import { contactFormSchema, type ContactFormValues } from '@/lib/contact';
 
 export default function ContactPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { fullName: '', subject: '', message: '' },
+    defaultValues: { fullName: '', email: '', subject: '', message: '', website: '' },
   });
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  function onSubmit(values: ContactFormValues) {
-    const body = `From: ${values.fullName}\n\n${values.message}`;
-    const mailtoUrl = `mailto:rcc.sjsu@gmail.com?subject=${encodeURIComponent(
-      values.subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.assign(mailtoUrl);
+  async function onSubmit(values: ContactFormValues) {
+    setStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error || 'We could not send your message. Please try again.');
+      }
+
+      reset();
+      setStatus({ type: 'success', message: 'Thanks! Your message has been sent to the RCC team.' });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'We could not send your message. Please try again.',
+      });
+    }
   }
 
   return (
@@ -44,7 +56,7 @@ export default function ContactPage() {
         <Card>
           <CardHeader>
             <CardTitle>Send us a message</CardTitle>
-            <CardDescription>This will open your email client with your message ready to send.</CardDescription>
+            <CardDescription>Your message will be emailed directly to the RCC team.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,6 +65,18 @@ export default function ContactPage() {
                   <FieldLabel htmlFor="fullName">Full Name (Required)</FieldLabel>
                   <Input id="fullName" autoComplete="name" aria-invalid={!!errors.fullName} {...register('fullName')} />
                   <FieldError errors={errors.fullName ? [errors.fullName] : undefined} />
+                </Field>
+
+                <Field data-invalid={!!errors.email}>
+                  <FieldLabel htmlFor="email">Email (Required)</FieldLabel>
+                  <Input
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    aria-invalid={!!errors.email}
+                    {...register('email')}
+                  />
+                  <FieldError errors={errors.email ? [errors.email] : undefined} />
                 </Field>
 
                 <Field data-invalid={!!errors.subject}>
@@ -67,8 +91,22 @@ export default function ContactPage() {
                   <FieldError errors={errors.message ? [errors.message] : undefined} />
                 </Field>
 
-                <Button type="submit" className="w-full mt-2">
-                  Submit
+                <div className="absolute -left-[10000px]" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input id="website" tabIndex={-1} autoComplete="off" {...register('website')} />
+                </div>
+
+                {status && (
+                  <p
+                    role="status"
+                    className={status.type === 'success' ? 'text-sm text-green-700' : 'text-sm text-red-600'}
+                  >
+                    {status.message}
+                  </p>
+                )}
+
+                <Button type="submit" className="w-full mt-2" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending…' : 'Send Message'}
                 </Button>
               </FieldGroup>
             </form>

@@ -35,7 +35,7 @@ const dotGothic16 = DotGothic16({
 
 export const metadata: Metadata = {
   title: 'Responsible Computing Club @ SJSU',
-  description: "Member Portal for SJSU's Responsible Computing Club",
+  description: "Website for SJSU's Responsible Computing Club",
 };
 
 export default function RootLayout({

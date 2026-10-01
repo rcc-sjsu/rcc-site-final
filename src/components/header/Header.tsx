@@ -20,7 +20,6 @@ const nav_items: NavItem[] = [
   { text: 'About Us', href: '/about' },
   // TODO: uncomment me when these pages are ready for deployment.
   // { text: 'Happening Now', href: '/events' },
-  // { text: 'Membership', href: '/membership' },
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
   // TODO: replace the href w/ link to the Past Work page and uncomment me
@@ -97,7 +96,7 @@ export default function Header() {
         {/* accessibility note: I am giving this aria-hidden as there's also a link to the homepage in the header's navbar links.
          * via w3.org/TR/wai-aria-1.2/#aria-hidden : "Authors MAY, with caution, use aria-hidden to hide visibly rendered content from assistive technologies only if the act of hiding this content is intended to improve the experience for users of assistive technologies by removing redundant or extraneous content." */}
         <Link href="/" className={style.logoImageContainer} aria-hidden tabIndex={-1}>
-          <Image alt="RCC Home" fill src="/RCC_Main_Logo_Final.png" />
+          <Image alt="RCC Home" fill src="/rcc-logo-transparent.png" sizes="40px" />
         </Link>
         {/* (padding bodge) */} <div className="grow min-w-2" />
         <NavigationMenu.Root>
