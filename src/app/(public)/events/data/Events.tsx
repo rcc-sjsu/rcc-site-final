@@ -7,7 +7,7 @@ const events = [
     time: 'Not listed',
     location: 'Not listed',
     formURL: '',
-    imageURL: '/images/events/generated/october-general-meeting.webp',
+    imageURL: '/projects-heroimg.png',
   },
   {
     id: 2,
