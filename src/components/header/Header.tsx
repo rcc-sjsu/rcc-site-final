@@ -117,12 +117,6 @@ export default function Header() {
             })}
           </NavigationMenu.List>
         </NavigationMenu.Root>
-        {/* (padding bodge) */} <div className="min-w-2 max-w-8 grow-[0.1]" />
-        <div className="flex gap-2">
-          <div className={cn(style.button, style.textButton)}>Sign In</div>
-          {/* TODO should probably embed this as an inline SVG instead for purposes of styling it instead of using the mask bodge. */}
-          <div className={cn(style.button, style.avatarPlaceholder)} />
-        </div>
       </div>
 
       {/* TODO need to deal w/ the mobile stuff */}
