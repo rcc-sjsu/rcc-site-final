@@ -19,8 +19,6 @@ export default function EventsCalendar() {
         selected={selectedDate}
         onSelect={setSelectedDate}
         defaultMonth={new Date(2026, 9, 1)}
-        startMonth={new Date(2026, 9, 1)}
-        endMonth={new Date(2026, 9, 31)}
         fixedWeeks
         modifiers={{ event: eventDates }}
         modifiersClassNames={{
