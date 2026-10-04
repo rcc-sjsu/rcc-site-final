@@ -18,8 +18,7 @@ interface NavItem {
 const nav_items: NavItem[] = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },
-  // TODO: uncomment me when these pages are ready for deployment.
-  // { text: 'Happening Now', href: '/events' },
+  { text: 'Events', href: '/events' },
   { text: 'Ambassadors', href: '/ambassadors' },
   { text: 'Contact Us', href: '/contact' },
   // TODO: replace the href w/ link to the Past Work page and uncomment me
