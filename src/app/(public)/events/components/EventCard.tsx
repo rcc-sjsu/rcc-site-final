@@ -8,8 +8,8 @@ interface Event {
   id: number;
   title: string;
   date: string;
-  shortDesc: string;
-  longDesc: string;
+  time: string;
+  location: string;
   formURL: string;
   imageURL: string;
 }
@@ -39,7 +39,14 @@ export default function EventCard({ event }: { event: Event }) {
         <div className="p-4">
           <p className="text-xs text-[var(--color-brand-dull-periwinkle)] mb-1">{event.date}</p>
           <h3 className="font-semibold text-gray-800 mb-1">{event.title}</h3>
-          <p className="text-sm text-gray-500">{event.shortDesc}</p>
+          <div className="space-y-1 text-sm text-gray-500">
+            <p>
+              <span className="font-medium text-gray-700">Time:</span> {event.time}
+            </p>
+            <p>
+              <span className="font-medium text-gray-700">Location:</span> {event.location}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -50,8 +57,13 @@ export default function EventCard({ event }: { event: Event }) {
             <DialogTitle className="text-xl">{event.title}</DialogTitle>
             <DialogDescription className="text-[var(--color-brand-dull-periwinkle)]">{event.date}</DialogDescription>
           </DialogHeader>
-          <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
-            <p className="text-base text-gray-600 leading-relaxed">{event.longDesc}</p>
+          <div className="-mx-4 no-scrollbar max-h-[50vh] space-y-2 overflow-y-auto px-4 text-base text-gray-600">
+            <p>
+              <span className="font-semibold text-gray-800">Time:</span> {event.time}
+            </p>
+            <p>
+              <span className="font-semibold text-gray-800">Location:</span> {event.location}
+            </p>
           </div>
           {event.formURL && (
             <a

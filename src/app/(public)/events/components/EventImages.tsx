@@ -9,8 +9,8 @@ export default function EventImages() {
         <div className="flex items-center justify-center">
           <div className="relative rounded-full overflow-hidden aspect-square w-70 sm:w-[320px] md:w-100">
             <Image
-              src="/images/events1.jpg"
-              alt="events1"
+              src="/projects-heroimg.png"
+              alt="RCC members gathered at an event"
               fill
               className="object-cover"
               sizes="(max-width: 640px) 280px, (max-width: 1024px) 320px, 400px"
