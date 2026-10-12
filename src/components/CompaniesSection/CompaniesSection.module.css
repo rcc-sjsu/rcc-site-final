@@ -2,8 +2,7 @@
   background-color: white;
   position: relative;
   width: 100%;
-  min-height: 380px;
-  padding: 54px 0 56px;
+  padding: 5rem 0 6rem;
   overflow: hidden;
 }
 
@@ -17,7 +16,7 @@
 
 @media (max-width: 640px) {
   .container {
-    padding: 42px 0 48px;
+    padding: 4rem 0 4.5rem;
   }
 
   .carouselWrapper {

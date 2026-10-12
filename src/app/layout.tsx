@@ -1,37 +1,54 @@
 import type { Metadata } from 'next';
-import { DotGothic16, Inter, Nunito_Sans, Zilla_Slab, Geist } from 'next/font/google';
+import Script from 'next/script';
+import { DotGothic16, Nunito_Sans, Space_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import styles from './page.module.css';
 import { cn } from '@/lib/utils';
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: '400',
-});
-
+// variable font: one file covers every weight the site uses (instead of synthesizing bold from a single weight)
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
   variable: '--font-nunito-sans',
-  weight: '500',
+  display: 'swap',
 });
 
-const zillaSlab = Zilla_Slab({
-  variable: '--font-zilla-slab',
+const spaceMono = Space_Mono({
+  variable: '--font-space-mono',
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '700'],
+  display: 'swap',
 });
 
+// only used for small section labels below the fold, so it isn't preloaded
 const dotGothic16 = DotGothic16({
   variable: '--font-dot-gothic-16',
   subsets: ['latin'],
   weight: '400',
+  display: 'swap',
+  preload: false,
 });
+
+// Some browser extensions (e.g. Bitdefender's anti-tracker) stamp attributes such as `bis_skin_checked` onto the page
+// before React hydrates, which React then reports as a hydration mismatch. This runs before hydration, strips just
+// those extension-added attributes as they appear, and stops watching shortly after the page has loaded.
+const STRIP_EXTENSION_ATTRIBUTES = `(() => {
+  const isExtensionAttr = (name) => name === 'bis_skin_checked' || name === 'bis_register' || name.startsWith('__processed_');
+  const clean = (el) => {
+    if (!el.attributes) return;
+    for (const attr of Array.from(el.attributes)) if (isExtensionAttr(attr.name)) el.removeAttribute(attr.name);
+  };
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      if (m.type === 'attributes' && isExtensionAttr(m.attributeName)) m.target.removeAttribute(m.attributeName);
+      else for (const node of m.addedNodes) if (node.nodeType === 1) { clean(node); node.querySelectorAll('*').forEach(clean); }
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
+  document.querySelectorAll('*').forEach(clean);
+  addEventListener('load', () => setTimeout(() => observer.disconnect(), 3000), { once: true });
+})();`;
 
 export const metadata: Metadata = {
   title: 'Responsible Computing Club @ SJSU',
@@ -44,10 +61,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn('font-sans', geist.variable)}>
-      <body
-        className={cn(styles.container, nunitoSans.variable, inter.variable, zillaSlab.variable, dotGothic16.variable)}
-      >
+    <html lang="en" className={cn('font-sans', nunitoSans.variable)} suppressHydrationWarning>
+      <head>
+        <Script id="strip-extension-attributes" strategy="beforeInteractive">
+          {STRIP_EXTENSION_ATTRIBUTES}
+        </Script>
+      </head>
+      <body suppressHydrationWarning className={cn(styles.container, dotGothic16.variable, spaceMono.variable)}>
         <Header />
         {/* All your page content will be rendered inside this main tag */}
         <main className={styles.pageContent}>{children}</main>

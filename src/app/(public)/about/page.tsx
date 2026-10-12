@@ -1,27 +1,31 @@
-// component imports
+import { PixelCta, TickButton } from '@/components/ui/pixel-button';
+import PageHero from '@/components/PageHero';
 import CoolQuote from '@/components/CoolQuote/CoolQuote';
 import WhatIsRCC from './components/WhatIsRCC';
 import OurStory from './components/OurStory';
 import GetInvolved from './components/GetInvolved';
 import WhatDoWeDo from './components/WhatDoWeDo';
-import styles from './aboutpage.module.css';
 
 export default function About() {
   return (
-    <div className={styles.container}>
-      {/* Founder Quote Section */}
+    <div style={{ overflow: 'clip' }}>
+      <PageHero
+        badge="About RCC"
+        title="Technology that serves"
+        accent="people first."
+        description="The Responsible Computing Club at SJSU explores ethical design, sustainability, and accessibility in tech through workshops, speaker events, and social meetups."
+        image="/about/who-are-we-tabling.jpeg"
+      >
+        <PixelCta href="#get-involved" className="font-mono text-sm tracking-wide uppercase">
+          Get involved
+        </PixelCta>
+        <TickButton href="#our-story">Our story</TickButton>
+      </PageHero>
+
       <CoolQuote />
-
-      {/* What is RCC Section */}
       <WhatIsRCC />
-
-      {/* Our Story Section */}
       <OurStory />
-
-      {/* What Do We Do Section */}
       <WhatDoWeDo />
-
-      {/* Get Involved Section */}
       <GetInvolved />
     </div>
   );

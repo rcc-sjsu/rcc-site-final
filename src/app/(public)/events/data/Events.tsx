@@ -51,4 +51,74 @@ const events = [
   },
 ];
 
+export type RccEvent = (typeof events)[number];
+
+// all current events are in October 2026
+const YEAR = 2026;
+const MONTH = 9;
+
+// returns the end of the event's last day
+export function getEventEndDate(event: RccEvent) {
+  return new Date(YEAR, MONTH, Math.max(...event.days), 23, 59, 59);
+}
+
+// the event's first day, at midnight
+export function getEventStartDay(event: RccEvent) {
+  return new Date(YEAR, MONTH, Math.min(...event.days));
+}
+
+export function isEventPast(event: RccEvent, now = new Date()) {
+  return getEventEndDate(event) < now;
+}
+
+// whole days from today until the event starts (0 = today, negative = already started)
+export function daysUntilEvent(event: RccEvent, now = new Date()) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((getEventStartDay(event).getTime() - today.getTime()) / 86_400_000);
+}
+
+export function describeDaysUntil(days: number) {
+  if (days < 0) return 'Happening now';
+  if (days === 0) return 'Today';
+  if (days === 1) return 'Tomorrow';
+  if (days < 7) return `In ${days} days`;
+  const weeks = Math.round(days / 7);
+  return weeks === 1 ? 'In a week' : `In ${weeks} weeks`;
+}
+
+// parses times like "1:00–3:00 PM" or "8:00 AM–5:00 PM" into 24h [hours, minutes] pairs; null if not listed
+function parseTimeRange(time: string): [[number, number], [number, number]] | null {
+  const match = time.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?\s*[–-]\s*(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!match) return null;
+  const to24 = (hours: number, meridiem: string) => (hours % 12) + (meridiem.toUpperCase() === 'PM' ? 12 : 0);
+  const endMeridiem = match[6];
+  const startMeridiem = match[3] ?? endMeridiem;
+  return [
+    [to24(Number(match[1]), startMeridiem), Number(match[2])],
+    [to24(Number(match[4]), endMeridiem), Number(match[5])],
+  ];
+}
+
+const pad = (value: number) => String(value).padStart(2, '0');
+const calendarDate = (day: number) => `${YEAR}${pad(MONTH + 1)}${pad(day)}`;
+
+// "Add to Google Calendar" link; timed when the time is listed, otherwise all-day
+export function getGoogleCalendarLink(event: RccEvent) {
+  const first = Math.min(...event.days);
+  const last = Math.max(...event.days);
+  const range = parseTimeRange(event.time);
+  const dates = range
+    ? `${calendarDate(first)}T${pad(range[0][0])}${pad(range[0][1])}00/${calendarDate(last)}T${pad(range[1][0])}${pad(range[1][1])}00`
+    : `${calendarDate(first)}/${calendarDate(last + 1)}`;
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: event.title,
+    dates,
+    ctz: 'America/Los_Angeles',
+    details: 'Responsible Computing Club event at San José State University.',
+  });
+  if (event.location !== 'Not listed') params.set('location', event.location);
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
 export default events;

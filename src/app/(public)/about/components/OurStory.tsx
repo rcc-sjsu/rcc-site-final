@@ -1,51 +1,46 @@
-// component imports
 import Image from 'next/image';
-import Link from 'next/link';
-import Heading from '@/components/Heading';
-import styles from '../ourstory.module.css';
-import { buttonVariants } from '@/components/ui/button';
-
-// utilities
-import { cn } from '@/lib/utils';
+import Reveal from '@/components/Reveal';
+import SectionHeading from '@/components/SectionHeading';
+import { TickButton } from '@/components/ui/pixel-button';
 
 export default function OurStory() {
   return (
-    <section className={styles.container}>
-      <div className={styles.imageFrame}>
-        <Image
-          src="/about/where-did-we-start-rcc-comp.png"
-          alt="Students gathered around laptops at an RCC event"
-          width={350}
-          height={350}
-          className={styles.collageImage}
-        />
-      </div>
-      <div className={styles.allText}>
-        <Heading headingTag="h2" customStyle={{ justifyContent: 'flex-end', textAlign: 'right' }}>
-          Where Did We Start?
-        </Heading>
-        <p className={styles.description}>
-          After participating in{' '}
-          <Link
-            href="https://www.mozillafoundation.org/en/blog/responsible-computing-challenge-holds-trustworthy-ai-and-career-development-events-with-student-groups-at-san-jose-state-university/"
-            target="_blank"
-          >
-            Mozilla’s Responsible Computing Challenge
-          </Link>
-          , our club’s founder was inspired to provide a space for San Jose State University students to explore
-          technologies’ ethical implications on society.
-        </p>
+    <section id="our-story" className="scroll-mt-20 bg-muted py-20 sm:py-28" aria-labelledby="story-heading">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 sm:px-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <Reveal className="relative order-2 aspect-[4/3] overflow-hidden rounded-2xl bg-background lg:order-1">
+          <Image
+            src="/about/where-did-we-start-rcc-comp.png"
+            alt="Students gathered around laptops at an RCC event"
+            fill
+            sizes="(max-width: 1024px) 100vw, 480px"
+            className="object-cover"
+          />
+        </Reveal>
 
-        <Link
-          href="https://www.mozillafoundation.org/en/blog/announcing-the-responsible-computing-club-at-san-jos%C3%A9-state-university/"
-          target="_blank"
-          className={cn(
-            buttonVariants({ variant: 'default', size: 'default' }),
-            'h-auto self-end rounded-[25px] px-6 md:px-8 py-2 text-base md:text-lg transition-colors duration-200'
-          )}
-        >
-          Learn More
-        </Link>
+        <div className="order-1 flex flex-col gap-8 lg:order-2">
+          <SectionHeading id="story-heading" eyebrow="Our story" title="Where did we start?" />
+          <span className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            After participating in{' '}
+            <a
+              href="https://www.mozillafoundation.org/en/blog/responsible-computing-challenge-holds-trustworthy-ai-and-career-development-events-with-student-groups-at-san-jose-state-university/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary sm:text-lg"
+            >
+              Mozilla&rsquo;s Responsible Computing Challenge
+            </a>
+            , our club&rsquo;s founder was inspired to provide a space for San José State University students to explore
+            technologies&rsquo; ethical implications on society.
+          </span>
+          <TickButton
+            href="https://www.mozillafoundation.org/en/blog/announcing-the-responsible-computing-club-at-san-jos%C3%A9-state-university/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-fit bg-background"
+          >
+            Learn more
+          </TickButton>
+        </div>
       </div>
     </section>
   );

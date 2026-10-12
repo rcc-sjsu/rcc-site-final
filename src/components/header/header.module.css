@@ -1,12 +1,47 @@
+/* The header has two background layers, a dark fade (over dark heroes) and a frosted light bar, that crossfade
+ * instead of swapping, and its colors are registered custom properties (see globals.css) so they animate too. */
 .header {
-  --header-color-text: #f00;
-  --header-color-accent: #0f0;
-  --header-color-bg: #00f;
   position: sticky;
   top: 0;
-  background-color: var(--header-color-bg);
   /* TODO we should standardize our z-index values into some standard vars mayhaps. */
   z-index: 999;
+  isolation: isolate;
+  transition:
+    --header-text 0.45s ease,
+    --header-muted 0.45s ease,
+    --header-hover-bg 0.45s ease,
+    --header-current-bg 0.45s ease,
+    --header-track 0.45s ease,
+    --header-track-border 0.45s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  /* dark layer: soft ink fade so the links stay readable over a hero */
+  &::before {
+    background: linear-gradient(rgb(16 42 67 / 0.7), transparent);
+  }
+  /* light layer: frosted white bar with a hairline */
+  &::after {
+    background-color: rgb(255 255 255 / 0.9);
+    border-bottom: 1px solid rgb(16 42 67 / 0.08);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .header::before,
+  .header::after {
+    transition: none;
+  }
 }
 
 .header.headerOverlappingContent {
@@ -14,86 +49,91 @@
   width: 100%; /* (needed on position:fixed) */
 }
 
-.header.headerStandard {
-  --header-color-text: var(--black);
-  --header-color-accent: var(--blurple);
-  --header-color-bg: var(--white);
-}
+.headerDark {
+  --header-text: #ffffff;
+  --header-muted: rgb(255 255 255 / 0.75);
+  --header-hover-bg: rgb(255 255 255 / 0.1);
+  --header-current-bg: rgb(255 255 255 / 0.14);
+  --header-track: rgb(11 29 47 / 0.35);
+  --header-track-border: rgb(255 255 255 / 0.14);
 
-.header.headerHomepage {
-  --header-color-text: var(--white);
-  --header-color-accent: var(--yellow);
-  --header-color-bg: var(--blurple);
-  background: linear-gradient(var(--header-color-bg), transparent);
-}
-
-/* a hyperlink navbar item */
-.navLink {
-  font-size: 1rem;
-  color: var(--header-color-text);
-  font-weight: 400;
-  &:hover {
-    color: var(--header-color-accent);
-    font-weight: 700;
+  &::after {
+    opacity: 0;
   }
-  text-align: center;
-  transition:
-    font-weight 0.2s ease,
-    text-decoration-color 0.2s ease;
-  /* default underline to invisible when we're not even using it,
-   * in order to prevent a pop-in for a second when clicking on the
-   * nav item for a page */
-  text-decoration-color: transparent;
+}
+
+.headerLight {
+  --header-text: #102a43;
+  --header-muted: rgb(16 42 67 / 0.7);
+  --header-hover-bg: #f1eafb;
+  --header-current-bg: #f1eafb;
+  --header-track: rgb(246 248 252 / 0.9);
+  --header-track-border: rgb(16 42 67 / 0.08);
+
+  &::before {
+    opacity: 0;
+  }
+}
+
+.text {
+  color: var(--header-text);
+}
+
+.navTrack {
+  background-color: var(--header-track);
+  border: 1px solid var(--header-track-border);
+}
+
+/* the sliding highlight behind the hovered/current link */
+.navPill {
+  position: absolute;
+  top: 0.25rem;
+  left: 0;
+  height: 2.25rem;
+  width: 0;
+  border-radius: 9999px;
+  background-color: var(--header-current-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition-property: transform, width, opacity, background-color;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0s;
+  }
+}
+
+.navLink {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 2.25rem;
+  padding: 0 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--header-muted);
+  transition: color 0.2s ease;
+  outline: none;
+
+  &:hover {
+    color: var(--header-text);
+  }
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgb(240 71 154 / 0.45);
+  }
 }
 
 .navLinkCurrent {
-  font-weight: 700;
-  color: var(--header-color-accent);
-  text-decoration: underline 2px;
-  &:hover {
-    /* (making it transparent instead of turning it off since that way we can transition the decoration color to get it
-     *  to animate) */
-    text-decoration-color: transparent;
-  }
+  color: var(--header-text);
+  font-weight: 600;
 }
 
-/* navlink bold spacing fix stuff
- * via https://css-tricks.com/bold-on-hover-without-the-layout-shift/ */
-.navLink {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  &::after {
-    content: attr(data-text);
-    content: attr(data-text) / '';
-    height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    user-select: none;
-    pointer-events: none;
-    font-weight: 700;
-    @media speech {
-      display: none;
-    }
-  }
-}
-
-.logoImageContainer {
-  position: relative;
-  height: 40px;
-  aspect-ratio: 1;
-  box-sizing: content-box;
-  border: 3px solid var(--blurple);
-  background-color: var(--white);
-  border-radius: 100%;
-  overflow: hidden;
-}
-
-.navLinksList {
-  display: flex;
-  align-items: center;
-  /* calculated with https://clampgenerator.com/tools/layout-spacing-size/ ,
-   * [900px,1000px] viewport, [8px,20px] prop */
-  gap: clamp(0.5rem, calc(-6.25rem + 12vw), 1.25rem);
+.menuButton {
+  color: var(--header-text);
+  background-color: var(--header-hover-bg);
 }

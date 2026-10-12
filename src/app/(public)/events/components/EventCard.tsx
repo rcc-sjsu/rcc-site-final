@@ -1,82 +1,61 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ArrowRightIcon, CalendarDaysIcon, ClockIcon, MapPinIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import type { RccEvent } from '../data/Events';
+import EventDetailsDialog from './EventDetailsDialog';
+import { EventDetail } from './EventDetail';
 
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  formURL: string;
-  imageURL: string;
-}
-
-export default function EventCard({ event }: { event: Event }) {
-  const [open, setOpen] = useState(false);
-
+export default function EventCard({ event }: { event: RccEvent }) {
   return (
-    <>
-      {/* Card */}
-      <div
-        onClick={() => setOpen(true)}
-        className="cursor-pointer rounded-xl overflow-hidden bg-white border border-[var(--color-brand-lavender)] shadow-sm hover:shadow-[0_4px_20px_rgba(196,186,234,0.5)] hover:scale-[1.02] transition-all duration-200"
-      >
-        {/* Image */}
-        <div className="relative h-48 w-full">
+    <EventDetailsDialog
+      event={event}
+      trigger={
+        <button
+          type="button"
+          className="group h-full w-full rounded-xl text-left transition-transform duration-[120ms] ease-cta outline-none focus-visible:ring-3 focus-visible:ring-ring/50 active:scale-[0.99]"
+        />
+      }
+    >
+      <Card className="h-full gap-0 py-0 transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:shadow-rcc-violet/10 group-hover:ring-primary/30 motion-reduce:group-hover:translate-y-0">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
           {event.imageURL ? (
-            <Image src={event.imageURL} alt={event.title} fill className="object-cover" />
+            <Image
+              src={event.imageURL}
+              alt=""
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:group-hover:scale-100"
+            />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-[var(--color-brand-pale-blue)]">
-              <span className="text-[var(--color-brand-dark-lavender)] text-sm">No Image</span>
+            <div className="flex h-full items-center justify-center">
+              <CalendarDaysIcon className="size-10 text-muted-foreground" aria-hidden />
             </div>
           )}
+          <Badge variant="outline" className="absolute top-3 left-3 border-transparent text-rcc-navy shadow-sm">
+            {event.date}
+          </Badge>
         </div>
 
-        {/* Text */}
-        <div className="p-4">
-          <p className="text-xs text-[var(--color-brand-dull-periwinkle)] mb-1">{event.date}</p>
-          <h3 className="font-semibold text-gray-800 mb-1">{event.title}</h3>
-          <div className="space-y-1 text-sm text-gray-500">
-            <p>
-              <span className="font-medium text-gray-700">Time:</span> {event.time}
-            </p>
-            <p>
-              <span className="font-medium text-gray-700">Location:</span> {event.location}
-            </p>
-          </div>
-        </div>
-      </div>
+        <CardHeader className="pt-4">
+          <CardTitle className="line-clamp-2 text-base font-semibold text-foreground">{event.title}</CardTitle>
+        </CardHeader>
 
-      {/* Modal */}
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl">{event.title}</DialogTitle>
-            <DialogDescription className="text-[var(--color-brand-dull-periwinkle)]">{event.date}</DialogDescription>
-          </DialogHeader>
-          <div className="-mx-4 no-scrollbar max-h-[50vh] space-y-2 overflow-y-auto px-4 text-base text-gray-600">
-            <p>
-              <span className="font-semibold text-gray-800">Time:</span> {event.time}
-            </p>
-            <p>
-              <span className="font-semibold text-gray-800">Location:</span> {event.location}
-            </p>
-          </div>
-          {event.formURL && (
-            <a
-              href={event.formURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-2 px-4 py-2 text-sm text-white rounded-md bg-[var(--color-brand-indigo)] hover:bg-[var(--color-brand-dark-pastel-purple)] transition-colors"
-            >
-              Sign Up →
-            </a>
-          )}
-        </DialogContent>
-      </Dialog>
-    </>
+        <CardContent className="flex flex-1 flex-col gap-1.5 pt-3 pb-4">
+          <EventDetail icon={ClockIcon}>{event.time}</EventDetail>
+          <EventDetail icon={MapPinIcon}>{event.location}</EventDetail>
+        </CardContent>
+
+        <CardFooter className="justify-between border-t bg-transparent py-3 text-sm font-medium text-primary">
+          View details
+          <ArrowRightIcon
+            className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0"
+            aria-hidden
+          />
+        </CardFooter>
+      </Card>
+    </EventDetailsDialog>
   );
 }

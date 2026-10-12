@@ -1,7 +1,8 @@
-import Heading from '@/components/Heading';
-import { buttonVariants } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import Reveal from '@/components/Reveal';
+import SectionHeading from '@/components/SectionHeading';
+import { PixelCta, TickButton } from '@/components/ui/pixel-button';
 
 const involvementActions = [
   {
@@ -12,8 +13,7 @@ const involvementActions = [
     href: 'https://forms.gle/5yxmDebP4LWWWfw37',
     external: true,
     imageSrc: '/images/picnic-social-2.jpg',
-    overlayClassName: 'bg-brand-orange/80',
-    hoverTextClassName: 'group-hover/action-button:text-brand-orange/80',
+    overlayClassName: 'from-rcc-ink/90 via-rcc-navy/70 to-rcc-violet/60',
     imageClassName: 'object-[45%_center]',
   },
   {
@@ -25,77 +25,74 @@ const involvementActions = [
     href: '/contact',
     external: false,
     imageSrc: '/images/rcc-case-comp.png',
-    overlayClassName: 'bg-brand-pink/80',
-    hoverTextClassName: 'group-hover/action-button:text-brand-pink/80',
+    overlayClassName: 'from-rcc-ink/90 via-rcc-violet/70 to-rcc-magenta/60',
     imageClassName: 'object-[55%_center]',
   },
 ];
 
 export default function GetInvolved() {
   return (
-    <section id="get-involved" className="pt-26 md:pt-30">
-      <div className="mx-auto max-w-[1200px] px-6 text-center">
-        <Heading headingTag="h2">How Can You Get Involved?</Heading>
-
-        <div className="mx-auto mt-6 flex max-w-[1200px] flex-col gap-5">
-          <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
-            {/* TODO: Link "the past" to projects page once implemented. */}
-            Take a look at <span className="text-[var(--purple)]">what we&apos;ve done in the past</span> and{' '}
-            <Link href="/events">what we&apos;re doing right now</Link> so you can get an idea of{' '}
-            <span className="text-[var(--purple)]">what you can contribute to in the future</span>.
-          </p>
-
-          <p className="text-base leading-[1.5] md:text-xl xl:text-2xl">
-            Start now and see which option below fits you best.
-          </p>
-        </div>
-      </div>
-
-      <div className="relative left-1/2 mt-16 grid w-[calc(100vw+2px)] max-w-[2562px] -translate-x-1/2 overflow-hidden md:grid-cols-2">
-        {involvementActions.map((action) => (
-          <article
-            key={action.id}
-            id={action.id}
-            className="relative flex min-h-[420px] items-center justify-center overflow-hidden px-8 py-16 text-center md:min-h-[540px] lg:min-h-[640px]"
+    <section id="get-involved" className="scroll-mt-20 bg-muted py-20 sm:py-28" aria-labelledby="involved-heading">
+      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 sm:px-10">
+        <SectionHeading
+          id="involved-heading"
+          eyebrow="Get involved"
+          title="How can you get involved?"
+          align="center"
+          description="Take a look at what we're doing right now to get an idea of what you can contribute to in the future, then pick the option that fits you best."
+        >
+          <Link
+            href="/events"
+            className="text-sm font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
           >
-            <Image
-              src={action.imageSrc}
-              alt=""
-              className={`object-cover grayscale -z-10 ${action.imageClassName}`}
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-            <div className={`absolute inset-0 -z-9 ${action.overlayClassName}`} />
+            See what we&apos;re doing right now
+          </Link>
+        </SectionHeading>
 
-            <div className="relative z-10 flex max-w-[500px] flex-col items-center text-white">
-              <Heading
-                headingTag="h3"
-                tone="light"
-                customStyle={{ fontSize: 'clamp(3.75rem, 8vw, 6rem)', lineHeight: 1 }}
+        <div className="grid gap-6 md:grid-cols-2">
+          {involvementActions.map((action, index) => (
+            <Reveal key={action.id} delay={index * 90} className="h-full">
+              <article
+                id={action.id}
+                className="relative isolate flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl p-8 text-white sm:p-10"
               >
-                {action.title}
-              </Heading>
+                <Image
+                  src={action.imageSrc}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className={`-z-20 object-cover ${action.imageClassName}`}
+                />
+                <div className={`absolute inset-0 -z-10 bg-linear-to-t ${action.overlayClassName}`} />
 
-              <p className="mt-6 text-base font-medium leading-[1.2] text-white md:min-h-20 md:text-xl xl:text-2xl">
-                {action.description}
-              </p>
-
-              <Link
-                href={action.href}
-                target={action.external ? '_blank' : undefined}
-                rel={action.external ? 'noopener noreferrer' : undefined}
-                style={{ fontSize: '1.5rem', fontWeight: 700 }}
-                className={buttonVariants({
-                  variant: 'inverse',
-                  size: 'lg',
-                  className: 'group/action-button mt-8 h-auto rounded-md px-6 py-2',
-                })}
-              >
-                <span className={`${action.hoverTextClassName} text-2xl font-bold`}>{action.buttonText}</span>
-              </Link>
-            </div>
-          </article>
-        ))}
+                <div className="flex flex-col items-start gap-4">
+                  <span className="flex items-center gap-2 font-mono text-xs tracking-widest text-white/80 uppercase">
+                    <span aria-hidden className="size-2 bg-[#f0479a]" />
+                    For {action.title.toLowerCase()}
+                  </span>
+                  <h3 className="text-3xl leading-tight font-semibold tracking-[-0.02em] sm:text-4xl">
+                    {action.title}
+                  </h3>
+                  <span className="max-w-md text-base leading-relaxed text-white/85">{action.description}</span>
+                  {index === 0 ? (
+                    <PixelCta
+                      href={action.href}
+                      target={action.external ? '_blank' : undefined}
+                      rel={action.external ? 'noopener noreferrer' : undefined}
+                      className="mt-2 font-mono text-sm tracking-wide uppercase"
+                    >
+                      {action.buttonText}
+                    </PixelCta>
+                  ) : (
+                    <TickButton href={action.href} className="mt-2">
+                      {action.buttonText}
+                    </TickButton>
+                  )}
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

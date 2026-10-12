@@ -1,3 +1,5 @@
+import PageHero from '@/components/PageHero';
+import { PixelCta, TickButton } from '@/components/ui/pixel-button';
 import TeamSection from './components/TeamSection';
 import { createClient } from '@/lib/supabase/server';
 import { QueryData } from '@supabase/supabase-js';
@@ -23,8 +25,17 @@ export default async function AmbassadorsPage() {
   const { data, error } = await ambassadorsQuery;
 
   if (error) {
-    console.error('Error fetching team members:', error);
-    return <div>Failed to load ambassadors.</div>;
+    console.error(`Error fetching team members: [${error.code}] ${error.message}`);
+    return (
+      <div style={{ overflow: 'clip' }}>
+        <AmbassadorsHero />
+        <section className="bg-muted px-6 py-20 text-center">
+          <span className="text-base text-muted-foreground">
+            We couldn&apos;t load our ambassadors right now. Please try again later.
+          </span>
+        </section>
+      </div>
+    );
   }
 
   const rows: Ambassadors = data;
@@ -70,31 +81,37 @@ export default async function AmbassadorsPage() {
   const teams = Array.from(teamsMap.values());
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-4 font-sans text-zinc-900">
-      {/* Ambassadors Description Section */}
-      <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-4 tracking-tight">Mozilla Student Ambassadors</h2>
-        <p className="mt-4 text-zinc-700 leading-relaxed">
-          The Mozilla Student Ambassadorship Program at RCC empowers students to take the lead in shaping the future of
-          ethical technology. Ambassadors work closely with Mozilla and RCC to spark campus-wide conversations on
-          responsible computing!
-        </p>
-        <p className="mt-4 text-zinc-700 leading-relaxed">
-          Want to get involved? Reach out to us at{' '}
-          <a href="mailto:rcc.sjsu@gmail.com" className="text-blue-600 hover:underline">
-            rcc.sjsu@gmail.com
-          </a>{' '}
-          or follow us{' '}
-          <a href="https://instagram.com/rcc.sjsu" className="text-blue-600 hover:underline">
-            @rcc.sjsu
-          </a>{' '}
-          on Instagram to learn more!
-        </p>
-      </section>
+    <div style={{ overflow: 'clip' }}>
+      <AmbassadorsHero />
 
-      {teams.map((team) => (
-        <TeamSection key={team.name} title={team.name} description={team.description || ''} members={team.members} />
+      {teams.map((team, index) => (
+        <TeamSection
+          key={team.name}
+          title={team.name}
+          description={team.description || ''}
+          members={team.members}
+          muted={index % 2 === 0}
+        />
       ))}
     </div>
+  );
+}
+
+function AmbassadorsHero() {
+  return (
+    <PageHero
+      badge="Mozilla Student Ambassadors"
+      title="Meet our"
+      accent="ambassadors."
+      description="The Mozilla Student Ambassadorship Program at RCC empowers students to take the lead in shaping the future of ethical technology, sparking campus-wide conversations on responsible computing."
+      image="/images/picnic-social.jpg"
+    >
+      <PixelCta href="mailto:rcc.sjsu@gmail.com" className="font-mono text-sm tracking-wide uppercase">
+        Email us
+      </PixelCta>
+      <TickButton href="https://instagram.com/rcc.sjsu" target="_blank" rel="noopener noreferrer">
+        @rcc.sjsu
+      </TickButton>
+    </PageHero>
   );
 }

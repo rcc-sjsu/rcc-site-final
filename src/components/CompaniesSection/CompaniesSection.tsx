@@ -1,5 +1,5 @@
 import { Marquee, type Partner } from '../Marquee';
-import Heading from '../Heading';
+import SectionHeading from '../SectionHeading';
 import styles from './CompaniesSection.module.css';
 
 const companyIconsPath = '/home_images/new_company_icons';
@@ -35,13 +35,19 @@ const marqueeCompanies: Partner[] = [...companies, ...companies, ...companies];
 
 export default function CompaniesSection() {
   return (
-    <div className={styles.container} data-node-id="351:1483" data-name="Companies Section">
-      <Heading headingTag="h2">Who We Work With</Heading>
+    <section className={styles.container} aria-labelledby="partners-heading" data-name="Companies Section">
+      <SectionHeading
+        id="partners-heading"
+        eyebrow="Our partners"
+        title="Who we work with"
+        align="center"
+        className="mx-auto mb-12 max-w-7xl px-6 sm:px-10"
+      />
 
       <div className={styles.carouselWrapper}>
         <Marquee partners={marqueeCompanies} duration={30} pxPerItem={120} minWidth={320} maxWidth={1440} reverse />
         <Marquee partners={marqueeCompanies} duration={30} pxPerItem={120} minWidth={320} maxWidth={1440} />
       </div>
-    </div>
+    </section>
   );
 }
