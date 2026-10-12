@@ -4,6 +4,7 @@ import { DotGothic16, Nunito_Sans, Space_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
+import AskRcc from '@/components/AskRcc/AskRcc';
 import styles from './page.module.css';
 import { cn } from '@/lib/utils';
 
@@ -72,6 +73,7 @@ export default function RootLayout({
         {/* All your page content will be rendered inside this main tag */}
         <main className={styles.pageContent}>{children}</main>
         <Footer />
+        <AskRcc />
       </body>
     </html>
   );

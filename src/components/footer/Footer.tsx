@@ -62,7 +62,7 @@ export default function Footer() {
       className="relative overflow-hidden text-rcc-ink"
       style={{ backgroundColor: PAPER_COLOR, backgroundImage: PAPER_GRAIN }}
     >
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:px-10">
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-24 sm:px-10">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.3fr)_auto_auto_minmax(0,1.7fr)] lg:gap-14">
           <div className="col-span-2 flex flex-col gap-5 lg:col-span-1">
             <Link href="/" className="flex w-fit items-center gap-3 text-rcc-ink">
