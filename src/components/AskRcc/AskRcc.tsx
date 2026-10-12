@@ -53,6 +53,60 @@ export default function AskRcc() {
   const [typedPlaceholder, setTypedPlaceholder] = useState('');
 
   const active = focused || panelOpen;
+
+  // on phones: lift above the on-screen keyboard, size the panel to the visible area, and tuck the collapsed pill
+  // away while scrolling down so it doesn't sit on top of content
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [visibleHeight, setVisibleHeight] = useState<number | null>(null);
+  const [tucked, setTucked] = useState(false);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    const update = () => {
+      setKeyboardOffset(Math.max(0, Math.round(window.innerHeight - viewport.height - viewport.offsetTop)));
+      setVisibleHeight(Math.round(viewport.height));
+    };
+    update();
+    viewport.addEventListener('resize', update);
+    viewport.addEventListener('scroll', update);
+    return () => {
+      viewport.removeEventListener('resize', update);
+      viewport.removeEventListener('scroll', update);
+    };
+  }, []);
+
+  useEffect(() => {
+    const small = window.matchMedia('(max-width: 639px)');
+    let lastY = window.scrollY;
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const y = window.scrollY;
+        if (Math.abs(y - lastY) < 8) return;
+        setTucked(small.matches && y > lastY && y > 120);
+        lastY = y;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  // while the conversation is open on a phone, lock the page so swipes scroll the messages, not the page behind
+  useEffect(() => {
+    if (!panelOpen || !window.matchMedia('(max-width: 639px)').matches) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = 'hidden';
+    return () => {
+      root.style.overflow = previous;
+    };
+  }, [panelOpen]);
   const hasConversation = messages.length > 0;
 
   // typewriter placeholder while collapsed: type a question, pause, erase, move to the next one
@@ -108,11 +162,21 @@ export default function AskRcc() {
     };
   }, [active]);
 
-  // keep the newest message in view
-  useEffect(() => {
+  // keep the newest message in view: when messages arrive, and whenever the panel resizes (e.g. the keyboard opens)
+  const scrollToLatest = useCallback(() => {
     const log = logRef.current;
     if (log) log.scrollTop = log.scrollHeight;
-  }, [messages]);
+  }, []);
+  useEffect(() => {
+    scrollToLatest();
+  }, [messages, scrollToLatest]);
+  useEffect(() => {
+    const log = logRef.current;
+    if (!panelOpen || !log) return;
+    const observer = new ResizeObserver(scrollToLatest);
+    observer.observe(log);
+    return () => observer.disconnect();
+  }, [panelOpen, hasConversation, scrollToLatest]);
 
   const ask = useCallback(
     (question: string) => {
@@ -200,13 +264,18 @@ export default function AskRcc() {
   return (
     <div
       ref={rootRef}
-      className="pointer-events-none fixed inset-x-0 bottom-4 z-[900] flex flex-col items-center gap-2 px-4 sm:bottom-6"
+      className={cn(
+        'pointer-events-none fixed inset-x-0 z-[900] flex flex-col items-center gap-2 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-300 ease-cta sm:px-4 sm:pb-6',
+        tucked && !active && 'translate-y-[calc(100%+1rem)]'
+      )}
+      style={{ bottom: keyboardOffset }}
     >
       {/* conversation panel */}
       {panelOpen && hasConversation && (
         <section
           aria-label="Ask RCC conversation"
-          className="pointer-events-auto flex max-h-[min(480px,62svh)] w-[560px] max-w-full origin-bottom flex-col overflow-hidden rounded-3xl bg-rcc-ink/85 text-white shadow-2xl shadow-rcc-ink/30 ring-1 ring-white/10 backdrop-blur-xl motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-4 motion-safe:duration-300"
+          style={visibleHeight ? ({ '--ask-visible-height': `${visibleHeight}px` } as React.CSSProperties) : undefined}
+          className="pointer-events-auto flex max-h-[min(480px,calc(var(--ask-visible-height,100svh)-8.5rem))] w-[560px] max-w-full origin-bottom flex-col overflow-hidden rounded-3xl bg-rcc-ink/85 text-white shadow-2xl shadow-rcc-ink/30 ring-1 ring-white/10 backdrop-blur-xl motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-4 motion-safe:duration-300"
         >
           <header className="flex items-center gap-2.5 px-4 pt-3.5 pb-2">
             <span aria-hidden className="grid size-6 grid-cols-2 gap-0.5 rounded-md bg-white/10 p-1">
@@ -224,7 +293,7 @@ export default function AskRcc() {
               type="button"
               onClick={() => setMessages([])}
               disabled={busy}
-              className="flex size-7 items-center justify-center rounded-full text-white/70 transition-colors outline-none hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50 disabled:opacity-40"
+              className="flex size-10 items-center justify-center rounded-full text-white/70 sm:size-7 transition-colors outline-none hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50 disabled:opacity-40"
               aria-label="Start a new chat"
             >
               <RotateCcwIcon className="size-3.5" />
@@ -232,7 +301,7 @@ export default function AskRcc() {
             <button
               type="button"
               onClick={() => setPanelOpen(false)}
-              className="flex size-7 items-center justify-center rounded-full text-white/70 transition-colors outline-none hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
+              className="flex size-10 items-center justify-center rounded-full text-white/70 sm:size-7 transition-colors outline-none hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
               aria-label="Minimize"
             >
               <ChevronDownIcon className="size-4" />
@@ -242,6 +311,7 @@ export default function AskRcc() {
           <div
             ref={logRef}
             role="log"
+            style={{ overscrollBehavior: 'contain', touchAction: 'pan-y' }}
             aria-live="polite"
             className="flex flex-col gap-4 overflow-y-auto px-4 pt-2 pb-4"
           >
@@ -320,7 +390,9 @@ export default function AskRcc() {
           placeholder={panelOpen ? 'Message…' : focused ? 'Ask anything…' : typedPlaceholder}
           aria-label="Ask RCC a question"
           autoComplete="off"
-          className="h-full min-w-0 flex-1 bg-transparent text-[15px] text-rcc-ink outline-none placeholder:text-rcc-ink/50"
+          enterKeyHint="send"
+          // 16px on phones so iOS doesn't zoom the page when the input is focused
+          className="h-full min-w-0 flex-1 bg-transparent text-base text-rcc-ink sm:text-[15px] outline-none placeholder:text-rcc-ink/50"
         />
         {active && speechSupported && !value && (
           <button

@@ -1,5 +1,6 @@
 import PageHero from '@/components/PageHero';
 import { PixelCta, TickButton } from '@/components/ui/pixel-button';
+import TeamJumpBar from './components/TeamJumpBar';
 import TeamSection from './components/TeamSection';
 import { createClient } from '@/lib/supabase/server';
 import { QueryData } from '@supabase/supabase-js';
@@ -83,10 +84,14 @@ export default async function AmbassadorsPage() {
   return (
     <div style={{ overflow: 'clip' }}>
       <AmbassadorsHero />
+      <TeamJumpBar
+        teams={teams.map((team) => ({ id: teamId(team.name), name: team.name, count: team.members.length }))}
+      />
 
       {teams.map((team, index) => (
         <TeamSection
           key={team.name}
+          id={teamId(team.name)}
           title={team.name}
           description={team.description || ''}
           members={team.members}
@@ -96,6 +101,8 @@ export default async function AmbassadorsPage() {
     </div>
   );
 }
+
+const teamId = (name: string) => `team-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
 function AmbassadorsHero() {
   return (
