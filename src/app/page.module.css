@@ -9,5 +9,7 @@
   flex-grow: 1; /* Allows this content area to expand and fill available space */
   /* display: flex; Use flexbox for inner content if you want to align things vertically/horizontally */
   /* flex-direction: column; Optional: if you want content within pageContent to stack */
-  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  /* clip (not auto) so stray horizontal overflow is hidden without making this a scroll container, which would break
+   * position: sticky for everything inside it */
+  overflow-x: clip;
 }

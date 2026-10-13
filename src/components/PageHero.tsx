@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import HeroPhoto from '@/components/HeroPhoto';
 import PixelVeil from '@/components/PixelVeil';
 import { cn } from '@/lib/utils';
 
@@ -35,14 +35,12 @@ export default function PageHero({
       data-intersecting-header-theme="Homepage"
       aria-labelledby="page-hero-heading"
     >
-      <Image
+      <HeroPhoto
         src={image}
         alt=""
-        fill
         priority
         sizes="100vw"
         data-page-hero-photo=""
-        className="-z-20 object-cover"
         style={{ objectPosition: imagePosition }}
       />
       {/* pixel veil drawn from the photo above; without WebGL it stays hidden and the photo shows */}

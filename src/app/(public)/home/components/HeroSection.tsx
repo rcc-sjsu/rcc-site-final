@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import HeroPhoto from '@/components/HeroPhoto';
 import Link from 'next/link';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { PixelCta, TickButton } from '@/components/ui/pixel-button';
@@ -20,15 +20,7 @@ export default function Hero() {
       data-intersecting-header-theme="Homepage"
       aria-labelledby="hero-heading"
     >
-      <Image
-        src="/home_images/hero-background-image.png"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        data-hero-photo=""
-        className="-z-20 object-cover"
-      />
+      <HeroPhoto src="/home_images/hero-background-image.png" alt="" priority sizes="100vw" data-hero-photo="" />
       {/* pixel veil drawn from the photo above; without WebGL it stays hidden and the photo shows */}
       <PixelVeil imageSelector="img[data-hero-photo]" />
       <div className="absolute inset-0 -z-10 bg-linear-to-br from-rcc-ink/60 via-rcc-navy/40 to-rcc-violet/40" />

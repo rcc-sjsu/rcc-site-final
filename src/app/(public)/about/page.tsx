@@ -1,4 +1,3 @@
-import { PixelCta, TickButton } from '@/components/ui/pixel-button';
 import PageHero from '@/components/PageHero';
 import CoolQuote from '@/components/CoolQuote/CoolQuote';
 import WhatIsRCC from './components/WhatIsRCC';
@@ -15,12 +14,7 @@ export default function About() {
         accent="people first."
         description="The Responsible Computing Club at SJSU explores ethical design, sustainability, and accessibility in tech through workshops, speaker events, and social meetups."
         image="/about/who-are-we-tabling.jpeg"
-      >
-        <PixelCta href="#get-involved" className="font-mono text-sm tracking-wide uppercase">
-          Get involved
-        </PixelCta>
-        <TickButton href="#our-story">Our story</TickButton>
-      </PageHero>
+      />
 
       <CoolQuote />
       <WhatIsRCC />

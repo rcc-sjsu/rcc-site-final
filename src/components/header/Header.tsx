@@ -59,12 +59,15 @@ export default function Header() {
   const updateHeaderTheme = useCallback(() => {
     if (headerRef.current === null) return;
     const bounds = headerRef.current.getBoundingClientRect();
-    const x = (bounds.left + bounds.right) / 2;
     const y = (bounds.top + bounds.bottom) * 0.75;
-    const theme = document
-      .elementsFromPoint(x, y)
-      .map((elem) => elem.closest('[data-intersecting-header-theme]') as HTMLElement | SVGElement)
-      .find((elem) => elem !== null)?.dataset?.intersectingHeaderTheme;
+    // compare against section bounds directly instead of elementsFromPoint, which hit-tests and so can miss the hero
+    // while overlays/pointer-events quirks are in play on first load (leaving the light bar up until an interaction)
+    const theme = Array.from(document.querySelectorAll<HTMLElement>('[data-intersecting-header-theme]')).find(
+      (elem) => {
+        const rect = elem.getBoundingClientRect();
+        return rect.height > 0 && rect.top <= y && rect.bottom > y;
+      }
+    )?.dataset.intersectingHeaderTheme;
     setHeaderTheme(theme ?? 'Standard');
   }, []);
   useEffect(() => {
