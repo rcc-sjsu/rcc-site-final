@@ -104,13 +104,11 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
       });
     };
 
-    const litOf = (wordIndex: number, p: number) => clamp01((range(p, 0.32, 0.8) * (words.length + 3) - wordIndex) / 3);
-    const wordOpacity = (wordIndex: number, p: number) => 0.16 + 0.84 * litOf(wordIndex, p);
     // 0 = floating in the hero, 1 = settled into its spot in the paragraph
-    const travelOf = (i: number, p: number) => easeInOut(range(p, 0.06 + i * 0.02, 0.17 + i * 0.02));
+    const travelOf = (i: number, p: number) => easeInOut(range(p, 0.12 + i * 0.04, 0.5 + i * 0.04));
 
     // a word hands off to the paragraph once it has arrived and the rest of the sentence has faded in around it
-    const landed = (i: number, p: number) => travelOf(i, p) >= 1 && range(p, 0.24, 0.32) >= 1;
+    const landed = (i: number, p: number) => travelOf(i, p) >= 1 && range(p, 0.6, 0.78) >= 1;
 
     const setLayer = (el: HTMLElement | null, opacity: number, transform: string) => {
       if (!el) return;
@@ -124,7 +122,7 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
       const time = reduced ? 0 : seconds;
 
       // the paragraph stays put once revealed and simply scrolls away with the page when the stage ends
-      const paraIn = easeOut(range(p, 0.24, 0.32));
+      const paraIn = easeOut(range(p, 0.6, 0.78));
       setLayer(paragraphRef.current, paraIn, reduced ? 'none' : `translateY(${(1 - paraIn) * 24}px)`);
 
       // read every landing spot before writing any float styles (avoids layout thrash)
@@ -172,7 +170,7 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
           x = homeX;
           y = homeY;
           scale = heroScale;
-          opacity = 1 - range(p, 0.06, 0.12);
+          opacity = 1 - range(p, 0.1, 0.25);
           chip = 1;
         } else {
           const t = travelOf(i, p);
@@ -181,8 +179,8 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
           x = lerp(homeX, targets[i].x, t);
           y = lerp(homeY, targets[i].y, t) - arc * height * 0.04;
           scale = lerp(heroScale, landScale, t) * (1 + 0.08 * arc);
-          // the chip fades in flight; once in place the word settles to its shade in the paragraph, then hands off
-          opacity = landed(i, p) ? 0 : lerp(1, wordOpacity(float.word, p), paraIn);
+          // the chip fades in flight; once the paragraph has faded in around it, the word hands off to the real one
+          opacity = landed(i, p) ? 0 : 1;
           // accent words turn magenta on the way in, matching the paragraph
           if (ACCENT_WORDS.has(words[float.word]))
             el.style.color = `color-mix(in srgb, #f0479a ${Math.round(range(t, 0.3, 0.9) * 100)}%, #fff)`;
@@ -196,9 +194,9 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
         el.style.setProperty('--chip', String(chip));
       });
 
-      if (scrimRef.current) scrimRef.current.style.opacity = String(range(p, 0.06, 0.2));
+      if (scrimRef.current) scrimRef.current.style.opacity = String(range(p, 0.1, 0.4));
 
-      const heroOut = range(p, 0.03, 0.12);
+      const heroOut = range(p, 0.05, 0.25);
       setLayer(
         heroRef.current,
         1 - heroOut,
@@ -210,7 +208,7 @@ export default function HeroStage({ nextEvent }: { nextEvent: { title: string; d
         // a word that's still flying in stays hidden in the paragraph until it lands
         const floatIndex = floatByWord.get(i);
         const waiting = !reduced && floatIndex !== undefined && !landed(floatIndex, p);
-        word.style.opacity = waiting ? '0' : String(wordOpacity(i, p));
+        word.style.opacity = waiting ? '0' : '1';
       });
     };
 

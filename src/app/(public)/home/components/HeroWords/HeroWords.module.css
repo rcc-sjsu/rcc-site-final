@@ -1,8 +1,8 @@
 /* scroll runway; the sticky layer below plays the whole sequence while this scrolls past */
 .stage {
   position: relative;
-  height: 440vh;
-  height: 440svh;
+  height: 260vh;
+  height: 260svh;
 }
 
 .sticky {
@@ -120,10 +120,6 @@
   text-shadow: 0 1px 14px rgb(11 29 47 / 0.55);
   opacity: 0;
   visibility: hidden;
-}
-
-.word {
-  opacity: 0.16;
 }
 
 .accent {
