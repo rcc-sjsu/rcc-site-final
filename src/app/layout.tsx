@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 import { DotGothic16, Nunito_Sans, Space_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/Header';
@@ -74,6 +75,7 @@ export default function RootLayout({
         <main className={styles.pageContent}>{children}</main>
         <Footer />
         <AskRcc />
+        <Analytics />
       </body>
     </html>
   );

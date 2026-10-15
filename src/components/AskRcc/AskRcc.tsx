@@ -2,13 +2,22 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpIcon, ChevronDownIcon, MicIcon, RotateCcwIcon } from 'lucide-react';
+import { ArrowUpIcon, ChevronDownIcon, MicIcon, RotateCcwIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react';
+import { track } from '@vercel/analytics';
 import { cn } from '@/lib/utils';
 import { answerQuestion, PLACEHOLDER_QUESTIONS, SUGGESTIONS, type AskLink } from './answers';
 
 type Message =
   | { id: number; role: 'user'; text: string }
-  | { id: number; role: 'assistant'; text: string[]; links?: AskLink[]; shownWords: number; totalWords: number };
+  | {
+      id: number;
+      role: 'assistant';
+      text: string[];
+      links?: AskLink[];
+      shownWords: number;
+      totalWords: number;
+    };
+type Vote = 'up' | 'down';
 
 // minimal typing for the browser's built-in speech-to-text (not in TypeScript's DOM lib everywhere)
 type SpeechRecognitionLike = {
@@ -197,7 +206,13 @@ export default function AskRcc() {
         () => {
           setMessages((current) => [
             ...current,
-            { id: replyId, role: 'assistant', ...answer, shownWords: reduceMotion ? totalWords : 0, totalWords },
+            {
+              id: replyId,
+              role: 'assistant',
+              ...answer,
+              shownWords: reduceMotion ? totalWords : 0,
+              totalWords,
+            },
           ]);
           if (reduceMotion) {
             setBusy(false);
@@ -340,9 +355,19 @@ export default function AskRcc() {
               </span>
             )}
           </div>
-          <span className="border-t border-white/10 px-4 py-2 text-[11px] text-white/50">
-            Answers come from the RCC site for now. Full AI answers are coming soon.
-          </span>
+          <div className="flex flex-col items-center gap-1.5 border-t border-white/10 px-4 pt-2.5 pb-2">
+            {messages.some((message) => message.role === 'assistant' && message.shownWords >= message.totalWords) && (
+              <AskFeedback
+                lastQuestion={
+                  messages.findLast((message): message is Extract<Message, { role: 'user' }> => message.role === 'user')
+                    ?.text ?? ''
+                }
+              />
+            )}
+            <span className="text-center text-[11px] text-white/50">
+              Answers come from the RCC site for now. Full AI answers are coming soon.
+            </span>
+          </div>
         </section>
       )}
 
@@ -461,6 +486,79 @@ function AssistantMessage({ message }: { message: Extract<Message, { role: 'assi
             );
           })}
         </div>
+      )}
+    </div>
+  );
+}
+
+const FEEDBACK_KEY = 'ask-rcc-feedback';
+
+/**
+ * One overall "is this helpful?" question for the assistant (not per answer). Tapping the other thumb changes the
+ * answer and Undo clears it; each change is sent to Vercel Analytics, and the choice is remembered in this browser.
+ */
+function AskFeedback({ lastQuestion }: { lastQuestion: string }) {
+  const [vote, setVote] = useState<Vote | null>(() => {
+    try {
+      const saved = localStorage.getItem(FEEDBACK_KEY);
+      return saved === 'up' || saved === 'down' ? saved : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const record = (next: Vote | null) => {
+    // values are capped at 255 chars by Vercel Analytics
+    track('Ask RCC feedback', {
+      vote: next ?? 'undone',
+      previous: vote ?? 'none',
+      lastQuestion: lastQuestion.slice(0, 255),
+    });
+    setVote(next);
+    try {
+      if (next) localStorage.setItem(FEEDBACK_KEY, next);
+      else localStorage.removeItem(FEEDBACK_KEY);
+    } catch {
+      // storage blocked (private mode etc.): the vote is still recorded, just not remembered
+    }
+  };
+
+  const options = [
+    { value: 'up' as const, label: 'Yes, it’s helpful', Icon: ThumbsUpIcon },
+    { value: 'down' as const, label: 'No, it’s not helpful', Icon: ThumbsDownIcon },
+  ];
+
+  return (
+    <div role="group" aria-label="Rate Ask RCC" className="flex items-center gap-1.5 text-xs text-white/75">
+      <span aria-live="polite" className="mr-1">
+        {vote ? 'Thanks for the feedback!' : 'Is Ask RCC helpful so far?'}
+      </span>
+      {options.map(({ value, label, Icon }) => {
+        const chosen = vote === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            onClick={() => record(chosen ? null : value)}
+            aria-label={label}
+            aria-pressed={chosen}
+            className={cn(
+              'flex size-10 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:size-7',
+              chosen ? 'bg-white/15 text-white' : 'text-white/60 hover:bg-white/10 hover:text-white'
+            )}
+          >
+            <Icon className={cn('size-3.5', chosen && 'fill-current')} />
+          </button>
+        );
+      })}
+      {vote && (
+        <button
+          type="button"
+          onClick={() => record(null)}
+          className="ml-1 rounded px-1 text-white/60 underline underline-offset-2 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
+        >
+          Undo
+        </button>
       )}
     </div>
   );
