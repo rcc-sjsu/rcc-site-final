@@ -1,12 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
-import { ClockIcon, MapPinIcon } from 'lucide-react';
+import { ClockIcon, MapPinIcon, UsersIcon, VideoIcon } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
-import { daysUntilEvent, describeDaysUntil, getEventStartDay, isEventPast, type RccEvent } from '../data/Events';
+import {
+  daysUntilEvent,
+  describeDaysUntil,
+  getEventDays,
+  getEventStartDay,
+  isEventPast,
+  type RccEvent,
+} from '../data/Events';
 import EventDetailsDialog from './EventDetailsDialog';
+import { EventQuickActions } from './EventDetail';
 
 type Tab = 'upcoming' | 'past';
 
@@ -32,10 +39,7 @@ export default function EventsSchedule({
 
   const shown = tab === 'upcoming' ? upcoming : past;
   const all = [...upcoming, ...past];
-  const eventDates = all.flatMap((event) => {
-    const start = getEventStartDay(event);
-    return event.days.map((day) => new Date(start.getFullYear(), start.getMonth(), day));
-  });
+  const eventDates = all.flatMap(getEventDays);
 
   // group by start day, keeping the tab's order (soonest first for upcoming, most recent first for past)
   const groups: { date: Date; events: RccEvent[] }[] = [];
@@ -49,14 +53,7 @@ export default function EventsSchedule({
   const jumpTo = (date: Date | undefined) => {
     setSelectedDate(date);
     if (!date) return;
-    const match = all.find((event) => {
-      const start = getEventStartDay(event);
-      return (
-        start.getFullYear() === date.getFullYear() &&
-        start.getMonth() === date.getMonth() &&
-        event.days.includes(date.getDate())
-      );
-    });
+    const match = all.find((event) => getEventDays(event).some((day) => day.getTime() === date.getTime()));
     if (!match) return;
     setTab(isEventPast(match, now) ? 'past' : 'upcoming');
     // wait a frame so a tab switch has rendered before scrolling
@@ -157,9 +154,7 @@ export default function EventsSchedule({
                         key={event.id}
                         event={event}
                         past={tab === 'past'}
-                        selected={event.days.some(
-                          (day) => selectedKey === dayKey(new Date(date.getFullYear(), date.getMonth(), day))
-                        )}
+                        selected={getEventDays(event).some((day) => selectedKey === dayKey(day))}
                         badge={tab === 'upcoming' ? describeDaysUntil(daysUntilEvent(event, now)) : 'Ended'}
                       />
                     ))}
@@ -202,7 +197,7 @@ export default function EventsSchedule({
   );
 }
 
-/** One event on the timeline: time, title and place beside its artwork; opens the details popup. */
+/** One event on the timeline: type, title, time, place, and a peek at the details; opens the details popup. */
 function TimelineCard({
   event,
   past,
@@ -214,24 +209,28 @@ function TimelineCard({
   selected: boolean;
   badge: string;
 }) {
-  const time = event.time !== 'Not listed' ? event.time : 'Time TBA';
-  const location = event.location !== 'Not listed' ? event.location : 'Location TBA';
-
   return (
-    <EventDetailsDialog
-      event={event}
-      trigger={
-        <button
-          type="button"
-          className={cn(
-            'group flex w-full items-start gap-4 rounded-2xl bg-card p-4 text-left ring-1 ring-foreground/10 transition-shadow duration-200 ease-hover outline-none hover:shadow-lg hover:shadow-rcc-violet/10 hover:ring-primary/30 focus-visible:ring-3 focus-visible:ring-ring/50 sm:p-5',
-            selected && 'ring-2 ring-primary',
-            past && 'opacity-75 hover:opacity-100'
-          )}
-        />
-      }
-    >
-      <span className="flex min-w-0 flex-1 flex-col gap-2">
+    // opens the details popup via a transparent button underneath; the card ignores pointer events so clicks fall
+    // through, except on the calendar/RSVP links
+    <div className="group relative">
+      <EventDetailsDialog
+        event={event}
+        trigger={
+          <button
+            type="button"
+            data-card-trigger=""
+            aria-label={`${event.title}: view details`}
+            className="absolute inset-0 rounded-2xl outline-none"
+          />
+        }
+      />
+      <div
+        className={cn(
+          'pointer-events-none relative flex w-full flex-col gap-2.5 rounded-2xl bg-card p-4 text-left ring-1 ring-foreground/10 transition-shadow duration-200 ease-hover group-hover:shadow-lg group-hover:shadow-rcc-violet/10 group-hover:ring-primary/30 group-has-[[data-card-trigger]:focus-visible]:ring-3 group-has-[[data-card-trigger]:focus-visible]:ring-ring/50 sm:p-5',
+          selected && 'ring-2 ring-primary',
+          past && 'opacity-75 group-hover:opacity-100'
+        )}
+      >
         <span className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <span
             className={cn(
@@ -241,33 +240,49 @@ function TimelineCard({
           >
             {badge}
           </span>
-          {event.days.length > 1 && <span>{event.date}</span>}
+          <span className="flex items-center gap-1.5 font-pixel text-xs tracking-widest uppercase">
+            <span aria-hidden className={cn('size-1.5', past ? 'bg-foreground/30' : 'bg-highlight')} />
+            {event.kind}
+          </span>
+          {event.tentative && (
+            <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[11px] tracking-wide uppercase">
+              Tentative
+            </span>
+          )}
+          {getEventDays(event).length > 1 && <span>{event.date}</span>}
         </span>
         <span className="text-lg leading-snug font-semibold text-balance text-foreground transition-colors group-hover:text-primary">
           {event.title}
         </span>
-        <span className="flex flex-col gap-1 text-sm text-muted-foreground">
-          <span className="flex items-center gap-2">
-            <ClockIcon aria-hidden className="size-4 shrink-0" />
-            {time}
+        {event.description && (
+          <span className="line-clamp-2 text-sm leading-relaxed text-foreground/75">{event.description[0]}</span>
+        )}
+        <span className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <span className="flex min-w-0 flex-col gap-1 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-5">
+            <span className="flex items-center gap-2">
+              <ClockIcon aria-hidden className="size-4 shrink-0" />
+              {event.time ?? 'Time TBA'}
+            </span>
+            <span className="flex min-w-0 items-center gap-2">
+              <MapPinIcon aria-hidden className="size-4 shrink-0" />
+              <span className="truncate">{event.location ?? 'Location TBA'}</span>
+            </span>
+            {event.partners && (
+              <span className="flex min-w-0 items-center gap-2">
+                <UsersIcon aria-hidden className="size-4 shrink-0" />
+                <span className="truncate">With {event.partners}</span>
+              </span>
+            )}
+            {event.zoomURL && !past && (
+              <span className="flex items-center gap-2">
+                <VideoIcon aria-hidden className="size-4 shrink-0" />
+                Zoom available
+              </span>
+            )}
           </span>
-          <span className="flex items-center gap-2">
-            <MapPinIcon aria-hidden className="size-4 shrink-0" />
-            <span className="truncate">{location}</span>
-          </span>
+          <EventQuickActions event={event} />
         </span>
-      </span>
-      {event.imageURL && (
-        <span className="relative hidden aspect-square w-28 shrink-0 overflow-hidden rounded-xl bg-muted min-[480px]:block sm:w-32">
-          <Image
-            src={event.imageURL}
-            alt=""
-            fill
-            sizes="128px"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-          />
-        </span>
-      )}
-    </EventDetailsDialog>
+      </div>
+    </div>
   );
 }

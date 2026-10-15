@@ -43,13 +43,15 @@ function Calendar({
         month: cn('flex w-full flex-col gap-4', defaultClassNames.month),
         nav: cn('absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1', defaultClassNames.nav),
         button_previous: cn(
-          buttonVariants({ variant: buttonVariant }),
-          'size-(--cell-size) p-0 select-none aria-disabled:opacity-50',
+          buttonVariants({ variant: buttonVariant, size: 'icon-sm' }),
+          // small round arrow: icon sizing (the default size's padding would stretch it into a wide pill)
+          'size-7 rounded-full border-0 p-0 text-muted-foreground select-none hover:bg-accent hover:text-primary aria-disabled:opacity-50',
           defaultClassNames.button_previous
         ),
         button_next: cn(
-          buttonVariants({ variant: buttonVariant }),
-          'size-(--cell-size) p-0 select-none aria-disabled:opacity-50',
+          buttonVariants({ variant: buttonVariant, size: 'icon-sm' }),
+          // small round arrow: icon sizing (the default size's padding would stretch it into a wide pill)
+          'size-7 rounded-full border-0 p-0 text-muted-foreground select-none hover:bg-accent hover:text-primary aria-disabled:opacity-50',
           defaultClassNames.button_next
         ),
         month_caption: cn(

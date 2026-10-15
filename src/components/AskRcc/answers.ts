@@ -42,7 +42,7 @@ function nextEventAnswer(): AskAnswer {
     };
   }
   const when = describeDaysUntil(daysUntilEvent(next, now)).toLowerCase();
-  const details = [next.time, next.location].filter((part) => part !== 'Not listed').join(' at ');
+  const details = [next.time, next.location].filter(Boolean).join(' at ');
   return {
     text: [
       `The next event is ${next.title} on ${next.date} (${when})${details ? `, ${details}` : ''}.`,
@@ -53,7 +53,10 @@ function nextEventAnswer(): AskAnswer {
             .join(' and ')}.`
         : '',
     ].filter(Boolean),
-    links: [{ label: 'See all events', href: '/events' }],
+    links: [
+      ...(next.rsvpURL ? [{ label: `RSVP for ${next.title}`, href: next.rsvpURL }] : []),
+      { label: 'See all events', href: '/events' },
+    ],
   };
 }
 

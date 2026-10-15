@@ -39,7 +39,7 @@ export default function Hero() {
                 Next up: <span className="font-medium text-white">{nextEvent.title}</span>
               </span>
               <span className="flex shrink-0 items-center gap-1 rounded-full bg-white px-2.5 py-0.5 font-mono text-xs font-bold text-rcc-violet">
-                {nextEvent.date.replace('October', 'Oct')}
+                {nextEvent.shortDate}
                 <ArrowUpRightIcon
                   aria-hidden
                   className="size-3 transition-transform duration-300 ease-cta group-hover/next:translate-x-0.5 group-hover/next:-translate-y-0.5"
