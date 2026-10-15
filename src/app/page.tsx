@@ -1,5 +1,5 @@
 // home page sections
-import Hero from './(public)/home/components/HeroSection';
+import HeroWords from './(public)/home/components/HeroWords/HeroWords';
 import ResourcesSection from './(public)/home/components/ResourcesSection';
 import UpcomingEventsSection from './(public)/home/components/UpcomingEventsSection';
 import ProjectsEventsSection from './(public)/home/components/ProjectsEventsSection';
@@ -13,7 +13,7 @@ export const revalidate = 3600;
 export default function Home() {
   return (
     <div style={{ overflow: 'clip' }}>
-      <Hero />
+      <HeroWords />
       <UpcomingEventsSection />
       <ResourcesSection />
       <ProjectsEventsSection />
