@@ -4,7 +4,7 @@ import { MailIcon } from 'lucide-react';
 import { SiDiscord, SiInstagram } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 import { PAPER_COLOR, PAPER_GRAIN } from '@/lib/grain';
-import { RccBot } from './RccBot';
+import MascotSwap from './MascotSwap';
 
 const exploreLinks = [
   { label: 'Home', href: '/' },
@@ -25,16 +25,16 @@ const LINK_CLASS =
   'inline-flex items-center gap-2.5 text-base text-rcc-ink/75 transition-colors duration-200 ease-hover hover:text-rcc-violet focus-visible:text-rcc-violet focus-visible:outline-none';
 
 /**
- * Mascot with a speech bubble inviting people to get involved. The whole thing is one link; hovering it makes the
- * mascot wave.
+ * Mascot with a speech bubble inviting people to get involved. The bubble is the link; the mascot is a button that
+ * switches to a different look (color and face) on each click. Hovering either makes the mascot wave.
  */
 function MascotInvite({ compact = false }: { compact?: boolean }) {
   return (
-    <Link
-      href="/about#get-involved"
-      className={`group/bot flex w-fit items-end gap-3 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 ${compact ? 'mx-auto' : 'ml-auto'}`}
-    >
-      <span className="relative mb-24 flex flex-col gap-1 rounded-2xl border-2 border-rcc-ink bg-white px-4 py-3 shadow-[4px_4px_0_0_#102a43] transition-[translate,box-shadow] duration-300 ease-cta group-hover/bot:-translate-y-0.5 group-hover/bot:shadow-[6px_6px_0_0_#102a43]">
+    <div className={`group/bot flex w-fit items-end gap-3 ${compact ? 'mx-auto' : 'ml-auto'}`}>
+      <Link
+        href="/about#get-involved"
+        className="relative mb-24 flex flex-col gap-1 rounded-2xl border-2 border-rcc-ink bg-white px-4 py-3 shadow-[4px_4px_0_0_#102a43] transition-[translate,box-shadow] duration-300 ease-cta outline-none group-hover/bot:-translate-y-0.5 group-hover/bot:shadow-[6px_6px_0_0_#102a43] focus-visible:ring-3 focus-visible:ring-ring/50"
+      >
         <span className="font-mono text-sm whitespace-nowrap text-rcc-ink">Built by students like you.</span>
         <span className="font-mono text-sm font-bold text-[#d00870]">
           Come build with us{' '}
@@ -50,9 +50,9 @@ function MascotInvite({ compact = false }: { compact?: boolean }) {
           aria-hidden
           className="absolute -right-[9px] bottom-4 size-4 rotate-45 border-t-2 border-r-2 border-rcc-ink bg-white"
         />
-      </span>
-      <RccBot className={compact ? 'w-32 shrink-0' : 'w-48 shrink-0'} />
-    </Link>
+      </Link>
+      <MascotSwap className={compact ? 'w-32 shrink-0' : 'w-48 shrink-0'} />
+    </div>
   );
 }
 
@@ -65,15 +65,16 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-24 sm:px-10">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.3fr)_auto_auto_minmax(0,1.7fr)] lg:gap-14">
           <div className="col-span-2 flex flex-col gap-5 lg:col-span-1">
-            <Link href="/" className="flex w-fit items-center gap-3 text-rcc-ink">
+            <Link href="/" className="w-fit">
+              {/* full lockup: the wordmark already spells out the club name */}
               <Image
-                src="/images/footer/rcc-footer-logo.png"
-                alt=""
-                width={44}
-                height={44}
-                className="size-11 rounded-full"
+                src="/images/footer/rcc-logo-full.webp"
+                alt="Responsible Computing Club"
+                width={967}
+                height={575}
+                sizes="208px"
+                className="h-auto w-52"
               />
-              <span className="text-lg leading-tight font-semibold tracking-tight">Responsible Computing Club</span>
             </Link>
             <span className="max-w-xs text-sm leading-relaxed text-rcc-ink/70">
               Empowering SJSU students to shape the future of tech, in partnership with Mozilla.
