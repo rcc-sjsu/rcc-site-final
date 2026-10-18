@@ -51,10 +51,10 @@ export default function GetInvolved() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {involvementActions.map((action, index) => (
-            <Reveal key={action.id} delay={index * 90} className="h-full">
+            <Reveal key={action.id} delay={index * 60} className="h-full min-w-0">
               <article
                 id={action.id}
-                className="relative isolate flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl p-8 text-white sm:p-10"
+                className="relative isolate flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl p-6 text-white sm:p-10"
               >
                 <Image
                   src={action.imageSrc}

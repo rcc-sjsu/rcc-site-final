@@ -4,6 +4,7 @@ import TeamJumpBar from './components/TeamJumpBar';
 import TeamSection from './components/TeamSection';
 import { createClient } from '@/lib/supabase/server';
 import { QueryData } from '@supabase/supabase-js';
+import heroImage from '@/public/images/picnic-social.jpg';
 
 type AmbassadorMember = {
   full_name: string;
@@ -111,7 +112,7 @@ function AmbassadorsHero() {
       title="Meet our"
       accent="ambassadors."
       description="The Mozilla Student Ambassadorship Program at RCC empowers students to take the lead in shaping the future of ethical technology, sparking campus-wide conversations on responsible computing."
-      image="/images/picnic-social.jpg"
+      image={heroImage}
     >
       <PixelCta href="mailto:rcc.sjsu@gmail.com" className="font-mono text-sm tracking-wide uppercase">
         Email us

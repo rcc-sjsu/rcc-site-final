@@ -1,3 +1,4 @@
+import type { StaticImageData } from 'next/image';
 import HeroPhoto from '@/components/HeroPhoto';
 import PixelVeil from '@/components/PixelVeil';
 import { cn } from '@/lib/utils';
@@ -21,7 +22,8 @@ export default function PageHero({
   title: string;
   accent?: string;
   description?: React.ReactNode;
-  image: string;
+  /** a static import, so the photo gets a blurred preview while it loads */
+  image: StaticImageData;
   imagePosition?: string;
   className?: string;
   children?: React.ReactNode;

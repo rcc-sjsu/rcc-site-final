@@ -4,6 +4,7 @@ import WhatIsRCC from './components/WhatIsRCC';
 import OurStory from './components/OurStory';
 import GetInvolved from './components/GetInvolved';
 import WhatDoWeDo from './components/WhatDoWeDo';
+import heroImage from '@/public/about/who-are-we-tabling.jpeg';
 
 export default function About() {
   return (
@@ -13,7 +14,7 @@ export default function About() {
         title="Technology that serves"
         accent="people first."
         description="The Responsible Computing Club at SJSU explores ethical design, sustainability, and accessibility in tech through workshops, speaker events, and social meetups."
-        image="/about/who-are-we-tabling.jpeg"
+        image={heroImage}
       />
 
       <CoolQuote />

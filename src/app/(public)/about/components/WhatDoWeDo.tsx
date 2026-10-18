@@ -26,7 +26,8 @@ export default function WhatDoWeDo() {
           </PixelCta>
         </div>
 
-        <Reveal delay={120} className="relative aspect-square overflow-hidden rounded-2xl bg-muted">
+        {/* the collage is a transparent circle, so no backdrop behind it */}
+        <Reveal delay={120} className="relative aspect-square">
           <Image
             src="/about/collection-of-rcc-images.png"
             alt="A collage of photos from RCC events"

@@ -91,7 +91,7 @@ function TickButton({ className, children, ...props }: React.ComponentProps<type
   return (
     <Link
       className={cn(
-        'group/tick relative inline-flex h-12 items-center gap-6 rounded-[10px] bg-[#efeaf8] px-6 font-mono text-sm font-medium tracking-[0.14em] whitespace-nowrap text-rcc-ink uppercase transition-[background-color,scale] duration-200 ease-hover outline-none select-none hover:bg-white focus-visible:ring-3 focus-visible:ring-white/60 active:scale-[0.985]',
+        'group/tick relative inline-flex h-12 max-w-full items-center gap-4 rounded-[10px] bg-[#efeaf8] px-5 font-mono text-sm font-medium tracking-[0.1em] whitespace-nowrap sm:gap-6 sm:px-6 sm:tracking-[0.14em] text-rcc-ink uppercase transition-[background-color,scale] duration-200 ease-hover outline-none select-none hover:bg-white focus-visible:ring-3 focus-visible:ring-white/60 active:scale-[0.985]',
         className
       )}
       {...props}

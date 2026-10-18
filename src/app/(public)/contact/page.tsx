@@ -13,6 +13,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { FieldGroup, Field, FieldLabel, FieldError } from '@/components/ui/field';
 import { contactFormSchema, type ContactFormValues } from '@/lib/contact';
+import heroImage from '@/public/images/rcc-case-comp.png';
 
 const channels = [
   { label: 'Email', value: 'rcc.sjsu@gmail.com', href: 'mailto:rcc.sjsu@gmail.com', icon: MailIcon },
@@ -65,7 +66,7 @@ export default function ContactPage() {
         title="Let's"
         accent="talk."
         description="Students, faculty, and industry partners: fill out the form if you'd like to reach out to the RCC team!"
-        image="/images/rcc-case-comp.png"
+        image={heroImage}
         className="lg:min-h-[52svh]"
       />
 

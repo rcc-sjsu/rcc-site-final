@@ -315,10 +315,15 @@ export default function PixelVeil({ imageSelector }: { imageSelector: string }) 
   }, [imageSelector]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-[15] size-full opacity-0 transition-opacity duration-500 motion-reduce:transition-none"
-    />
+    <>
+      {/* dims the photo to roughly the veil's own darkness, so the veil fades in without a bright-to-dark jump (most
+          visible on phones, where it's a single still frame); also keeps text readable when WebGL is unavailable */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-[16] bg-[#0b1d2f]/55" />
+      <canvas
+        ref={canvasRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-[15] size-full opacity-0 transition-opacity duration-500 ease-cta motion-reduce:transition-none"
+      />
+    </>
   );
 }

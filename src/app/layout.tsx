@@ -6,6 +6,7 @@ import './globals.css';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import AskRcc from '@/components/AskRcc/AskRcc';
+import SmoothScroll from '@/components/SmoothScroll';
 import styles from './page.module.css';
 import { cn } from '@/lib/utils';
 
@@ -75,6 +76,7 @@ export default function RootLayout({
         <main className={styles.pageContent}>{children}</main>
         <Footer />
         <AskRcc />
+        <SmoothScroll />
         <Analytics />
       </body>
     </html>

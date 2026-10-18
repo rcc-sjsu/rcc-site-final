@@ -2,6 +2,7 @@ import PageHero from '@/components/PageHero';
 import SectionHeading from '@/components/SectionHeading';
 import EventsSchedule from './components/EventsSchedule';
 import events, { getEventStartDay, isEventPast } from './data/Events';
+import heroImage from '@/public/projects-heroimg.png';
 
 // re-render hourly so countdowns stay current and finished events move to "Past events"
 export const revalidate = 3600;
@@ -19,7 +20,7 @@ export default function Events() {
         title="Learn, build, and"
         accent="connect."
         description="RCC's committees regularly hold events to promote community involvement in ethical technology and cross-disciplinary initiative!"
-        image="/projects-heroimg.png"
+        image={heroImage}
       />
 
       <section id="schedule" className="scroll-mt-20 bg-muted py-20 sm:py-28" aria-labelledby="schedule-heading">

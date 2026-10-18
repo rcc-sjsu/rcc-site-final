@@ -137,19 +137,6 @@
   }
 }
 
-/* scroll reveal: only hide when JS can reveal it again, and skip entirely for reduced motion */
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  [data-reveal] {
-    transition:
-      opacity 0.9s var(--ease-standard) var(--reveal-delay, 0ms),
-      translate 0.9s var(--ease-standard) var(--reveal-delay, 0ms);
-  }
-  [data-reveal]:not([data-revealed]) {
-    opacity: 0;
-    translate: 0 12px;
-  }
-}
-
 :root {
   /* can be editted/removed */
   --white: #fefefe;
