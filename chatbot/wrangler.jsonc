@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rcc-chatbot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-05",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": {
+    "binding": "AI",
+    "remote": true
+  },
+  "vars": {
+    "MODEL_ID": "@cf/zai-org/glm-4.7-flash",
+    "RAG_MIN_SCORE": "0.68",
+    "RAG_TOP_K": "5"
+  }
+}

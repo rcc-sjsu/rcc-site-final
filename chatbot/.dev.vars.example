@@ -1,0 +1,4 @@
+RAG_RETRIEVAL_URL="https://your-approved-retrieval-service.example/search"
+RAG_RETRIEVAL_TOKEN="replace-me"
+ALLOWED_ORIGIN="http://localhost:5173"
+RAG_MODE="fixture"
